@@ -42,6 +42,8 @@
   - N/A
 - Anything I need:
   - N/A
+  
+---
 
 ### Steven
 
@@ -71,6 +73,7 @@
 
   - N/A
 
+---
 
 ### Jack
 
@@ -90,6 +93,7 @@
 
   - N/A
 
+---
 
 ### Chrissy
 
@@ -113,6 +117,7 @@
 
   - N/A
 
+---
 
 ### Yibo Yan
 
