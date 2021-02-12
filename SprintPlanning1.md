@@ -46,54 +46,94 @@
 ### Steven
 
 - What I worked on:
+
   - Researched on design
+
   -  Wireframing the app
+
 - What I plan on working on next:
+
   - Start scale and login design
+
     - Seeing how to login with google/facebook and store it on fire base.
+
   - Get generic timer running
+
     - Later (if applicable with time constraint) import recipe time data with preset timer.
+
   - Help create XCode project
+
 - Anything I’m stuck on:
+
   - N/A
+
 - Anything I need:
+
   - N/A
+
 
 ### Jack
 
 - What I worked on:
+
   - Researched on design
+
 - What I plan on working on next:
+
   - Help create XCode project
+
 - Anything I’m stuck on:
+
   - N/A
+
 - Anything I need:
+
   - N/A
+
 
 ### Chrissy
 
 - What I worked on:
+
   - Researched on design
+
 - What I plan on working on next:
+
   - Research firebase or help with creating a web server
+
   - Determine how we’ll setup the social media media component of our app
+
   - Make local recipes publishable and downloadable from other users in the social media part
+
 - Anything I’m stuck on:
+
   - N/A
+
 - Anything I need:
+
   - N/A
+
 
 ### Yibo Yan
 
 - What I worked on:
+
   - Researched on design
+
 - What I plan on working on next:
+
   - Help with the initial design
+
   - Setup Firebase or maybe create our own server.
+
     - Help Steven with the login setup by using Firebase.
+
   - Take a look at the calendar view, which can be useful for our meal prep functionality.
+
 - Anything I’m stuck on:
-  - N/A
-- Anything I need:
+
   - N/A
 
+- Anything I need:
+
+  - N/A
