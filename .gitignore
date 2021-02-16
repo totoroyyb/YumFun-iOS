@@ -6,3 +6,5 @@ xcuserdata/
 
 # Ignore CocoaPods installed files
 Pods/
+*.xcuserstate
+YumFun/.DS_Store
