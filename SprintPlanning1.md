@@ -80,10 +80,12 @@
 - What I worked on:
 
   - Researched on design
+  - Researched on firebase
 
 - What I plan on working on next:
 
   - Help create XCode project
+  - Setup the firebase server
 
 - Anything I’m stuck on:
 
