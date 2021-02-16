@@ -1,10 +1,10 @@
 # Ignore macOS Finder user-related files
-*/.DS_Store
+.DS_Store
 
 # Ignore Xcode user-related files
 *.xcuserstate
 
 # Ignore CocoaPods installed files
-Pods/
+# Pods/
 
 
