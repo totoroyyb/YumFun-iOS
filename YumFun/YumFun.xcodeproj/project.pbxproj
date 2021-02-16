@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C517FE0B25DC67C00008B662 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C517FE0A25DC67C00008B662 /* GoogleService-Info.plist */; };
 		C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57662BA25DBF9D600642CF2 /* AppDelegate.swift */; };
 		C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57662BC25DBF9D600642CF2 /* SceneDelegate.swift */; };
 		C57662BF25DBF9D600642CF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57662BE25DBF9D600642CF2 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		54F5329A67B931D9FA451352 /* Pods_YumFun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YumFun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		739EB47224F8B0C399339A75 /* Pods-YumFun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumFun.release.xcconfig"; path = "Target Support Files/Pods-YumFun/Pods-YumFun.release.xcconfig"; sourceTree = "<group>"; };
+		C517FE0A25DC67C00008B662 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C57662B725DBF9D600642CF2 /* YumFun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YumFun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C57662BA25DBF9D600642CF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C57662BC25DBF9D600642CF2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				C57662DF25DBFF4100642CF2 /* View */,
 				C57662DD25DBFEF400642CF2 /* Controller */,
 				C57662C825DBF9D700642CF2 /* Info.plist */,
+				C517FE0A25DC67C00008B662 /* GoogleService-Info.plist */,
 				C57662E025DBFF7800642CF2 /* Supporting Files */,
 				C57662C325DBF9D700642CF2 /* Assets.xcassets */,
 			);
@@ -183,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C57662C725DBF9D700642CF2 /* LaunchScreen.storyboard in Resources */,
+				C517FE0B25DC67C00008B662 /* GoogleService-Info.plist in Resources */,
 				C57662C425DBF9D700642CF2 /* Assets.xcassets in Resources */,
 				C57662C225DBF9D600642CF2 /* Main.storyboard in Resources */,
 			);
