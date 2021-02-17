@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>216480074056-j3uh56cechhneicf3952c5sov7cvv4mm.apps.googleusercontent.com</string>
+	<string>912541914312-og7l6p9e72dvbs4uu8iffk20kcplpj52.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.216480074056-j3uh56cechhneicf3952c5sov7cvv4mm</string>
+	<string>com.googleusercontent.apps.912541914312-og7l6p9e72dvbs4uu8iffk20kcplpj52</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBDoRSNtWO02ijHC7ksaHBVGwJn9xQ1llw</string>
+	<string>AIzaSyDCZVk2LzYoEXMyN5n6ehkjAXV_U29qXEM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>216480074056</string>
+	<string>912541914312</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>edu.ucdavcs.189e.CodexCoders.YumFun</string>
 	<key>PROJECT_ID</key>
-	<string>yumfun</string>
+	<string>yumfun-93d9b</string>
 	<key>STORAGE_BUCKET</key>
-	<string>yumfun.appspot.com</string>
+	<string>yumfun-93d9b.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:216480074056:ios:de3acb925f73d011b38b7d</string>
+	<string>1:912541914312:ios:7f57df637942685bf581fd</string>
 </dict>
 </plist>

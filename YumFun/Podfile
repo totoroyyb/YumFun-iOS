@@ -6,6 +6,6 @@ target 'YumFun' do
   use_frameworks!
 
   # Pods for YumFun
+	pod 'Firebase/Core'
 	pod 'Firebase/Auth'
-	pod 'PhoneNumberKit'
 end
