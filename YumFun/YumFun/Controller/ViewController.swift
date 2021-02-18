@@ -43,6 +43,8 @@ class ViewController: UIViewController {
 
             //error means it could not sign in due to no accounts found
             guard error == nil else {
+                print(error)
+                //if the error is "no account record create the account, else..."
                 self.showCreateAccount(email: email, password: password)
                 return
             }
@@ -82,8 +84,8 @@ class ViewController: UIViewController {
             return
         }
         
-        
-        self.navigationController?.pushViewController(homeViewController, animated: true)
+
+        self.navigationController!.pushViewController(homeViewController, animated: true)
     }
 }
 
