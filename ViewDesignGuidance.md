@@ -1,4 +1,4 @@
-# Sprint 2
+# View Design Guidance
 
 
 
@@ -14,7 +14,7 @@
 
    - Support searching feature. If keyword based searching is too much work, we can start with recipe category filters for searching (users tap on a predefined category, such as bakery, and the app should display all the bakery recipes, possibly sorted by popularity).
 
-   - **Each cell** (a recipe) should display the category of the recipe, the author, number of thumbs-ups,  supports thumbs up, collecting, and comments (comments are not necessary). The top $n$ recipes with the most thumbs-ups will be recommanded. 
+   - **Each cell** (a recipe) should display the category of the recipe, the author, number of thumbs-ups,  supports thumbs up, collecting, and comments (comments are not necessary). The top $n$ recipes with the most thumbs-ups will be recommended. 
 
    - A button for navigating to **"My kitchen"**. 
 
@@ -51,8 +51,8 @@
 
    - A bunch of categories to be selected from
    - An add button to add steps
-     - A step consists of a description, an ingrediant list, and a time.
-     - An ingrediant consists of the ingrediant name and amount.
+     - A step consists of a description, an ingredient list, and a time.
+     - An ingredient consists of the ingredient name and amount.
 
    - An button to select whether to publish the recipe
 
@@ -61,6 +61,6 @@
 
 
 6. **Cooking mode**
-   - A Check box for each step. Checking the step to dimiss it from the screen.
+   - A Check box for each step. Checking the step to dismiss it from the screen.
    - Set timer for a step, using the time element of a step.
 
