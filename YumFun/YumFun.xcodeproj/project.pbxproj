@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21A8364725E02252005933AE /* FirestoreTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21A8364625E02252005933AE /* FirestoreTest.storyboard */; };
+		21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */; };
+		21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8365125E023E4005933AE /* FirestoreApi.swift */; };
+		21A8365625E024F0005933AE /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8365525E024F0005933AE /* Recipe.swift */; };
 		84A8860025DD9374004684DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A885FF25DD9374004684DA /* GoogleService-Info.plist */; };
 		84A8861225DD9F85004684DA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8861125DD9F85004684DA /* HomeViewController.swift */; };
 		C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57662BA25DBF9D600642CF2 /* AppDelegate.swift */; };
@@ -19,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21A8364625E02252005933AE /* FirestoreTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirestoreTest.storyboard; sourceTree = "<group>"; };
+		21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestViewController.swift; sourceTree = "<group>"; };
+		21A8365125E023E4005933AE /* FirestoreApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreApi.swift; sourceTree = "<group>"; };
+		21A8365525E024F0005933AE /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Recipe.swift; path = YumFun/Service/Recipe.swift; sourceTree = SOURCE_ROOT; };
 		54F5329A67B931D9FA451352 /* Pods_YumFun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YumFun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		739EB47224F8B0C399339A75 /* Pods-YumFun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumFun.release.xcconfig"; path = "Target Support Files/Pods-YumFun/Pods-YumFun.release.xcconfig"; sourceTree = "<group>"; };
 		84A885FF25DD9374004684DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -46,6 +54,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21A8364925E022AC005933AE /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				21A8364625E02252005933AE /* FirestoreTest.storyboard */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		21A8364B25E022CA005933AE /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		21A8365025E023A3005933AE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				21A8365125E023E4005933AE /* FirestoreApi.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		32B98297541E3E0DA7B82006 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +116,7 @@
 		C57662B925DBF9D600642CF2 /* YumFun */ = {
 			isa = PBXGroup;
 			children = (
+				21A8365025E023A3005933AE /* Service */,
 				84A885FF25DD9374004684DA /* GoogleService-Info.plist */,
 				C57662DE25DBFF3700642CF2 /* Model */,
 				C57662DF25DBFF4100642CF2 /* View */,
@@ -98,6 +131,7 @@
 		C57662DD25DBFEF400642CF2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				21A8364B25E022CA005933AE /* Tests */,
 				C57662BE25DBF9D600642CF2 /* ViewController.swift */,
 				C57662BC25DBF9D600642CF2 /* SceneDelegate.swift */,
 				C57662BA25DBF9D600642CF2 /* AppDelegate.swift */,
@@ -109,6 +143,7 @@
 		C57662DE25DBFF3700642CF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				21A8365525E024F0005933AE /* Recipe.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -116,6 +151,7 @@
 		C57662DF25DBFF4100642CF2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				21A8364925E022AC005933AE /* Tests */,
 				C57662C525DBF9D700642CF2 /* LaunchScreen.storyboard */,
 				C57662C025DBF9D600642CF2 /* Main.storyboard */,
 			);
@@ -188,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21A8364725E02252005933AE /* FirestoreTest.storyboard in Resources */,
 				C57662C725DBF9D700642CF2 /* LaunchScreen.storyboard in Resources */,
 				C57662C425DBF9D700642CF2 /* Assets.xcassets in Resources */,
 				C57662C225DBF9D600642CF2 /* Main.storyboard in Resources */,
@@ -244,7 +281,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */,
 				C57662BF25DBF9D600642CF2 /* ViewController.swift in Sources */,
+				21A8365625E024F0005933AE /* Recipe.swift in Sources */,
+				21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */,
 				C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */,
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,
 				84A8861225DD9F85004684DA /* HomeViewController.swift in Sources */,
