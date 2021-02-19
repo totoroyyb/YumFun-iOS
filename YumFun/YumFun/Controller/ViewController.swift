@@ -7,6 +7,11 @@
 
 import UIKit
 import Firebase
+
+
+let testFirestore = true
+
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!
@@ -76,15 +81,24 @@ class ViewController: UIViewController {
     
     
     func navToHomeView() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        guard let homeViewController = storyboard.instantiateViewController(identifier: "homeview") as? HomeViewController else {
-            assertionFailure("Cannot instantiate HomeViewController.")
-            return
-        }
-        
+        if testFirestore {
+            let storyboard = UIStoryboard(name: "FirestoreTest", bundle: nil)
+            guard let firestoreTestViewController = storyboard.instantiateViewController(identifier: "FirestoreTestViewController") as? FirestoreTestViewController else {
+                assertionFailure("Cannot instantiate FirestoreTestViewController")
+                return
+            }
+            self.navigationController?.pushViewController(firestoreTestViewController, animated: true)
+            
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            guard let homeViewController = storyboard.instantiateViewController(identifier: "homeview") as? HomeViewController else {
+                assertionFailure("Cannot instantiate HomeViewController.")
+                return
+            }
 
-        self.navigationController!.pushViewController(homeViewController, animated: true)
+            self.navigationController?.pushViewController(homeViewController, animated: true)
+        }
     }
 }
 

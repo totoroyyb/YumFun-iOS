@@ -62,6 +62,7 @@ struct Recipe: Encodable {
     var serveSize: Int = 1
     var duration: Duration
     var dishType: DishType
-    var cuisine: [CuisineType]
-    var occasion: [String]
+    var cuisine = [CuisineType]()
+    var occasion = [String]()
+    var creationDate = Date()
 }
