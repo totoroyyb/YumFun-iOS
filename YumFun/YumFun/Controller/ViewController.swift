@@ -42,15 +42,14 @@ class ViewController: UIViewController {
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: {result, error in
 
             //error means it could not sign in due to no accounts found
-            guard error == nil else {
+            if error == nil {
+                self.navToHomeView()
+            } else {
                 print(error)
                 //if the error is "no account record create the account, else..."
                 self.showCreateAccount(email: email, password: password)
-                return
             }
-            
         })
-        self.navToHomeView()
     }
     
     
