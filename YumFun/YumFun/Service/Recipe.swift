@@ -58,7 +58,10 @@ enum CuisineType: String, Codable {
  
  // - MARK: NOT DONE YET
  */
-struct Recipe: Encodable {
+struct Recipe: Encodable, Identifiable {
+    /// ID doesn't have any special usage right now, just in case.
+    var id = UUID()
+    
     var serveSize: Int = 1
     var duration: Duration
     var dishType: DishType

@@ -6,10 +6,10 @@ target 'YumFun' do
   use_frameworks!
 
   # Pods for YumFun
-	pod 'Firebase/Core'
-	pod 'Firebase/Auth'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
 
-	# Firestore integration
-	pod 'Firebase/Firestore'
-	pod 'FirebaseFirestoreSwift'
+  # Firestore integration
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
 end
