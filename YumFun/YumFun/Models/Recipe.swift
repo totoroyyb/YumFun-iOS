@@ -63,7 +63,6 @@ enum CuisineType: String, Codable {
 struct Recipe: Codable, Identifiable, UpdateTrackable {
     /// This id maps to the id Firestore created automatically
     @DocumentID var id: String?
-    
     /// This is used to track last update date
     @ServerTimestamp var lastUpdated: Timestamp?
     

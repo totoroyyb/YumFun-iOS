@@ -86,20 +86,35 @@ class FirestoreTestViewController: UIViewController {
     }
     
     @IBAction func fetchAllButtonTapped(_ sender: Any) {
-//        FirestoreApi.fetchAllData { (err, documents) in
+//        FirestoreApi.fetchAllData(in: "recipe") { (err, documents: [Recipe]?, querySnapshot) in
 //            if let err = err {
 //                print("Error getting documents: \(err)")
 //            } else {
 //                if let documents = documents {
 //                    for document in documents {
-//                        let doc = try? document.data(as: Recipe.self)
-//                        print("\(document.documentID) => \(doc) with id: \(doc?.id)")
+////                        let doc = try? document.data(as: Recipe.self)
+////                        print("\(document.documentID) => \(doc) with id: \(doc?.id)")
+//                        print("Recipes as below: \(document)")
 //                    }
 //                } else {
 //                    print("No document is fetched")
 //                }
 //            }
 //        }
+        
+        FirestoreApi.getAllRecipes { (err, recipes, querySnapshot) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if let documents = recipes {
+                    for document in documents {
+                        print("Recipes as below: \(document)")
+                    }
+                } else {
+                    print("No document is fetched")
+                }
+            }
+        }
     }
     /*
     // MARK: - Navigation

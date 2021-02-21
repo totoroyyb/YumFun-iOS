@@ -11,8 +11,9 @@ import Firebase
 class FirestoreApi {
     // - MARK: Handler Type
     typealias postDataCompletionHandler = (Error?, DocumentReference?) -> Void
-    typealias fetchAllDataCompletionHandler<T: Decodable> = (Error?, [T]?, QuerySnapshot?) -> Void
     typealias updateDataCompletionHandler = (Error?) -> Void
+    typealias getDataCompletionHandler<T: Decodable> = (Error?, T?, DocumentSnapshot?) -> Void
+    typealias getAllDataCompletionHandler<T: Decodable> = (Error?, [T]?, QuerySnapshot?) -> Void
     
     private static let db = Firestore.firestore()
     
@@ -37,7 +38,7 @@ class FirestoreApi {
                                        with data: T,
                                        _ completion: @escaping postDataCompletionHandler) {
         var ref: DocumentReference? = nil
-        ref = try? db.collection(collectionPath).addDocument(from: data) { err in
+        ref = try? self.db.collection(collectionPath).addDocument(from: data) { err in
             completion(err, ref)
         }
     }
@@ -65,7 +66,7 @@ class FirestoreApi {
                                        merge: Bool = false,
                                        _ completion: @escaping postDataCompletionHandler) {
         do {
-            try db.collection(collectionPath).document(docName).setData(from: data,
+            try self.db.collection(collectionPath).document(docName).setData(from: data,
                                                                         merge: merge) { (err) in
                 completion(err, nil)
             }
@@ -93,7 +94,7 @@ class FirestoreApi {
             data["lastUpdated"] = FieldValue.serverTimestamp()
         }
         
-        db.collection(collectionPath).document(docName).updateData(data) { (err) in
+        self.db.collection(collectionPath).document(docName).updateData(data) { (err) in
             completion(err)
         }
     }
@@ -120,9 +121,52 @@ class FirestoreApi {
         }
     }
     
-    static func fetchAllData<T: Decodable>(in collection: String,
-                                           _ completion: @escaping fetchAllDataCompletionHandler<T>) {
-        db.collection(collection).getDocuments() { (querySnapshot, err) in
+    /**
+     Get data with specified collection path and document id/name from the cloud
+     
+     ## Note
+     You can access the second argument in the completion handler to directly access the parsed object.
+     To gain full access of object that passed back by Firestore, you can access the third argument in the completion handler.
+     */
+    static func getData<T: Decodable>(in collectionPath: String,
+                          named docName: String,
+                          _ completion: @escaping getDataCompletionHandler<T>) {
+        let docRef = self.db.collection(collectionPath).document(docName)
+        
+        docRef.getDocument { (docSnapshot, err) in
+            if let err = err {
+                completion(err, nil, docSnapshot)
+            } else {
+                if let docSnapshot = docSnapshot, docSnapshot.exists {
+                    let result = Result {
+                        try docSnapshot.data(as: T.self)
+                    }
+                    
+                    switch result {
+                    case .success(let data):
+                        completion(err, data, docSnapshot)
+                    case .failure(let error):
+                        completion(error, nil, docSnapshot)
+                    }
+                } else {
+                    completion(err, nil, docSnapshot)
+                }
+            }
+        }
+    }
+    
+    /**
+     Get all documents inside the specified collection path
+     
+     ## Note
+     All documents that cannot be parsed will be filtered out. However, the error message will be printed to the console.
+     
+     You can access the second argument in the completion handler to directly access the parsed document array.
+     To gain full access of snapshot that passed back by Firestore, you can access the third argument in the completion handler.
+     */
+    static func getAllData<T: Decodable>(in collectionPath: String,
+                                           _ completion: @escaping getAllDataCompletionHandler<T>) {
+        db.collection(collectionPath).getDocuments() { (querySnapshot, err) in
             let docs = querySnapshot?.documents.compactMap { document -> T? in
                 let result = Result {
                     try document.data(as: T.self)
@@ -135,7 +179,6 @@ class FirestoreApi {
                     print("Error decoding data: \(error)")
                     return nil
                 }
-//                return try? document.data(as: T.self)
             }
             completion(err, docs, querySnapshot)
         }
@@ -145,25 +188,40 @@ class FirestoreApi {
 // - MARK: Convinent Functions for Recipe operations
 extension FirestoreApi {
     /**
+     Warning: This the collection path in the Firestore for recipes. Do you change it, if data migration is not prepared.
+     */
+    static let recipeCollectionPath = "recipe"
+    
+    /**
      Post a recipe to the cloud. All recipe will be saved to the top-level collection named `recipe`. The document name/id will be randomly generated.
+     
+     - Parameter recipe: the recipe you want to post to cloud
      */
     static func postRecipe(with recipe: Recipe,
                            _ completion: @escaping postDataCompletionHandler) {
-        self.postData(in: "recipe", with: recipe, completion)
+        self.postData(in: recipeCollectionPath, with: recipe, completion)
     }
     
     /**
      Update a recipe to the cloud. You can update partial data by passing in a dictionary-like object.
+     
+     - Parameter name: the name/id of the recipe stored in the cloud.
+     - Parameter data: the partial data used to update the old data in the cloud.
+     - Parameter trackUpdate: whether update the `lastUpdate` field automatically. By default, is set to `true`.
      */
     static func updateRecipe(named name: String,
                              with data: [AnyHashable : Any],
                              trackUpdate: Bool = true,
                              _ completion: @escaping updateDataCompletionHandler) {
-        self.updateData(in: "recipe", named: name, with: data, trackUpdate: trackUpdate, completion)
+        self.updateData(in: recipeCollectionPath, named: name, with: data, trackUpdate: trackUpdate, completion)
     }
     
     /**
      Update a recipe to the cloud. You can update an entire recipe by passing in a `Recipe` object.
+     
+     - Parameter name: the name/id of the recipe stored in the cloud.
+     - Parameter data: the entire recipe object used to update the old data in the cloud.
+     - Parameter trackUpdate: whether update the `lastUpdate` field automatically. By default, is set to `true`.
      
      ## Note
      If you want to create a entire new recipe, considering using `postRecipe()` function.
@@ -172,7 +230,24 @@ extension FirestoreApi {
                              with data: Recipe,
                              trackUpdate: Bool = true,
                              _ completion: @escaping updateDataCompletionHandler) {
-        self.updateData(in: "recipe", named: name, with: data, trackUpdate: trackUpdate, completion)
+        self.updateData(in: recipeCollectionPath, named: name, with: data, trackUpdate: trackUpdate, completion)
+    }
+    
+    /**
+     Get a recipe from the cloud with specified name/id.
+     
+     - Parameter name: the name/id of the recipe to get from the cloud.
+     */
+    static func getRecipe(named name: String,
+                          _ completion: @escaping getDataCompletionHandler<Recipe>) {
+        self.getData(in: recipeCollectionPath, named: name, completion)
+    }
+    
+    /**
+     Get all recipes from the cloud.
+     */
+    static func getAllRecipes(_ completion: @escaping getAllDataCompletionHandler<Recipe>) {
+        self.getAllData(in: recipeCollectionPath, completion)
     }
 }
 
