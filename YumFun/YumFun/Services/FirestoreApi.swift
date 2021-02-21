@@ -99,7 +99,7 @@ class FirestoreApi {
         if trackUpdate {
             data["lastUpdated"] = FieldValue.serverTimestamp()
         }
-        
+
         self.db.collection(collectionPath).document(docName).updateData(data) { (err) in
             completion(err)
         }

@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 
-let testFirestore = false
+let testFirestore = true
 
 
 class ViewController: UIViewController {

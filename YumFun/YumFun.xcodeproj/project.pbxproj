@@ -13,6 +13,7 @@
 		21A8367125E0364B005933AE /* RecipeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8367025E0364B005933AE /* RecipeExt.swift */; };
 		21F2AE4325E2881900C6F973 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE4225E2881900C6F973 /* Recipe.swift */; };
 		21F2AE4725E288ED00C6F973 /* UpdateTrackableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE4625E288ED00C6F973 /* UpdateTrackableProtocol.swift */; };
+		21F2AE4B25E2DFA300C6F973 /* RecipeComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE4A25E2DFA300C6F973 /* RecipeComponents.swift */; };
 		84A8860025DD9374004684DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A885FF25DD9374004684DA /* GoogleService-Info.plist */; };
 		84A8861225DD9F85004684DA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8861125DD9F85004684DA /* HomeViewController.swift */; };
 		C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57662BA25DBF9D600642CF2 /* AppDelegate.swift */; };
@@ -31,6 +32,7 @@
 		21A8367025E0364B005933AE /* RecipeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeExt.swift; sourceTree = "<group>"; };
 		21F2AE4225E2881900C6F973 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		21F2AE4625E288ED00C6F973 /* UpdateTrackableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTrackableProtocol.swift; sourceTree = "<group>"; };
+		21F2AE4A25E2DFA300C6F973 /* RecipeComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeComponents.swift; sourceTree = "<group>"; };
 		54F5329A67B931D9FA451352 /* Pods_YumFun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YumFun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		739EB47224F8B0C399339A75 /* Pods-YumFun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumFun.release.xcconfig"; path = "Target Support Files/Pods-YumFun/Pods-YumFun.release.xcconfig"; sourceTree = "<group>"; };
 		84A885FF25DD9374004684DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				21F2AE4225E2881900C6F973 /* Recipe.swift */,
+				21F2AE4A25E2DFA300C6F973 /* RecipeComponents.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */,
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,
 				21A8367125E0364B005933AE /* RecipeExt.swift in Sources */,
+				21F2AE4B25E2DFA300C6F973 /* RecipeComponents.swift in Sources */,
 				84A8861225DD9F85004684DA /* HomeViewController.swift in Sources */,
 				21F2AE4325E2881900C6F973 /* Recipe.swift in Sources */,
 			);
