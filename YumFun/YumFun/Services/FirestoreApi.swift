@@ -202,7 +202,7 @@ class FirestoreApi {
     }
 }
 
-// - MARK: Convinent Functions for Recipe operations
+// - MARK: Convenient Functions for Recipe operations
 extension FirestoreApi {
     /**
      Warning: This the collection path in the Firestore for recipes. Do you change it, if data migration is not prepared.
