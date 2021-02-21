@@ -10,8 +10,9 @@
 		21A8364725E02252005933AE /* FirestoreTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21A8364625E02252005933AE /* FirestoreTest.storyboard */; };
 		21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */; };
 		21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8365125E023E4005933AE /* FirestoreApi.swift */; };
-		21A8365625E024F0005933AE /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8365525E024F0005933AE /* Recipe.swift */; };
 		21A8367125E0364B005933AE /* RecipeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8367025E0364B005933AE /* RecipeExt.swift */; };
+		21F2AE4325E2881900C6F973 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE4225E2881900C6F973 /* Recipe.swift */; };
+		21F2AE4725E288ED00C6F973 /* UpdateTrackableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE4625E288ED00C6F973 /* UpdateTrackableProtocol.swift */; };
 		84A8860025DD9374004684DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A885FF25DD9374004684DA /* GoogleService-Info.plist */; };
 		84A8861225DD9F85004684DA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8861125DD9F85004684DA /* HomeViewController.swift */; };
 		C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57662BA25DBF9D600642CF2 /* AppDelegate.swift */; };
@@ -27,8 +28,9 @@
 		21A8364625E02252005933AE /* FirestoreTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirestoreTest.storyboard; sourceTree = "<group>"; };
 		21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestViewController.swift; sourceTree = "<group>"; };
 		21A8365125E023E4005933AE /* FirestoreApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreApi.swift; sourceTree = "<group>"; };
-		21A8365525E024F0005933AE /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Recipe.swift; path = YumFun/Service/Recipe.swift; sourceTree = SOURCE_ROOT; };
 		21A8367025E0364B005933AE /* RecipeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeExt.swift; sourceTree = "<group>"; };
+		21F2AE4225E2881900C6F973 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		21F2AE4625E288ED00C6F973 /* UpdateTrackableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTrackableProtocol.swift; sourceTree = "<group>"; };
 		54F5329A67B931D9FA451352 /* Pods_YumFun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YumFun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		739EB47224F8B0C399339A75 /* Pods-YumFun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumFun.release.xcconfig"; path = "Target Support Files/Pods-YumFun/Pods-YumFun.release.xcconfig"; sourceTree = "<group>"; };
 		84A885FF25DD9374004684DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -72,20 +74,36 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		21A8365025E023A3005933AE /* Service */ = {
+		21A8365025E023A3005933AE /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				21A8365125E023E4005933AE /* FirestoreApi.swift */,
 			);
-			path = Service;
+			path = Services;
 			sourceTree = "<group>";
 		};
-		21A8366F25E0362B005933AE /* Extension */ = {
+		21A8366F25E0362B005933AE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				21A8367025E0364B005933AE /* RecipeExt.swift */,
 			);
-			path = Extension;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		21F2AE2425E2870900C6F973 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				21F2AE4625E288ED00C6F973 /* UpdateTrackableProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		21F2AE4125E287FC00C6F973 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				21F2AE4225E2881900C6F973 /* Recipe.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		32B98297541E3E0DA7B82006 /* Pods */ = {
@@ -126,20 +144,21 @@
 		C57662B925DBF9D600642CF2 /* YumFun */ = {
 			isa = PBXGroup;
 			children = (
-				21A8366F25E0362B005933AE /* Extension */,
-				21A8365025E023A3005933AE /* Service */,
-				84A885FF25DD9374004684DA /* GoogleService-Info.plist */,
-				C57662DE25DBFF3700642CF2 /* Model */,
-				C57662DF25DBFF4100642CF2 /* View */,
-				C57662DD25DBFEF400642CF2 /* Controller */,
-				C57662C825DBF9D700642CF2 /* Info.plist */,
+				21F2AE2425E2870900C6F973 /* Protocols */,
+				21A8366F25E0362B005933AE /* Extensions */,
+				21A8365025E023A3005933AE /* Services */,
+				21F2AE4125E287FC00C6F973 /* Models */,
+				C57662DF25DBFF4100642CF2 /* Views */,
+				C57662DD25DBFEF400642CF2 /* Controllers */,
 				C57662E025DBFF7800642CF2 /* Supporting Files */,
 				C57662C325DBF9D700642CF2 /* Assets.xcassets */,
+				C57662C825DBF9D700642CF2 /* Info.plist */,
+				84A885FF25DD9374004684DA /* GoogleService-Info.plist */,
 			);
 			path = YumFun;
 			sourceTree = "<group>";
 		};
-		C57662DD25DBFEF400642CF2 /* Controller */ = {
+		C57662DD25DBFEF400642CF2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				21A8364B25E022CA005933AE /* Tests */,
@@ -148,25 +167,17 @@
 				C57662BA25DBF9D600642CF2 /* AppDelegate.swift */,
 				84A8861125DD9F85004684DA /* HomeViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		C57662DE25DBFF3700642CF2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				21A8365525E024F0005933AE /* Recipe.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		C57662DF25DBFF4100642CF2 /* View */ = {
+		C57662DF25DBFF4100642CF2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				21A8364925E022AC005933AE /* Tests */,
 				C57662C525DBF9D700642CF2 /* LaunchScreen.storyboard */,
 				C57662C025DBF9D600642CF2 /* Main.storyboard */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C57662E025DBFF7800642CF2 /* Supporting Files */ = {
@@ -292,14 +303,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F2AE4725E288ED00C6F973 /* UpdateTrackableProtocol.swift in Sources */,
 				21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */,
 				C57662BF25DBF9D600642CF2 /* ViewController.swift in Sources */,
-				21A8365625E024F0005933AE /* Recipe.swift in Sources */,
 				21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */,
 				C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */,
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,
 				21A8367125E0364B005933AE /* RecipeExt.swift in Sources */,
 				84A8861225DD9F85004684DA /* HomeViewController.swift in Sources */,
+				21F2AE4325E2881900C6F973 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 /**
  Record how much time will be spent on prep, baking or resting.
@@ -58,14 +60,17 @@ enum CuisineType: String, Codable {
  
  // - MARK: NOT DONE YET
  */
-struct Recipe: Encodable, Identifiable {
-    /// ID doesn't have any special usage right now, just in case.
-    var id = UUID()
+struct Recipe: Codable, Identifiable, UpdateTrackable {
+    /// This id maps to the id Firestore created automatically
+    @DocumentID var id: String?
+    
+    /// This is used to track last update date
+    @ServerTimestamp var lastUpdated: Timestamp?
     
     var serveSize: Int = 1
     var duration: Duration
     var dishType: DishType
     var cuisine = [CuisineType]()
     var occasion = [String]()
-    var creationDate = Date()
+    var creationDate = Timestamp()
 }
