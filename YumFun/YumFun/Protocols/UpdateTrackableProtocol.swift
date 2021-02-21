@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+// Not used for now.
 protocol UpdateTrackable {
     var lastUpdated: Timestamp? { get set }
 }

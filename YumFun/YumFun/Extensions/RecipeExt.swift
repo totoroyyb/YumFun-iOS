@@ -37,6 +37,9 @@ extension Encodable {
         return jsonObject as? [String : Any]
     }
     
+    /**
+     Parse a `Recipe` object to a dictionary representation which Firestore can interpret.
+     */
     func toFirebaseDict() throws -> [String : Any] {
         let encoder = Firestore.Encoder()
         return try encoder.encode(self)

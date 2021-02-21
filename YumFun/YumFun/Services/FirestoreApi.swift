@@ -11,9 +11,15 @@ import Firebase
 class FirestoreApi {
     // - MARK: Handler Type
     typealias postDataCompletionHandler = (Error?, DocumentReference?) -> Void
+    
     typealias updateDataCompletionHandler = (Error?) -> Void
+    
     typealias getDataCompletionHandler<T: Decodable> = (Error?, T?, DocumentSnapshot?) -> Void
+    
     typealias getAllDataCompletionHandler<T: Decodable> = (Error?, [T]?, QuerySnapshot?) -> Void
+    
+    typealias deleteDataCompletionHandler = (Error?) -> Void
+    
     
     private static let db = Firestore.firestore()
     
@@ -183,6 +189,17 @@ class FirestoreApi {
             completion(err, docs, querySnapshot)
         }
     }
+    
+    /**
+     Delete the data with specified collection path and document name/id.
+     */
+    static func deleteData(in collectionPath: String,
+                           named name: String,
+                           _ completion: @escaping deleteDataCompletionHandler) {
+        self.db.collection(collectionPath).document(name).delete { (err) in
+            completion(err)
+        }
+    }
 }
 
 // - MARK: Convinent Functions for Recipe operations
@@ -248,6 +265,14 @@ extension FirestoreApi {
      */
     static func getAllRecipes(_ completion: @escaping getAllDataCompletionHandler<Recipe>) {
         self.getAllData(in: recipeCollectionPath, completion)
+    }
+    
+    /**
+     Delete one recipe with specified document id/name.
+     */
+    static func deleteRecipe(named name: String,
+                             _ completion: @escaping deleteDataCompletionHandler) {
+        self.deleteData(in: recipeCollectionPath, named: name, completion)
     }
 }
 
