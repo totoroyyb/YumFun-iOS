@@ -15,6 +15,9 @@
 		C57662C225DBF9D600642CF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57662C025DBF9D600642CF2 /* Main.storyboard */; };
 		C57662C425DBF9D700642CF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C57662C325DBF9D700642CF2 /* Assets.xcassets */; };
 		C57662C725DBF9D700642CF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57662C525DBF9D700642CF2 /* LaunchScreen.storyboard */; };
+		C5A5EA6925E1BE6D00315088 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A5EA6825E1BE6D00315088 /* ProfileViewController.swift */; };
+		C5A5EA6D25E2D67D00315088 /* RecipePreviewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A5EA6B25E2D67D00315088 /* RecipePreviewCellController.swift */; };
+		C5A5EA7A25E3A94E00315088 /* ProfileEditPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A5EA7925E3A94E00315088 /* ProfileEditPage.swift */; };
 		E89A46416C72CD1998CCC4AB /* Pods_YumFun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F5329A67B931D9FA451352 /* Pods_YumFun.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +34,9 @@
 		C57662C325DBF9D700642CF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C57662C625DBF9D700642CF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C57662C825DBF9D700642CF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5A5EA6825E1BE6D00315088 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C5A5EA6B25E2D67D00315088 /* RecipePreviewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePreviewCellController.swift; sourceTree = "<group>"; };
+		C5A5EA7925E3A94E00315088 /* ProfileEditPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPage.swift; sourceTree = "<group>"; };
 		D438D8E35AE2FBC94C38C72C /* Pods-YumFun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumFun.debug.xcconfig"; path = "Target Support Files/Pods-YumFun/Pods-YumFun.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +104,7 @@
 		C57662DD25DBFEF400642CF2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C5A5EA7825E3A90700315088 /* Profile */,
 				C57662BE25DBF9D600642CF2 /* ViewController.swift */,
 				C57662BC25DBF9D600642CF2 /* SceneDelegate.swift */,
 				C57662BA25DBF9D600642CF2 /* AppDelegate.swift */,
@@ -127,6 +134,16 @@
 			children = (
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C5A5EA7825E3A90700315088 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C5A5EA6B25E2D67D00315088 /* RecipePreviewCellController.swift */,
+				C5A5EA6825E1BE6D00315088 /* ProfileViewController.swift */,
+				C5A5EA7925E3A94E00315088 /* ProfileEditPage.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,8 +263,11 @@
 			files = (
 				C57662BF25DBF9D600642CF2 /* ViewController.swift in Sources */,
 				C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */,
+				C5A5EA6D25E2D67D00315088 /* RecipePreviewCellController.swift in Sources */,
+				C5A5EA6925E1BE6D00315088 /* ProfileViewController.swift in Sources */,
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,
 				84A8861225DD9F85004684DA /* HomeViewController.swift in Sources */,
+				C5A5EA7A25E3A94E00315088 /* ProfileEditPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
