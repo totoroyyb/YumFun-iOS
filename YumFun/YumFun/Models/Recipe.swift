@@ -55,11 +55,3 @@ extension Recipe: CrudOperable {
         "recipe"
     }
 }
-
-//extension Recipe {
-//    func updateErrorHandler(err: Error?) {
-//        if let err = err {
-//            print("Error to update value with err: \(err)")
-//        }
-//    }
-//}

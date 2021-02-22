@@ -10,7 +10,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct User: Identifiable, Codable {
+final class User: Identifiable, Codable {
     /// This id maps to the uid created by Firebase authentication
     @DocumentID var id: String?
     
@@ -23,9 +23,78 @@ struct User: Identifiable, Codable {
     var photoUrl: URL?
     var bio: String?
     
-    var recipes = [String]()
+    private(set) var recipes: [String] = [] {
+        willSet {
+            if let validId = self.id {
+                User.update(named: validId, with: ["recipes": newValue]) { (err) in
+                    if let err = err {
+                        print("Failed to update recipes in user. \(err)")
+                    }
+                }
+            }
+        }
+    }
+    
     var followers = [String]()
-    var followings = [String]()
+    
+    private(set) var followings: [String] = [] {
+        willSet {
+            if let validId = self.id {
+                User.update(named: validId, with: ["followings": newValue]) { (err) in
+                    if let err = err {
+                        print("Failed to update followings in user. \(err)")
+                    }
+                }
+            }
+        }
+    }
+    
+    init(fromAuthUser authUser: Firebase.User) {
+        self.id = authUser.uid
+        self.displayName = authUser.displayName
+        self.email = authUser.email
+        self.photoUrl = authUser.photoURL
+    }
+}
+
+extension User {
+    /**
+     Create recipe. This function should only be used to create a recipe for __current user__.
+     */
+    func createRecipe(with recipe: Recipe, _ completion: @escaping postDataCompletionHandler) {
+        
+        guard let currUserId = self.id else {
+            print("Failed to fetch current user id")
+            completion(currUserNoDataError, nil)
+            return
+        }
+        
+        var recipe = recipe
+        recipe.author = currUserId
+        
+        Recipe.post(with: recipe) { (err, docRef) in
+            if let err = err {
+                completion(err, docRef)
+            } else {
+                if let docId = docRef?.documentID {
+                    self.recipes.append(docId)
+                }
+            }
+        }
+    }
+    
+    func followUser(withId userId: String,
+                    _ completion: @escaping updateDataCompletionHandler) {
+        guard let currUserId = self.id else {
+            print("Failed to fetch current user id")
+            completion(currUserNoDataError)
+            return
+        }
+        
+        self.followings.append(userId)
+        let newData = ["followers" : FieldValue.arrayUnion([currUserId])]
+        User.update(named: userId, with: newData, completion)
+    }
 }
 
 extension User: CrudOperable {
@@ -35,11 +104,11 @@ extension User: CrudOperable {
 }
 
 fileprivate let userInfo: [String : Any] = [
-    NSLocalizedDescriptionKey: NSLocalizedString("Failed to Post", value: "The new created user data cannot be posted to Firestore", comment: ""),
-    NSLocalizedFailureReasonErrorKey: NSLocalizedString("Failed to Post", value: "Newly created user data cannot be fetched", comment: "")
+    NSLocalizedDescriptionKey: NSLocalizedString("Failed to Post", value: "Current user data cannot be fetched", comment: ""),
+    NSLocalizedFailureReasonErrorKey: NSLocalizedString("Failed to Post", value: "Current user data cannot be fetched", comment: "")
 ]
 
-fileprivate let createUserNoDataError = NSError(domain: "FailedToFetchData", code: 0, userInfo: userInfo)
+fileprivate let currUserNoDataError = NSError(domain: "FailedToFetchData", code: 0, userInfo: userInfo)
 
 extension User {
     typealias createUserCompletionHandler = ((AuthDataResult?, Error?) -> Void)
@@ -60,23 +129,25 @@ extension User {
             }
             
             if let user = result?.user {
-                let newUser = copyFromAuthUser(user)
+                let newUser = User(fromAuthUser: user)
                 User.post(with: newUser, named: user.uid) { (err, _) in
                     if let err = err {
                         completion(result, err)
                     }
                 }
             } else {
-                completion(result, createUserNoDataError)
+                completion(result, currUserNoDataError)
             }
         }
     }
     
-    fileprivate static func copyFromAuthUser(_ authUser: FirebaseAuth.User) -> User {
-        let user = User(displayName: authUser.displayName,
-                        email: authUser.email,
-                        photoUrl: authUser.photoURL)
-        return user
-    }
+//    fileprivate static func copyFromAuthUser(_ authUser: FirebaseAuth.User) -> User {
+////        User()
+//        let user = User(id: authUser.uid,
+//                        displayName: authUser.displayName,
+//                        email: authUser.email,
+//                        photoUrl: authUser.photoURL)
+//        return user
+//    }
 }
 

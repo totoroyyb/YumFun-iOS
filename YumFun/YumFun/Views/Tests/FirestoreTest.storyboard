@@ -143,6 +143,13 @@
                                     <action selector="fetchCurrentUserTapped:" destination="0AW-Ot-P7v" eventType="touchUpInside" id="bBl-KP-6kC"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uo-Ut-imh">
+                                <rect key="frame" x="106.5" y="519" width="201" height="30"/>
+                                <state key="normal" title="Current User Create a Recipe"/>
+                                <connections>
+                                    <action selector="currentUserCreateRecipeTapped:" destination="0AW-Ot-P7v" eventType="touchUpInside" id="amv-Ck-aIm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hbV-wA-jEd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -154,6 +161,7 @@
                             <constraint firstItem="x4x-3a-Xjj" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="HDf-Z6-IHi"/>
                             <constraint firstItem="Sik-WS-ARl" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="Kje-d3-aaT"/>
                             <constraint firstItem="CD8-Tu-5rb" firstAttribute="top" secondItem="x4x-3a-Xjj" secondAttribute="bottom" constant="10" id="UEU-Vf-zHE"/>
+                            <constraint firstItem="8uo-Ut-imh" firstAttribute="top" secondItem="7qy-zi-sId" secondAttribute="bottom" constant="10" id="XSb-JD-TEr"/>
                             <constraint firstItem="CD8-Tu-5rb" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="Xp3-Ix-XN1"/>
                             <constraint firstItem="Mtb-bZ-2Dv" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="ZRE-ea-ww4"/>
                             <constraint firstItem="x4x-3a-Xjj" firstAttribute="top" secondItem="Mtb-bZ-2Dv" secondAttribute="bottom" constant="10" id="cW4-8F-zAZ"/>
@@ -162,6 +170,7 @@
                             <constraint firstItem="vU0-7j-IRS" firstAttribute="leading" secondItem="hbV-wA-jEd" secondAttribute="leading" constant="20" id="i31-cF-Zpg"/>
                             <constraint firstItem="7qy-zi-sId" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="jN5-D6-aZj"/>
                             <constraint firstItem="vU0-7j-IRS" firstAttribute="top" secondItem="hbV-wA-jEd" secondAttribute="top" constant="15" id="oTR-r7-NMo"/>
+                            <constraint firstItem="8uo-Ut-imh" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="uvF-Zj-qyT"/>
                         </constraints>
                     </view>
                     <connections>
