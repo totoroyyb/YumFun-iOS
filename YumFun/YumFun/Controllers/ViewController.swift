@@ -72,7 +72,7 @@ class ViewController: UIViewController {
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            guard let homeViewController = storyboard.instantiateViewController(identifier: "homeview") as? HomeViewController else {
+            guard let homeViewController = storyboard.instantiateViewController(identifier: "tabBarView") as? UITabBarController else {
                 assertionFailure("Cannot instantiate HomeViewController.")
                 return
             }
