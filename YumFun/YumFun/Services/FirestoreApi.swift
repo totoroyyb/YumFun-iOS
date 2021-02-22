@@ -43,8 +43,13 @@ class FirestoreApi {
                                        with data: T,
                                        _ completion: @escaping postDataCompletionHandler) {
         var ref: DocumentReference? = nil
-        ref = try? self.db.collection(collectionPath).addDocument(from: data) { err in
-            completion(err, ref)
+        ref = try? self.db
+            .collection(collectionPath)
+            .addDocument(from: data) { err in
+                
+            DispatchQueue.main.async {
+                completion(err, ref)
+            }
         }
     }
     
@@ -71,12 +76,20 @@ class FirestoreApi {
                                        merge: Bool = false,
                                        _ completion: @escaping postDataCompletionHandler) {
         do {
-            try self.db.collection(collectionPath).document(docName).setData(from: data,
-                                                                        merge: merge) { (err) in
-                completion(err, nil)
+            try self.db
+                .collection(collectionPath)
+                .document(docName)
+                .setData(from: data,
+                         merge: merge) { (err) in
+                    
+                DispatchQueue.main.async {
+                    completion(err, nil)
+                }
             }
         } catch {
-            completion(error, nil)
+            DispatchQueue.main.async {
+                completion(error, nil)
+            }
         }
     }
     
@@ -100,7 +113,9 @@ class FirestoreApi {
         }
 
         self.db.collection(collectionPath).document(docName).updateData(data) { (err) in
-            completion(err)
+            DispatchQueue.main.async {
+                completion(err)
+            }
         }
     }
     
@@ -122,7 +137,9 @@ class FirestoreApi {
             let data = try data.toFirebaseDict()
             self.updateData(in: collectionPath, named: docName, with: data, completion)
         } catch {
-            completion(error)
+            DispatchQueue.main.async {
+                completion(error)
+            }
         }
     }
     
@@ -140,7 +157,9 @@ class FirestoreApi {
         
         docRef.getDocument { (docSnapshot, err) in
             if let err = err {
-                completion(err, nil, docSnapshot)
+                DispatchQueue.main.async {
+                    completion(err, nil, docSnapshot)
+                }
             } else {
                 if let docSnapshot = docSnapshot, docSnapshot.exists {
                     let result = Result {
@@ -149,12 +168,19 @@ class FirestoreApi {
                     
                     switch result {
                     case .success(let data):
-                        completion(err, data, docSnapshot)
+                        DispatchQueue.main.async {
+                            completion(err, data, docSnapshot)
+                        }
                     case .failure(let error):
-                        completion(error, nil, docSnapshot)
+                        DispatchQueue.main.async {
+                            completion(error, nil, docSnapshot)
+                        }
                     }
                 } else {
-                    completion(err, nil, docSnapshot)
+                    DispatchQueue.main.async {
+                        completion(err, nil, docSnapshot)
+                        
+                    }
                 }
             }
         }
@@ -170,7 +196,7 @@ class FirestoreApi {
      To gain full access of snapshot that passed back by Firestore, you can access the third argument in the completion handler.
      */
     static func getAllData<T: Decodable>(in collectionPath: String,
-                                           _ completion: @escaping getAllDataCompletionHandler<T>) {
+                                         _ completion: @escaping getAllDataCompletionHandler<T>) {
         db.collection(collectionPath).getDocuments() { (querySnapshot, err) in
             let docs = querySnapshot?.documents.compactMap { document -> T? in
                 let result = Result {
@@ -185,7 +211,10 @@ class FirestoreApi {
                     return nil
                 }
             }
-            completion(err, docs, querySnapshot)
+            
+            DispatchQueue.main.async {
+                completion(err, docs, querySnapshot)
+            }
         }
     }
     
@@ -196,7 +225,9 @@ class FirestoreApi {
                            named name: String,
                            _ completion: @escaping deleteDataCompletionHandler) {
         self.db.collection(collectionPath).document(name).delete { (err) in
-            completion(err)
+            DispatchQueue.main.async {
+                completion(err)
+            }
         }
     }
 }

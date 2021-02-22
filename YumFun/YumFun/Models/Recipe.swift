@@ -14,14 +14,18 @@ import FirebaseFirestoreSwift
  
  // - MARK: IN PROGRESS
  */
-struct Recipe: Codable, Identifiable {
+struct Recipe: Identifiable, Codable {
     /// This id maps to the id Firestore created automatically
     @DocumentID var id: String?
     
     /// This is used to track last update date
     @ServerTimestamp var lastUpdated: Timestamp?
     
-    var author: String
+    var author: String = "Unknown Author"
+    
+    var title: String = "Unnamed Recipe"
+    
+    var description: String?
     
     var serveSize: Int = 1
     
