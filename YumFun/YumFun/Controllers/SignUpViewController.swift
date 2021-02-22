@@ -30,7 +30,7 @@ class SignUpViewController: UIViewController {
         let alert = UIAlertController(title: "Create account", message: ("Confirm account creation for: " + email), preferredStyle: .alert)
         //if user press continue, use firebase to create an account with email and password
         alert.addAction(UIAlertAction(title: "Continue", style: .default, handler: {_ in
-            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: {result, error in
+            User.createUser(withEmail: email, withPassword: password) { result, error in
                 guard error == nil else {
                     //find the type of error and give back the error message
                     let errorMesasge = error?.localizedDescription
@@ -44,7 +44,7 @@ class SignUpViewController: UIViewController {
                   confirmAlert.dismiss(animated: true, completion: nil)
                     self.goToLogin()
                 }
-            })
+            }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {_ in
             

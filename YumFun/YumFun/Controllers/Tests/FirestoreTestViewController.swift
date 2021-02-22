@@ -33,9 +33,14 @@ class FirestoreTestViewController: UIViewController {
     
     private var recipeIDArray = [String]()
     private var recipes = [Recipe]()
+    private var currUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let user = Auth.auth().currentUser {
+            self.currUser = User(fromAuthUser: user)
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -84,10 +89,10 @@ class FirestoreTestViewController: UIViewController {
     }
     
     @IBAction func pushCurrentUserTapped(_ sender: Any) {
-        let testUser = User(displayName: "Yibo Yan", userName: "ybyan", bio: "This is a test bio")
+//        let testUser = User(displayName: "Yibo Yan", userName: "ybyan", bio: "This is a test bio")
         
         if let user = Auth.auth().currentUser {
-            User.post(with: testUser, named: user.uid) { (err, _) in
+            User.post(with: User(fromAuthUser: user), named: user.uid) { (err, _) in
                 if let err = err {
                     print("Error to post user \(err)")
                 }
@@ -111,6 +116,16 @@ class FirestoreTestViewController: UIViewController {
         }
     }
     
+    @IBAction func currentUserCreateRecipeTapped(_ sender: Any) {
+        if let currUser = self.currUser {
+            print("Current user id: \(currUser.id)")
+            currUser.createRecipe(with: testRecipe) { (err, docRef) in
+                if let err = err {
+                    print("Error create recipe from current user. \(err)")
+                }
+            }
+        }
+    }
     
     //    var incrementInt: Int = 0
     

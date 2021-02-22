@@ -123,6 +123,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		21F2AE7E25E3CC0300C6F973 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		32B98297541E3E0DA7B82006 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,7 +174,7 @@
 				21F2AE4125E287FC00C6F973 /* Models */,
 				C57662DF25DBFF4100642CF2 /* Views */,
 				C57662DD25DBFEF400642CF2 /* Controllers */,
-				C57662E025DBFF7800642CF2 /* Supporting Files */,
+				21F2AE7E25E3CC0300C6F973 /* Supporting Files */,
 				C57662C325DBF9D700642CF2 /* Assets.xcassets */,
 				C57662C825DBF9D700642CF2 /* Info.plist */,
 				84A885FF25DD9374004684DA /* GoogleService-Info.plist */,
@@ -199,13 +206,6 @@
 				C57662C025DBF9D600642CF2 /* Main.storyboard */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		C57662E025DBFF7800642CF2 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
