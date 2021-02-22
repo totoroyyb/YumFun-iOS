@@ -2,7 +2,7 @@
 .DS_Store
 
 # Ignore Xcode user-related files
-*.xcuserstate
+xcuserdata/
 
 # Ignore CocoaPods installed files
 # Pods/
