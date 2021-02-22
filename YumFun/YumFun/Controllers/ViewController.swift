@@ -14,12 +14,15 @@ let testFirestore = false
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var errorContainer: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        backgroundImage.loadGif(name: "Lunch")
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         // Do any additional setup after loading the view.
         emailField.becomeFirstResponder()
         //if there is a user already logged in, skip login

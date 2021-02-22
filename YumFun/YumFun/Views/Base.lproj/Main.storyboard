@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="V7z-LN-XeG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PFV-8K-lxI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -12,11 +12,14 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="YumFun" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginView" id="BYZ-38-t0r" customClass="ViewController" customModule="YumFun" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SPf-6F-G5F">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log In / Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVd-CT-jIg">
                                 <rect key="frame" x="147" y="145" width="120" height="21"/>
                                 <constraints>
@@ -57,7 +60,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="SPf-6F-G5F" secondAttribute="bottom" id="47d-eK-bD2"/>
+                            <constraint firstItem="SPf-6F-G5F" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Cdt-Z1-jeT"/>
                             <constraint firstItem="B7e-OJ-lwy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="FKL-v7-gnb"/>
+                            <constraint firstItem="SPf-6F-G5F" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="NhE-FD-ucO"/>
+                            <constraint firstItem="SPf-6F-G5F" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Qhk-xN-LLs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="B7e-OJ-lwy" secondAttribute="bottom" constant="463" id="gDX-md-gp8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TVd-CT-jIg" secondAttribute="trailing" constant="147" id="ga0-Jm-dUr"/>
                             <constraint firstItem="TVd-CT-jIg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="147" id="nEc-gZ-01O"/>
@@ -70,6 +77,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="TaM-JX-cie"/>
                     <connections>
+                        <outlet property="backgroundImage" destination="SPf-6F-G5F" id="HxE-sg-B6k"/>
                         <outlet property="emailField" destination="VlE-IN-rAF" id="6o6-Wa-8pZ"/>
                         <outlet property="errorContainer" destination="B7e-OJ-lwy" id="J61-ap-5FQ"/>
                         <outlet property="nextButton" destination="DZa-rp-wB5" id="cNT-3N-NQj"/>
@@ -83,7 +91,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="713.04347826086962" y="93.75"/>
+            <point key="canvasLocation" x="1623.1884057971015" y="93.75"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="oyV-KA-NNQ">
@@ -99,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UAu-k9-0Rr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2540.579710144928" y="86.383928571428569"/>
+            <point key="canvasLocation" x="3450.7246376811595" y="86.383928571428569"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DXS-i8-gOn">
@@ -182,7 +190,49 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sa2-ZZ-mRA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1630.4347826086957" y="86.383928571428569"/>
+            <point key="canvasLocation" x="2540.579710144928" y="86.383928571428569"/>
+        </scene>
+        <!--Launch Screen Controller-->
+        <scene sceneID="e7v-yb-tew">
+            <objects>
+                <viewController id="nhC-Gi-Sgt" customClass="LaunchScreenController" customModule="YumFun" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k3N-gG-mcW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flavors-of-youth.gif" translatesAutoresizingMaskIntoConstraints="NO" id="poM-gg-Zbo">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YumFunLogo" translatesAutoresizingMaskIntoConstraints="NO" id="jh6-MB-KzD">
+                                <rect key="frame" x="87" y="428" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="Jcf-3Y-Yxu"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aJ6-81-gm6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aJ6-81-gm6" firstAttribute="trailing" secondItem="jh6-MB-KzD" secondAttribute="trailing" constant="87" id="0KT-dQ-3LN"/>
+                            <constraint firstItem="jh6-MB-KzD" firstAttribute="leading" secondItem="aJ6-81-gm6" secondAttribute="leading" constant="87" id="FoD-Ng-Rzv"/>
+                            <constraint firstItem="poM-gg-Zbo" firstAttribute="top" secondItem="k3N-gG-mcW" secondAttribute="top" id="MCy-Z0-m9s"/>
+                            <constraint firstItem="poM-gg-Zbo" firstAttribute="trailing" secondItem="aJ6-81-gm6" secondAttribute="trailing" id="Njg-Y7-vCv"/>
+                            <constraint firstItem="poM-gg-Zbo" firstAttribute="leading" secondItem="aJ6-81-gm6" secondAttribute="leading" id="Yag-Sj-Vdv"/>
+                            <constraint firstAttribute="bottom" secondItem="poM-gg-Zbo" secondAttribute="bottom" id="ZN9-II-Kzx"/>
+                            <constraint firstItem="jh6-MB-KzD" firstAttribute="top" secondItem="aJ6-81-gm6" secondAttribute="top" constant="340" id="vA1-1g-g2l"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="8Ak-e0-bRf"/>
+                    <connections>
+                        <outlet property="gifView" destination="poM-gg-Zbo" id="8uV-wm-OjU"/>
+                        <outlet property="yumfunLogo" destination="jh6-MB-KzD" id="xbK-i2-jmG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kj3-TO-JBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-127.53623188405798" y="81.696428571428569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cl7-6b-TD7">
@@ -200,7 +250,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N1r-XV-0Td" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-197.10144927536234" y="93.75"/>
+            <point key="canvasLocation" x="713.04347826086962" y="93.75"/>
         </scene>
         <!--Me-->
         <scene sceneID="kVz-ED-oLt">
@@ -339,8 +389,28 @@
             </objects>
             <point key="canvasLocation" x="2766.666666666667" y="2395.9821428571427"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ida-c2-Iih">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PFV-8K-lxI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7YG-T4-REW">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nhC-Gi-Sgt" kind="relationship" relationship="rootViewController" id="hk1-f0-Xln"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ndk-wt-foJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1037.68115942029" y="81.696428571428569"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="YumFunLogo" width="621" height="222"/>
+        <image name="flavors-of-youth.gif" width="540" height="304"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

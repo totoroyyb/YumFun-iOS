@@ -17,17 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="jcv-fJ-YgN">
-                                <rect key="frame" x="0.0" y="0.0" width="329" height="896"/>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flavors-of-youth-frame1" translatesAutoresizingMaskIntoConstraints="NO" id="nf0-OR-SL5">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="jcv-fJ-YgN" secondAttribute="bottom" id="93U-3R-vpq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jcv-fJ-YgN" secondAttribute="trailing" constant="85" id="hE2-dl-bxe"/>
-                            <constraint firstItem="jcv-fJ-YgN" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="iAO-HH-S2H"/>
-                            <constraint firstItem="jcv-fJ-YgN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="s4L-AZ-lT9"/>
+                            <constraint firstItem="nf0-OR-SL5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9WT-vX-tEj"/>
+                            <constraint firstAttribute="bottom" secondItem="nf0-OR-SL5" secondAttribute="bottom" id="GUI-p0-Txy"/>
+                            <constraint firstItem="nf0-OR-SL5" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="LVh-CY-ezU"/>
+                            <constraint firstItem="nf0-OR-SL5" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="gFv-JR-kSx"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,7 +39,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Launch" width="2500" height="1667"/>
+        <image name="flavors-of-youth-frame1" width="540" height="304"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
