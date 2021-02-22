@@ -14,14 +14,12 @@ let testFirestore = false
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var errorContainer: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        backgroundImage.loadGif(name: "Lunch")
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         // Do any additional setup after loading the view.
         emailField.becomeFirstResponder()
@@ -53,34 +51,13 @@ class ViewController: UIViewController {
             if error == nil {
                 self.navToHomeView()
             } else {
-                print(error)
+                let errorMesasge = error?.localizedDescription
+                self.errorContainer.text = errorMesasge
                 //if the error is "no account record create the account, else..."
-                self.showCreateAccount(email: email, password: password)
             }
         })
     }
     
-    
-    func showCreateAccount(email: String, password: String){
-        let alert = UIAlertController(title: "No account found", message: "Would you like to create an account?", preferredStyle: .alert)
-        //if user press continue, use firebase to create an account with email and password
-        alert.addAction(UIAlertAction(title: "Continue", style: .default, handler: {_ in
-            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: {result, error in
-                guard error == nil else {
-                    //find the type of error and give back the error message
-                    let errorMesasge = error?.localizedDescription
-                    self.errorContainer.text = errorMesasge
-                    return
-                }
-                //change screens after creation
-                self.navToHomeView()
-            })
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {_ in
-            
-        }))
-        present(alert, animated: true)
-    }
     
     
     func navToHomeView() {
@@ -102,6 +79,16 @@ class ViewController: UIViewController {
 
             self.navigationController?.pushViewController(homeViewController, animated: true)
         }
+    }
+    @IBAction func signUpButton(_ sender: UIButton){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let signUpViewController = storyboard.instantiateViewController(identifier: "signupView") as? SignUpViewController else {
+            assertionFailure("Cannot instantiate HomeViewController.")
+            return
+        }
+
+        self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
 }
 
