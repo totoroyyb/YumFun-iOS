@@ -19,17 +19,19 @@ class FirestoreTestViewController: UIViewController {
         let serveSize: Int = 10
         let duration = Duration(prepTime: 5)
         let dishType = DishType.dessert
-        let cuisine: [CuisineType] = [.asian, .chinese, .italian]
+        let cuisine: [CuisineType] = [.asian, .chinese, .italian, .spanish_portuguese]
         let occasion = ["Hello"]
         
-        return Recipe(serveSize: serveSize,
-                     duration: duration,
-                     dishType: dishType,
-                     cuisine: cuisine,
-                     occasion: occasion)
+        return Recipe(author: "Yibo Yan",
+                      serveSize: serveSize,
+                      duration: duration,
+                      dishType: dishType,
+                      cuisine: cuisine,
+                      occasion: occasion)
     }()
     
     private var recipeIDArray = [String]()
+    private var recipes = [Recipe]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,18 +39,7 @@ class FirestoreTestViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func printTestButtonTapped(_ sender: Any) {
-//        print("Recipe as follow \n \(testRecipe.toJsonStr())")
-    }
-    
     @IBAction func saveToCloudButtonTapped(_ sender: Any) {
-//        FirestoreApi.postData(with: testRecipe) { (err, docRef) in
-//            if let err = err {
-//                print("Failed to save to cloud with error: \(err)")
-//            } else {
-//                print("Document added with ID: \(docRef?.documentID)")
-//            }
-//        }
         testRecipe.occasion.append("\(recipeIDArray.count)")
         FirestoreApi.postRecipe(with: testRecipe) { (err, docRef) in
             if let err = err {
@@ -73,42 +64,16 @@ class FirestoreTestViewController: UIViewController {
                 print("Successfully update data: \(updateData)")
             }
         }
-        
-//        testRecipe.serveSize = Int.random(in: 1...10)
-//
-//        FirestoreApi.updateRecipe(named: recipeIDArray[0], with: testRecipe) { (err) in
-//            if let err = err {
-//                print("Failed to update data: \(self.testRecipe.serveSize) with error: \(err)")
-//            } else {
-//                print("Successfully update data: \(self.testRecipe.serveSize)")
-//            }
-//        }
     }
     
     @IBAction func fetchAllButtonTapped(_ sender: Any) {
-//        FirestoreApi.fetchAllData(in: "recipe") { (err, documents: [Recipe]?, querySnapshot) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                if let documents = documents {
-//                    for document in documents {
-////                        let doc = try? document.data(as: Recipe.self)
-////                        print("\(document.documentID) => \(doc) with id: \(doc?.id)")
-//                        print("Recipes as below: \(document)")
-//                    }
-//                } else {
-//                    print("No document is fetched")
-//                }
-//            }
-//        }
-        
         FirestoreApi.getAllRecipes { (err, recipes, querySnapshot) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 if let documents = recipes {
                     for document in documents {
-                        print("Recipes as below: \(document)")
+                        print("Recipes as below: \(document) \n \(document.cuisine) and \(document.cuisine[3])")
                     }
                 } else {
                     print("No document is fetched")
@@ -116,6 +81,20 @@ class FirestoreTestViewController: UIViewController {
             }
         }
     }
+    
+    
+//    @IBAction func updateFirstServeSizeTapped(_ sender: Any) {
+//        self.recipes[0].serveSize = 100
+//        print("Changed doc \(self.recipes[0].id ?? "Not Found")")
+//    }
+//
+//
+//    @IBAction func updateFirstDurationTapped(_ sender: Any) {
+//        var new = Duration(prepTime: 50)
+//        self.recipes[0].duration = new
+//        print("Changed doc \(self.recipes[0].id ?? "Not Found")")
+//    }
+    
     /*
     // MARK: - Navigation
 

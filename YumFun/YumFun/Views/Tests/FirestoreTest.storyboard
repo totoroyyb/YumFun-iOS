@@ -101,29 +101,22 @@
                                     <constraint firstAttribute="height" constant="200" id="h7s-Y2-z5k"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gv3-8E-Fof">
-                                <rect key="frame" x="110.5" y="279" width="193" height="30"/>
-                                <state key="normal" title="Print Test Recipe to Console"/>
-                                <connections>
-                                    <action selector="printTestButtonTapped:" destination="0AW-Ot-P7v" eventType="touchUpInside" id="WpB-aN-INh"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfY-p7-5U7">
-                                <rect key="frame" x="117.5" y="319" width="179" height="30"/>
+                                <rect key="frame" x="117.5" y="279" width="179" height="30"/>
                                 <state key="normal" title="Save Test Recipe to Cloud"/>
                                 <connections>
                                     <action selector="saveToCloudButtonTapped:" destination="0AW-Ot-P7v" eventType="touchUpInside" id="45q-ut-mgH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sik-WS-ARl">
-                                <rect key="frame" x="111.5" y="359" width="191" height="30"/>
+                                <rect key="frame" x="111.5" y="319" width="191" height="30"/>
                                 <state key="normal" title="Fetch All Recipe from Cloud"/>
                                 <connections>
                                     <action selector="fetchAllButtonTapped:" destination="0AW-Ot-P7v" eventType="touchUpInside" id="2ad-Re-K9Y"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtb-bZ-2Dv">
-                                <rect key="frame" x="109.5" y="399" width="195" height="30"/>
+                                <rect key="frame" x="109.5" y="359" width="195" height="30"/>
                                 <state key="normal" title="Update First Recipe in Cloud"/>
                                 <connections>
                                     <action selector="updateButtonTapped:" destination="0AW-Ot-P7v" eventType="touchUpInside" id="QKI-eA-ydP"/>
@@ -133,17 +126,15 @@
                         <viewLayoutGuide key="safeArea" id="hbV-wA-jEd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Gv3-8E-Fof" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="1ZD-DN-cm0"/>
                             <constraint firstItem="YfY-p7-5U7" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="40w-Hj-cgJ"/>
                             <constraint firstItem="Sik-WS-ARl" firstAttribute="top" secondItem="YfY-p7-5U7" secondAttribute="bottom" constant="10" id="8fn-a9-yuW"/>
                             <constraint firstItem="hbV-wA-jEd" firstAttribute="trailing" secondItem="vU0-7j-IRS" secondAttribute="trailing" constant="20" id="CUC-fz-BMK"/>
                             <constraint firstItem="Sik-WS-ARl" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="Kje-d3-aaT"/>
                             <constraint firstItem="Mtb-bZ-2Dv" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="ZRE-ea-ww4"/>
-                            <constraint firstItem="YfY-p7-5U7" firstAttribute="top" secondItem="Gv3-8E-Fof" secondAttribute="bottom" constant="10" id="d3x-2n-GyP"/>
+                            <constraint firstItem="YfY-p7-5U7" firstAttribute="top" secondItem="vU0-7j-IRS" secondAttribute="bottom" constant="20" id="dN9-jr-Suf"/>
                             <constraint firstItem="Mtb-bZ-2Dv" firstAttribute="top" secondItem="Sik-WS-ARl" secondAttribute="bottom" constant="10" id="ern-Nh-JVh"/>
                             <constraint firstItem="vU0-7j-IRS" firstAttribute="leading" secondItem="hbV-wA-jEd" secondAttribute="leading" constant="20" id="i31-cF-Zpg"/>
                             <constraint firstItem="vU0-7j-IRS" firstAttribute="top" secondItem="hbV-wA-jEd" secondAttribute="top" constant="15" id="oTR-r7-NMo"/>
-                            <constraint firstItem="Gv3-8E-Fof" firstAttribute="top" secondItem="vU0-7j-IRS" secondAttribute="bottom" constant="20" id="xKq-ui-sbE"/>
                         </constraints>
                     </view>
                     <connections>

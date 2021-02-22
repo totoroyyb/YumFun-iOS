@@ -10,52 +10,6 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 /**
- Record how much time will be spent on prep, baking or resting.
- 
- ## Property
- Prep is represented as `Int`, bake and rest are represented as `Int?`. Hence prep time should be required from user.
- 
- ## Note
- Please be sure to check nullity when using bake and rest, since they are not required from user.
- */
-struct Duration: Codable {
-    var prep: Int = 0
-    var bake: Int?
-    var rest: Int?
-    
-    init(prepTime: Int) {
-        self.prep = prepTime
-    }
-}
-
-/**
- Record which kind of dish this recipe is working on
- */
-enum DishType: String, Codable {
-    case starter
-    case main
-    case dessert
-    case snack
-    case breakfast
-    case drink
-}
-
-/**
- Record the type of cuisine
- */
-enum CuisineType: String, Codable {
-    case chinese
-    case italian
-    case european
-    case asian
-    case american
-    case spanish
-    case portuguese
-    case indian
-    case middleEastern
-}
-
-/**
  Record all information about a recipe
  
  // - MARK: IN PROGRESS
@@ -66,10 +20,33 @@ struct Recipe: Codable, Identifiable {
     /// This is used to track last update date
     @ServerTimestamp var lastUpdated: Timestamp?
     
+    var author: String
+    
     var serveSize: Int = 1
+    
     var duration: Duration
+    
     var dishType: DishType
+    
     var cuisine = [CuisineType]()
+    
     var occasion = [String]()
+    
     var creationDate = Timestamp()
+    
+    var steps = [Step]()
+    
+    var ingredients = [Ingredient]()
+    
+    var picUrls = [URL]()
+    
+    var chefNote: String?
 }
+
+//extension Recipe {
+//    func updateErrorHandler(err: Error?) {
+//        if let err = err {
+//            print("Error to update value with err: \(err)")
+//        }
+//    }
+//}
