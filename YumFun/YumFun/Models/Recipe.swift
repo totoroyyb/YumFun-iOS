@@ -17,6 +17,7 @@ import FirebaseFirestoreSwift
 struct Recipe: Codable, Identifiable {
     /// This id maps to the id Firestore created automatically
     @DocumentID var id: String?
+    
     /// This is used to track last update date
     @ServerTimestamp var lastUpdated: Timestamp?
     
@@ -41,6 +42,14 @@ struct Recipe: Codable, Identifiable {
     var picUrls = [URL]()
     
     var chefNote: String?
+    
+    var likedCount: Int = 0
+}
+
+extension Recipe: CrudOperable {
+    static var collectionPath: String {
+        "recipe"
+    }
 }
 
 //extension Recipe {
