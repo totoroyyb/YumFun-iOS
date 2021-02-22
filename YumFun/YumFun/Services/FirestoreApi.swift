@@ -8,19 +8,18 @@
 import Foundation
 import Firebase
 
+// - MARK: Handler Type
+typealias postDataCompletionHandler = (Error?, DocumentReference?) -> Void
+
+typealias updateDataCompletionHandler = (Error?) -> Void
+
+typealias getDataCompletionHandler<T: Decodable> = (Error?, T?, DocumentSnapshot?) -> Void
+
+typealias getAllDataCompletionHandler<T: Decodable> = (Error?, [T]?, QuerySnapshot?) -> Void
+
+typealias deleteDataCompletionHandler = (Error?) -> Void
+
 class FirestoreApi {
-    // - MARK: Handler Type
-    typealias postDataCompletionHandler = (Error?, DocumentReference?) -> Void
-    
-    typealias updateDataCompletionHandler = (Error?) -> Void
-    
-    typealias getDataCompletionHandler<T: Decodable> = (Error?, T?, DocumentSnapshot?) -> Void
-    
-    typealias getAllDataCompletionHandler<T: Decodable> = (Error?, [T]?, QuerySnapshot?) -> Void
-    
-    typealias deleteDataCompletionHandler = (Error?) -> Void
-    
-    
     private static let db = Firestore.firestore()
     
     /**
@@ -204,76 +203,7 @@ class FirestoreApi {
 
 // - MARK: Convenient Functions for Recipe operations
 extension FirestoreApi {
-    /**
-     Warning: This the collection path in the Firestore for recipes. Do you change it, if data migration is not prepared.
-     */
-    static let recipeCollectionPath = "recipe"
     
-    /**
-     Post a recipe to the cloud. All recipe will be saved to the top-level collection named `recipe`. The document name/id will be randomly generated.
-     
-     - Parameter recipe: the recipe you want to post to cloud
-     */
-    static func postRecipe(with recipe: Recipe,
-                           _ completion: @escaping postDataCompletionHandler) {
-        self.postData(in: recipeCollectionPath, with: recipe, completion)
-    }
-    
-    /**
-     Update a recipe to the cloud. You can update partial data by passing in a dictionary-like object.
-     
-     - Parameter name: the name/id of the recipe stored in the cloud.
-     - Parameter data: the partial data used to update the old data in the cloud.
-     - Parameter trackUpdate: whether update the `lastUpdate` field automatically. By default, is set to `true`.
-     */
-    static func updateRecipe(named name: String,
-                             with data: [AnyHashable : Any],
-                             trackUpdate: Bool = true,
-                             _ completion: @escaping updateDataCompletionHandler) {
-        self.updateData(in: recipeCollectionPath, named: name, with: data, trackUpdate: trackUpdate, completion)
-    }
-    
-    /**
-     Update a recipe to the cloud. You can update an entire recipe by passing in a `Recipe` object.
-     
-     - Parameter name: the name/id of the recipe stored in the cloud.
-     - Parameter data: the entire recipe object used to update the old data in the cloud.
-     - Parameter trackUpdate: whether update the `lastUpdate` field automatically. By default, is set to `true`.
-     
-     ## Note
-     If you want to create a entire new recipe, considering using `postRecipe()` function.
-     */
-    static func updateRecipe(named name: String,
-                             with data: Recipe,
-                             trackUpdate: Bool = true,
-                             _ completion: @escaping updateDataCompletionHandler) {
-        self.updateData(in: recipeCollectionPath, named: name, with: data, trackUpdate: trackUpdate, completion)
-    }
-    
-    /**
-     Get a recipe from the cloud with specified name/id.
-     
-     - Parameter name: the name/id of the recipe to get from the cloud.
-     */
-    static func getRecipe(named name: String,
-                          _ completion: @escaping getDataCompletionHandler<Recipe>) {
-        self.getData(in: recipeCollectionPath, named: name, completion)
-    }
-    
-    /**
-     Get all recipes from the cloud.
-     */
-    static func getAllRecipes(_ completion: @escaping getAllDataCompletionHandler<Recipe>) {
-        self.getAllData(in: recipeCollectionPath, completion)
-    }
-    
-    /**
-     Delete one recipe with specified document id/name.
-     */
-    static func deleteRecipe(named name: String,
-                             _ completion: @escaping deleteDataCompletionHandler) {
-        self.deleteData(in: recipeCollectionPath, named: name, completion)
-    }
 }
 
 // - MARK: Test Functions

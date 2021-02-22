@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestoreSwift
+import Firebase
 
 class FirestoreTestViewController: UIViewController {
     
@@ -41,7 +42,7 @@ class FirestoreTestViewController: UIViewController {
     
     @IBAction func saveToCloudButtonTapped(_ sender: Any) {
         testRecipe.occasion.append("\(recipeIDArray.count)")
-        FirestoreApi.postRecipe(with: testRecipe) { (err, docRef) in
+        Recipe.post(with: testRecipe) { (err, docRef) in
             if let err = err {
                 print("Failed to save to cloud with error: \(err)")
             } else {
@@ -56,8 +57,8 @@ class FirestoreTestViewController: UIViewController {
     
     @IBAction func updateButtonTapped(_ sender: Any) {
         let updateData = [ "serveSize": Int.random(in: 1...10) ]
-        
-        FirestoreApi.updateRecipe(named: recipeIDArray[0], with: updateData) { (err) in
+
+        Recipe.update(named: recipeIDArray[0], with: updateData) { (err) in
             if let err = err {
                 print("Failed to update data: \(updateData) with error: \(err)")
             } else {
@@ -67,13 +68,13 @@ class FirestoreTestViewController: UIViewController {
     }
     
     @IBAction func fetchAllButtonTapped(_ sender: Any) {
-        FirestoreApi.getAllRecipes { (err, recipes, querySnapshot) in
+        Recipe.getAll { (err, recipes, querySnapshot) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 if let documents = recipes {
                     for document in documents {
-                        print("Recipes as below: \(document) \n \(document.cuisine) and \(document.cuisine[3])")
+                        print("Recipes as below: \(document) with id \(document.id ?? "No ID Found")")
                     }
                 } else {
                     print("No document is fetched")
@@ -82,6 +83,45 @@ class FirestoreTestViewController: UIViewController {
         }
     }
     
+    @IBAction func pushCurrentUserTapped(_ sender: Any) {
+        let testUser = User(displayName: "Yibo Yan", userName: "ybyan", bio: "This is a test bio")
+        
+        if let user = Auth.auth().currentUser {
+            User.post(with: testUser, named: user.uid) { (err, _) in
+                if let err = err {
+                    print("Error to post user \(err)")
+                }
+            }
+        } else {
+            print("Cannot Fetch Current User.")
+        }
+    }
+    
+    @IBAction func fetchCurrentUserTapped(_ sender: Any) {
+        if let user = Auth.auth().currentUser {
+            User.get(named: user.uid) { (err, userBack, _) in
+                if let err = err {
+                    print("Error get user with id: \(user.uid), with error: \(err)")
+                } else {
+                    print("User as follow:\n \(userBack)")
+                }
+            }
+        } else {
+            print("Cannot Fetch Current User.")
+        }
+    }
+    
+    
+    //    var incrementInt: Int = 0
+    
+    @IBAction func postRecipeWithNameTapped(_ sender: Any) {
+//        self.incrementInt += 1
+//        FirestoreApi.postData(in: "recipe", with: testRecipe, named: "recipe\(incrementInt)") { (err, _) in
+//            if let err = err {
+//                print("Error post recipe \(err)")
+//            }
+//        }
+    }
     
 //    @IBAction func updateFirstServeSizeTapped(_ sender: Any) {
 //        self.recipes[0].serveSize = 100

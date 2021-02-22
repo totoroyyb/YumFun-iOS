@@ -122,18 +122,45 @@
                                     <action selector="updateButtonTapped:" destination="0AW-Ot-P7v" eventType="touchUpInside" id="QKI-eA-ydP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x4x-3a-Xjj">
+                                <rect key="frame" x="121" y="399" width="172" height="30"/>
+                                <state key="normal" title="Post A Recipe with Name"/>
+                                <connections>
+                                    <action selector="postRecipeWithNameTapped:" destination="0AW-Ot-P7v" eventType="touchUpInside" id="nQy-o9-wTc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CD8-Tu-5rb">
+                                <rect key="frame" x="114.5" y="439" width="185" height="30"/>
+                                <state key="normal" title="Post Current User to Cloud"/>
+                                <connections>
+                                    <action selector="pushCurrentUserTapped:" destination="0AW-Ot-P7v" eventType="touchUpInside" id="sMn-JA-5A3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qy-zi-sId">
+                                <rect key="frame" x="100" y="479" width="214" height="30"/>
+                                <state key="normal" title="Fetch Current User From Cloud"/>
+                                <connections>
+                                    <action selector="fetchCurrentUserTapped:" destination="0AW-Ot-P7v" eventType="touchUpInside" id="bBl-KP-6kC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hbV-wA-jEd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="YfY-p7-5U7" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="40w-Hj-cgJ"/>
                             <constraint firstItem="Sik-WS-ARl" firstAttribute="top" secondItem="YfY-p7-5U7" secondAttribute="bottom" constant="10" id="8fn-a9-yuW"/>
+                            <constraint firstItem="7qy-zi-sId" firstAttribute="top" secondItem="CD8-Tu-5rb" secondAttribute="bottom" constant="10" id="AEy-SM-EcY"/>
                             <constraint firstItem="hbV-wA-jEd" firstAttribute="trailing" secondItem="vU0-7j-IRS" secondAttribute="trailing" constant="20" id="CUC-fz-BMK"/>
+                            <constraint firstItem="x4x-3a-Xjj" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="HDf-Z6-IHi"/>
                             <constraint firstItem="Sik-WS-ARl" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="Kje-d3-aaT"/>
+                            <constraint firstItem="CD8-Tu-5rb" firstAttribute="top" secondItem="x4x-3a-Xjj" secondAttribute="bottom" constant="10" id="UEU-Vf-zHE"/>
+                            <constraint firstItem="CD8-Tu-5rb" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="Xp3-Ix-XN1"/>
                             <constraint firstItem="Mtb-bZ-2Dv" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="ZRE-ea-ww4"/>
+                            <constraint firstItem="x4x-3a-Xjj" firstAttribute="top" secondItem="Mtb-bZ-2Dv" secondAttribute="bottom" constant="10" id="cW4-8F-zAZ"/>
                             <constraint firstItem="YfY-p7-5U7" firstAttribute="top" secondItem="vU0-7j-IRS" secondAttribute="bottom" constant="20" id="dN9-jr-Suf"/>
                             <constraint firstItem="Mtb-bZ-2Dv" firstAttribute="top" secondItem="Sik-WS-ARl" secondAttribute="bottom" constant="10" id="ern-Nh-JVh"/>
                             <constraint firstItem="vU0-7j-IRS" firstAttribute="leading" secondItem="hbV-wA-jEd" secondAttribute="leading" constant="20" id="i31-cF-Zpg"/>
+                            <constraint firstItem="7qy-zi-sId" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="jN5-D6-aZj"/>
                             <constraint firstItem="vU0-7j-IRS" firstAttribute="top" secondItem="hbV-wA-jEd" secondAttribute="top" constant="15" id="oTR-r7-NMo"/>
                         </constraints>
                     </view>
