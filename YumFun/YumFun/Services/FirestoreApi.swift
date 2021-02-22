@@ -201,11 +201,6 @@ class FirestoreApi {
     }
 }
 
-// - MARK: Convenient Functions for Recipe operations
-extension FirestoreApi {
-    
-}
-
 // - MARK: Test Functions
 extension FirestoreApi {
     /**

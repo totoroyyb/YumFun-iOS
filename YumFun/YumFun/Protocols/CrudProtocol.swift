@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- A object that supports CRUD operation (CREATE, READ, UPDATE, DELETE)
+ A object that supports CRUD operation on Firestore (CREATE, READ, UPDATE, DELETE)
  */
 protocol CrudOperable: Codable {
     /**
