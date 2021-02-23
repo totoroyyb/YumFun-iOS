@@ -22,8 +22,10 @@ Xiyu Zhang, Github handle: ChrissyKX
 <img src="Coders' Profiles/Jack.JPG" height="210" width="180">
 Ruifeng Zhang, Github handle: failury
 
+<br/><br/>
 
-
+<img src="Coders' Profiles/Yibo.jpg" height="150" width="200">
+Yibo Yan, GitHub Handle: [totoroyyb](https://github.com/totoroyyb)
 
 
 
