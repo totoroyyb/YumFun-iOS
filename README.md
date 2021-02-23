@@ -9,12 +9,12 @@ https://docs.google.com/document/d/1hNZwV31qz8z_ipaSSN_bLA-p6bWsOw8y4gb9L1sv2gw/
   ## Coders Profiles
 
 <img src="Coders' Profiles/Steven.jpg" height="150" width="150">
-Steven Tan, Github handle: istevenful
+SSteven Tan, Github handle: istevenful
 <br/><br/>
 <img src="Coders' Profiles/Travis.jpg" height="150" width="200">
 Travis Garcia, Github handle: tg1230
 <br/><br/>
-<img src="Coders' Profiles/Chrissy.jpg" height="180" width="180">
+<img src="Coders' Profiles/Chrissy.JPG" height="180" width="180">
 Xiyu Zhang, Github handle: ChrissyKX
 
 <br/><br/>
