@@ -17,7 +17,6 @@
 		21F2AE5225E3A39600C6F973 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE5125E3A39600C6F973 /* User.swift */; };
 		21F2AE5625E3B44300C6F973 /* CrudProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE5525E3B44300C6F973 /* CrudProtocol.swift */; };
 		84A8860025DD9374004684DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A885FF25DD9374004684DA /* GoogleService-Info.plist */; };
-		84A8861225DD9F85004684DA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8861125DD9F85004684DA /* HomeViewController.swift */; };
 		84A8865F25E3316A004684DA /* swift+gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8865E25E3316A004684DA /* swift+gif.swift */; };
 		84A8866225E3317F004684DA /* flavors-of-youth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 84A8866125E3317F004684DA /* flavors-of-youth.gif */; };
 		84A8866E25E33B0C004684DA /* LaunchScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8866D25E33B0C004684DA /* LaunchScreenController.swift */; };
@@ -47,7 +46,6 @@
 		54F5329A67B931D9FA451352 /* Pods_YumFun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YumFun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		739EB47224F8B0C399339A75 /* Pods-YumFun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumFun.release.xcconfig"; path = "Target Support Files/Pods-YumFun/Pods-YumFun.release.xcconfig"; sourceTree = "<group>"; };
 		84A885FF25DD9374004684DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		84A8861125DD9F85004684DA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		84A8865E25E3316A004684DA /* swift+gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "swift+gif.swift"; sourceTree = "<group>"; };
 		84A8866125E3317F004684DA /* flavors-of-youth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "flavors-of-youth.gif"; sourceTree = "<group>"; };
 		84A8866D25E33B0C004684DA /* LaunchScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenController.swift; sourceTree = "<group>"; };
@@ -206,7 +204,6 @@
 				C57662BE25DBF9D600642CF2 /* ViewController.swift */,
 				C57662BC25DBF9D600642CF2 /* SceneDelegate.swift */,
 				C57662BA25DBF9D600642CF2 /* AppDelegate.swift */,
-				84A8861125DD9F85004684DA /* HomeViewController.swift */,
 				84A8865E25E3316A004684DA /* swift+gif.swift */,
 				84A8866125E3317F004684DA /* flavors-of-youth.gif */,
 				84A8866D25E33B0C004684DA /* LaunchScreenController.swift */,
@@ -357,7 +354,6 @@
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,
 				21A8367125E0364B005933AE /* RecipeExt.swift in Sources */,
 				21F2AE4B25E2DFA300C6F973 /* RecipeComponents.swift in Sources */,
-				84A8861225DD9F85004684DA /* HomeViewController.swift in Sources */,
 				C56C5D0F25E4524900DD1CD7 /* RecipePreviewCellController.swift in Sources */,
 				21F2AE4325E2881900C6F973 /* Recipe.swift in Sources */,
 			);
