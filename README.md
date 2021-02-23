@@ -4,9 +4,9 @@
   
 - M1 Document Link: 
 
-https://docs.google.com/document/d/1hNZwV31qz8z_ipaSSN_bLA-p6bWsOw8y4gb9L1sv2gw/edit?usp=sharing
+  https://docs.google.com/document/d/1hNZwV31qz8z_ipaSSN_bLA-p6bWsOw8y4gb9L1sv2gw/edit?usp=sharing
 
-  ## Coders Profiles
+## Coders Profiles
 
 <img src="Coders' Profiles/Steven.jpg" height="150" width="150">
 SSteven Tan, Github handle: istevenful
