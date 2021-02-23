@@ -52,10 +52,6 @@
   - Researched on design
 
   -  Wireframing the app
-  
-  - Setting up login/signup with Firebase
-  
-  - Launch Screen   
 
 - What I plan on working on next:
 
