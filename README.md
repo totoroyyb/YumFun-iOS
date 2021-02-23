@@ -17,6 +17,11 @@ Travis Garcia, Github handle: tg1230
 <img src="Coders' Profiles/Chrissy.jpg" height="180" width="180">
 Xiyu Zhang, Github handle: ChrissyKX
 
+<br/><br/>
+
+<img src="Coders' Profiles/Jack.JPG" height="210" width="180">
+Ruifeng Zhang, Github handle: failury
+
 
 
 
