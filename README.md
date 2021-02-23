@@ -5,4 +5,7 @@
   ## Coders Profiles
   
 <img src="Coders' Profiles/Steven.jpg" height="150" width="150">
-Steven Tan
+Steven Tan, Github handle: istevenful
+
+<img src="Coders' Profiles/Travis.jpg" height="150" width="200">
+Travis Garcia, Github handle: tg1230
