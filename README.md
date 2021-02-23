@@ -9,7 +9,7 @@
 ## Coders Profiles
 
 <img src="Coders' Profiles/Steven.jpg" height="150" width="150">
-SSteven Tan, Github handle: istevenful
+Steven Tan, Github handle: istevenful
 <br/><br/>
 <img src="Coders' Profiles/Travis.jpg" height="150" width="200">
 Travis Garcia, Github handle: tg1230
