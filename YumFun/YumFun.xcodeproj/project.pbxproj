@@ -30,6 +30,7 @@
 		C57662C225DBF9D600642CF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57662C025DBF9D600642CF2 /* Main.storyboard */; };
 		C57662C425DBF9D700642CF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C57662C325DBF9D700642CF2 /* Assets.xcassets */; };
 		C57662C725DBF9D700642CF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57662C525DBF9D700642CF2 /* LaunchScreen.storyboard */; };
+		C5F6B44E25E7218100EA5ACE /* EditDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F6B44D25E7218100EA5ACE /* EditDetailController.swift */; };
 		E89A46416C72CD1998CCC4AB /* Pods_YumFun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F5329A67B931D9FA451352 /* Pods_YumFun.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		C57662C325DBF9D700642CF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C57662C625DBF9D700642CF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C57662C825DBF9D700642CF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5F6B44D25E7218100EA5ACE /* EditDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailController.swift; sourceTree = "<group>"; };
 		D438D8E35AE2FBC94C38C72C /* Pods-YumFun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumFun.debug.xcconfig"; path = "Target Support Files/Pods-YumFun/Pods-YumFun.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +159,7 @@
 				C56C5D0E25E4524900DD1CD7 /* ProfileEditPage.swift */,
 				C56C5D0D25E4524900DD1CD7 /* ProfileViewController.swift */,
 				C56C5D0C25E4524900DD1CD7 /* RecipePreviewCellController.swift */,
+				C5F6B44D25E7218100EA5ACE /* EditDetailController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */,
 				C56C5D1025E4524900DD1CD7 /* ProfileViewController.swift in Sources */,
 				21F2AE5225E3A39600C6F973 /* User.swift in Sources */,
+				C5F6B44E25E7218100EA5ACE /* EditDetailController.swift in Sources */,
 				84A8867C25E34EAA004684DA /* SignUpViewController.swift in Sources */,
 				C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */,
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,

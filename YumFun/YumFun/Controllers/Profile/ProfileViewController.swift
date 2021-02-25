@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
         
         RecipePreviews.delegate = self
         RecipePreviews.dataSource = self
+        
       
     }
     
@@ -44,7 +45,7 @@ class ProfileViewController: UIViewController {
 }
 extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
