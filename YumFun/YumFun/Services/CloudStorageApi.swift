@@ -215,14 +215,23 @@ extension CloudStorage {
         }
     }
     
+    /**
+     Pause the download process if is downloading
+     */
     func pauseDownload() {
         self.downloadTask?.pause()
     }
     
+    /**
+     Resume the download process if is downloading
+     */
     func resumeDownload() {
         self.downloadTask?.resume()
     }
     
+    /**
+     Cancel the download process if is downloading
+     */
     func cancelDownload() {
         self.downloadTask?.cancel()
     }
