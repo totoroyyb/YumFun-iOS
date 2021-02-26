@@ -12,4 +12,7 @@ target 'YumFun' do
   # Firestore integration
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+
+  # Cloud Storage integration
+  pod 'Firebase/Storage'
 end
