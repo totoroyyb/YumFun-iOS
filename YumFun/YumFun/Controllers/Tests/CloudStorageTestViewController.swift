@@ -7,10 +7,12 @@
 
 import UIKit
 import PhotosUI
+import FirebaseUI
 
 class CloudStorageTestViewController: UIViewController, PHPickerViewControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var firebaseUIImageView: UIImageView!
     
     private let storage = CloudStorage(.profileImage)
     
@@ -71,6 +73,31 @@ class CloudStorageTestViewController: UIViewController, PHPickerViewControllerDe
     @IBAction func deleteTestImageTapped(_ sender: Any) {
         storage.delete(errorHandler: nil) {
             print("Successfully Deleted.")
+        }
+    }
+    
+    @IBAction func loadImageWithFirebaseUITapped(_ sender: Any) {
+        self.firebaseUIImageView.sd_setImage(
+            with: storage.fileRef,
+            maxImageSize: 1 * 2014 * 1024,
+            placeholderImage: nil,
+            options: [.progressiveLoad, .refreshCached]) { (image, error, cache, storageRef) in
+            if let error = error {
+                print("Error load Image: \(error)")
+            } else {
+                print("Finished with FirebaseUI loading.")
+            }
+        }
+    }
+    
+    @IBAction func loadImageWithDownloadTapped(_ sender: Any) {
+        storage.download(maxSize: 1 * 1024 * 1024) { (data) in
+            guard let data = data else {
+                print("failed to load image with downloading")
+                return
+            }
+            
+            self.firebaseUIImageView.image = UIImage(data: data)
         }
     }
     

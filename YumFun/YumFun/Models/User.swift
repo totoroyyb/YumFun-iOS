@@ -83,6 +83,9 @@ extension User {
         }
     }
     
+    /**
+     Current user follows other user with specified user id.
+     */
     func followUser(withId userId: String,
                     _ completion: @escaping updateDataCompletionHandler) {
         guard let currUserId = self.id else {
@@ -92,6 +95,22 @@ extension User {
         }
         
         self.followings.append(userId)
+        let newData = ["followers" : FieldValue.arrayUnion([currUserId])]
+        User.update(named: userId, with: newData, completion)
+    }
+    
+    /**
+     Current user unfollows other user with specified user id.
+     */
+    func unfollowUser(withId userId: String,
+                      _ completion: @escaping updateDataCompletionHandler) {
+        guard let currUserId = self.id else {
+            print("Failed to fetch current user id")
+            completion(currUserNoDataError)
+            return
+        }
+        
+        self.followings.removeAll { $0 == userId }
         let newData = ["followers" : FieldValue.arrayUnion([currUserId])]
         User.update(named: userId, with: newData, completion)
     }
@@ -141,13 +160,5 @@ extension User {
         }
     }
     
-//    fileprivate static func copyFromAuthUser(_ authUser: FirebaseAuth.User) -> User {
-////        User()
-//        let user = User(id: authUser.uid,
-//                        displayName: authUser.displayName,
-//                        email: authUser.email,
-//                        photoUrl: authUser.photoURL)
-//        return user
-//    }
 }
 

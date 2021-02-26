@@ -15,4 +15,5 @@ target 'YumFun' do
 
   # Cloud Storage integration
   pod 'Firebase/Storage'
+  pod 'FirebaseUI/Storage' 		
 end
