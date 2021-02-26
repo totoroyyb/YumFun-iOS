@@ -10,6 +10,7 @@ import Firebase
 
 
 let testFirestore = false
+let testCloudStorage = false
 
 
 class ViewController: UIViewController {
@@ -61,7 +62,14 @@ class ViewController: UIViewController {
     
     
     func navToHomeView() {
-        if testFirestore {
+        if testCloudStorage {
+            let storyboard = UIStoryboard(name: "CloudStorageTest", bundle: nil)
+            guard let cloudStorageTestViewController = storyboard.instantiateViewController(identifier: "CloudStorageTestViewController") as? CloudStorageTestViewController else {
+                assertionFailure("Cannot instantiate CloudStorageTestViewController")
+                return
+            }
+            self.navigationController?.pushViewController(cloudStorageTestViewController, animated: true)
+        } else if testFirestore {
             let storyboard = UIStoryboard(name: "FirestoreTest", bundle: nil)
             guard let firestoreTestViewController = storyboard.instantiateViewController(identifier: "FirestoreTestViewController") as? FirestoreTestViewController else {
                 assertionFailure("Cannot instantiate FirestoreTestViewController")
@@ -80,6 +88,7 @@ class ViewController: UIViewController {
             self.navigationController?.pushViewController(homeViewController, animated: true)
         }
     }
+    
     @IBAction func signUpButton(_ sender: UIButton){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
