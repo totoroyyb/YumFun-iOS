@@ -84,6 +84,23 @@ extension User {
     }
     
     /**
+     Delete recipe by specified recipe id.
+     */
+    func deleteRecipe(withId recipeId: String,
+                      _ completion: @escaping updateDataCompletionHandler) {
+        guard self.id != nil else {
+            print("Failed to fetch current user id")
+            completion(currUserNoDataError)
+            return
+        }
+        
+        self.recipes.removeAll { $0 == recipeId }
+        Recipe.delete(named: recipeId) { (error) in
+            completion(error)
+        }
+    }
+    
+    /**
      Current user follows other user with specified user id.
      */
     func followUser(withId userId: String,
@@ -114,6 +131,44 @@ extension User {
         let newData = ["followers" : FieldValue.arrayUnion([currUserId])]
         User.update(named: userId, with: newData, completion)
     }
+    
+    /**
+     Current user upload a profile image to the server
+     */
+    func updateProfileImage(with image: UIImage,
+                            _ completion: @escaping (Error?) -> Void) -> CloudStorage? {
+        guard let currUserId = self.id else {
+            print("Failed to fetch current user id")
+            completion(currUserNoDataError)
+            return nil
+        }
+        
+        let data = image.jpegData(compressionQuality: 0.6)
+        
+        guard let validData = data else {
+            completion(failedCompressImageError)
+            return nil
+        }
+        
+        let storage = CloudStorage(.profileImage)
+        storage.child("\(currUserId).jpeg")
+        
+        storage.upload(validData, metadata: nil) { (error) in
+            completion(error)
+        } completionHandler: { _ in
+            storage.downloadURL { (error) in
+                completion(error)
+            } completion: { (url) in
+                self.photoUrl = url
+                let newData = ["photoUrl": url]
+                User.update(named: currUserId, with: newData) { (error) in
+                    completion(error)
+                }
+            }
+        }
+        
+        return storage
+    }
 }
 
 extension User: CrudOperable {
@@ -121,13 +176,6 @@ extension User: CrudOperable {
         "user"
     }
 }
-
-fileprivate let userInfo: [String : Any] = [
-    NSLocalizedDescriptionKey: NSLocalizedString("Failed to Post", value: "Current user data cannot be fetched", comment: ""),
-    NSLocalizedFailureReasonErrorKey: NSLocalizedString("Failed to Post", value: "Current user data cannot be fetched", comment: "")
-]
-
-fileprivate let currUserNoDataError = NSError(domain: "FailedToFetchData", code: 0, userInfo: userInfo)
 
 extension User {
     typealias createUserCompletionHandler = ((AuthDataResult?, Error?) -> Void)
@@ -159,6 +207,20 @@ extension User {
             }
         }
     }
-    
 }
 
+
+// - MARK: ALL ERRORS
+fileprivate let currUserNoDataInfo: [String : Any] = [
+    NSLocalizedDescriptionKey: NSLocalizedString("Failed to Post", value: "Current user data cannot be fetched", comment: ""),
+    NSLocalizedFailureReasonErrorKey: NSLocalizedString("Failed to Post", value: "Current user data cannot be fetched", comment: "")
+]
+
+fileprivate let currUserNoDataError = NSError(domain: "FailedToFetchData", code: 0, userInfo: currUserNoDataInfo)
+
+fileprivate let failedCompressImageInfo: [String : Any] = [
+    NSLocalizedDescriptionKey: NSLocalizedString("Failed to Compress Image", value: "Cannot convert image to data", comment: ""),
+    NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unknow compression error", value: "Cannot convert image to data", comment: "")
+]
+
+fileprivate let failedCompressImageError = NSError(domain: "FailedToConvertImage", code: 0, userInfo: failedCompressImageInfo)

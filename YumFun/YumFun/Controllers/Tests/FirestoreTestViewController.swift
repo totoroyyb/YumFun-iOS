@@ -33,14 +33,9 @@ class FirestoreTestViewController: UIViewController {
     
     private var recipeIDArray = [String]()
     private var recipes = [Recipe]()
-    private var currUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let user = Auth.auth().currentUser {
-            self.currUser = User(fromAuthUser: user)
-        }
 
         // Do any additional setup after loading the view.
     }
@@ -103,21 +98,27 @@ class FirestoreTestViewController: UIViewController {
     }
     
     @IBAction func fetchCurrentUserTapped(_ sender: Any) {
-        if let user = Auth.auth().currentUser {
-            User.get(named: user.uid) { (err, userBack, _) in
-                if let err = err {
-                    print("Error get user with id: \(user.uid), with error: \(err)")
-                } else {
-                    print("User as follow:\n \(userBack)")
-                }
-            }
+//        if let user = Auth.auth().currentUser {
+//            User.get(named: user.uid) { (err, userBack, _) in
+//                if let err = err {
+//                    print("Error get user with id: \(user.uid), with error: \(err)")
+//                } else {
+//                    print("User as follow:\n \(userBack)")
+//                }
+//            }
+//        } else {
+//            print("Cannot Fetch Current User.")
+//        }
+        
+        if let user = Core.currentUser {
+            print("Current User as follow:\n \(user)")
         } else {
             print("Cannot Fetch Current User.")
         }
     }
     
     @IBAction func currentUserCreateRecipeTapped(_ sender: Any) {
-        if let currUser = self.currUser {
+        if let currUser = Core.currentUser {
             print("Current user id: \(currUser.id)")
             currUser.createRecipe(with: testRecipe) { (err, docRef) in
                 if let err = err {
@@ -126,6 +127,20 @@ class FirestoreTestViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func deleteFirstRecipeTapped(_ sender: Any) {
+        if let currUser = Core.currentUser {
+            let firstRecipe = currUser.recipes[0]
+            currUser.deleteRecipe(withId: firstRecipe) { (error) in
+                if let err = error {
+                    print("Error to delete the first recipe: \(err)")
+                } else {
+                    print("Deleted recipe \(firstRecipe)")
+                }
+            }
+        }
+    }
+    
     
     //    var incrementInt: Int = 0
     

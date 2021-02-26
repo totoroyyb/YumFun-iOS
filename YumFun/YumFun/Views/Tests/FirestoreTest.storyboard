@@ -150,6 +150,13 @@
                                     <action selector="currentUserCreateRecipeTapped:" destination="0AW-Ot-P7v" eventType="touchUpInside" id="amv-Ck-aIm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Za-7i-tAa">
+                                <rect key="frame" x="142.5" y="559" width="129" height="30"/>
+                                <state key="normal" title="Delete First Recipe"/>
+                                <connections>
+                                    <action selector="deleteFirstRecipeTapped:" destination="0AW-Ot-P7v" eventType="touchUpInside" id="eEx-f6-YKc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hbV-wA-jEd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -169,7 +176,9 @@
                             <constraint firstItem="Mtb-bZ-2Dv" firstAttribute="top" secondItem="Sik-WS-ARl" secondAttribute="bottom" constant="10" id="ern-Nh-JVh"/>
                             <constraint firstItem="vU0-7j-IRS" firstAttribute="leading" secondItem="hbV-wA-jEd" secondAttribute="leading" constant="20" id="i31-cF-Zpg"/>
                             <constraint firstItem="7qy-zi-sId" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="jN5-D6-aZj"/>
+                            <constraint firstItem="1Za-7i-tAa" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="m5c-Lv-sCx"/>
                             <constraint firstItem="vU0-7j-IRS" firstAttribute="top" secondItem="hbV-wA-jEd" secondAttribute="top" constant="15" id="oTR-r7-NMo"/>
+                            <constraint firstItem="1Za-7i-tAa" firstAttribute="top" secondItem="8uo-Ut-imh" secondAttribute="bottom" constant="10" id="qY4-KJ-jAv"/>
                             <constraint firstItem="8uo-Ut-imh" firstAttribute="centerX" secondItem="G7b-zA-8pU" secondAttribute="centerX" id="uvF-Zj-qyT"/>
                         </constraints>
                     </view>
