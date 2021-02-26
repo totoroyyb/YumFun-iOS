@@ -58,7 +58,7 @@ extension CloudStorage {
      - Use error handler to catch error
      - Use completion handler to retrieve the URL.
      */
-    func downloadURL(errorHandler: ((Error?) -> Void)?,
+    func downloadURL(errorHandler: ((Error?) -> Void)? = nil,
                      completion: @escaping (URL) -> Void) {
         self.fileRef.downloadURL { (url, error) in
             guard let downloadURL = url else {
@@ -123,7 +123,7 @@ extension CloudStorage {
      */
     func upload(_ data: Data,
                 metadata: StorageMetadata?,
-                errorHandler: uploadErrorHandler,
+                errorHandler: uploadErrorHandler = nil,
                 completionHandler: uploadCompletionHandler) {
         self.uploadTask = self.fileRef.putData(data, metadata: metadata) { (metadata, error) in
             guard let metadata = metadata else {
@@ -174,7 +174,7 @@ extension CloudStorage {
      Download file into memory. Namely, return a `Data` object.
      */
     func download(maxSize size: Int64,
-                  errorHandler: downloadErrorHandler,
+                  errorHandler: downloadErrorHandler = nil,
                   completionHandler: @escaping downloadCompletionHandler) {
         self.downloadTask = self.fileRef.getData(maxSize: size) { (data, error) in
             if let error = error {
@@ -198,7 +198,7 @@ extension CloudStorage {
      The resulting URL will be returned in the completion handler, please use that URL as the source of truth.
      */
     func download(toFile path: URL,
-                  errorHandler: downloadErrorHandler,
+                  errorHandler: downloadErrorHandler = nil,
                   completionHandler: @escaping (URL?) -> Void) {
         self.downloadTask = self.fileRef.write(toFile: path) { (url, error) in
             if let error = error {
@@ -241,7 +241,10 @@ extension CloudStorage {
 extension CloudStorage {
     typealias deleteErrorHandler = ((Error) -> Void)?
     
-    func delete(errorHandler: deleteErrorHandler,
+    /**
+     Delete current file reference from cloud.
+     */
+    func delete(errorHandler: deleteErrorHandler = nil,
                 completion: (() -> Void)?) {
         self.fileRef.delete { (error) in
             if let error = error {
