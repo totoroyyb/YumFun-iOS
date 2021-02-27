@@ -25,28 +25,32 @@ class ProfileEditPage: UITableViewController {
             print("direct to image changer")
 
         case 1:
-            print("direct to name changer")
+            //name change
             if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
                 viewController.navigationItem.title = "Name"
                     navigationController?.pushViewController(viewController, animated: true)
                 }
 
         case 2:
-            print("direct to bio changer")
+            //set Bio
+            if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
+                viewController.navigationItem.title = "Bio"
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
         case 3:
-            print("direct to email changer")
+            //set email
             if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
                 viewController.navigationItem.title = "Email"
                     navigationController?.pushViewController(viewController, animated: true)
                 }
         case 4:
-            print("direct to username changer")
+            //set UserName
             if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
                 viewController.navigationItem.title = "Username"
                     navigationController?.pushViewController(viewController, animated: true)
                 }
         case 5:
-            print("direct to password changer")
+            //set password
             if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
                 viewController.navigationItem.title = "Password"
                     navigationController?.pushViewController(viewController, animated: true)
