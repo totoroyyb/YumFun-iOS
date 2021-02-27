@@ -33,7 +33,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     
 //    let testData : [(UIImage?, UIImage?)] = [(nil,nil), (nil,nil), (nil,nil), (nil,nil), (nil,nil), (nil,nil), (nil,nil)]
     
-    let testData = [(nil, nil), (UIImage(named: "Launch"), UIImage(named: "Launch")), (nil, nil), (UIImage(named: "Launch"), nil), (UIImage(named: "Launch"), UIImage(named: "Launch")), (nil, nil), (UIImage(named: "Launch"), nil)]
+    let testData = [(nil, nil), (UIImage(named: "mascot"), UIImage(named: "mascot")), (nil, nil), (UIImage(named: "mascot"), nil), (UIImage(named: "mascot"), UIImage(named: "mascot")), (nil, nil), (UIImage(named: "mascot"), nil)]
     
     
     // DataSouce Implementation

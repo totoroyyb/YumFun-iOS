@@ -15,9 +15,11 @@ protocol DiscoverCellDelegate: class {
 class DiscoverTextCell: UICollectionViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var descrip: UILabel!
+    
     @IBOutlet weak var profileImage: CircularImageView!
     @IBOutlet weak var favor: UIButton!
     @IBOutlet weak var collect: UIButton!
+    
     
     weak var delegate : DiscoverCellDelegate?
     var indexPath: IndexPath?
