@@ -10,7 +10,7 @@ import Firebase
 
 
 let testFirestore = false
-let testCloudStorage = false
+let testCloudStorage = true
 
 
 class ViewController: UIViewController {
@@ -63,7 +63,16 @@ class ViewController: UIViewController {
 
             //error means it could not sign in due to no accounts found
             if error == nil {
-                self.navToHomeView()
+                Core.setupCurrentUser { (error) in
+                    if let error = error {
+                        print("Failed to setup current user: \(error)")
+                    } else {
+                        DispatchQueue.main.async {
+                            self.navToHomeView()
+                        }
+                    }
+                }
+                
             } else {
                 let errorMesasge = error?.localizedDescription
                 self.errorContainer.text = errorMesasge

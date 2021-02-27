@@ -31,14 +31,14 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLd-hD-bXI">
-                                <rect key="frame" x="149.5" y="338" width="115" height="30"/>
-                                <state key="normal" title="Upload to Profile"/>
+                                <rect key="frame" x="103.5" y="328" width="207" height="30"/>
+                                <state key="normal" title="Upload to Current User Profile"/>
                                 <connections>
                                     <action selector="upload2ProfileTapped:" destination="LjA-Ih-xSd" eventType="touchUpInside" id="1lu-BI-CJK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7XX-4u-ecR">
-                                <rect key="frame" x="108.5" y="378" width="197" height="30"/>
+                                <rect key="frame" x="108.5" y="358" width="197" height="30"/>
                                 <state key="normal" title="Delete the Test Profile Image"/>
                                 <connections>
                                     <action selector="deleteTestImageTapped:" destination="LjA-Ih-xSd" eventType="touchUpInside" id="NJ3-SO-kLR"/>
@@ -64,20 +64,29 @@
                                     <action selector="loadImageWithDownloadTapped:" destination="LjA-Ih-xSd" eventType="touchUpInside" id="z6i-na-Fpb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaZ-mT-jl1">
+                                <rect key="frame" x="121" y="388" width="172" height="30"/>
+                                <state key="normal" title="Load Current User Image"/>
+                                <connections>
+                                    <action selector="loadCurrentUserImageTapped:" destination="LjA-Ih-xSd" eventType="touchUpInside" id="aIZ-DP-0Zc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Sjd-XE-cZg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="7XX-4u-ecR" firstAttribute="centerX" secondItem="vdG-gm-tdU" secondAttribute="centerX" id="2j8-Aa-ugc"/>
                             <constraint firstItem="XLd-hD-bXI" firstAttribute="centerX" secondItem="vdG-gm-tdU" secondAttribute="centerX" id="43S-2l-OQJ"/>
-                            <constraint firstItem="7XX-4u-ecR" firstAttribute="top" secondItem="XLd-hD-bXI" secondAttribute="bottom" constant="10" id="49M-ic-qRo"/>
+                            <constraint firstItem="7XX-4u-ecR" firstAttribute="top" secondItem="XLd-hD-bXI" secondAttribute="bottom" id="49M-ic-qRo"/>
+                            <constraint firstItem="kaZ-mT-jl1" firstAttribute="top" secondItem="7XX-4u-ecR" secondAttribute="bottom" id="7jb-Wh-Sts"/>
                             <constraint firstItem="dLb-w5-6gH" firstAttribute="leading" secondItem="Sjd-XE-cZg" secondAttribute="leading" id="8ce-PL-Cjy"/>
                             <constraint firstItem="lKh-S5-HiF" firstAttribute="top" secondItem="dLb-w5-6gH" secondAttribute="bottom" constant="10" id="EqJ-Yr-uZa"/>
+                            <constraint firstItem="kaZ-mT-jl1" firstAttribute="centerX" secondItem="vdG-gm-tdU" secondAttribute="centerX" id="ITP-05-MFx"/>
                             <constraint firstItem="Sjd-XE-cZg" firstAttribute="trailing" secondItem="dLb-w5-6gH" secondAttribute="trailing" id="SjC-Vl-fbI"/>
                             <constraint firstItem="Sjd-XE-cZg" firstAttribute="trailing" secondItem="uhA-eu-BtH" secondAttribute="trailing" id="Ubs-tp-Lhl"/>
                             <constraint firstItem="Zbz-Ut-aMh" firstAttribute="centerX" secondItem="vdG-gm-tdU" secondAttribute="centerX" id="Wez-BK-uEn"/>
                             <constraint firstItem="AK2-b9-38F" firstAttribute="centerX" secondItem="vdG-gm-tdU" secondAttribute="centerX" id="YgX-8U-NRv"/>
-                            <constraint firstItem="XLd-hD-bXI" firstAttribute="top" secondItem="lKh-S5-HiF" secondAttribute="bottom" constant="10" id="Yx9-bh-dHS"/>
+                            <constraint firstItem="XLd-hD-bXI" firstAttribute="top" secondItem="lKh-S5-HiF" secondAttribute="bottom" id="Yx9-bh-dHS"/>
                             <constraint firstItem="dLb-w5-6gH" firstAttribute="top" secondItem="Sjd-XE-cZg" secondAttribute="top" id="ar9-m3-I7f"/>
                             <constraint firstItem="Sjd-XE-cZg" firstAttribute="bottom" secondItem="uhA-eu-BtH" secondAttribute="bottom" id="bce-OD-xkG"/>
                             <constraint firstItem="Zbz-Ut-aMh" firstAttribute="top" secondItem="AK2-b9-38F" secondAttribute="bottom" constant="10" id="dJu-xv-MIY"/>
@@ -94,7 +103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdT-U6-BwG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-120" y="7"/>
+            <point key="canvasLocation" x="-120.28985507246378" y="6.6964285714285712"/>
         </scene>
     </scenes>
     <resources>
