@@ -40,15 +40,8 @@ class Core {
             }
         } else {
             DispatchQueue.main.async {
-                completion(currUserNoDataError)
+                completion(CoreError.currUserNoDataError)
             }
         }
     }
 }
-
-fileprivate let currUserNoDataInfo: [String : Any] = [
-    NSLocalizedDescriptionKey: NSLocalizedString("Failed to Post", value: "Current user data cannot be fetched", comment: ""),
-    NSLocalizedFailureReasonErrorKey: NSLocalizedString("Failed to Post", value: "Current user data cannot be fetched", comment: "")
-]
-
-fileprivate let currUserNoDataError = NSError(domain: "FailedToFetchData", code: 0, userInfo: currUserNoDataInfo)
