@@ -27,6 +27,11 @@
 		84A8866225E3317F004684DA /* flavors-of-youth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 84A8866125E3317F004684DA /* flavors-of-youth.gif */; };
 		84A8866E25E33B0C004684DA /* LaunchScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8866D25E33B0C004684DA /* LaunchScreenController.swift */; };
 		84A8867C25E34EAA004684DA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8867B25E34EAA004684DA /* SignUpViewController.swift */; };
+		A137B12D25EAE241009A661D /* DiscoverTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137B12525EAE241009A661D /* DiscoverTextCell.swift */; };
+		A137B12E25EAE241009A661D /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137B12625EAE241009A661D /* RecipeDetailViewController.swift */; };
+		A137B13125EAE241009A661D /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137B12925EAE241009A661D /* DiscoverViewController.swift */; };
+		A137B13225EAE241009A661D /* DiscoverImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137B12A25EAE241009A661D /* DiscoverImageCell.swift */; };
+		A137B13325EAE241009A661D /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137B12B25EAE241009A661D /* CircularImageView.swift */; };
 		C56C5D0F25E4524900DD1CD7 /* RecipePreviewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C5D0C25E4524900DD1CD7 /* RecipePreviewCellController.swift */; };
 		C56C5D1025E4524900DD1CD7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C5D0D25E4524900DD1CD7 /* ProfileViewController.swift */; };
 		C56C5D1125E4524900DD1CD7 /* ProfileEditPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C5D0E25E4524900DD1CD7 /* ProfileEditPage.swift */; };
@@ -63,6 +68,11 @@
 		84A8866125E3317F004684DA /* flavors-of-youth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "flavors-of-youth.gif"; sourceTree = "<group>"; };
 		84A8866D25E33B0C004684DA /* LaunchScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenController.swift; sourceTree = "<group>"; };
 		84A8867B25E34EAA004684DA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		A137B12525EAE241009A661D /* DiscoverTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTextCell.swift; sourceTree = "<group>"; };
+		A137B12625EAE241009A661D /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
+		A137B12925EAE241009A661D /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		A137B12A25EAE241009A661D /* DiscoverImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverImageCell.swift; sourceTree = "<group>"; };
+		A137B12B25EAE241009A661D /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
 		C56C5D0C25E4524900DD1CD7 /* RecipePreviewCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipePreviewCellController.swift; sourceTree = "<group>"; };
 		C56C5D0D25E4524900DD1CD7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C56C5D0E25E4524900DD1CD7 /* ProfileEditPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditPage.swift; sourceTree = "<group>"; };
@@ -245,6 +255,11 @@
 				84A8866125E3317F004684DA /* flavors-of-youth.gif */,
 				84A8866D25E33B0C004684DA /* LaunchScreenController.swift */,
 				84A8867B25E34EAA004684DA /* SignUpViewController.swift */,
+				A137B12925EAE241009A661D /* DiscoverViewController.swift */,
+				A137B12B25EAE241009A661D /* CircularImageView.swift */,
+				A137B12A25EAE241009A661D /* DiscoverImageCell.swift */,
+				A137B12525EAE241009A661D /* DiscoverTextCell.swift */,
+				A137B12625EAE241009A661D /* RecipeDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -382,9 +397,11 @@
 				84A8865F25E3316A004684DA /* swift+gif.swift in Sources */,
 				84A8866E25E33B0C004684DA /* LaunchScreenController.swift in Sources */,
 				21F2AE5625E3B44300C6F973 /* CrudProtocol.swift in Sources */,
+				A137B13325EAE241009A661D /* CircularImageView.swift in Sources */,
 				C57662BF25DBF9D600642CF2 /* ViewController.swift in Sources */,
 				C56C5D1125E4524900DD1CD7 /* ProfileEditPage.swift in Sources */,
 				21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */,
+				A137B13225EAE241009A661D /* DiscoverImageCell.swift in Sources */,
 				2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */,
 				C56C5D1025E4524900DD1CD7 /* ProfileViewController.swift in Sources */,
 				2185055925EA8E7F00A9D46C /* Notifiable.swift in Sources */,
@@ -393,13 +410,16 @@
 				84A8867C25E34EAA004684DA /* SignUpViewController.swift in Sources */,
 				C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */,
 				2185055425EA75EC00A9D46C /* Error.swift in Sources */,
+				A137B13125EAE241009A661D /* DiscoverViewController.swift in Sources */,
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,
 				21A8367125E0364B005933AE /* RecipeExt.swift in Sources */,
 				21F2AE4B25E2DFA300C6F973 /* RecipeComponents.swift in Sources */,
+				A137B12E25EAE241009A661D /* RecipeDetailViewController.swift in Sources */,
 				C56C5D0F25E4524900DD1CD7 /* RecipePreviewCellController.swift in Sources */,
 				2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */,
 				2185054E25E98B3A00A9D46C /* Core.swift in Sources */,
 				21F2AE4325E2881900C6F973 /* Recipe.swift in Sources */,
+				A137B12D25EAE241009A661D /* DiscoverTextCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
