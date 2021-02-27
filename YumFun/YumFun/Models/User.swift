@@ -49,6 +49,18 @@ final class User: Identifiable, Codable {
         }
     }
     
+    fileprivate(set) var likedRecipes: [String] = [] {
+        willSet {
+            if let validId = self.id {
+                User.update(named: validId, with: ["likedRecipes": newValue]) { (err) in
+                    if let err = err {
+                        print("Failed to update liked recipes in user. \(err)")
+                    }
+                }
+            }
+        }
+    }
+    
     init(fromAuthUser authUser: Firebase.User) {
         self.id = authUser.uid
         self.displayName = authUser.displayName
@@ -118,6 +130,7 @@ extension User {
                 if let docId = docRef?.documentID {
                     self.recipes.append(docId)
                 }
+                completion(nil, docRef)
             }
         }
     }
@@ -169,6 +182,43 @@ extension User {
         self.followings.removeAll { $0 == userId }
         let newData = ["followers" : FieldValue.arrayUnion([currUserId])]
         User.update(named: userId, with: newData, completion)
+    }
+    
+    /**
+     Current user liked a recipe.
+     */
+    func likeRecipe(withId id: String,
+                    _ completion: @escaping updateDataCompletionHandler) {
+        guard self.id != nil else {
+            print("Failed to fetch current user id")
+            completion(CoreError.currUserNoDataError)
+            return
+        }
+        
+        self.likedRecipes.append(id)
+        
+        let newData = [
+            "likedCount": FieldValue.increment(Int64(1))
+        ]
+        Recipe.update(named: id, with: newData, completion)
+    }
+    
+    /**
+     Current user unliked a recipe.
+     */
+    func unlikeRecipe(withId id: String,
+                      _ completion: @escaping updateDataCompletionHandler) {
+        guard self.id != nil else {
+            print("Failed to fetch current user id")
+            completion(CoreError.currUserNoDataError)
+            return
+        }
+        
+        self.likedRecipes.removeAll { $0 == id }
+        let newData = [
+            "likedCount": FieldValue.increment(Int64(-1))
+        ]
+        Recipe.update(named: id, with: newData, completion)
     }
     
     /**
