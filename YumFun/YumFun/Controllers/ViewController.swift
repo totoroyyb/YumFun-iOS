@@ -10,7 +10,7 @@ import Firebase
 
 
 let testFirestore = false
-let testCloudStorage = false
+let testCloudStorage = true
 
 
 class ViewController: UIViewController {

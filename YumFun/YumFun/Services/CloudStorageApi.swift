@@ -122,7 +122,7 @@ extension CloudStorage {
      If an error occurs, the error handler will be executed. If no error occurs, and completion handler is provided, then completion handler will be executed.
      */
     func upload(_ data: Data,
-                metadata: StorageMetadata?,
+                metadata: StorageMetadata? = nil,
                 errorHandler: uploadErrorHandler = nil,
                 completionHandler: uploadCompletionHandler) {
         self.uploadTask = self.fileRef.putData(data, metadata: metadata) { (metadata, error) in
@@ -138,6 +138,27 @@ extension CloudStorage {
             if let completionHandler = completionHandler {
                 DispatchQueue.main.async {
                     completionHandler(metadata)
+                }
+            }
+        }
+    }
+    
+    /**
+     Upload a image to cloud storage with a download url back in the completion handler
+     
+     ## Note
+     If an error occurs, the error handler will be executed. If no error occurs, and completion handler is provided, then completion handler will be executed.
+     */
+    func uploadWithURLBack(_ data: Data,
+                           metadata: StorageMetadata? = nil,
+                           errorHandler: uploadErrorHandler = nil,
+                           completionHandler: ((URL) -> Void)?) {
+        self.upload(data, metadata: metadata, errorHandler: errorHandler) { (_) in
+            self.downloadURL(errorHandler: errorHandler) { (url) in
+                if let completionHandler = completionHandler {
+                    DispatchQueue.main.async {
+                        completionHandler(url)
+                    }
                 }
             }
         }

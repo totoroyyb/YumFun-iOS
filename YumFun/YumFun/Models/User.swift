@@ -20,7 +20,7 @@ final class User: Identifiable, Codable {
     var displayName: String?
     var userName: String?
     var email: String?
-    var photoUrl: URL?
+    var photoUrl: String?
     var bio: String?
     
     private(set) var recipes: [String] = [] {
@@ -53,7 +53,7 @@ final class User: Identifiable, Codable {
         self.id = authUser.uid
         self.displayName = authUser.displayName
         self.email = authUser.email
-        self.photoUrl = authUser.photoURL
+//        self.photoUrl = authUser.photoURL
     }
 }
 
@@ -155,15 +155,11 @@ extension User {
         
         storage.upload(validData, metadata: nil) { (error) in
             completion(error)
-        } completionHandler: { _ in
-            storage.downloadURL { (error) in
+        } completionHandler: { metadata in
+            self.photoUrl = storage.fileRef.fullPath
+            let newData = ["photoUrl": storage.fileRef.fullPath]
+            User.update(named: currUserId, with: newData) { (error) in
                 completion(error)
-            } completion: { (url) in
-                self.photoUrl = url
-                let newData = ["photoUrl": url]
-                User.update(named: currUserId, with: newData) { (error) in
-                    completion(error)
-                }
             }
         }
         

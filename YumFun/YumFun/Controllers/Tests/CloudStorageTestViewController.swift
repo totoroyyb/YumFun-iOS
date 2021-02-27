@@ -15,6 +15,7 @@ class CloudStorageTestViewController: UIViewController, PHPickerViewControllerDe
     @IBOutlet weak var firebaseUIImageView: UIImageView!
     
     private let storage = CloudStorage(.profileImage)
+    private var filepath: String?
     
     @available(iOS 14, *)
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
@@ -31,7 +32,6 @@ class CloudStorageTestViewController: UIViewController, PHPickerViewControllerDe
             }
         }
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,14 +58,52 @@ class CloudStorageTestViewController: UIViewController, PHPickerViewControllerDe
     @IBAction func upload2ProfileTapped(_ sender: Any) {
         guard let image = self.imageView.image else { return }
         
-        guard let data = image.jpegData(compressionQuality: 0.8) else {
-            print("failed to get data.")
+//        guard let data = image.jpegData(compressionQuality: 0.8) else {
+//            print("failed to get data.")
+//            return
+//        }
+//
+//        storage.upload(data, metadata: nil, errorHandler: uploadErrorHandler(error:)) { (metadata) in
+//            self.filepath = self.storage.fileRef.fullPath
+//        }
+        
+        guard let currentUser = Core.currentUser else {
             return
         }
         
-        storage.upload(data, metadata: nil, errorHandler: uploadErrorHandler(error:)) { (metadata) in
-            self.storage.downloadURL(errorHandler: self.getUrlErrorHandler(error:)) { (url) in
-                print("URL is fetched: \(url)")
+        let _ = currentUser.updateProfileImage(with: image) { (error) in
+            if let error = error {
+                print("Error to update profile image: \(error)")
+            } else {
+                print("Successfully update the current user profile image.")
+            }
+        }
+        
+//        storage.uploadWithURLBack(data, metadata: nil) { (error) in
+//            print("Error detected for uploading image: \(error)")
+//        } completionHandler: { (url) in
+//            self.downloadUrl = url
+//            print("URL is fetched: \(url.absoluteString)")
+//        }
+        
+    }
+    
+    @IBAction func loadCurrentUserImageTapped(_ sender: Any) {
+        guard let currentUser = Core.currentUser, let picUrl = currentUser.photoUrl else {
+            return
+        }
+        
+        let myStorage = CloudStorage(picUrl)
+        
+        self.firebaseUIImageView.sd_setImage(
+            with: myStorage.fileRef,
+            maxImageSize: 1 * 2048 * 2048,
+            placeholderImage: nil,
+            options: [.progressiveLoad, .refreshCached]) { (image, error, cache, storageRef) in
+            if let error = error {
+                print("Error load Image: \(error)")
+            } else {
+                print("Finished loading current user profile image.")
             }
         }
     }
@@ -77,8 +115,15 @@ class CloudStorageTestViewController: UIViewController, PHPickerViewControllerDe
     }
     
     @IBAction func loadImageWithFirebaseUITapped(_ sender: Any) {
+        guard let path = self.filepath else {
+            print("Cannot fetch download filpath.")
+            return
+        }
+        
+        let myStorage = CloudStorage(path)
+        
         self.firebaseUIImageView.sd_setImage(
-            with: storage.fileRef,
+            with: myStorage.fileRef,
             maxImageSize: 1 * 2014 * 1024,
             placeholderImage: nil,
             options: [.progressiveLoad, .refreshCached]) { (image, error, cache, storageRef) in
@@ -91,7 +136,16 @@ class CloudStorageTestViewController: UIViewController, PHPickerViewControllerDe
     }
     
     @IBAction func loadImageWithDownloadTapped(_ sender: Any) {
-        storage.download(maxSize: 1 * 1024 * 1024) { (data) in
+        guard let path = self.filepath else {
+            print("Cannot fetch download filpath.")
+            return
+        }
+        
+        let myStorage = CloudStorage(path)
+        
+        myStorage.download(maxSize: 1 * 2048 * 2048, errorHandler: { (error) in
+            print("Error detected with download image: \(error)")
+        }) { (data) in
             guard let data = data else {
                 print("failed to load image with downloading")
                 return
