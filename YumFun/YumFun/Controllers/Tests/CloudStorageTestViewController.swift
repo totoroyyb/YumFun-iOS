@@ -17,6 +17,21 @@ class CloudStorageTestViewController: UIViewController, PHPickerViewControllerDe
     private let storage = CloudStorage(.profileImage)
     private var filepath: String?
     
+    private var testRecipe: Recipe = {
+        let serveSize: Int = 10
+        let duration = Duration(prepTime: 5)
+        let dishType = DishType.dessert
+        let cuisine: [CuisineType] = [.asian, .chinese, .italian, .spanish_portuguese]
+        let occasion = ["Hello"]
+        
+        return Recipe(author: "Yibo Yan",
+                      serveSize: serveSize,
+                      duration: duration,
+                      dishType: dishType,
+                      cuisine: cuisine,
+                      occasion: occasion)
+    }()
+    
     @available(iOS 14, *)
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
@@ -154,6 +169,24 @@ class CloudStorageTestViewController: UIViewController, PHPickerViewControllerDe
             self.firebaseUIImageView.image = UIImage(data: data)
         }
     }
+    
+    @IBAction func uploadRecipeImageTapped(_ sender: Any) {
+        guard let image = self.imageView.image else {return}
+        
+        testRecipe.uploadRecipeImage(with: image, nil) { (path) in
+            if let path = path {
+                print("Path is \(path)")
+            }
+        }
+        
+        guard let currUser = Core.currentUser else { return }
+        currUser.createRecipe(with: testRecipe) { (error, docRef) in
+            if error == nil {
+                print("created recipe with id: \(docRef?.documentID)")
+            }
+        }
+    }
+    
     
     func uploadErrorHandler(error: Error?) {
         if let error = error {

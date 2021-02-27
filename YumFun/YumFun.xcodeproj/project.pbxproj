@@ -12,6 +12,7 @@
 		2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */; };
 		2185054E25E98B3A00A9D46C /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185054D25E98B3A00A9D46C /* Core.swift */; };
 		2185055425EA75EC00A9D46C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185055325EA75EC00A9D46C /* Error.swift */; };
+		2185055925EA8E7F00A9D46C /* Notifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185055825EA8E7F00A9D46C /* Notifiable.swift */; };
 		21A8364725E02252005933AE /* FirestoreTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21A8364625E02252005933AE /* FirestoreTest.storyboard */; };
 		21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */; };
 		21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8365125E023E4005933AE /* FirestoreApi.swift */; };
@@ -44,6 +45,7 @@
 		2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageTestViewController.swift; sourceTree = "<group>"; };
 		2185054D25E98B3A00A9D46C /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		2185055325EA75EC00A9D46C /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		2185055825EA8E7F00A9D46C /* Notifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifiable.swift; sourceTree = "<group>"; };
 		21A8364625E02252005933AE /* FirestoreTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirestoreTest.storyboard; sourceTree = "<group>"; };
 		21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestViewController.swift; sourceTree = "<group>"; };
 		21A8365125E023E4005933AE /* FirestoreApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreApi.swift; sourceTree = "<group>"; };
@@ -93,6 +95,14 @@
 				2185055325EA75EC00A9D46C /* Error.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		2185055725EA8E5A00A9D46C /* PropertyWrappers */ = {
+			isa = PBXGroup;
+			children = (
+				2185055825EA8E7F00A9D46C /* Notifiable.swift */,
+			);
+			path = PropertyWrappers;
 			sourceTree = "<group>";
 		};
 		21A8364925E022AC005933AE /* Tests */ = {
@@ -204,6 +214,7 @@
 		C57662B925DBF9D600642CF2 /* YumFun */ = {
 			isa = PBXGroup;
 			children = (
+				2185055725EA8E5A00A9D46C /* PropertyWrappers */,
 				2185054C25E9896800A9D46C /* Core */,
 				21F2AE2425E2870900C6F973 /* Protocols */,
 				21A8366F25E0362B005933AE /* Extensions */,
@@ -373,6 +384,7 @@
 				21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */,
 				2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */,
 				C56C5D1025E4524900DD1CD7 /* ProfileViewController.swift in Sources */,
+				2185055925EA8E7F00A9D46C /* Notifiable.swift in Sources */,
 				21F2AE5225E3A39600C6F973 /* User.swift in Sources */,
 				84A8867C25E34EAA004684DA /* SignUpViewController.swift in Sources */,
 				C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */,

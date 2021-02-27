@@ -71,6 +71,13 @@
                                     <action selector="loadCurrentUserImageTapped:" destination="LjA-Ih-xSd" eventType="touchUpInside" id="aIZ-DP-0Zc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1n-ir-0Ex">
+                                <rect key="frame" x="125" y="418" width="164" height="30"/>
+                                <state key="normal" title="Upload Image to Recipe"/>
+                                <connections>
+                                    <action selector="uploadRecipeImageTapped:" destination="LjA-Ih-xSd" eventType="touchUpInside" id="MqL-0l-tmU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Sjd-XE-cZg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -82,6 +89,7 @@
                             <constraint firstItem="dLb-w5-6gH" firstAttribute="leading" secondItem="Sjd-XE-cZg" secondAttribute="leading" id="8ce-PL-Cjy"/>
                             <constraint firstItem="lKh-S5-HiF" firstAttribute="top" secondItem="dLb-w5-6gH" secondAttribute="bottom" constant="10" id="EqJ-Yr-uZa"/>
                             <constraint firstItem="kaZ-mT-jl1" firstAttribute="centerX" secondItem="vdG-gm-tdU" secondAttribute="centerX" id="ITP-05-MFx"/>
+                            <constraint firstItem="e1n-ir-0Ex" firstAttribute="centerX" secondItem="vdG-gm-tdU" secondAttribute="centerX" id="OZ1-B4-6UB"/>
                             <constraint firstItem="Sjd-XE-cZg" firstAttribute="trailing" secondItem="dLb-w5-6gH" secondAttribute="trailing" id="SjC-Vl-fbI"/>
                             <constraint firstItem="Sjd-XE-cZg" firstAttribute="trailing" secondItem="uhA-eu-BtH" secondAttribute="trailing" id="Ubs-tp-Lhl"/>
                             <constraint firstItem="Zbz-Ut-aMh" firstAttribute="centerX" secondItem="vdG-gm-tdU" secondAttribute="centerX" id="Wez-BK-uEn"/>
@@ -91,6 +99,7 @@
                             <constraint firstItem="Sjd-XE-cZg" firstAttribute="bottom" secondItem="uhA-eu-BtH" secondAttribute="bottom" id="bce-OD-xkG"/>
                             <constraint firstItem="Zbz-Ut-aMh" firstAttribute="top" secondItem="AK2-b9-38F" secondAttribute="bottom" constant="10" id="dJu-xv-MIY"/>
                             <constraint firstItem="lKh-S5-HiF" firstAttribute="centerX" secondItem="vdG-gm-tdU" secondAttribute="centerX" id="des-zh-iNN"/>
+                            <constraint firstItem="e1n-ir-0Ex" firstAttribute="top" secondItem="kaZ-mT-jl1" secondAttribute="bottom" id="lRc-pa-jnE"/>
                             <constraint firstItem="uhA-eu-BtH" firstAttribute="top" secondItem="Zbz-Ut-aMh" secondAttribute="bottom" constant="10" id="vll-fQ-qsl"/>
                             <constraint firstItem="uhA-eu-BtH" firstAttribute="leading" secondItem="Sjd-XE-cZg" secondAttribute="leading" id="yBI-6V-bul"/>
                         </constraints>
