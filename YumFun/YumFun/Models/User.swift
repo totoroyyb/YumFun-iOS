@@ -260,6 +260,7 @@ extension User {
      */
     func updateDisplayName(withNewName name: String,
                            _ completion: @escaping updateDataCompletionHandler) {
+        self.displayName = name
         self.updateUserStrField(withFieldName: "displayName", withFieldValue: name, completion)
     }
     
@@ -268,6 +269,7 @@ extension User {
      */
     func updateUsername(withNewName name: String,
                         _ completion: @escaping updateDataCompletionHandler) {
+        self.userName = name
         self.updateUserStrField(withFieldName: "userName", withFieldValue: name, completion)
     }
     
@@ -276,6 +278,7 @@ extension User {
      */
     func updateBio(withNewBio bio: String,
                    _ completion: @escaping updateDataCompletionHandler) {
+        self.bio = bio
         self.updateUserStrField(withFieldName: "bio", withFieldValue: bio, completion)
     }
 }
