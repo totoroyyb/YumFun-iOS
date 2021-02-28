@@ -20,14 +20,10 @@ class ProfileEditPage: UITableViewController {
         ProfileImage.layer.cornerRadius = ProfileImage.frame.height/4
         ProfileImage.clipsToBounds = true
     }
+    
     fileprivate func DisplayInfo(){
         guard let CurrentUser = Core.currentUser else {return}
-        if let imgurl = CurrentUser.photoUrl{
-            ProfileImage.downloaded(from: imgurl)
-        }else {
-            //default image
-            ProfileImage.image = #imageLiteral(resourceName: "Goopy")
-        }
+        LoadImage()
         if let displayname = CurrentUser.displayName{
             DisplayName.text = displayname
         }else{
@@ -44,6 +40,7 @@ class ProfileEditPage: UITableViewController {
             UserName.text = "None"
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Cosmetic()
@@ -51,10 +48,17 @@ class ProfileEditPage: UITableViewController {
         
     }
 
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            print("direct to image changer")
+            ImagePickerManager().pickImage(self){ image in
+                self.ProfileImage.image = image
+                guard let CurrentUser = Core.currentUser else {return}
+                CurrentUser.updateProfileImage(with: image) { error in
+                    print(error?.localizedDescription ?? "Unknown error")
+                }
+                }
 
         case 1:
             //name change
@@ -100,4 +104,26 @@ class ProfileEditPage: UITableViewController {
         }
     }
     
+    
+    func LoadImage(){
+        guard let currentUser = Core.currentUser, let picUrl = currentUser.photoUrl else {
+            ProfileImage.image = #imageLiteral(resourceName: "Goopy")
+            return
+        }
+        
+        let myStorage = CloudStorage(picUrl)
+        
+        self.ProfileImage.sd_setImage(
+            with: myStorage.fileRef,
+            maxImageSize: 1 * 2048 * 2048,
+            placeholderImage: nil,
+            options: [.progressiveLoad, .refreshCached]) { (image, error, cache, storageRef) in
+            if let error = error {
+                print("Error load Image: \(error)")
+            } else {
+                print("Finished loading current user profile image.")
+            }
+        }
+    }
 }
+
