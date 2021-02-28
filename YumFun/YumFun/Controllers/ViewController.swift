@@ -35,11 +35,19 @@ class ViewController: UIViewController {
         passwordField.resignFirstResponder()
     }
     @IBAction func testPressed(_ sender: Any) {
-        FirebaseAuth.Auth.auth().signIn(withEmail: "fgh@gmail.com", password: "123456", completion: {result, error in
+        FirebaseAuth.Auth.auth().signIn(withEmail: "aa@gmail.com", password: "123456", completion: {result, error in
 
-            //error means it could not sign in due to no accounts found
             if error == nil {
-                self.navToHomeView()
+                Core.setupCurrentUser { (error) in
+                    if let error = error {
+                        print("Failed to setup current user: \(error)")
+                    } else {
+                        DispatchQueue.main.async {
+                            self.navToHomeView()
+                        }
+                    }
+                }
+                
             } else {
                 let errorMesasge = error?.localizedDescription
                 self.errorContainer.text = errorMesasge

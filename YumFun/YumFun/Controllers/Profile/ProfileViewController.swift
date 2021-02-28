@@ -20,14 +20,15 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var FollowerCount: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        Cosmetic()
-        DisplayUserInfo();
-        RecipePreviews.delegate = self
-        RecipePreviews.dataSource = self
+            RecipePreviews.delegate = self
+            RecipePreviews.dataSource = self
+            Cosmetic()
         
-       
-      
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DisplayUserInfo();
+        print("here")
     }
     
     func Cosmetic(){
@@ -40,14 +41,14 @@ class ProfileViewController: UIViewController {
         ProfileImage.layer.cornerRadius = ProfileImage.frame.height/2
         ProfileImage.clipsToBounds = true
     }
+    
     func DisplayUserInfo(){
-        guard let cu = FirebaseAuth.Auth.auth().currentUser else {return}
-        let CurrentUser = User(fromAuthUser: cu)
+        guard let CurrentUser = Core.currentUser else {return}
         //name
         if let displayname = CurrentUser.displayName {
             Name.text = displayname
         }else {
-            Name.text = CurrentUser.email ?? "error"
+            Name.text = "please set a name"
         }
         //profile image
         if let imgurl = CurrentUser.photoUrl{
@@ -61,7 +62,6 @@ class ProfileViewController: UIViewController {
         if CurrentUser.recipes.count == 0 {
             NoRecipe.text = "No Recipe Yet"
         }
-        
     }
     @IBAction func EditPressed(_ sender: UIBarButtonItem) {
         guard let ProfileEditPageController = storyboard?.instantiateViewController(withIdentifier: "PEPage") as? ProfileEditPage else {

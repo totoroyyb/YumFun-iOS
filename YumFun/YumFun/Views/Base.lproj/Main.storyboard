@@ -452,7 +452,7 @@
         <!--Me-->
         <scene sceneID="6lF-y7-qqc">
             <objects>
-                <viewController id="p4p-9E-SFy" customClass="ProfileViewController" customModule="YumFun" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileView" id="p4p-9E-SFy" customClass="ProfileViewController" customModule="YumFun" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lhi-Fi-Pwc">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -560,8 +560,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wga-3S-TdY">
                                 <rect key="frame" x="15.000000000000007" y="300.33333333333331" width="100.66666666666669" height="48.666666666666686"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTD-tA-xHh">
-                                        <rect key="frame" x="21.999999999999996" y="0.0" width="56.666666666666657" height="20.333333333333332"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTD-tA-xHh">
+                                        <rect key="frame" x="20.333333333333332" y="0.0" width="60.333333333333343" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
@@ -806,7 +806,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGU-gU-naf">
-                                                    <rect key="frame" x="64.666666666666657" y="11" width="73.666666666666657" height="22"/>
+                                                    <rect key="frame" x="19.999999999999993" y="11" width="118.33333333333331" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -814,7 +814,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="oGU-gU-naf" secondAttribute="trailing" constant="258.5" id="MBj-1B-gli"/>
-                                                <constraint firstItem="oGU-gU-naf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hlZ-eQ-log" secondAttribute="leadingMargin" id="Xbd-GB-bTx"/>
+                                                <constraint firstItem="oGU-gU-naf" firstAttribute="leading" secondItem="hlZ-eQ-log" secondAttribute="leadingMargin" id="Xbd-GB-bTx"/>
                                                 <constraint firstItem="oGU-gU-naf" firstAttribute="centerY" secondItem="hlZ-eQ-log" secondAttribute="centerY" id="ejp-Vh-8EJ"/>
                                                 <constraint firstItem="oGU-gU-naf" firstAttribute="top" secondItem="hlZ-eQ-log" secondAttribute="topMargin" id="odf-Zh-THV"/>
                                             </constraints>
@@ -849,7 +849,10 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="DisplayName" destination="MVk-t4-M4y" id="T4J-Gr-V0R"/>
+                        <outlet property="Email" destination="Uef-29-lcf" id="mVx-jQ-RTc"/>
                         <outlet property="ProfileImage" destination="2Hp-X7-4aa" id="92Q-dk-dAU"/>
+                        <outlet property="UserName" destination="bCJ-MR-d2D" id="myw-Ly-lOi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PJk-ZV-I3Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -890,7 +893,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iUs-1T-ike">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="HcB-aO-VoA"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="HcB-aO-VoA">
+                            <connections>
+                                <action selector="DonePressed:" destination="0fh-ux-qZZ" id="gS7-ZY-DDL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="TextField" destination="MeC-LH-TbH" id="5xz-FJ-0Py"/>
@@ -1102,8 +1109,6 @@
         <!--Discover-->
         <scene sceneID="Dft-Ja-fIc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8HH-Uh-32R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="7Aa-XR-atV" userLabel="Exit" sceneMemberID="exit"/>
                 <viewController storyboardIdentifier="DiscoverViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pMt-aj-fOP" customClass="DiscoverViewController" customModule="YumFun" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tcd-mM-fhX">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
@@ -1119,7 +1124,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="DiscoverTextCell" translatesAutoresizingMaskIntoConstraints="NO" id="JPt-cl-3HB" customClass="DiscoverTextCell" customModule="YumFun" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="DiscoverTextCell" translatesAutoresizingMaskIntoConstraints="NO" id="JPt-cl-3HB" customClass="DiscoverTextCell" customModule="YumFun" customModuleProvider="target">
                                         <rect key="frame" x="7.666666666666667" y="0.0" width="413" height="288"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="S9Z-4s-mf1">
@@ -1200,7 +1205,7 @@
                                             <outlet property="title" destination="5At-9J-An0" id="ROh-es-9cw"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" misplaced="YES" reuseIdentifier="DiscoverImageCell" translatesAutoresizingMaskIntoConstraints="NO" id="lE0-vT-Ceo" customClass="DiscoverImageCell" customModule="YumFun" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" reuseIdentifier="DiscoverImageCell" translatesAutoresizingMaskIntoConstraints="NO" id="lE0-vT-Ceo" customClass="DiscoverImageCell" customModule="YumFun" customModuleProvider="target">
                                         <rect key="frame" x="7.666666666666667" y="298" width="413" height="288"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gEe-zi-ieN">
@@ -1320,6 +1325,8 @@
                         <outlet property="collectionView" destination="2Wc-xv-RNs" id="m5a-k0-UJ8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8HH-Uh-32R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="7Aa-XR-atV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-198" y="2396"/>
         </scene>

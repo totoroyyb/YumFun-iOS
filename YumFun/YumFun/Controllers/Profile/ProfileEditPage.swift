@@ -10,13 +10,45 @@ import UIKit
 class ProfileEditPage: UITableViewController {
 
     @IBOutlet weak var ProfileImage: UIImageView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet weak var DisplayName: UILabel!
+    @IBOutlet weak var Email: UILabel!
+    @IBOutlet weak var UserName: UILabel!
+    fileprivate func Cosmetic() {
         ProfileImage.layer.borderWidth = 1
         ProfileImage.layer.masksToBounds = true
         ProfileImage.layer.borderColor = UIColor.black.cgColor
         ProfileImage.layer.cornerRadius = ProfileImage.frame.height/4
         ProfileImage.clipsToBounds = true
+    }
+    fileprivate func DisplayInfo(){
+        guard let CurrentUser = Core.currentUser else {return}
+        if let imgurl = CurrentUser.photoUrl{
+            ProfileImage.downloaded(from: imgurl)
+        }else {
+            //default image
+            ProfileImage.image = #imageLiteral(resourceName: "Goopy")
+        }
+        if let displayname = CurrentUser.displayName{
+            DisplayName.text = displayname
+        }else{
+            DisplayName.text = "None"
+        }
+        if let email = CurrentUser.email{
+            Email.text = email
+        }else {
+            Email.text = "error"
+        }
+        if let username = CurrentUser.userName{
+            UserName.text = username
+        }else{
+            UserName.text = "None"
+        }
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        Cosmetic()
+        DisplayInfo()
+        
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -28,6 +60,7 @@ class ProfileEditPage: UITableViewController {
             //name change
             if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
                 viewController.navigationItem.title = "Name"
+                viewController.Mode = "NameEdit"
                     navigationController?.pushViewController(viewController, animated: true)
                 }
 
@@ -35,24 +68,28 @@ class ProfileEditPage: UITableViewController {
             //set Bio
             if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
                 viewController.navigationItem.title = "Bio"
+                viewController.Mode = "BioEdit"
                     navigationController?.pushViewController(viewController, animated: true)
                 }
         case 3:
             //set email
             if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
                 viewController.navigationItem.title = "Email"
+                viewController.Mode = "EmailEdit"
                     navigationController?.pushViewController(viewController, animated: true)
                 }
         case 4:
             //set UserName
             if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
                 viewController.navigationItem.title = "Username"
+                viewController.Mode = "UserNameEdit"
                     navigationController?.pushViewController(viewController, animated: true)
                 }
         case 5:
             //set password
             if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
                 viewController.navigationItem.title = "Password"
+                viewController.Mode = "PasswordEdit"
                     navigationController?.pushViewController(viewController, animated: true)
                 }
         case 6:
