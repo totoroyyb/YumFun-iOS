@@ -1301,6 +1301,7 @@
                                             <outlet property="descrip" destination="gt2-5m-rWh" id="6Cb-0A-HQE"/>
                                             <outlet property="favor" destination="qsf-hP-nYk" id="tEE-ui-EEA"/>
                                             <outlet property="profileImage" destination="8cJ-xE-Ubz" id="76m-TB-8il"/>
+                                            <outlet property="title" destination="1vX-Sr-pIN" id="wtc-2u-Azd"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1317,7 +1318,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Discover" id="nSO-Pi-A3e"/>
                     <connections>
-                        <outlet property="collectionView" destination="2Wc-xv-RNs" id="m5a-k0-UJ8"/>
+                        <outlet property="collectionView" destination="2Wc-xv-RNs" id="osT-0o-aYJ"/>
                     </connections>
                 </viewController>
             </objects>

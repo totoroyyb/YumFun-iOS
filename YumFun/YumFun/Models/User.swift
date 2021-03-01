@@ -49,7 +49,7 @@ final class User: Identifiable, Codable {
         }
     }
     
-    fileprivate(set) var likedRecipes: [String] = [] {
+    private(set) var likedRecipes: [String] = [] {
         willSet {
             if let validId = self.id {
                 User.update(named: validId, with: ["likedRecipes": newValue]) { (err) in

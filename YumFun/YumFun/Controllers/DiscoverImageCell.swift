@@ -8,6 +8,7 @@
 import UIKit
 
 class DiscoverImageCell: UICollectionViewCell {
+    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var descrip: UILabel!
     @IBOutlet weak var favor: UIButton!
     @IBOutlet weak var collect: UIButton!
