@@ -13,6 +13,9 @@ class EditDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         TextField.becomeFirstResponder()
+        if Mode == "BioEdit"{
+            TextField.font = UIFont(name: "System", size: 12)
+        }
         
     }
 
@@ -26,15 +29,21 @@ class EditDetailController: UIViewController {
         }
         switch Mode {
         case "NameEdit":
-            CurrentUser.updateDisplayName(withNewName: text, {error in
-                guard let e = error else {return}
-                self.AlertWindow(Message: e.localizedDescription)
-            })
+            if text.count < 3{
+                self.AlertWindow(Message: "The display name can't be less than 3 character")
+            }
+            else{
+                CurrentUser.updateDisplayName(withNewName: text, {error in})
+            }
+            
         case "BioEdit":
-            CurrentUser.updateBio(withNewBio: text, {error in
-                guard let e = error else {return}
-                self.AlertWindow(Message: e.localizedDescription)
-            })
+            if text.count > 60{
+                self.AlertWindow(Message: "The bio should not longer than 60 characters")
+            }else{
+                CurrentUser.updateBio(withNewBio: text, {error in
+                })
+            }
+            
         case "EmailEdit":
             //??? noemail update method???
             CurrentUser.updateDisplayName(withNewName: text, {error in
@@ -42,11 +51,14 @@ class EditDetailController: UIViewController {
                 self.AlertWindow(Message: e.localizedDescription)
             })
         case "UserNameEdit":
-            CurrentUser.updateUsername(withNewName: text, {error in
-                guard let e = error else {return}
-                self.AlertWindow(Message: e.localizedDescription)
-            })
+            if text.count < 3{
+                self.AlertWindow(Message: "The user name can't be less than 3 character")
+            }
+            else{
+                CurrentUser.updateUsername(withNewName: text, {error in})
+            }
         case "PasswordEdit":
+            //no password edit method
             CurrentUser.updateDisplayName(withNewName: text, {error in
                 guard let e = error else {return}
                 self.AlertWindow(Message: e.localizedDescription)

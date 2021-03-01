@@ -3,7 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>For creating recipes and profile</string>
+	<string>This app wants to use your photos.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app wants to take pictures.</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

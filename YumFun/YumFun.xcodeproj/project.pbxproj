@@ -47,6 +47,7 @@
 		EFC74C0A25EC5EC20037CFEC /* SecondRecipeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC74C0925EC5EC20037CFEC /* SecondRecipeInputViewController.swift */; };
 		EFC74C1125EC5F700037CFEC /* InputRecipeIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC74C1025EC5F700037CFEC /* InputRecipeIngredientsViewController.swift */; };
 		EFC74C1425EC5FE30037CFEC /* EditIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC74C1325EC5FE30037CFEC /* EditIngredientViewController.swift */; };
+		C5FD261125EC0E2200EA28E0 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD261025EC0E2200EA28E0 /* ImagePickerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		EFC74C0925EC5EC20037CFEC /* SecondRecipeInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondRecipeInputViewController.swift; sourceTree = "<group>"; };
 		EFC74C1025EC5F700037CFEC /* InputRecipeIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputRecipeIngredientsViewController.swift; sourceTree = "<group>"; };
 		EFC74C1325EC5FE30037CFEC /* EditIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIngredientViewController.swift; sourceTree = "<group>"; };
+		C5FD261025EC0E2200EA28E0 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				21F2AE4225E2881900C6F973 /* Recipe.swift */,
 				21F2AE5125E3A39600C6F973 /* User.swift */,
 				21F2AE4A25E2DFA300C6F973 /* RecipeComponents.swift */,
+				C5FD261025EC0E2200EA28E0 /* ImagePickerManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				C56C5D1125E4524900DD1CD7 /* ProfileEditPage.swift in Sources */,
 				21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */,
 				A137B13225EAE241009A661D /* DiscoverImageCell.swift in Sources */,
+				C5FD261125EC0E2200EA28E0 /* ImagePickerManager.swift in Sources */,
 				2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */,
 				C56C5D1025E4524900DD1CD7 /* ProfileViewController.swift in Sources */,
 				2185055925EA8E7F00A9D46C /* Notifiable.swift in Sources */,
@@ -506,7 +510,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -568,7 +572,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -594,7 +598,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BLHQ787DMR;
+				DEVELOPMENT_TEAM = Q65H9K9VZ6;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -616,7 +620,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BLHQ787DMR;
+				DEVELOPMENT_TEAM = Q65H9K9VZ6;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
