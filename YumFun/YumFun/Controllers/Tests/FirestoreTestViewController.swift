@@ -22,13 +22,20 @@ class FirestoreTestViewController: UIViewController {
         let dishType = DishType.dessert
         let cuisine: [CuisineType] = [.asian, .chinese, .italian, .spanish_portuguese]
         let occasion = ["Hello"]
+        let steps: [Step] = [
+            Step(title: "Step 1", description: "Step 1"),
+            Step(title: "Step 2", description: "Step 2"),
+            Step(title: "Step 3", description: "Step 3"),
+            Step(title: "Step 4", description: "Step 4")
+        ]
         
         return Recipe(author: "Yibo Yan",
                       portionSize: serveSize,
                       duration: duration,
                       dishType: dishType,
                       cuisine: cuisine,
-                      occasion: occasion)
+                      occasion: occasion,
+                      steps: steps)
     }()
     
     private var recipeIDArray = [String]()

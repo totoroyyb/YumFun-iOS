@@ -11,6 +11,7 @@ import Firebase
 
 let testFirestore = false
 let testCloudStorage = false
+let testCollab = true
 
 
 class ViewController: UIViewController {
@@ -92,7 +93,14 @@ class ViewController: UIViewController {
     
     
     func navToHomeView() {
-        if testCloudStorage {
+        if testCollab {
+            let storyboard = UIStoryboard(name: "CollabTest", bundle: nil)
+            guard let collabTestViewController = storyboard.instantiateViewController(identifier: "CollabTestViewController") as? CollabTestViewController else {
+                assertionFailure("Cannot instantiate CollabTestViewController")
+                return
+            }
+            self.navigationController?.pushViewController(collabTestViewController, animated: true)
+        } else if testCloudStorage {
             let storyboard = UIStoryboard(name: "CloudStorageTest", bundle: nil)
             guard let cloudStorageTestViewController = storyboard.instantiateViewController(identifier: "CloudStorageTestViewController") as? CloudStorageTestViewController else {
                 assertionFailure("Cannot instantiate CloudStorageTestViewController")
