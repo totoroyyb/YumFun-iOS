@@ -18,7 +18,7 @@ import Foundation
  */
 struct Duration: Codable {
     var prep: Int = 0
-    var bake: Int?
+    var cook: Int?
     var rest: Int?
     
     init(prepTime: Int) {
@@ -108,6 +108,11 @@ struct Ingredient: Codable {
     var name: String
     var amount: Double
     var unit: MeasureUnit
+    init(name: String, amount: Double, unit: MeasureUnit) {
+        self.name = name
+        self.amount = amount
+        self.unit = unit
+    }
 }
 
 struct Utensil: Codable {

@@ -27,11 +27,11 @@ struct Recipe: Identifiable, Codable {
     
     var description: String?
     
-    var serveSize: Int = 1
+    var portionSize: Int = 1
     
-    var duration: Duration
+    var duration: Duration?
     
-    var dishType: DishType
+    var dishType: DishType?
     
     var cuisine = [CuisineType]()
     

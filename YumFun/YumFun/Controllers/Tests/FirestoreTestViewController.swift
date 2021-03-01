@@ -24,7 +24,7 @@ class FirestoreTestViewController: UIViewController {
         let occasion = ["Hello"]
         
         return Recipe(author: "Yibo Yan",
-                      serveSize: serveSize,
+                      portionSize: serveSize,
                       duration: duration,
                       dishType: dishType,
                       cuisine: cuisine,
