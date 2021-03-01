@@ -31,6 +31,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                 return
             }
             print("current user has been set up")
+            self.collectionView.reloadData()
         }
         
         Recipe.getAll() { (err, recipes, _) in
@@ -61,7 +62,6 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     // DataSouce Implementation
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // TODO: integrate with view model
-        print(" in \(recipes.count)")
         return recipes.count
     }
     
@@ -90,10 +90,9 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             // TODO: set isCollected
             if let user = Core.currentUser, let id = recipe.id {
-                if user.likedRecipes.contains(id) {
-                    cell.isFavored = true
-                    cell.favorCount = user.likedRecipes.count
-                }
+                cell.isFavored = user.likedRecipes.contains(id)
+                cell.favorCount = user.likedRecipes.count
+                print(cell.favorCount)
                 
                 cell.isCollected = false
                 cell.setUpButtonUI()
@@ -129,11 +128,10 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
             
             // TODO: set isCollected
+            
             if let user = Core.currentUser, let id = recipe.id {
-                if user.likedRecipes.contains(id) {
-                    cell.isFavored = true
-                    cell.favorCount = user.likedRecipes.count
-                }
+                cell.isFavored = user.likedRecipes.contains(id)
+                cell.favorCount = user.likedRecipes.count
                 
                 cell.isCollected = false
                 cell.setUpButtonUI()

@@ -29,7 +29,7 @@ class DiscoverTextCell: UICollectionViewCell {
     var favorCount = 0
     
     func setUpButtonUI() {
-    
+        
         favor.setAttributedTitle(NSAttributedString(string: " \(favorCount)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]), for: .normal)
         
         if isFavored {

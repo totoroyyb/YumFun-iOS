@@ -96,9 +96,7 @@ extension User {
             if let user = result?.user {
                 let newUser = User(fromAuthUser: user)
                 User.post(with: newUser, named: user.uid) { (err, _) in
-                    if let err = err {
-                        completion(result, err)
-                    }
+                    completion(result, err)
                 }
             } else {
                 completion(result, CoreError.currUserNoDataError)
