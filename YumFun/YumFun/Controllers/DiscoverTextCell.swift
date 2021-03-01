@@ -8,7 +8,8 @@
 import UIKit
 
 protocol DiscoverCellDelegate: class {
-    func favorWasPressed(at indexPath: IndexPath)
+    func didFavorRecipeAt(at indexPath: IndexPath)
+    func didUnfavorRecipeAt(at indexPath: IndexPath)
     func collectWasPressed(at indexPath: IndexPath)
 }
 
@@ -69,20 +70,25 @@ class DiscoverTextCell: UICollectionViewCell {
             favor.setAttributedTitle(NSAttributedString(string: " \(favorCount)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]), for: .normal)
             favor.tintColor = .red
             isFavored = true
+            
+            // tell the collectionView that a favor button is pressed on this cell
+            if let ipath = indexPath {
+                delegate?.didFavorRecipeAt(at: ipath)
+            }
         } else {
             favor.setImage(UIImage(systemName: "suit.heart")?.withRenderingMode(.alwaysTemplate), for: .normal)
             favorCount -= 1
             favor.setAttributedTitle(NSAttributedString(string: " \(favorCount)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]), for: .normal)
             favor.tintColor = .black
             isFavored = false
+            
+            // tell the collectionView that a favor button is pressed on this cell
+            if let ipath = indexPath {
+                delegate?.didUnfavorRecipeAt(at: ipath)
+            }
         }
         
         print("button pressed!")
-        
-        // tell the collectionView that a favor button is pressed on this cell
-        if let ipath = indexPath {
-            delegate?.favorWasPressed(at: ipath)
-        }
     }
     
     
@@ -97,8 +103,8 @@ class DiscoverTextCell: UICollectionViewCell {
             isCollected = false
         }
         
-        if let ipath = indexPath {
-            delegate?.favorWasPressed(at: ipath)
-        }
+//        if let ipath = indexPath {
+//            delegate?.favorWasPressed(at: ipath)
+//        }
     }
 }

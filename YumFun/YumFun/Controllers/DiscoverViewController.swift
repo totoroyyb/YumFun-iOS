@@ -85,7 +85,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             // profile image
             discoverQueue.async {
                 self.setAuthorProfileImage(name: recipe.author, profileImage: cell.profileImage)
-                self.semaphore.signal()
+                self.semaphore.wait()
             }
             
             // TODO: set isCollected
@@ -121,9 +121,9 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                     self.setCoverImages(firstUrl: recipe.picUrls[0], secondUrl: nil, firstCover: cell.coverImage1, secondCover: cell.coverImage2)
                 } else {
                     self.setCoverImages(firstUrl: recipe.picUrls[0], secondUrl: recipe.picUrls[1], firstCover: cell.coverImage1, secondCover: cell.coverImage2)
+                    self.semaphore.wait()
                 }
-            
-                self.semaphore.wait()
+                
                 self.semaphore.wait()
             }
             
@@ -141,19 +141,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    private func setImage(url: String, imageView: UIImageView) {
-        let myStorage = CloudStorage(url)
-        
-        imageView.sd_setImage(
-            with: myStorage.fileRef,
-            maxImageSize: 1 * 2048 * 2048,
-            placeholderImage: nil,
-            options: [.progressiveLoad, .refreshCached]) { (image, error, cache, storageRef) in
-            if error != nil {
-                assertionFailure(error.debugDescription)
-            }
-        }
-    }
+    
     
     private func setAuthorProfileImage(name: String, profileImage: UIImageView) {
         DispatchQueue.global(qos: .userInitiated).async {
@@ -164,10 +152,13 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                 }
                 
                 if let a = author, let url = a.photoUrl {
-                    self.setImage(url: url, imageView: profileImage)
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        Utility.setImage(url: url, imageView: profileImage, placeholder: nil, semaphore: self.semaphore)
+                    }
+                } else {
+                    self.semaphore.signal()
                 }
             }
-            self.semaphore.signal()
         }
     }
     
@@ -175,15 +166,13 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         if let url = firstUrl {
             firstCover.contentMode = .scaleAspectFit
             DispatchQueue.global(qos: .userInitiated).async {
-                self.setImage(url: url, imageView: firstCover)
-                self.semaphore.signal()
+                Utility.setImage(url: url, imageView: firstCover, placeholder: nil, semaphore: self.semaphore)
             }
         }
         if let url = firstUrl {
             secondCover.contentMode = .scaleAspectFit
             DispatchQueue.global(qos: .userInitiated).async {
-                self.setImage(url: url, imageView: secondCover)
-                self.semaphore.signal()
+                Utility.setImage(url: url, imageView: secondCover, placeholder: nil, semaphore: self.semaphore)
             }
         }
     }
@@ -197,11 +186,12 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             return
         }
         
+        detailViewController.recipe = recipes[indexPath.row]
         navigationController?.pushViewController(detailViewController, animated: true)
     }
     
     // DiscoverCollectionViewDelegate Implementation
-    func collectionView(_ collectionView: UICollectionView, favorWasPressedAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didFavorRecipeAt indexPath: IndexPath) {
         if let id = recipes[indexPath.row].id {
             discoverQueue.async {
                 DispatchQueue.global(qos: .userInitiated).async {
@@ -209,10 +199,31 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                         user.likeRecipe(withId: id) { err in
                             guard err == nil else {
                                 assertionFailure(err.debugDescription)
+                                self.semaphore.signal()
                                 return
                             }
+                            self.semaphore.signal()
                         }
-                        self.semaphore.signal()
+                    }
+                }
+                self.semaphore.wait()
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnfavorRecipeAt indexPath: IndexPath) {
+        if let id = recipes[indexPath.row].id {
+            discoverQueue.async {
+                DispatchQueue.global(qos: .userInitiated).async {
+                    if let user = Core.currentUser {
+                        user.unlikeRecipe(withId: id) { err in
+                            guard err == nil else {
+                                assertionFailure(err.debugDescription)
+                                self.semaphore.signal()
+                                return
+                            }
+                            self.semaphore.signal()
+                        }
                     }
                 }
                 self.semaphore.wait()
@@ -226,17 +237,12 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     
 }
 
-//extension UICollectionView {
-//    var widestCellWidth: CGFloat {
-//        let insets = contentInset.left + contentInset.right
-//        return bounds.width - insets
-//    }
-//}
-
 // This protocol is for handling button pressing events on a cell.
 // The class coforming to this protocol is informed by its collectionView of these events.
 protocol DiscoverCollectionViewDelegate: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, favorWasPressedAt indexPath: IndexPath) -> Void
+    func collectionView(_ collectionView: UICollectionView, didFavorRecipeAt indexPath: IndexPath) -> Void
+    
+    func collectionView(_ collectionView: UICollectionView, didUnfavorRecipeAt indexPath: IndexPath) -> Void
     
     func collectionView(_ collectionView: UICollectionView, collectWasPressedAt indexPath: IndexPath) -> Void
 }
@@ -244,9 +250,16 @@ protocol DiscoverCollectionViewDelegate: UICollectionViewDelegate {
 // This protocol is for handling button pressing events on a cell.
 // The UICollectionView will be informed when a button pressing happens in a cell.
 extension UICollectionView : DiscoverCellDelegate{
-    func favorWasPressed(at indexPath: IndexPath) {
+    
+    func didFavorRecipeAt(at indexPath: IndexPath) {
         if let del = delegate as? DiscoverCollectionViewDelegate? {
-            del?.collectionView(self, favorWasPressedAt: indexPath)
+            del?.collectionView(self, didFavorRecipeAt: indexPath)
+        }
+    }
+    
+    func didUnfavorRecipeAt(at indexPath: IndexPath) {
+        if let del = delegate as? DiscoverCollectionViewDelegate? {
+            del?.collectionView(self, didUnfavorRecipeAt: indexPath)
         }
     }
     
