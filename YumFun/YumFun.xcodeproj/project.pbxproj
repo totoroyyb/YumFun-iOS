@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2141122325EC3C6600200BE6 /* CollabCookApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141122225EC3C6600200BE6 /* CollabCookApi.swift */; };
+		214E7E8A25ECC6D000B13CE4 /* CollabSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7E8925ECC6D000B13CE4 /* CollabSession.swift */; };
+		214E7E8D25ED11C200B13CE4 /* CollabTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214E7E8C25ED11C200B13CE4 /* CollabTest.storyboard */; };
+		214E7E9025ED11D700B13CE4 /* CollabTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7E8F25ED11D700B13CE4 /* CollabTestViewController.swift */; };
 		2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052525E9015100A9D46C /* CloudStorageApi.swift */; };
 		2185052925E941BC00A9D46C /* CloudStorageTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */; };
 		2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */; };
@@ -49,7 +51,9 @@
 /* Begin PBXFileReference section */
 		0F8AF42751F2B66D075A2993 /* Pods_YumFun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YumFun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		19808E7616160D342C2D7749 /* Pods-YumFun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumFun.debug.xcconfig"; path = "Target Support Files/Pods-YumFun/Pods-YumFun.debug.xcconfig"; sourceTree = "<group>"; };
-		2141122225EC3C6600200BE6 /* CollabCookApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollabCookApi.swift; sourceTree = "<group>"; };
+		214E7E8925ECC6D000B13CE4 /* CollabSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollabSession.swift; sourceTree = "<group>"; };
+		214E7E8C25ED11C200B13CE4 /* CollabTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CollabTest.storyboard; sourceTree = "<group>"; };
+		214E7E8F25ED11D700B13CE4 /* CollabTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollabTestViewController.swift; sourceTree = "<group>"; };
 		2185052525E9015100A9D46C /* CloudStorageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageApi.swift; sourceTree = "<group>"; };
 		2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CloudStorageTest.storyboard; sourceTree = "<group>"; };
 		2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageTestViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 			children = (
 				21A8364625E02252005933AE /* FirestoreTest.storyboard */,
 				2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */,
+				214E7E8C25ED11C200B13CE4 /* CollabTest.storyboard */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 			children = (
 				21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */,
 				2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */,
+				214E7E8F25ED11D700B13CE4 /* CollabTestViewController.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -142,7 +148,6 @@
 			children = (
 				21A8365125E023E4005933AE /* FirestoreApi.swift */,
 				2185052525E9015100A9D46C /* CloudStorageApi.swift */,
-				2141122225EC3C6600200BE6 /* CollabCookApi.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				21F2AE4225E2881900C6F973 /* Recipe.swift */,
 				21F2AE5125E3A39600C6F973 /* User.swift */,
 				21F2AE4A25E2DFA300C6F973 /* RecipeComponents.swift */,
+				214E7E8925ECC6D000B13CE4 /* CollabSession.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21A8364725E02252005933AE /* FirestoreTest.storyboard in Resources */,
+				214E7E8D25ED11C200B13CE4 /* CollabTest.storyboard in Resources */,
 				2185052925E941BC00A9D46C /* CloudStorageTest.storyboard in Resources */,
 				84A8866225E3317F004684DA /* flavors-of-youth.gif in Resources */,
 				C57662C725DBF9D700642CF2 /* LaunchScreen.storyboard in Resources */,
@@ -400,9 +407,9 @@
 				84A8865F25E3316A004684DA /* swift+gif.swift in Sources */,
 				84A8866E25E33B0C004684DA /* LaunchScreenController.swift in Sources */,
 				21F2AE5625E3B44300C6F973 /* CrudProtocol.swift in Sources */,
+				214E7E8A25ECC6D000B13CE4 /* CollabSession.swift in Sources */,
 				A137B13325EAE241009A661D /* CircularImageView.swift in Sources */,
 				C57662BF25DBF9D600642CF2 /* ViewController.swift in Sources */,
-				2141122325EC3C6600200BE6 /* CollabCookApi.swift in Sources */,
 				C56C5D1125E4524900DD1CD7 /* ProfileEditPage.swift in Sources */,
 				21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */,
 				A137B13225EAE241009A661D /* DiscoverImageCell.swift in Sources */,
@@ -411,6 +418,7 @@
 				2185055925EA8E7F00A9D46C /* Notifiable.swift in Sources */,
 				21F2AE5225E3A39600C6F973 /* User.swift in Sources */,
 				C5F6B44E25E7218100EA5ACE /* EditDetailController.swift in Sources */,
+				214E7E9025ED11D700B13CE4 /* CollabTestViewController.swift in Sources */,
 				84A8867C25E34EAA004684DA /* SignUpViewController.swift in Sources */,
 				C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */,
 				2185055425EA75EC00A9D46C /* Error.swift in Sources */,

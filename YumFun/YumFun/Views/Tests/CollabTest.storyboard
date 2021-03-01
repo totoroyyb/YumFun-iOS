@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--CollabTestViewController-->
+        <scene sceneID="BpX-4X-MaE">
+            <objects>
+                <viewController storyboardIdentifier="CollabTestViewController" title="CollabTestViewController" id="M4e-2d-9Q9" customClass="CollabTestViewController" customModule="YumFun" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6E2-3M-RYJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBT-JY-N5V">
+                                <rect key="frame" x="125.5" y="54" width="163" height="30"/>
+                                <state key="normal" title="Create a Collab Session"/>
+                                <connections>
+                                    <action selector="createSessionTapped:" destination="M4e-2d-9Q9" eventType="touchUpInside" id="Hx0-SZ-kTQ"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kXF-lK-HWR">
+                                <rect key="frame" x="10" y="94" width="394" height="64"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q1L-GY-eAi">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOP-OI-W9c">
+                                        <rect key="frame" x="0.0" y="34" width="394" height="30"/>
+                                        <state key="normal" title="Join a Collab Session"/>
+                                        <connections>
+                                            <action selector="joinSessionTapped:" destination="M4e-2d-9Q9" eventType="touchUpInside" id="xc4-oz-Ig9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqO-AA-xds">
+                                <rect key="frame" x="124.5" y="168" width="165" height="30"/>
+                                <state key="normal" title="Toggle Step Completion"/>
+                                <connections>
+                                    <action selector="toggleStepCompletionTapped:" destination="M4e-2d-9Q9" eventType="touchUpInside" id="0uc-5U-eOo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="incompleted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMn-7a-LRC">
+                                <rect key="frame" x="160" y="218" width="94.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90d-E2-is2">
+                                <rect key="frame" x="161" y="281" width="93" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Toggle Step 1"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tAg-oM-m5V"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tAg-oM-m5V" firstAttribute="trailing" secondItem="kXF-lK-HWR" secondAttribute="trailing" constant="10" id="2yr-I3-C2d"/>
+                            <constraint firstItem="LMn-7a-LRC" firstAttribute="centerX" secondItem="6E2-3M-RYJ" secondAttribute="centerX" id="RTE-Ln-EwL"/>
+                            <constraint firstItem="kXF-lK-HWR" firstAttribute="top" secondItem="mBT-JY-N5V" secondAttribute="bottom" constant="10" id="SSp-hl-7s5"/>
+                            <constraint firstItem="mBT-JY-N5V" firstAttribute="centerX" secondItem="6E2-3M-RYJ" secondAttribute="centerX" id="WfT-D3-r2t"/>
+                            <constraint firstItem="yqO-AA-xds" firstAttribute="centerX" secondItem="6E2-3M-RYJ" secondAttribute="centerX" id="dDA-9k-wrB"/>
+                            <constraint firstItem="yqO-AA-xds" firstAttribute="top" secondItem="kXF-lK-HWR" secondAttribute="bottom" constant="10" id="hUu-gR-rXT"/>
+                            <constraint firstItem="LMn-7a-LRC" firstAttribute="top" secondItem="yqO-AA-xds" secondAttribute="bottom" constant="20" id="lhA-4E-o6U"/>
+                            <constraint firstItem="mBT-JY-N5V" firstAttribute="top" secondItem="tAg-oM-m5V" secondAttribute="top" constant="10" id="pkS-Kw-d9d"/>
+                            <constraint firstItem="kXF-lK-HWR" firstAttribute="centerX" secondItem="6E2-3M-RYJ" secondAttribute="centerX" id="vOL-qS-URt"/>
+                            <constraint firstItem="kXF-lK-HWR" firstAttribute="leading" secondItem="tAg-oM-m5V" secondAttribute="leading" constant="10" id="yVX-Ko-UbA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="completionIndicatorLabel" destination="LMn-7a-LRC" id="wsR-xU-Lot"/>
+                        <outlet property="joinSessionTextField" destination="q1L-GY-eAi" id="FhU-y2-JLY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qZn-cV-6mM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="259" y="74"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

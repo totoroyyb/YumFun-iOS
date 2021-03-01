@@ -96,9 +96,7 @@ extension User {
             if let user = result?.user {
                 let newUser = User(fromAuthUser: user)
                 User.post(with: newUser, named: user.uid) { (err, _) in
-                    if let err = err {
-                        completion(result, err)
-                    }
+                    completion(result, err)
                 }
             } else {
                 completion(result, CoreError.currUserNoDataError)
@@ -256,7 +254,7 @@ extension User {
     }
     
     /**
-     Update user's display name.
+     Update current user's display name.
      */
     func updateDisplayName(withNewName name: String,
                            _ completion: @escaping updateDataCompletionHandler) {
@@ -265,7 +263,7 @@ extension User {
     }
     
     /**
-     Update user's user name.
+     Update current user's user name.
      */
     func updateUsername(withNewName name: String,
                         _ completion: @escaping updateDataCompletionHandler) {
@@ -274,12 +272,94 @@ extension User {
     }
     
     /**
-     Update user's bio.
+     Update current user's bio.
      */
     func updateBio(withNewBio bio: String,
                    _ completion: @escaping updateDataCompletionHandler) {
         self.bio = bio
         self.updateUserStrField(withFieldName: "bio", withFieldValue: bio, completion)
+    }
+}
+
+extension User {
+    /**
+     Create a collab cooking session from current user with a __recipe id__. This action will set current user as the host automatically.
+     
+     __Newly created collab cook session id will be passed back as the second argument in the completion handler.__
+     
+     - Parameter recipeId: recipe id which collab cook session based on
+     - Parameter completion: The first argument passed back is the Error, if any. The second argument passed back is the newly created session number.
+     */
+    func createCollabSession(withRecipeId recipeId: String,
+                             _ completion: @escaping (Error?, String?) -> Void) {
+        guard let currUserId = self.id else {
+            print("Failed to fetch current user id")
+            completion(CoreError.currUserNoDataError, nil)
+            return
+        }
+        
+        CollabSession.createSession(withHostId: currUserId, withRecipeId: recipeId, completion)
+    }
+    
+    /**
+     Create a collab cooking session from current user with a __recipe__. This action will set current user as the host automatically.
+     
+     __Newly created collab cook session id will be passed back as the second argument in the completion handler.__
+     
+     - Parameter recipeId: recipe id which collab cook session based on
+     - Parameter completion: The first argument passed back is the Error, if any. The second argument passed back is the newly created session number.
+     */
+    func createCollabSession(withRecipe recipe: Recipe,
+                             _ completion: @escaping (Error?, String?) -> Void) {
+        guard let currUserId = self.id else {
+            print("Failed to fetch current user id")
+            completion(CoreError.currUserNoDataError, nil)
+            return
+        }
+        
+        CollabSession.createSession(withHostId: currUserId, withRecipe: recipe, completion)
+    }
+    
+    /**
+     Join a collab session for current user.
+     
+     ## Note
+     As a host, you need to call `createCollabSession` first to get the newly created session id. And join session with that id.
+     
+     This function will return a `Listener` if executed successfully. If possible, you should always pass this listener back to the `leaveCollabSession` function to clean up, if you intend to leave.
+     
+     - Parameter sessionId: the session id you want to join
+     - Parameter completion: a completion handler to indicate whether there is a error.
+     - Parameter changedHandler: this is important, as it will keep you data sync with cloud real-time. This handler will be called everytime when the cloud data update is detected. The new data will be passed into this handler as an argument.
+     */
+    func joinCollabSession(withSessionId sessionId: String,
+                           completion: @escaping (Error?) -> Void,
+                           whenChanged changedHandler: @escaping (CollabSession) -> Void) -> ListenerRegistration? {
+        guard let currUserId = self.id else {
+            print("Failed to fetch current user id")
+            completion(CoreError.currUserNoDataError)
+            return nil
+        }
+        
+        return CollabSession.joinSession(withSessionId: sessionId, withParticipantId: currUserId, completion: completion, whenChanged: changedHandler)
+    }
+    
+    /**
+     Leave the specified collab session for current user.
+     
+     ## Note
+     If possible, always execute this function before you leave the collab session or navigate to other views. Remove listener is important to avoid latent crash.
+     */
+    func leaveCollabSession(withSessionId sessionId: String,
+                            withListener listener: ListenerRegistration,
+                            completion: @escaping (Error?) -> Void) {
+        guard let currUserId = self.id else {
+            print("Failed to fetch current user id")
+            completion(CoreError.currUserNoDataError)
+            return
+        }
+        
+        CollabSession.leaveSession(withSessionId: sessionId, withParticipantId: currUserId, withListener: listener, completion: completion)
     }
 }
 

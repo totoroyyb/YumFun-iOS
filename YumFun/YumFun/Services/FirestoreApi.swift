@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 // - MARK: Handler Type
 typealias postDataCompletionHandler = (Error?, DocumentReference?) -> Void
@@ -229,6 +230,49 @@ class FirestoreApi {
                 completion(err)
             }
         }
+    }
+    
+    enum ChangeSide {
+        case local
+        case server
+        case either
+    }
+    
+    /**
+     Monitor a data in a specified document change. You can choose to monitor only server changes, or local changes, or either,
+     
+     By default, it will only monitor server changes.
+     */
+    @discardableResult
+    static func monitorChange<T: Decodable>(in collectionPath: String,
+                              named name: String,
+                              changeSide side: ChangeSide = .server,
+                              _ completion: @escaping (T) -> Void) -> ListenerRegistration {
+        let listener = self.db.collection(collectionPath).document(name).addSnapshotListener { (docSnapshot, error) in
+            guard let document = docSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            
+            let source = document.metadata.hasPendingWrites ? "Local" : "Server"
+            
+            if side == .either || (side == .local && source == "Local") || (side == .server && source == "Server") {
+                guard let data = try? document.data(as: T.self) else {
+                    print("Document data was empty or cannot be parsed.")
+                    return
+                }
+                completion(data)
+            }
+        }
+        
+        return listener
+    }
+    
+    /**
+     Remove a document change listener.
+     */
+    static func removeChangeMonitor(listener: ListenerRegistration) {
+        listener.remove()
     }
 }
 

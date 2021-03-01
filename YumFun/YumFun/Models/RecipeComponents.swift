@@ -116,6 +116,7 @@ struct Utensil: Codable {
 }
 
 struct Step: Codable {
+    var stepId: String? = UUID().uuidString
     var title: String?
     var description: String
     var photoUrl: URL?
