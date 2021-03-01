@@ -1,0 +1,4 @@
+0 round
+1 palm
+2 fist
+3 background
