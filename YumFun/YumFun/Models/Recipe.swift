@@ -43,7 +43,7 @@ struct Recipe: Identifiable, Codable {
     
     var ingredients = [Ingredient]()
     
-    var picUrls = [URL]()
+    var picUrls = [String]()
     
     var chefNote: String?
     
