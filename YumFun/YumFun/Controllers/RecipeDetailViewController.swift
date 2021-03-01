@@ -35,7 +35,7 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         authorName.text = rec.author
         recipeTitle.text = rec.title
         recipeDescrip.text = rec.description
-        serveSize.text = String(rec.portionSize)
+        serveSize.text = String(rec.serveSize)
         dishType.text = rec.dishType.rawValue
         cuisine.text = Utility.join(elements: rec.cuisine.map({$0.toString()}), with: " ,")
         occasion.text = Utility.join(elements: rec.occasion, with: " ,")
