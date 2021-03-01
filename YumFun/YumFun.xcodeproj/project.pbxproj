@@ -47,11 +47,11 @@
 		C57662C425DBF9D700642CF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C57662C325DBF9D700642CF2 /* Assets.xcassets */; };
 		C57662C725DBF9D700642CF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57662C525DBF9D700642CF2 /* LaunchScreen.storyboard */; };
 		C5F6B44E25E7218100EA5ACE /* EditDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F6B44D25E7218100EA5ACE /* EditDetailController.swift */; };
+		C5FD261125EC0E2200EA28E0 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD261025EC0E2200EA28E0 /* ImagePickerManager.swift */; };
 		EFC74C0725EC5E120037CFEC /* StartRecipeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC74C0625EC5E120037CFEC /* StartRecipeInputViewController.swift */; };
 		EFC74C0A25EC5EC20037CFEC /* SecondRecipeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC74C0925EC5EC20037CFEC /* SecondRecipeInputViewController.swift */; };
 		EFC74C1125EC5F700037CFEC /* InputRecipeIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC74C1025EC5F700037CFEC /* InputRecipeIngredientsViewController.swift */; };
 		EFC74C1425EC5FE30037CFEC /* EditIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC74C1325EC5FE30037CFEC /* EditIngredientViewController.swift */; };
-		C5FD261125EC0E2200EA28E0 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD261025EC0E2200EA28E0 /* ImagePickerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,11 +99,11 @@
 		C57662C625DBF9D700642CF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C57662C825DBF9D700642CF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5F6B44D25E7218100EA5ACE /* EditDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailController.swift; sourceTree = "<group>"; };
+		C5FD261025EC0E2200EA28E0 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		EFC74C0625EC5E120037CFEC /* StartRecipeInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRecipeInputViewController.swift; sourceTree = "<group>"; };
 		EFC74C0925EC5EC20037CFEC /* SecondRecipeInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondRecipeInputViewController.swift; sourceTree = "<group>"; };
 		EFC74C1025EC5F700037CFEC /* InputRecipeIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputRecipeIngredientsViewController.swift; sourceTree = "<group>"; };
 		EFC74C1325EC5FE30037CFEC /* EditIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIngredientViewController.swift; sourceTree = "<group>"; };
-		C5FD261025EC0E2200EA28E0 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +225,18 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		A1A589F825ED86D400AE7B1A /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				A137B12925EAE241009A661D /* DiscoverViewController.swift */,
+				A137B12B25EAE241009A661D /* CircularImageView.swift */,
+				A137B12A25EAE241009A661D /* DiscoverImageCell.swift */,
+				A137B12525EAE241009A661D /* DiscoverTextCell.swift */,
+				A137B12625EAE241009A661D /* RecipeDetailViewController.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
 		C56C5D0B25E4522000DD1CD7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,11 +299,7 @@
 				84A8866125E3317F004684DA /* flavors-of-youth.gif */,
 				84A8866D25E33B0C004684DA /* LaunchScreenController.swift */,
 				84A8867B25E34EAA004684DA /* SignUpViewController.swift */,
-				A137B12925EAE241009A661D /* DiscoverViewController.swift */,
-				A137B12B25EAE241009A661D /* CircularImageView.swift */,
-				A137B12A25EAE241009A661D /* DiscoverImageCell.swift */,
-				A137B12525EAE241009A661D /* DiscoverTextCell.swift */,
-				A137B12625EAE241009A661D /* RecipeDetailViewController.swift */,
+				A1A589F825ED86D400AE7B1A /* Discover */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -621,7 +629,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q65H9K9VZ6;
+				DEVELOPMENT_TEAM = TBC389PX28;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -645,7 +653,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q65H9K9VZ6;
+				DEVELOPMENT_TEAM = TBC389PX28;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
