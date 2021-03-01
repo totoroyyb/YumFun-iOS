@@ -11,13 +11,14 @@ class ProfileEditPage: UITableViewController {
 
     @IBOutlet weak var ProfileImage: UIImageView!
     @IBOutlet weak var DisplayName: UILabel!
+    @IBOutlet weak var Bio: UILabel!
     @IBOutlet weak var Email: UILabel!
     @IBOutlet weak var UserName: UILabel!
     fileprivate func Cosmetic() {
-        ProfileImage.layer.borderWidth = 1
+        ProfileImage.layer.borderWidth = 0
         ProfileImage.layer.masksToBounds = true
-        ProfileImage.layer.borderColor = UIColor.black.cgColor
-        ProfileImage.layer.cornerRadius = ProfileImage.frame.height/4
+        ProfileImage.layer.borderColor = UIColor.clear.cgColor
+        ProfileImage.layer.cornerRadius = ProfileImage.frame.height/2
         ProfileImage.clipsToBounds = true
     }
     
@@ -27,7 +28,12 @@ class ProfileEditPage: UITableViewController {
         if let displayname = CurrentUser.displayName{
             DisplayName.text = displayname
         }else{
-            DisplayName.text = "None"
+            DisplayName.text = "Not Set"
+        }
+        if let bio = CurrentUser.bio{
+            Bio.text = bio
+        }else{
+            Bio.text = "Not Set"
         }
         if let email = CurrentUser.email{
             Email.text = email
@@ -37,21 +43,26 @@ class ProfileEditPage: UITableViewController {
         if let username = CurrentUser.userName{
             UserName.text = username
         }else{
-            UserName.text = "None"
+            UserName.text = "Not Set"
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Cosmetic()
-        DisplayInfo()
+        
         
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DisplayInfo()
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
+            //image picker
             ImagePickerManager().pickImage(self){ image in
                 self.ProfileImage.image = image
                 guard let CurrentUser = Core.currentUser else {return}
@@ -117,7 +128,7 @@ class ProfileEditPage: UITableViewController {
             with: myStorage.fileRef,
             maxImageSize: 1 * 2048 * 2048,
             placeholderImage: nil,
-            options: [.progressiveLoad, .refreshCached]) { (image, error, cache, storageRef) in
+            options: [ .refreshCached]) { (image, error, cache, storageRef) in
             if let error = error {
                 print("Error load Image: \(error)")
             } else {

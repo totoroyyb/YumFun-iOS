@@ -101,7 +101,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
             with: myStorage.fileRef,
             maxImageSize: 1 * 2048 * 2048,
             placeholderImage: nil,
-            options: [.progressiveLoad, .refreshCached]) { (image, error, cache, storageRef) in
+            options: [ .refreshCached]) { (image, error, cache, storageRef) in
             if let error = error {
                 print("Error load Image: \(error)")
             } else {
