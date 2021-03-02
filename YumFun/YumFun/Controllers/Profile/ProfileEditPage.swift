@@ -109,6 +109,7 @@ class ProfileEditPage: UITableViewController {
                 }
         case 6:
             print("logout")
+            Core.logout(from: self.view)
 
         default:
             print("error")

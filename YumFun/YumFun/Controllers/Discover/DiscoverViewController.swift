@@ -61,43 +61,49 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                     print("Failed to setup current user \(error)")
                 } else {
                     DispatchQueue.main.async {
-                        // Do any additional setup after loading the view.
-                        self.collectionView.dataSource = self
-                        self.collectionView.delegate = self
-                        
-                        Core.setupCurrentUser() { err in
-                            guard err == nil else {
-                                assertionFailure(err.debugDescription)
-                                return
-                            }
-                            print("current user has been set up")
-                            self.collectionView.reloadData()
-                        }
-                        
-                        Recipe.getAll() { (err, recipes, _) in
-                            guard err == nil else {
-                                assertionFailure(err.debugDescription)
-                                return
-                            }
-                            self.recipes = recipes ?? []
-                            self.collectionView.reloadData()
-                        }
-                        
-                        let layout = self.collectionView.collectionViewLayout
-                        if let flowLayout = layout as? UICollectionViewFlowLayout{
-                            flowLayout.estimatedItemSize = CGSize(
-                                width: self.view.frame.width,
-                                // Make the height a reasonable estimate to
-                                // ensure the scroll bar remains smooth
-                                height: 500
-                            )
-                        }
+                        self.viewSetup()
                     }
                 }
                 indicator.stopAnimating()
                 
                 backdrop.removeFromSuperview()
             }
+        } else {
+            viewSetup()
+        }
+    }
+    
+    func viewSetup() {
+        // Do any additional setup after loading the view.
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        
+        Core.setupCurrentUser() { err in
+            guard err == nil else {
+                assertionFailure(err.debugDescription)
+                return
+            }
+            print("current user has been set up")
+            self.collectionView.reloadData()
+        }
+        
+        Recipe.getAll() { (err, recipes, _) in
+            guard err == nil else {
+                assertionFailure(err.debugDescription)
+                return
+            }
+            self.recipes = recipes ?? []
+            self.collectionView.reloadData()
+        }
+        
+        let layout = self.collectionView.collectionViewLayout
+        if let flowLayout = layout as? UICollectionViewFlowLayout{
+            flowLayout.estimatedItemSize = CGSize(
+                width: self.view.frame.width,
+                // Make the height a reasonable estimate to
+                // ensure the scroll bar remains smooth
+                height: 500
+            )
         }
     }
     
