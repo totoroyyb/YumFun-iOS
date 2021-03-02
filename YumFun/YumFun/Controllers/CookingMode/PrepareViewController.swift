@@ -78,7 +78,7 @@ class PrepareViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         
         if collectionView == avatarCollectionView {
-            curSelectedUser = avatarUrls[indexPath.row]
+            
         } else {
             
         }
