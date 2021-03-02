@@ -8,6 +8,7 @@
 import UIKit
 import PhotosUI
 import FirebaseUI
+import NVActivityIndicatorView
 
 class DiscoverViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DiscoverCollectionViewDelegate {
 
@@ -18,39 +19,85 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     let discoverQueue = DispatchQueue(label: "discoverQueue")
     let semaphore = DispatchSemaphore(value: 6)
     
+    var indicatorFrame: CGRect {
+        guard let frame = self.tabBarController?.view.frame else {
+            return CGRect()
+        }
+        
+        let side: CGFloat = 30
+        let origin = CGPoint(x: (frame.width - side) / 2,
+                             y: (frame.height - side) / 2)
+        return CGRect(origin: origin, size: CGSize(width: side, height: side))
+    }
+    
+    var overlay: UIView {
+        let overlay = UIView(frame: self.tabBarController?.view.frame ?? CGRect())
+        overlay.backgroundColor = UIColor.black
+        overlay.alpha = 0.6
+        return overlay
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        Core.setupCurrentUser() { err in
-            guard err == nil else {
-                assertionFailure(err.debugDescription)
-                return
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if Core.currentUser == nil {
+            let backdrop = self.overlay
+            self.tabBarController?.view.addSubview(backdrop)
+            self.tabBarController?.view.bringSubviewToFront(backdrop)
+            
+                
+            let indicator = NVActivityIndicatorView(frame: indicatorFrame)
+            self.tabBarController?.view.addSubview(indicator)
+            self.tabBarController?.view.bringSubviewToFront(indicator)
+            
+            print("Frame \(indicator.frame)")
+            indicator.startAnimating()
+            print("Animating: \(indicator.isAnimating)")
+            // TODO: Activity Indicator
+            Core.setupCurrentUser { (error) in
+                if let error = error {
+                    print("Failed to setup current user \(error)")
+                } else {
+                    DispatchQueue.main.async {
+                        // Do any additional setup after loading the view.
+                        self.collectionView.dataSource = self
+                        self.collectionView.delegate = self
+                        
+                        Core.setupCurrentUser() { err in
+                            guard err == nil else {
+                                assertionFailure(err.debugDescription)
+                                return
+                            }
+                            print("current user has been set up")
+                            self.collectionView.reloadData()
+                        }
+                        
+                        Recipe.getAll() { (err, recipes, _) in
+                            guard err == nil else {
+                                assertionFailure(err.debugDescription)
+                                return
+                            }
+                            self.recipes = recipes ?? []
+                            self.collectionView.reloadData()
+                        }
+                        
+                        let layout = self.collectionView.collectionViewLayout
+                        if let flowLayout = layout as? UICollectionViewFlowLayout{
+                            flowLayout.estimatedItemSize = CGSize(
+                                width: self.view.frame.width,
+                                // Make the height a reasonable estimate to
+                                // ensure the scroll bar remains smooth
+                                height: 500
+                            )
+                        }
+                    }
+                }
+                indicator.stopAnimating()
+                
+                backdrop.removeFromSuperview()
             }
-            print("current user has been set up")
-            self.collectionView.reloadData()
-        }
-        
-        Recipe.getAll() { (err, recipes, _) in
-            guard err == nil else {
-                assertionFailure(err.debugDescription)
-                return
-            }
-            self.recipes = recipes ?? []
-            self.collectionView.reloadData()
-        }
-        
-        let layout = collectionView.collectionViewLayout
-        if let flowLayout = layout as? UICollectionViewFlowLayout{
-            flowLayout.estimatedItemSize = CGSize(
-                width: view.frame.width,
-                // Make the height a reasonable estimate to
-                // ensure the scroll bar remains smooth
-                height: 500
-            )
         }
     }
     
