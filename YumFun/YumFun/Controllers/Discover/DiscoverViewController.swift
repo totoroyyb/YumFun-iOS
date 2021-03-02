@@ -91,7 +91,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             // TODO: set isCollected
             if let user = Core.currentUser, let id = recipe.id {
                 cell.isFavored = user.likedRecipes.contains(id)
-                cell.favorCount = user.likedRecipes.count
+                cell.favorCount = recipe.likedCount
                 print(cell.favorCount)
                 
                 cell.isCollected = false
@@ -100,7 +100,6 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
 
             return cell
         } else {
-            print("image cell")
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverImageCell", for: indexPath) as? DiscoverImageCell ?? DiscoverImageCell()
             
             cell.title.text = recipe.title
@@ -131,7 +130,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             if let user = Core.currentUser, let id = recipe.id {
                 cell.isFavored = user.likedRecipes.contains(id)
-                cell.favorCount = user.likedRecipes.count
+                cell.favorCount = recipe.likedCount
                 
                 cell.isCollected = false
                 cell.setUpButtonUI()
