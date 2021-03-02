@@ -18,6 +18,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
     }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else {
+            return
+        }
+        
+        let sendingAppID = URLContexts.first?.options.sourceApplication
+        print("source application = \(sendingAppID ?? "Unknown")")
+        
+        // Process the URL.
+        guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
+            let host = components.host,
+            let params = components.queryItems else {
+                print("Invalid URL or host missing")
+            return
+        }
+        
+        let path = components.path
+        
+        switch host {
+        case "collabcook":
+            if let collabCookAction = path {
+                if collabCookAction == "/join", let sessionId = params.first(where: { $0.name == "sessionid" })?.value {
+                    print("Session ID: \(sessionId)")
+                } else {
+                    print("No session id is detected or path is not right.")
+                }
+            } else {
+                print("No action detected.")
+            }
+        default:
+            return
+        }
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
