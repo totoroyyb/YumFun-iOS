@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import UIKit
 
 class Core {
     /**
@@ -42,6 +43,30 @@ class Core {
             DispatchQueue.main.async {
                 completion(CoreError.currUserNoDataError)
             }
+        }
+    }
+    
+    static func logout(from view: UIView) {
+        do {
+            try Auth.auth().signOut()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            guard let navigationViewController = storyboard.instantiateViewController(identifier: "BaseNavController") as? UINavigationController else {
+                assertionFailure("Failed to initialize the navigation controller.")
+                return
+            }
+            
+            guard let loginViewController = storyboard.instantiateViewController(identifier: "loginView") as? ViewController else {
+                assertionFailure("Cannot instantiate LoginView.")
+                return
+            }
+            
+            navigationViewController.setViewControllers([loginViewController], animated: true)
+            
+            view.window?.rootViewController = navigationViewController
+            view.window?.makeKeyAndVisible()
+        } catch let error as NSError {
+            print(error.localizedDescription)
         }
     }
 }
