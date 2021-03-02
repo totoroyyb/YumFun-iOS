@@ -12,6 +12,7 @@ class InputRecipeIngredientsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var recipe: Recipe = Recipe()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Step 3/5"

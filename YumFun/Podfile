@@ -17,4 +17,6 @@ target 'YumFun' do
   # Cloud Storage integration
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage' 		
+  
+  pod 'TensorFlowLiteSwift/CoreML', '~> 2.4.0'
 end

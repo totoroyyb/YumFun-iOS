@@ -13,6 +13,7 @@ class SecondRecipeInputViewController: UIViewController {
     @IBOutlet weak var prepTimePicker: UIPickerView!
     @IBOutlet weak var cookTimePicker: UIPickerView!
     @IBOutlet weak var restTimePicker: UIPickerView!
+    
     var recipe: Recipe = Recipe()
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -18,7 +18,7 @@ import UIKit
 import Accelerate
 
 /// A result from invoking the `Interpreter`.
-struct Result {
+struct ModelResult {
   let inferenceTime: Double
   let inferences: [Inference]
 }
@@ -105,7 +105,7 @@ class ModelDataHandler {
   // MARK: - Internal Methods
 
   /// Performs image preprocessing, invokes the `Interpreter`, and processes the inference results.
-  func runModel(onFrame pixelBuffer: CVPixelBuffer) -> Result? {
+  func runModel(onFrame pixelBuffer: CVPixelBuffer) -> ModelResult? {
     
     let sourcePixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer)
     assert(sourcePixelFormat == kCVPixelFormatType_32ARGB ||
@@ -174,7 +174,7 @@ class ModelDataHandler {
     let topNInferences = getTopN(results: results)
 
     // Return the inference time and inference results.
-    return Result(inferenceTime: interval, inferences: topNInferences)
+    return ModelResult(inferenceTime: interval, inferences: topNInferences)
   }
 
   // MARK: - Private Methods
