@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import Firebase
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 // - MARK: Handler Type
 typealias postDataCompletionHandler = (Error?, DocumentReference?) -> Void
