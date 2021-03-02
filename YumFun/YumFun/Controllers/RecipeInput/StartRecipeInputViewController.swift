@@ -13,6 +13,7 @@ class StartRecipeInputViewController: UIViewController {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeName: UITextField!
     var imagePicker = UIImagePickerController()
+    
     var recipe: Recipe = Recipe()
     
     override func viewDidLoad() {
@@ -33,7 +34,7 @@ class StartRecipeInputViewController: UIViewController {
         }
         recipe.title = recipeName.text ?? "None"
         if let recipeURL = recipeImage.sd_imageURL {
-            recipe.picUrls.append(recipeURL)
+            recipe.picUrls.append(recipeURL.absoluteString)
         }
         secondRecipeInputViewController.recipe = recipe
         navigationController?.pushViewController(secondRecipeInputViewController, animated: true)

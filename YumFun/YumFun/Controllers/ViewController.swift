@@ -11,7 +11,7 @@ import Firebase
 
 let testFirestore = false
 let testCloudStorage = false
-let testCollab = true
+let testCollab = false
 
 
 class ViewController: UIViewController {

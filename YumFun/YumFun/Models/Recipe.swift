@@ -31,7 +31,7 @@ struct Recipe: Identifiable, Codable {
     
     var duration: Duration?
     
-    var dishType: DishType?
+    var dishType: DishType = .main
     
     var cuisine = [CuisineType]()
     
@@ -52,6 +52,7 @@ struct Recipe: Identifiable, Codable {
     var likedCount: Int = 0
     
 //    var likedUser = [String]()
+    
 }
 
 extension Recipe: CrudOperable {
