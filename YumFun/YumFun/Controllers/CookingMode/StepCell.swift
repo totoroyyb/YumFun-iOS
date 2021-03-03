@@ -9,7 +9,11 @@ import UIKit
 
 class StepCell: UICollectionViewCell{
     
-    var assigneeAvatars : [UIImage] = []
+    var assigneeAvatars : [UIImage?] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var notAssigned: UILabel!
@@ -32,13 +36,15 @@ class StepCell: UICollectionViewCell{
 
 extension StepCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectionView.isHidden = (assigneeAvatars.count == 0)
-        notAssigned.isHidden = !(assigneeAvatars.count == 0)
+        
+        print(assigneeAvatars.count)
         return assigneeAvatars.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AvatarCell", for: indexPath) as? AvatarCell ?? AvatarCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepAvatarCell", for: indexPath) as? AvatarCell ?? AvatarCell()
+        print("something")
+        print(assigneeAvatars[indexPath.row]?.description)
         cell.avatar.image = assigneeAvatars[indexPath.row]
         return cell
     }
