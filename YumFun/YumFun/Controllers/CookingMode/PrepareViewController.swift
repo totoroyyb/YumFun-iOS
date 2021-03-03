@@ -60,6 +60,7 @@ class PrepareViewController: UIViewController {
                                            },
                                            whenChanged: { session in
                                             self.collabSession = session
+                                            self.recipe = session.targetRecipe
                                            })
         }
         
@@ -104,7 +105,6 @@ class PrepareViewController: UIViewController {
                                 },
                                 whenChanged: { session in
                                     self.collabSession = session
-                                    self.recipe = session.targetRecipe
                                 })
                         }
                     }
@@ -117,7 +117,7 @@ class PrepareViewController: UIViewController {
     
     private func invokeInvitationSharing() {
         if let sid = sessionID {
-            let items = [URL(string: "yumfun://collabcook?sessionid=\(sid)")]
+            let items = [URL(string: "yumfun://collabcook/join?sessionid=\(sid)")]
             let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
             present(ac, animated: true)
         }
