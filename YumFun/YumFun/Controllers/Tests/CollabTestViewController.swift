@@ -23,6 +23,7 @@ class CollabTestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        joinSessionTextField.text = sessionID
         // Do any additional setup after loading the view.
     }
     

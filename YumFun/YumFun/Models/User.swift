@@ -182,7 +182,7 @@ extension User {
         }
         
         self.followings.removeAll { $0 == userId }
-        let newData = ["followers" : FieldValue.arrayUnion([currUserId])]
+        let newData = ["followers" : FieldValue.arrayRemove([currUserId])]
         User.update(named: userId, with: newData, completion)
     }
     

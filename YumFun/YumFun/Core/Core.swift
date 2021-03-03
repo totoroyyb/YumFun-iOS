@@ -10,13 +10,25 @@ import Firebase
 import UIKit
 
 class Core {
+    static var urlOpenTask: UrlOpenTaskType? {
+        didSet {
+            NotificationCenter.default.post(name: .newUrlTaskAdded, object: nil)
+        }
+    }
+    
     /**
      Source of truth for the current user
      
      ## Note
      Please call `setupCurrentUser` whenever the Firebase authentication user is changed to update the user information.
      */
-    private(set) static var currentUser: User?
+    private(set) static var currentUser: User? {
+        didSet {
+            NotificationCenter.default.post(name: .userDidSet, object: currentUser, userInfo: nil)
+        }
+    }
+    
+    private(set) static var isFetching = false
     
     /**
      Update the source of truth of current user.
@@ -25,10 +37,12 @@ class Core {
      Always check the completion handler. If error occurs, you shouldn't proceed.
      */
     static func setupCurrentUser(completion: @escaping (Error?) -> Void) {
+        self.isFetching = true
         if let user = Auth.auth().currentUser {
             User.get(named: user.uid) { (error, user, _) in
                 guard let user = user, error == nil else {
                     DispatchQueue.main.async {
+                        self.isFetching = false
                         completion(error)
                     }
                     return
@@ -36,11 +50,13 @@ class Core {
                 
                 self.currentUser = user
                 DispatchQueue.main.async {
+                    self.isFetching = false
                     completion(error)
                 }
             }
         } else {
             DispatchQueue.main.async {
+                self.isFetching = false
                 completion(CoreError.currUserNoDataError)
             }
         }
@@ -49,6 +65,8 @@ class Core {
     static func logout(from view: UIView) {
         do {
             try Auth.auth().signOut()
+            Core.currentUser = nil
+            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
             guard let navigationViewController = storyboard.instantiateViewController(identifier: "BaseNavController") as? UINavigationController else {
@@ -69,4 +87,39 @@ class Core {
             print(error.localizedDescription)
         }
     }
+}
+
+//class UrlOpenTask {
+//    private let semaphore = DispatchSemaphore(value: 0)
+//
+//    private var urlOpenTaskQueue = [UrlOpenTaskType]()
+//
+//    func popUrlOpenTask(_ completion: @escaping (UrlOpenTaskType?) -> Void) {
+//        DispatchQueue.global(qos: .userInitiated).async {
+//            if self.urlOpenTaskQueue.count == 0 {
+//                completion(nil)
+//            } else {
+//                completion(self.urlOpenTaskQueue.removeFirst())
+//            }
+//            self.semaphore.signal()
+//        }
+//        semaphore.wait()
+//    }
+//
+//    func addUrlOpenTask(_ task: UrlOpenTaskType) {
+//        DispatchQueue.global(qos: .userInitiated).async  {
+//            self.urlOpenTaskQueue.append(task)
+//            self.semaphore.signal()
+//            NotificationCenter.default.post(name: .newUrlTaskAdded, object: nil)
+//        }
+//        semaphore.wait()
+//    }
+//
+//    func peekNextUrlOpenTask() -> UrlOpenTaskType? {
+//        return urlOpenTaskQueue.first
+//    }
+//}
+
+enum UrlOpenTaskType {
+    case joinCollabSession(sessionId: String)
 }
