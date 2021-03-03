@@ -13,6 +13,8 @@ class PrepareViewController: UIViewController {
     @IBOutlet weak var avatarCollectionView: UICollectionView!
     @IBOutlet weak var stepCollectionView: UICollectionView!
     
+    @IBOutlet weak var inviteButton: UIButton!
+    
     var recipe: Recipe = Recipe()
     
     var curUser: User {
@@ -37,24 +39,38 @@ class PrepareViewController: UIViewController {
             stepCollectionView.reloadData()
         }
     }
-    private var collabMode = false
+    
+    private var sessionID : String?
+    
     private var listner: ListenerRegistration?
     
-//    let prepareQueue = DispatchQueue(label: "prepareQueue")
     let avatarPlaceholder = UIImage(named: "mascot")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        if let sid = sessionID {  // user is invited, join session here
+            self.listner = self.curUser.joinCollabSession(withSessionId: sid,
+                                           completion: {error in
+                                            if let err = error {
+                                                print(err.localizedDescription)
+                                            }
+                                           },
+                                           whenChanged: { session in
+                                            self.collabSession = session
+                                           })
+        }
+        
+        
         avatarCollectionView.dataSource = self
-//        avatarCollectionView.delegate = self
         stepCollectionView.dataSource = self
         stepCollectionView.delegate = self
         
         let layout = stepCollectionView.collectionViewLayout
         if let flowLayout = layout as? UICollectionViewFlowLayout{
             flowLayout.estimatedItemSize = CGSize(
-                width: view.frame.width,
+                width: view.frame.width - 20,
                 // Make the height a reasonable estimate to
                 // ensure the scroll bar remains smooth
                 height: 200
@@ -63,10 +79,8 @@ class PrepareViewController: UIViewController {
     }
     
     @IBAction func invitePressed() {
-
-        if collabMode == false {         // create new collabSession
-            collabMode = true
-        
+        if collabSession == nil {   // create and join a session
+            inviteButton.isUserInteractionEnabled = false
             DispatchQueue.global(qos: .userInitiated).async {
                 if let rid = self.recipe.id {
                     self.curUser.createCollabSession(withRecipeId: rid) {(error, sessionID) in
@@ -76,12 +90,15 @@ class PrepareViewController: UIViewController {
                         }
                         
                         if let sid = sessionID {
-                            self.listner =  self.curUser.joinCollabSession(
+                            self.sessionID = sid
+                            
+                            self.listner = self.curUser.joinCollabSession(
                                 withSessionId: sid,
                                 completion: {error in
                                     if let err = error {
                                         print(err.localizedDescription)
                                     }
+                                    self.inviteButton.isUserInteractionEnabled = true
                                 },
                                 whenChanged: { session in
                                     self.collabSession = session
@@ -156,11 +173,13 @@ extension PrepareViewController: UICollectionViewDataSource {
                 recipe.steps[indexPath.row].title ?? "")
             
             cell.collectionView.dataSource = cell
+            cell.collectionView.delegate = cell
             
             if let session = collabSession {  // collab mode
                 
                 cell.assigneeAvatars = session.workLoad[indexPath.row].assignee.map() {(avatarDic[$0] ?? nil)}
                 cell.notAssigned.isHidden = (cell.assigneeAvatars.count != 0)
+                cell.collectionView.isHidden = (cell.assigneeAvatars.count == 0)
                 
                 if let uid = curUser.id,
                 session.workLoad[indexPath.row].assignee.contains(uid) {
@@ -170,6 +189,7 @@ extension PrepareViewController: UICollectionViewDataSource {
                 }
             } else {
                 cell.notAssigned.isHidden = true
+                cell.collectionView.isHidden = true
             }
             
             return cell
