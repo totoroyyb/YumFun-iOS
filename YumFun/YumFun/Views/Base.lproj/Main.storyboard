@@ -1288,6 +1288,9 @@
                                                 <state key="normal" title="Cook Now!">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="cookPressed:" destination="khE-6G-hSq" eventType="touchUpInside" id="sjK-oT-UGA"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cuisine:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOY-EI-sWI">
                                                 <rect key="frame" x="20" y="323.33333333333331" width="64.666666666666671" height="21"/>
@@ -1397,7 +1400,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hyb-zy-AIE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-199.06542056074764" y="3074.51403887689"/>
+            <point key="canvasLocation" x="-1284" y="3056"/>
         </scene>
         <!--Discover-->
         <scene sceneID="Dft-Ja-fIc">
@@ -1622,7 +1625,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8HH-Uh-32R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="7Aa-XR-atV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2207" y="3075"/>
+            <point key="canvasLocation" x="-1284" y="2367"/>
         </scene>
     </scenes>
     <resources>

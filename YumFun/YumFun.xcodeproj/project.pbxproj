@@ -45,6 +45,8 @@
 		A1A58A6025ED8FD700AE7B1A /* model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = A1A58A5925ED8FD700AE7B1A /* model.tflite */; };
 		A1A58A6125ED8FD700AE7B1A /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A5B25ED8FD700AE7B1A /* PreviewView.swift */; };
 		A1A58A6225ED8FD700AE7B1A /* CameraFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A5C25ED8FD700AE7B1A /* CameraFeedManager.swift */; };
+		A1A58A6925ED925800AE7B1A /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A6825ED925800AE7B1A /* AvatarCell.swift */; };
+		A1A58A6C25ED94C600AE7B1A /* StepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A6B25ED94C600AE7B1A /* StepCell.swift */; };
 		C56C5D0F25E4524900DD1CD7 /* RecipePreviewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C5D0C25E4524900DD1CD7 /* RecipePreviewCellController.swift */; };
 		C56C5D1025E4524900DD1CD7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C5D0D25E4524900DD1CD7 /* ProfileViewController.swift */; };
 		C56C5D1125E4524900DD1CD7 /* ProfileEditPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C5D0E25E4524900DD1CD7 /* ProfileEditPage.swift */; };
@@ -103,6 +105,8 @@
 		A1A58A5925ED8FD700AE7B1A /* model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.tflite; sourceTree = "<group>"; };
 		A1A58A5B25ED8FD700AE7B1A /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		A1A58A5C25ED8FD700AE7B1A /* CameraFeedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraFeedManager.swift; sourceTree = "<group>"; };
+		A1A58A6825ED925800AE7B1A /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
+		A1A58A6B25ED94C600AE7B1A /* StepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCell.swift; sourceTree = "<group>"; };
 		C56C5D0C25E4524900DD1CD7 /* RecipePreviewCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipePreviewCellController.swift; sourceTree = "<group>"; };
 		C56C5D0D25E4524900DD1CD7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C56C5D0E25E4524900DD1CD7 /* ProfileEditPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditPage.swift; sourceTree = "<group>"; };
@@ -257,6 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				A1A58A4C25ED8FBA00AE7B1A /* PrepareViewController.swift */,
+				A1A58A6825ED925800AE7B1A /* AvatarCell.swift */,
+				A1A58A6B25ED94C600AE7B1A /* StepCell.swift */,
 			);
 			path = CookingMode;
 			sourceTree = "<group>";
@@ -520,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F2AE4725E288ED00C6F973 /* UpdateTrackableProtocol.swift in Sources */,
+				A1A58A6C25ED94C600AE7B1A /* StepCell.swift in Sources */,
 				21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */,
 				84A8865F25E3316A004684DA /* swift+gif.swift in Sources */,
 				84A8866E25E33B0C004684DA /* LaunchScreenController.swift in Sources */,
@@ -552,6 +559,7 @@
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,
 				21A8367125E0364B005933AE /* RecipeExt.swift in Sources */,
 				EFC74C1425EC5FE30037CFEC /* EditIngredientViewController.swift in Sources */,
+				A1A58A6925ED925800AE7B1A /* AvatarCell.swift in Sources */,
 				21F2AE4B25E2DFA300C6F973 /* RecipeComponents.swift in Sources */,
 				C56C5D0F25E4524900DD1CD7 /* RecipePreviewCellController.swift in Sources */,
 				A1A58A4625ED8FAC00AE7B1A /* DiscoverImageCell.swift in Sources */,
@@ -709,7 +717,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BLHQ787DMR;
+				DEVELOPMENT_TEAM = TBC389PX28;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -717,7 +725,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun;
+				PRODUCT_BUNDLE_IDENTIFIER = chrissy.edu.ucdavcs.189e.CodexCoders.YumFun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -733,7 +741,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BLHQ787DMR;
+				DEVELOPMENT_TEAM = TBC389PX28;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -741,7 +749,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun;
+				PRODUCT_BUNDLE_IDENTIFIER = chrissy.edu.ucdavcs.189e.CodexCoders.YumFun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

@@ -8,6 +8,7 @@ target 'YumFun' do
   # Pods for YumFun
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'TensorFlowLiteSwift/CoreML', '~> 2.4.0'
 
   # Firestore integration
   pod 'Firebase/Firestore'

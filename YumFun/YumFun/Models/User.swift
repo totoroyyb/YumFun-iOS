@@ -61,6 +61,10 @@ final class User: Identifiable, Codable {
         }
     }
     
+    init() {
+        // zero initialization
+    }
+    
     init(fromAuthUser authUser: Firebase.User) {
         self.id = authUser.uid
         self.displayName = authUser.displayName

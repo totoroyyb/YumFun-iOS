@@ -32,7 +32,7 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         super.viewDidLoad()
         guard let rec = recipe else {return}
         
-        authorName.text = rec.author
+        setAuthorName(authorID: rec.author)
         recipeTitle.text = rec.title
         recipeDescrip.text = rec.description
         serveSize.text = String(rec.portionSize)
@@ -40,10 +40,21 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         cuisine.text = Utility.join(elements: rec.cuisine.map({$0.toString()}), with: " ,")
         occasion.text = Utility.join(elements: rec.occasion, with: " ,")
         
-        setAuthorProfileImage(name: rec.author, profileImage: profileImage)
+        setAuthorProfileImage(userID: rec.author, profileImage: profileImage)
         
         makeSteps(recipe: rec)
         contentView.bringSubviewToFront(cookButton)
+    }
+    
+    // set the fetched author name to label
+    func setAuthorName(authorID: String) {
+        User.get(named: authorID) { (err, user, _) in
+            guard err == nil else {
+                print(err.debugDescription)
+                return
+            }
+            self.authorName.text = user?.displayName
+        }
     }
     
     // dynamically create steps
@@ -189,29 +200,43 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         }
     }
     
-    private func setAuthorProfileImage(name: String, profileImage: UIImageView) {
+    private func setAuthorProfileImage(userID: String, profileImage: UIImageView) {
         detailQueue.async {
             DispatchQueue.global(qos: .userInitiated).async {
-                User.get(named: name) { (err, author, _) in
-                    guard err == nil else {
-                        assertionFailure(err.debugDescription)
-                        return
+                let myStorage = CloudStorage(AssetType.profileImage)
+                myStorage.child("\(userID).jpeg")
+                
+                profileImage.sd_setImage(
+                    with: myStorage.fileRef,
+                    maxImageSize: 1 * 2048 * 2048,
+                    placeholderImage: nil,
+                    options: [.progressiveLoad]) { (image, error, cache, storageRef) in
+                    if let err = error {
+                        print(err.localizedDescription)
                     }
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        if let a = author, let url = a.photoUrl {
-                            Utility.setImage(url: url, imageView: profileImage, placeholder: nil, semaphore: self.semaphore)
-                        } else {
-                            self.semaphore.signal()
-                        }
-                    }
+                    
+                    self.semaphore.signal()
                 }
             }
-            self.semaphore.wait()
         }
+        self.semaphore.wait()
     }
     
     
-
+    @IBAction func cookPressed(_ sender: Any) {
+        
+        if let rec = recipe {
+            let storyboard = UIStoryboard(name: "Cooking", bundle: nil)
+            guard let prepareViewController = storyboard.instantiateViewController(withIdentifier: "PrepareViewController") as? PrepareViewController else {
+                assertionFailure("couldn't find PrepareViewController")
+                return
+            }
+            
+            prepareViewController.recipe = rec
+            navigationController?.pushViewController(prepareViewController, animated: true)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseStorage
 
 class Utility {
     /**
@@ -31,15 +32,18 @@ class Utility {
             with: myStorage.fileRef,
             maxImageSize: 1 * 2048 * 2048,
             placeholderImage: nil,
-            options: [.progressiveLoad, .refreshCached]) { (image, error, cache, storageRef) in
+            options: [.progressiveLoad]) { (image, error, cache, storageRef) in
             if error != nil {
-                assertionFailure(error.debugDescription)
+                print(error.debugDescription)
             }
             
             semaphore?.signal()
         }
     }
     
+    /**
+     Join the elements in a list into a string with a binder
+     */
     static func join(elements: [String], with binder: String) -> String {
         if elements.count == 0 {
             return ""

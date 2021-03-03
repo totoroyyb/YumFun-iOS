@@ -88,9 +88,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         Recipe.getAll() { (err, recipes, _) in
-            guard err == nil else {
-                assertionFailure(err.debugDescription)
-                return
+            if err != nil {
+                print(err.debugDescription)
             }
             self.recipes = recipes ?? []
             self.collectionView.reloadData()
@@ -137,7 +136,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             // profile image
             discoverQueue.async {
-                self.setAuthorProfileImage(name: recipe.author, profileImage: cell.profileImage)
+                self.setAuthorProfileImage(userID: recipe.author, profileImage: cell.profileImage)
                 self.semaphore.wait()
             }
             
@@ -162,23 +161,15 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             cell.indexPath = indexPath
             
             // profile image
-            discoverQueue.async {
-                self.setAuthorProfileImage(name: recipe.author, profileImage: cell.profileImage)
-                self.semaphore.wait()
+            setAuthorProfileImage(userID: recipe.author, profileImage: cell.profileImage)
+            
+            // set up cover images
+            if recipe.picUrls.count == 1 {
+                self.setCoverImages(firstUrl: recipe.picUrls[0], secondUrl: nil, firstCover: cell.coverImage1, secondCover: cell.coverImage2)
+            } else {
+                self.setCoverImages(firstUrl: recipe.picUrls[0], secondUrl: recipe.picUrls[1], firstCover: cell.coverImage1, secondCover: cell.coverImage2)
             }
         
-            // set up cover images
-            discoverQueue.async {
-                if recipe.picUrls.count == 1 {
-                    self.setCoverImages(firstUrl: recipe.picUrls[0], secondUrl: nil, firstCover: cell.coverImage1, secondCover: cell.coverImage2)
-                } else {
-                    self.setCoverImages(firstUrl: recipe.picUrls[0], secondUrl: recipe.picUrls[1], firstCover: cell.coverImage1, secondCover: cell.coverImage2)
-                    self.semaphore.wait()
-                }
-                
-                self.semaphore.wait()
-            }
-            
             // TODO: set isCollected
             
             if let user = Core.currentUser, let id = recipe.id {
@@ -193,40 +184,46 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    
-    
-    private func setAuthorProfileImage(name: String, profileImage: UIImageView) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            User.get(named: name) { (err, author, _) in
-                guard err == nil else {
-                    assertionFailure(err.debugDescription)
-                    return
-                }
+    private func setAuthorProfileImage(userID: String, profileImage: UIImageView) {
+        discoverQueue.async {
+            DispatchQueue.global(qos: .userInitiated).async {
+                let myStorage = CloudStorage(AssetType.profileImage)
+                myStorage.child("\(userID).jpeg")
                 
-                if let a = author, let url = a.photoUrl {
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        Utility.setImage(url: url, imageView: profileImage, placeholder: nil, semaphore: self.semaphore)
+                profileImage.sd_setImage(
+                    with: myStorage.fileRef,
+                    maxImageSize: 1 * 2048 * 2048,
+                    placeholderImage: nil,
+                    options: [.progressiveLoad]) { (image, error, cache, storageRef) in
+                    if let err = error {
+                        print(err.localizedDescription)
                     }
-                } else {
+                    
                     self.semaphore.signal()
                 }
             }
         }
+        self.semaphore.wait()
     }
     
     private func setCoverImages(firstUrl: String?, secondUrl: String?, firstCover: UIImageView, secondCover: UIImageView) {
-        if let url = firstUrl {
-            firstCover.contentMode = .scaleAspectFit
-            DispatchQueue.global(qos: .userInitiated).async {
-                Utility.setImage(url: url, imageView: firstCover, placeholder: nil, semaphore: self.semaphore)
+        discoverQueue.async {
+            if let url = firstUrl {
+                firstCover.contentMode = .scaleAspectFit
+                DispatchQueue.global(qos: .userInitiated).async {
+                    Utility.setImage(url: url, imageView: firstCover, placeholder: nil, semaphore: self.semaphore)
+                }
+                self.semaphore.wait()
+            }
+            if let url = firstUrl {
+                secondCover.contentMode = .scaleAspectFit
+                DispatchQueue.global(qos: .userInitiated).async {
+                    Utility.setImage(url: url, imageView: secondCover, placeholder: nil, semaphore: self.semaphore)
+                }
+                self.semaphore.wait()
             }
         }
-        if let url = firstUrl {
-            secondCover.contentMode = .scaleAspectFit
-            DispatchQueue.global(qos: .userInitiated).async {
-                Utility.setImage(url: url, imageView: secondCover, placeholder: nil, semaphore: self.semaphore)
-            }
-        }
+        
     }
     
     // UICollectionViewDelegate Implementation
@@ -249,10 +246,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                 DispatchQueue.global(qos: .userInitiated).async {
                     if let user = Core.currentUser {
                         user.likeRecipe(withId: id) { err in
-                            guard err == nil else {
-                                assertionFailure(err.debugDescription)
-                                self.semaphore.signal()
-                                return
+                            if err != nil {
+                                print(err.debugDescription)
                             }
                             self.semaphore.signal()
                         }
@@ -269,10 +264,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                 DispatchQueue.global(qos: .userInitiated).async {
                     if let user = Core.currentUser {
                         user.unlikeRecipe(withId: id) { err in
-                            guard err == nil else {
-                                assertionFailure(err.debugDescription)
-                                self.semaphore.signal()
-                                return
+                            if err != nil {
+                                print(err.debugDescription)
                             }
                             self.semaphore.signal()
                         }
