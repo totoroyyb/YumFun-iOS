@@ -10,6 +10,8 @@
 		214E7E8A25ECC6D000B13CE4 /* CollabSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7E8925ECC6D000B13CE4 /* CollabSession.swift */; };
 		214E7E8D25ED11C200B13CE4 /* CollabTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214E7E8C25ED11C200B13CE4 /* CollabTest.storyboard */; };
 		214E7E9025ED11D700B13CE4 /* CollabTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7E8F25ED11D700B13CE4 /* CollabTestViewController.swift */; };
+		214E7F9025EFA55000B13CE4 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7F8F25EFA55000B13CE4 /* CustomTabBarViewController.swift */; };
+		214E7F9325EFB27000B13CE4 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7F9225EFB27000B13CE4 /* NotificationType.swift */; };
 		2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052525E9015100A9D46C /* CloudStorageApi.swift */; };
 		2185052925E941BC00A9D46C /* CloudStorageTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */; };
 		2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */; };
@@ -70,6 +72,8 @@
 		214E7E8925ECC6D000B13CE4 /* CollabSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollabSession.swift; sourceTree = "<group>"; };
 		214E7E8C25ED11C200B13CE4 /* CollabTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CollabTest.storyboard; sourceTree = "<group>"; };
 		214E7E8F25ED11D700B13CE4 /* CollabTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollabTestViewController.swift; sourceTree = "<group>"; };
+		214E7F8F25EFA55000B13CE4 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
+		214E7F9225EFB27000B13CE4 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		2185052525E9015100A9D46C /* CloudStorageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageApi.swift; sourceTree = "<group>"; };
 		2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CloudStorageTest.storyboard; sourceTree = "<group>"; };
 		2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageTestViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				21A8367025E0364B005933AE /* RecipeExt.swift */,
+				214E7F9225EFB27000B13CE4 /* NotificationType.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 				84A8866125E3317F004684DA /* flavors-of-youth.gif */,
 				84A8866D25E33B0C004684DA /* LaunchScreenController.swift */,
 				84A8867B25E34EAA004684DA /* SignUpViewController.swift */,
+				214E7F8F25EFA55000B13CE4 /* CustomTabBarViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -527,7 +533,9 @@
 			files = (
 				21F2AE4725E288ED00C6F973 /* UpdateTrackableProtocol.swift in Sources */,
 				A1A58A6C25ED94C600AE7B1A /* StepCell.swift in Sources */,
+				214E7F9025EFA55000B13CE4 /* CustomTabBarViewController.swift in Sources */,
 				21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */,
+				214E7F9325EFB27000B13CE4 /* NotificationType.swift in Sources */,
 				84A8865F25E3316A004684DA /* swift+gif.swift in Sources */,
 				84A8866E25E33B0C004684DA /* LaunchScreenController.swift in Sources */,
 				21F2AE5625E3B44300C6F973 /* CrudProtocol.swift in Sources */,
