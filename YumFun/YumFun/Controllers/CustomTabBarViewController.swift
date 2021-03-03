@@ -29,8 +29,6 @@ class CustomTabBarViewController: UITabBarController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(handleUrlTaskAdded), name: .newUrlTaskAdded, object: nil)
         
-        let user = Core.currentUser
-        
         if Core.currentUser == nil {
             let backdrop = self.overlay
             
@@ -77,6 +75,7 @@ class CustomTabBarViewController: UITabBarController {
         }
     }
     
+    // Used to navigate to collab session from the URL
     private func navToCollabSession(with sessionId: String) {
         let storyboard = UIStoryboard(name: "CollabTest", bundle: nil)
         
