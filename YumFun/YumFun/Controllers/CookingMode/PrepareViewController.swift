@@ -17,7 +17,7 @@ class PrepareViewController: UIViewController {
     
     var recipe: Recipe = Recipe()
     
-    var curUser: User {
+    private var curUser: User {
         get {
             guard let user = Core.currentUser else {
                 assertionFailure("user is nil")
@@ -104,6 +104,7 @@ class PrepareViewController: UIViewController {
                                 },
                                 whenChanged: { session in
                                     self.collabSession = session
+                                    self.recipe = session.targetRecipe
                                 })
                         }
                     }
