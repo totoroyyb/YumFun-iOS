@@ -226,6 +226,7 @@ extension User {
     /**
      Current user upload a profile image to the server
      */
+    @discardableResult
     func updateProfileImage(with image: UIImage,
                             _ completion: @escaping (Error?) -> Void) -> CloudStorage? {
         guard let currUserId = self.id else {

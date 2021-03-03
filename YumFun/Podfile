@@ -24,4 +24,5 @@ target 'YumFun' do
   pod 'JSSAlertView'
   pod 'QCropper'
   pod 'WXImageCompress', '~> 0.1.1'
+  pod 'JGProgressHUD'
 end

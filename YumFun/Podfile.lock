@@ -332,6 +332,7 @@ PODS:
     - gRPC-Core/Interface (= 1.28.2)
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.5.0)
+  - JGProgressHUD (2.2)
   - JSSAlertView (5.0.2)
   - leveldb-library (1.22)
   - nanopb (1.30906.0):
@@ -366,6 +367,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseFirestoreSwift
   - FirebaseUI/Storage
+  - JGProgressHUD
   - JSSAlertView
   - NVActivityIndicatorView
   - QCropper
@@ -392,6 +394,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - JGProgressHUD
     - JSSAlertView
     - leveldb-library
     - nanopb
@@ -422,6 +425,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   JSSAlertView: 18345e37d8295827428c12b773b6d75d0dfd0b28
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
@@ -433,6 +437,6 @@ SPEC CHECKSUMS:
   TensorFlowLiteSwift: f062dc1178120100d825d7799fd9f115b4a37fee
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: 4cad29fbb4cab62c6f7489d38357ee832add74da
+PODFILE CHECKSUM: 4ce0bda55d37a126a182231802954cac291046d3
 
 COCOAPODS: 1.10.1

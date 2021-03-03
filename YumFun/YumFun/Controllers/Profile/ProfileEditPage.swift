@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import QCropper
+import JGProgressHUD
 
 class ProfileEditPage: UITableViewController {
 
@@ -63,13 +65,17 @@ class ProfileEditPage: UITableViewController {
         switch indexPath.row {
         case 0:
             //image picker
-            ImagePickerManager().pickImage(self){ image in
-                self.ProfileImage.image = image
-                guard let CurrentUser = Core.currentUser else {return}
-                CurrentUser.updateProfileImage(with: image) { error in
-                    print(error?.localizedDescription ?? "Unknown error")
-                }
-                }
+            ImagePickerManager().pickImage(self) { image in
+//                self.ProfileImage.image = image
+                guard let CurrentUser = Core.currentUser else { return }
+                
+                let cropper = CustomImageClipViewController(originalImage: image)
+                cropper.delegate = self
+                self.present(cropper, animated: true, completion: nil)
+//                CurrentUser.updateProfileImage(with: image) { error in
+//                    print(error?.localizedDescription ?? "Unknown error")
+//                }
+            }
 
         case 1:
             //name change
@@ -135,6 +141,44 @@ class ProfileEditPage: UITableViewController {
             } else {
                 print("Finished loading current user profile image.")
             }
+        }
+    }
+}
+
+extension ProfileEditPage: CropperViewControllerDelegate {
+    func cropperDidConfirm(_ cropper: CropperViewController, state: CropperState?) {
+//        cropper.dismiss(animated: true, completion: nil)
+        
+//        let hud = JGProgressHUD()
+//        hud.textLabel.text = "Loading"
+//
+//
+//        cropper.view.addSubview(hud)
+//        cropper.view.bringSubviewToFront(hud)
+//        
+//        hud.show(in: self.view)
+//        hud.dismiss(afterDelay: 3.0)
+//        guard let cropper = cropper as? CustomImageClipViewController else {
+//            print("Cannot convert to custom clip view controller")
+//            return
+//        }
+        
+//        cropper.hud.show(in: self.view)
+//        cropper.hud.dismiss(afterDelay: 3.0)
+        let hud = JGProgressHUD()
+        hud.textLabel.text = "Loading"
+        hud.show(in: cropper.view)
+        hud.dismiss(afterDelay: 3.0)
+        
+        
+
+        if let state = state,
+            let image = cropper.originalImage.cropped(withCropperState: state) {
+//            cropperState = state
+//            imageView.image = image
+            self.ProfileImage.image = image
+            print(cropper.isCurrentlyInInitialState)
+            print(image)
         }
     }
 }
