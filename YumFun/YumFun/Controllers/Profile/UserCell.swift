@@ -19,6 +19,15 @@ class UserCell: UITableViewCell {
         self.layer.masksToBounds = true
         self.layer.backgroundColor = UIColor.clear.cgColor
         self.clipsToBounds = true
+        
+        
+        
+        UserImage.layer.borderWidth = 1
+        UserImage.layer.masksToBounds = true
+        UserImage.layer.borderColor = UIColor.black.cgColor
+        UserImage.layer.cornerRadius = UserImage.frame.height/2
+        UserImage.clipsToBounds = true
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,10 +36,5 @@ class UserCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-    }
 
 }

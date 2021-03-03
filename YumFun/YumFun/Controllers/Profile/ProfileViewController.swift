@@ -34,6 +34,7 @@ class ProfileViewController: UIViewController {
         
         guard let CurrentUser = Core.currentUser else {return}
         //CurrentUser.followUser(withId: "dGPM9f2dxEWY77d19A9XU91qvMX2", {_ in })
+        //CurrentUser.unfollowUser(withId: "dGPM9f2dxEWY77d19A9XU91qvMX2") { (_: Error?) in}
         guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
             assertionFailure("Cannot find ViewController")
             return
