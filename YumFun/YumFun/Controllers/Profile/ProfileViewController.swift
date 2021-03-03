@@ -30,7 +30,27 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         DisplayUserInfo();
     }
+    @IBAction func FllowingPressed(_ sender: UITapGestureRecognizer) {
+        
+        guard let CurrentUser = Core.currentUser else {return}
+        //CurrentUser.followUser(withId: "dGPM9f2dxEWY77d19A9XU91qvMX2", {_ in })
+        guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
+            assertionFailure("Cannot find ViewController")
+            return
+        }
+        UserList.List = CurrentUser.followings
+        navigationController?.pushViewController(UserList, animated: true)
+    }
     
+    @IBAction func FollowersPressed(_ sender: UITapGestureRecognizer) {
+        guard let CurrentUser = Core.currentUser else {return}
+        guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
+            assertionFailure("Cannot find ViewController")
+            return
+        }
+        UserList.List = CurrentUser.followers
+        navigationController?.pushViewController(UserList, animated: true)
+    }
     func Cosmetic(){
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
@@ -59,9 +79,6 @@ class ProfileViewController: UIViewController {
         LoadImage()
         FollowingCount.text = String(CurrentUser.followings.count)
         FollowerCount.text = String(CurrentUser.followers.count)
-        if CurrentUser.recipes.count == 0 {
-            NoRecipe.text = "No Recipe Yet"
-        }
     }
     @IBAction func EditPressed(_ sender: UIBarButtonItem) {
         guard let ProfileEditPageController = storyboard?.instantiateViewController(withIdentifier: "PEPage") as? ProfileEditPage else {
@@ -79,8 +96,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
         return CGSize(width: RecipePreviews.frame.width-8, height: RecipePreviews.frame.height-8)
         }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let cu = FirebaseAuth.Auth.auth().currentUser else {return 0}
-        let CurrentUser = User(fromAuthUser: cu)
+        let CurrentUser = Core.currentUser
 //        return CurrentUser.recipes.count
         return 8
     }
@@ -88,7 +104,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PreviewCell", for: indexPath) as! RecipePreviewCell
         guard let cu = FirebaseAuth.Auth.auth().currentUser else {return cell}
-        let CurrentUser = User(fromAuthUser: cu)
+        let CurrentUser = Core.currentUser
 //        if CurrentUser.recipes[indexPath.row] != ""{
 //            cell.Title.text = CurrentUser.recipes[indexPath.row]
 //        }else {
@@ -100,26 +116,29 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
         return cell
     }
     func LoadImage(){
-        guard let currentUser = Core.currentUser, let picUrl = currentUser.photoUrl else {
-            ProfileImage.image = #imageLiteral(resourceName: "Goopy")
+        guard let currentUser = Core.currentUser else {
             return
         }
-        
-        let myStorage = CloudStorage(picUrl)
-        
-        self.ProfileImage.sd_setImage(
-            with: myStorage.fileRef,
-            maxImageSize: 1 * 2048 * 2048,
-            placeholderImage: nil,
-            options: [ .refreshCached]) { (image, error, cache, storageRef) in
-            if let error = error {
-                print("Error load Image: \(error)")
-            } else {
-                print("Finished loading current user profile image.")
+        if let picUrl = currentUser.photoUrl{
+            let myStorage = CloudStorage(picUrl)
+            
+            self.ProfileImage.sd_setImage(
+                with: myStorage.fileRef,
+                maxImageSize: 1 * 2048 * 2048,
+                placeholderImage: nil,
+                options: [ .refreshCached]) { (image, error, cache, storageRef) in
+                if let error = error {
+                    print("Error load Image: \(error)")
+                } else {
+                    print("Finished loading current user profile image.")
+                }
             }
+        }else{
+            ProfileImage.image = PlaceholderImage.imageWith(name: currentUser.displayName)
         }
+       
     }
-    
+
 }
 
 
