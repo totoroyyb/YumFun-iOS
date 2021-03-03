@@ -332,6 +332,7 @@ PODS:
     - gRPC-Core/Interface (= 1.28.2)
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.5.0)
+  - JSSAlertView (5.0.2)
   - leveldb-library (1.22)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
@@ -342,6 +343,7 @@ PODS:
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
   - PromisesObjC (1.2.12)
+  - QCropper (0.1.4)
   - SDWebImage (5.10.4):
     - SDWebImage/Core (= 5.10.4)
   - SDWebImage/Core (5.10.4)
@@ -355,6 +357,7 @@ PODS:
   - TensorFlowLiteSwift/CoreML (2.4.0):
     - TensorFlowLiteC/CoreML (= 2.4.0)
     - TensorFlowLiteSwift/Core (= 2.4.0)
+  - WXImageCompress (0.1.3)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -363,8 +366,11 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseFirestoreSwift
   - FirebaseUI/Storage
+  - JSSAlertView
   - NVActivityIndicatorView
+  - QCropper
   - TensorFlowLiteSwift/CoreML (~> 2.4.0)
+  - WXImageCompress (~> 0.1.1)
 
 SPEC REPOS:
   trunk:
@@ -386,13 +392,16 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - JSSAlertView
     - leveldb-library
     - nanopb
     - NVActivityIndicatorView
     - PromisesObjC
+    - QCropper
     - SDWebImage
     - TensorFlowLiteC
     - TensorFlowLiteSwift
+    - WXImageCompress
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -413,14 +422,17 @@ SPEC CHECKSUMS:
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  JSSAlertView: 18345e37d8295827428c12b773b6d75d0dfd0b28
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  QCropper: 55bce5393c872d5f9c4bfa9ff277e0d98d9f282f
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   TensorFlowLiteC: 09f8ac75a76caeadb19bcfa694e97454cc1ecf87
   TensorFlowLiteSwift: f062dc1178120100d825d7799fd9f115b4a37fee
+  WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: f33d65859946841d507a84b6c19a53b816490171
+PODFILE CHECKSUM: 4cad29fbb4cab62c6f7489d38357ee832add74da
 
 COCOAPODS: 1.10.1

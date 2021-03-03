@@ -21,4 +21,7 @@ target 'YumFun' do
   pod 'TensorFlowLiteSwift/CoreML', '~> 2.4.0'
  
   pod 'NVActivityIndicatorView'
+  pod 'JSSAlertView'
+  pod 'QCropper'
+  pod 'WXImageCompress', '~> 0.1.1'
 end
