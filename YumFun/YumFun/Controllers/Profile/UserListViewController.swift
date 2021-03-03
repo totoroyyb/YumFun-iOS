@@ -51,6 +51,19 @@ class UserListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         })
         return cell
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            tableView.beginUpdates()
+            guard let CurrentUser = Core.currentUser else{ return}
+            CurrentUser.unfollowUser(withId: List[indexPath.row]) { (_) in
+            }
+            List.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+        }
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete    }
     
     
     override func viewDidLoad() {
@@ -62,7 +75,7 @@ class UserListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
     }
     
     
