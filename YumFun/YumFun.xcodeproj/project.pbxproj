@@ -10,6 +10,8 @@
 		214E7E8A25ECC6D000B13CE4 /* CollabSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7E8925ECC6D000B13CE4 /* CollabSession.swift */; };
 		214E7E8D25ED11C200B13CE4 /* CollabTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214E7E8C25ED11C200B13CE4 /* CollabTest.storyboard */; };
 		214E7E9025ED11D700B13CE4 /* CollabTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7E8F25ED11D700B13CE4 /* CollabTestViewController.swift */; };
+		214E7F9025EFA55000B13CE4 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7F8F25EFA55000B13CE4 /* CustomTabBarViewController.swift */; };
+		214E7F9325EFB27000B13CE4 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7F9225EFB27000B13CE4 /* NotificationType.swift */; };
 		2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052525E9015100A9D46C /* CloudStorageApi.swift */; };
 		2185052925E941BC00A9D46C /* CloudStorageTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */; };
 		2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */; };
@@ -45,6 +47,8 @@
 		A1A58A6025ED8FD700AE7B1A /* model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = A1A58A5925ED8FD700AE7B1A /* model.tflite */; };
 		A1A58A6125ED8FD700AE7B1A /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A5B25ED8FD700AE7B1A /* PreviewView.swift */; };
 		A1A58A6225ED8FD700AE7B1A /* CameraFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A5C25ED8FD700AE7B1A /* CameraFeedManager.swift */; };
+		A1A58A6925ED925800AE7B1A /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A6825ED925800AE7B1A /* AvatarCell.swift */; };
+		A1A58A6C25ED94C600AE7B1A /* StepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A6B25ED94C600AE7B1A /* StepCell.swift */; };
 		C56C5D0F25E4524900DD1CD7 /* RecipePreviewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C5D0C25E4524900DD1CD7 /* RecipePreviewCellController.swift */; };
 		C56C5D1025E4524900DD1CD7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C5D0D25E4524900DD1CD7 /* ProfileViewController.swift */; };
 		C56C5D1125E4524900DD1CD7 /* ProfileEditPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C5D0E25E4524900DD1CD7 /* ProfileEditPage.swift */; };
@@ -68,6 +72,8 @@
 		214E7E8925ECC6D000B13CE4 /* CollabSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollabSession.swift; sourceTree = "<group>"; };
 		214E7E8C25ED11C200B13CE4 /* CollabTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CollabTest.storyboard; sourceTree = "<group>"; };
 		214E7E8F25ED11D700B13CE4 /* CollabTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollabTestViewController.swift; sourceTree = "<group>"; };
+		214E7F8F25EFA55000B13CE4 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
+		214E7F9225EFB27000B13CE4 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		2185052525E9015100A9D46C /* CloudStorageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageApi.swift; sourceTree = "<group>"; };
 		2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CloudStorageTest.storyboard; sourceTree = "<group>"; };
 		2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageTestViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +109,8 @@
 		A1A58A5925ED8FD700AE7B1A /* model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.tflite; sourceTree = "<group>"; };
 		A1A58A5B25ED8FD700AE7B1A /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		A1A58A5C25ED8FD700AE7B1A /* CameraFeedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraFeedManager.swift; sourceTree = "<group>"; };
+		A1A58A6825ED925800AE7B1A /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
+		A1A58A6B25ED94C600AE7B1A /* StepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCell.swift; sourceTree = "<group>"; };
 		C56C5D0C25E4524900DD1CD7 /* RecipePreviewCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipePreviewCellController.swift; sourceTree = "<group>"; };
 		C56C5D0D25E4524900DD1CD7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C56C5D0E25E4524900DD1CD7 /* ProfileEditPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditPage.swift; sourceTree = "<group>"; };
@@ -184,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				21A8367025E0364B005933AE /* RecipeExt.swift */,
+				214E7F9225EFB27000B13CE4 /* NotificationType.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -257,6 +266,8 @@
 			isa = PBXGroup;
 			children = (
 				A1A58A4C25ED8FBA00AE7B1A /* PrepareViewController.swift */,
+				A1A58A6825ED925800AE7B1A /* AvatarCell.swift */,
+				A1A58A6B25ED94C600AE7B1A /* StepCell.swift */,
 			);
 			path = CookingMode;
 			sourceTree = "<group>";
@@ -371,6 +382,7 @@
 				84A8866125E3317F004684DA /* flavors-of-youth.gif */,
 				84A8866D25E33B0C004684DA /* LaunchScreenController.swift */,
 				84A8867B25E34EAA004684DA /* SignUpViewController.swift */,
+				214E7F8F25EFA55000B13CE4 /* CustomTabBarViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -520,7 +532,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F2AE4725E288ED00C6F973 /* UpdateTrackableProtocol.swift in Sources */,
+				A1A58A6C25ED94C600AE7B1A /* StepCell.swift in Sources */,
+				214E7F9025EFA55000B13CE4 /* CustomTabBarViewController.swift in Sources */,
 				21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */,
+				214E7F9325EFB27000B13CE4 /* NotificationType.swift in Sources */,
 				84A8865F25E3316A004684DA /* swift+gif.swift in Sources */,
 				84A8866E25E33B0C004684DA /* LaunchScreenController.swift in Sources */,
 				21F2AE5625E3B44300C6F973 /* CrudProtocol.swift in Sources */,
@@ -552,6 +567,7 @@
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,
 				21A8367125E0364B005933AE /* RecipeExt.swift in Sources */,
 				EFC74C1425EC5FE30037CFEC /* EditIngredientViewController.swift in Sources */,
+				A1A58A6925ED925800AE7B1A /* AvatarCell.swift in Sources */,
 				21F2AE4B25E2DFA300C6F973 /* RecipeComponents.swift in Sources */,
 				C56C5D0F25E4524900DD1CD7 /* RecipePreviewCellController.swift in Sources */,
 				A1A58A4625ED8FAC00AE7B1A /* DiscoverImageCell.swift in Sources */,
@@ -721,7 +737,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -745,7 +761,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

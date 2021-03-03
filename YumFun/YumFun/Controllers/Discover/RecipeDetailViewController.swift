@@ -211,7 +211,10 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
     }
     
     
-
+    @IBAction func cookPressed(_ sender: Any) {
+        //
+    }
+    
     /*
     // MARK: - Navigation
 
