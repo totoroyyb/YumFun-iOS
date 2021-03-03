@@ -15,10 +15,10 @@ class ProfileEditPage: UITableViewController {
     @IBOutlet weak var Email: UILabel!
     @IBOutlet weak var UserName: UILabel!
     fileprivate func Cosmetic() {
-        ProfileImage.layer.borderWidth = 0
+        ProfileImage.layer.borderWidth = 1
         ProfileImage.layer.masksToBounds = true
         ProfileImage.layer.borderColor = UIColor.clear.cgColor
-        ProfileImage.layer.cornerRadius = ProfileImage.frame.height/2
+        ProfileImage.layer.cornerRadius = ProfileImage.frame.height/4
         ProfileImage.clipsToBounds = true
     }
     

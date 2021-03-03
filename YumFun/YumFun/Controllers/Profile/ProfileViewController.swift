@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var RecipePreviews: UICollectionView!
     @IBOutlet weak var Name: UILabel!
     
+    @IBOutlet weak var BioDisplay: UILabel!
     @IBOutlet weak var NoRecipe: UILabel!
     @IBOutlet weak var FollowingCount: UILabel!
     @IBOutlet weak var FollowerCount: UILabel!
@@ -49,6 +50,11 @@ class ProfileViewController: UIViewController {
         }else {
             Name.text = "please set a name"
         }
+        if let Bio = CurrentUser.bio{
+            BioDisplay.text = Bio
+        }else{
+            BioDisplay.text = "empty person"
+        }
         //profile image
         LoadImage()
         FollowingCount.text = String(CurrentUser.followings.count)
@@ -69,22 +75,26 @@ class ProfileViewController: UIViewController {
 
 }
 extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: RecipePreviews.frame.width-8, height: RecipePreviews.frame.height-8)
+        }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let cu = FirebaseAuth.Auth.auth().currentUser else {return 0}
         let CurrentUser = User(fromAuthUser: cu)
-        return CurrentUser.recipes.count
+//        return CurrentUser.recipes.count
+        return 8
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PreviewCell", for: indexPath) as! RecipePreviewCell
         guard let cu = FirebaseAuth.Auth.auth().currentUser else {return cell}
         let CurrentUser = User(fromAuthUser: cu)
-        if CurrentUser.recipes[indexPath.row] != ""{
-            cell.Title.text = CurrentUser.recipes[indexPath.row]
-        }else {
-            cell.Title.text = "this is a title"
-        }
-
+//        if CurrentUser.recipes[indexPath.row] != ""{
+//            cell.Title.text = CurrentUser.recipes[indexPath.row]
+//        }else {
+//            cell.Title.text = "this is a title"
+//        }
+        cell.Title.text = "this is a title"
         cell.PreviewImage.image = UIImage(named:"previewimage")
        
         return cell

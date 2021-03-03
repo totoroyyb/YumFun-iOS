@@ -33,7 +33,7 @@ class Utility {
             placeholderImage: nil,
             options: [.progressiveLoad, .refreshCached]) { (image, error, cache, storageRef) in
             if error != nil {
-                assertionFailure(error.debugDescription)
+                //assertionFailure(error.debugDescription)
             }
             
             semaphore?.signal()

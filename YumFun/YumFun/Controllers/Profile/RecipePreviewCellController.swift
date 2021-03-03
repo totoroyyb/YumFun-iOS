@@ -16,7 +16,7 @@ class RecipePreviewCell: UICollectionViewCell {
         PreviewImage.layer.borderWidth = 1
         PreviewImage.layer.masksToBounds = true
         PreviewImage.layer.borderColor = UIColor.gray.cgColor
-        PreviewImage.layer.cornerRadius = PreviewImage.frame.height/4
+        PreviewImage.layer.cornerRadius = PreviewImage.frame.height/8
         PreviewImage.clipsToBounds = true
     }
 
