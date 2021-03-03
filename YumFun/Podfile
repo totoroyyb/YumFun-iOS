@@ -19,4 +19,6 @@ target 'YumFun' do
   pod 'FirebaseUI/Storage' 		
   
   pod 'TensorFlowLiteSwift/CoreML', '~> 2.4.0'
+ 
+  pod 'NVActivityIndicatorView'
 end
