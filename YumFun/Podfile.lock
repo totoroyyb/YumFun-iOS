@@ -345,9 +345,12 @@ PODS:
   - NVActivityIndicatorView/Base (5.1.1)
   - PromisesObjC (1.2.12)
   - QCropper (0.1.4)
+  - QuickLayout (3.0.0)
   - SDWebImage (5.10.4):
     - SDWebImage/Core (= 5.10.4)
   - SDWebImage/Core (5.10.4)
+  - SwiftEntryKit (1.2.7):
+    - QuickLayout (= 3.0.0)
   - TensorFlowLiteC (2.4.0):
     - TensorFlowLiteC/Core (= 2.4.0)
   - TensorFlowLiteC/Core (2.4.0)
@@ -371,6 +374,7 @@ DEPENDENCIES:
   - JSSAlertView
   - NVActivityIndicatorView
   - QCropper
+  - SwiftEntryKit (= 1.2.7)
   - TensorFlowLiteSwift/CoreML (~> 2.4.0)
   - WXImageCompress (~> 0.1.1)
 
@@ -401,7 +405,9 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - PromisesObjC
     - QCropper
+    - QuickLayout
     - SDWebImage
+    - SwiftEntryKit
     - TensorFlowLiteC
     - TensorFlowLiteSwift
     - WXImageCompress
@@ -432,11 +438,13 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   QCropper: 55bce5393c872d5f9c4bfa9ff277e0d98d9f282f
+  QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
+  SwiftEntryKit: 537c92699d6034efb1ef9c32b11e0b37c97aa589
   TensorFlowLiteC: 09f8ac75a76caeadb19bcfa694e97454cc1ecf87
   TensorFlowLiteSwift: f062dc1178120100d825d7799fd9f115b4a37fee
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: 4ce0bda55d37a126a182231802954cac291046d3
+PODFILE CHECKSUM: aebcf2775441df147962e85a36c8614e16187e05
 
 COCOAPODS: 1.10.1

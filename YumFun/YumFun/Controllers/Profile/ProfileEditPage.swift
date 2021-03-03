@@ -8,6 +8,8 @@
 import UIKit
 import QCropper
 import JGProgressHUD
+import WXImageCompress
+import JSSAlertView
 
 class ProfileEditPage: UITableViewController {
 
@@ -166,9 +168,9 @@ extension ProfileEditPage: CropperViewControllerDelegate {
 //        cropper.hud.show(in: self.view)
 //        cropper.hud.dismiss(afterDelay: 3.0)
         let hud = JGProgressHUD()
-        hud.textLabel.text = "Loading"
+        hud.textLabel.text = "Cropping"
         hud.show(in: cropper.view)
-        hud.dismiss(afterDelay: 3.0)
+//        hud.dismiss(afterDelay: 3.0)
         
         
 
@@ -176,9 +178,23 @@ extension ProfileEditPage: CropperViewControllerDelegate {
             let image = cropper.originalImage.cropped(withCropperState: state) {
 //            cropperState = state
 //            imageView.image = image
-            self.ProfileImage.image = image
+//            self.ProfileImage.sd
+            hud.textLabel.text = "Compressing"
+            let compressedImage = image.wxCompress()
+            
             print(cropper.isCurrentlyInInitialState)
             print(image)
+            
+            hud.dismiss()
+            
+            JSSAlertView().warning(
+                cropper,
+                title: "Error",
+                text: "Sorry, we failed to crop this image",
+                buttonText: "Sad"
+            )
+        } else {
+            
         }
     }
 }
