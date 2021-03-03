@@ -227,13 +227,22 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         
         if let rec = recipe {
             let storyboard = UIStoryboard(name: "Cooking", bundle: nil)
+            
+            guard let cookingNavController = storyboard.instantiateViewController(withIdentifier: "CookingNavigationController") as? UINavigationController else {
+                assertionFailure("couldn't find CookingNavigationController")
+                return
+            }
+            
             guard let prepareViewController = storyboard.instantiateViewController(withIdentifier: "PrepareViewController") as? PrepareViewController else {
                 assertionFailure("couldn't find PrepareViewController")
                 return
             }
             
             prepareViewController.recipe = rec
-            navigationController?.pushViewController(prepareViewController, animated: true)
+            cookingNavController.setViewControllers([prepareViewController], animated: false)
+            cookingNavController.modalPresentationStyle = .overFullScreen
+            
+            self.present(cookingNavController, animated: true)
         }
     }
     

@@ -30,7 +30,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ggd-SL-NJW">
-                                <rect key="frame" x="10" y="90" width="394" height="50"/>
+                                <rect key="frame" x="10" y="134" width="394" height="50"/>
                                 <color key="backgroundColor" red="0.84213569929999998" green="0.9703433923" blue="0.64462788090000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="gXs-kS-cVY"/>
@@ -71,14 +71,14 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sZ-Zn-JoC">
-                                <rect key="frame" x="354" y="52" width="40" height="30"/>
+                                <rect key="frame" x="354" y="96" width="40" height="30"/>
                                 <state key="normal" title="Leave"/>
                                 <connections>
                                     <action selector="leavePressed" destination="SGV-b7-YCF" eventType="touchUpInside" id="s2q-cc-1k5"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kTl-G3-BGO">
-                                <rect key="frame" x="10" y="148" width="394" height="576"/>
+                                <rect key="frame" x="10" y="192" width="394" height="532"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="amX-Ke-cLW">
                                     <size key="itemSize" width="394" height="115"/>
@@ -193,6 +193,7 @@
                             <constraint firstItem="gdj-Sp-fqj" firstAttribute="trailing" secondItem="Ggd-SL-NJW" secondAttribute="trailing" constant="10" id="ygw-wv-Pma"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="O5h-SA-2Nr"/>
                     <connections>
                         <outlet property="avatarCollectionView" destination="Ggd-SL-NJW" id="RhU-93-dBE"/>
                         <outlet property="inviteButton" destination="OLh-Ak-S9h" id="c2j-CF-byb"/>
@@ -200,6 +201,24 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q0o-Ki-0BL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1244.9275362318842" y="-13.392857142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="771-eH-Hdj">
+            <objects>
+                <navigationController storyboardIdentifier="CookingNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="JrD-9j-sXz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bTm-cz-58a">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SGV-b7-YCF" kind="relationship" relationship="rootViewController" id="4c6-eM-Bvk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U8L-3n-ekM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="334.78260869565219" y="-13.392857142857142"/>
         </scene>

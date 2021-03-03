@@ -77,16 +77,23 @@ class CustomTabBarViewController: UITabBarController {
     
     // Used to navigate to collab session from the URL
     private func navToCollabSession(with sessionId: String) {
-        let storyboard = UIStoryboard(name: "CollabTest", bundle: nil)
+        let storyboard = UIStoryboard(name: "Cooking", bundle: nil)
         
-        guard let collabViewController = storyboard.instantiateViewController(identifier: "CollabTestViewController") as? CollabTestViewController else {
+        guard let cookingNavController = storyboard.instantiateViewController(withIdentifier: "CookingNavigationController") as? UINavigationController else {
+            assertionFailure("couldn't find CookingNavigationController")
+            return
+        }
+        
+        guard let prepareViewController = storyboard.instantiateViewController(identifier: "PrepareViewController") as? PrepareViewController else {
             assertionFailure("Cannot instantiate CollabTestViewController.")
             return
         }
         
-        collabViewController.sessionID = sessionId
+        prepareViewController.sessionID = sessionId
+        cookingNavController.setViewControllers([prepareViewController], animated: false)
+        cookingNavController.modalPresentationStyle = .overFullScreen
         
-        self.present(collabViewController, animated: true, completion: nil)
+        self.present(cookingNavController, animated: true, completion: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

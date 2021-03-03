@@ -40,15 +40,16 @@ class PrepareViewController: UIViewController {
         }
     }
     
-    private var sessionID : String?
+    var sessionID : String?
     
     private var listner: ListenerRegistration?
     
     let avatarPlaceholder = UIImage(named: "mascot")
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: true)
+//        navigationController?.setNavigationBarHidden(true, animated: true)
         
         if let sid = sessionID {  // user is invited, join session here
             self.listner = self.curUser.joinCollabSession(withSessionId: sid,
@@ -99,6 +100,7 @@ class PrepareViewController: UIViewController {
                                         print(err.localizedDescription)
                                     }
                                     self.inviteButton.isUserInteractionEnabled = true
+                                    self.invokeInvitationSharing()
                                 },
                                 whenChanged: { session in
                                     self.collabSession = session
@@ -107,10 +109,17 @@ class PrepareViewController: UIViewController {
                     }
                 }
             }
+        } else {
+            invokeInvitationSharing()
         }
-        
-        // invite friends here
-       
+    }
+    
+    private func invokeInvitationSharing() {
+        if let sid = sessionID {
+            let items = [URL(string: "yumfun://collabcook?sessionid=\(sid)")]
+            let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
+            present(ac, animated: true)
+        }
     }
     
     @IBAction func leavePressed() {
@@ -122,7 +131,7 @@ class PrepareViewController: UIViewController {
             }
         }
         
-        navigationController?.popViewController(animated: true)
+        navigationController?.dismiss(animated: true, completion: nil)
     }
 }
 
