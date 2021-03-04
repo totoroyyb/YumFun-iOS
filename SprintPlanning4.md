@@ -87,15 +87,19 @@ We also designed cook mode and collaborative cook mode for cooking with friends,
 
 - What I worked on:
 
-  - 
-  
+  - [Link Discover and Detail View with Backend](https://github.com/ECS189E/project-w21-codex-coders/commit/3c76232511691dd8c8d493b357b449e0c7bec93e)
+  - [Finished "Prepare for Cooking" view](https://github.com/ECS189E/project-w21-codex-coders/commit/b6e338cc3d99c9818e14d9248725115d151b99b9)
+  - Add gesture recognition model
+
 - What I plan on working on next:
 
-  - 
+  - Cooking view controller, link gesture recognition with UI
+  - Polish on gesture recognition model usage (power efficiency and fraud mitigation)
+  - Holistic UI design
 
 - Anything I’m stuck on:
 
-  - 
+  - N/A
 
 - Anything I need:
   - N/A
