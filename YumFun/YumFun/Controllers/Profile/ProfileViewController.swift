@@ -134,6 +134,10 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
                     print("Finished loading current user profile image.")
                 }
             }
+
+            self.ProfileImage.sd_setImage(with: myStorage.fileRef,
+                                      placeholderImage: PlaceholderImage.imageWith(name: currentUser.displayName),
+                                      completion: nil)
         }else{
             ProfileImage.image = PlaceholderImage.imageWith(name: currentUser.displayName)
         }

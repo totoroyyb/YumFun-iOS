@@ -86,7 +86,7 @@ class CloudStorageTestViewController: UIViewController, PHPickerViewControllerDe
             return
         }
         
-        let _ = currentUser.updateProfileImage(with: image) { (error) in
+        let _ = currentUser.updateProfileImage(with: image) { (error, _) in
             if let error = error {
                 print("Error to update profile image: \(error)")
             } else {

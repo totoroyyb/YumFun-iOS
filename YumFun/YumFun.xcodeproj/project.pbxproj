@@ -12,6 +12,11 @@
 		214E7E9025ED11D700B13CE4 /* CollabTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7E8F25ED11D700B13CE4 /* CollabTestViewController.swift */; };
 		214E7F9025EFA55000B13CE4 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7F8F25EFA55000B13CE4 /* CustomTabBarViewController.swift */; };
 		214E7F9325EFB27000B13CE4 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7F9225EFB27000B13CE4 /* NotificationType.swift */; };
+		214E804725F010A700B13CE4 /* CustomImageClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E804625F010A700B13CE4 /* CustomImageClipViewController.swift */; };
+		214E804A25F010CF00B13CE4 /* CustomOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E804925F010CF00B13CE4 /* CustomOverlay.swift */; };
+		214E80DE25F02C6500B13CE4 /* BottomPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E80DD25F02C6500B13CE4 /* BottomPopUp.swift */; };
+		214E812025F16D5500B13CE4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E811F25F16D5500B13CE4 /* Font.swift */; };
+		214E812325F16E2500B13CE4 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E812225F16E2500B13CE4 /* UIColor+Utils.swift */; };
 		2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052525E9015100A9D46C /* CloudStorageApi.swift */; };
 		2185052925E941BC00A9D46C /* CloudStorageTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */; };
 		2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */; };
@@ -77,6 +82,11 @@
 		214E7E8F25ED11D700B13CE4 /* CollabTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollabTestViewController.swift; sourceTree = "<group>"; };
 		214E7F8F25EFA55000B13CE4 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
 		214E7F9225EFB27000B13CE4 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
+		214E804625F010A700B13CE4 /* CustomImageClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageClipViewController.swift; sourceTree = "<group>"; };
+		214E804925F010CF00B13CE4 /* CustomOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOverlay.swift; sourceTree = "<group>"; };
+		214E80DD25F02C6500B13CE4 /* BottomPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPopUp.swift; sourceTree = "<group>"; };
+		214E811F25F16D5500B13CE4 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		214E812225F16E2500B13CE4 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		2185052525E9015100A9D46C /* CloudStorageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageApi.swift; sourceTree = "<group>"; };
 		2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CloudStorageTest.storyboard; sourceTree = "<group>"; };
 		2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageTestViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +158,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		214E804525F0107A00B13CE4 /* CustomImageClipController */ = {
+			isa = PBXGroup;
+			children = (
+				214E804625F010A700B13CE4 /* CustomImageClipViewController.swift */,
+				214E804925F010CF00B13CE4 /* CustomOverlay.swift */,
+			);
+			path = CustomImageClipController;
+			sourceTree = "<group>";
+		};
+		214E80DC25F02C5600B13CE4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				214E80DD25F02C6500B13CE4 /* BottomPopUp.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		2185054C25E9896800A9D46C /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +280,8 @@
 			children = (
 				A137B1B925ED4EA2009A661D /* Utility.swift */,
 				C588202825EF7B4300FC2540 /* PlaceholderImage.swift */,
+				214E811F25F16D5500B13CE4 /* Font.swift */,
+				214E812225F16E2500B13CE4 /* UIColor+Utils.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -358,6 +387,7 @@
 		C57662B925DBF9D600642CF2 /* YumFun */ = {
 			isa = PBXGroup;
 			children = (
+				214E80DC25F02C5600B13CE4 /* Components */,
 				2185055725EA8E5A00A9D46C /* PropertyWrappers */,
 				2185054C25E9896800A9D46C /* Core */,
 				21F2AE2425E2870900C6F973 /* Protocols */,
@@ -379,6 +409,7 @@
 		C57662DD25DBFEF400642CF2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				214E804525F0107A00B13CE4 /* CustomImageClipController */,
 				A1A58A4B25ED8FBA00AE7B1A /* CookingMode */,
 				A1A58A3F25ED8FAC00AE7B1A /* Discover */,
 				EFC74C0525EC5DDF0037CFEC /* RecipeInput */,
@@ -549,6 +580,7 @@
 				84A8866E25E33B0C004684DA /* LaunchScreenController.swift in Sources */,
 				21F2AE5625E3B44300C6F973 /* CrudProtocol.swift in Sources */,
 				EFC74C0A25EC5EC20037CFEC /* SecondRecipeInputViewController.swift in Sources */,
+				214E804725F010A700B13CE4 /* CustomImageClipViewController.swift in Sources */,
 				214E7E8A25ECC6D000B13CE4 /* CollabSession.swift in Sources */,
 				A1A58A6225ED8FD700AE7B1A /* CameraFeedManager.swift in Sources */,
 				C57662BF25DBF9D600642CF2 /* ViewController.swift in Sources */,
@@ -561,7 +593,9 @@
 				21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */,
 				A1A58A5E25ED8FD700AE7B1A /* CVPixelBufferExtension.swift in Sources */,
 				A1A58A4725ED8FAC00AE7B1A /* CircularImageView.swift in Sources */,
+				214E80DE25F02C6500B13CE4 /* BottomPopUp.swift in Sources */,
 				C5FD261125EC0E2200EA28E0 /* ImagePickerManager.swift in Sources */,
+				214E812025F16D5500B13CE4 /* Font.swift in Sources */,
 				2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */,
 				C56C5D1025E4524900DD1CD7 /* ProfileViewController.swift in Sources */,
 				2185055925EA8E7F00A9D46C /* Notifiable.swift in Sources */,
@@ -573,12 +607,14 @@
 				A1A58A6125ED8FD700AE7B1A /* PreviewView.swift in Sources */,
 				2185055425EA75EC00A9D46C /* Error.swift in Sources */,
 				A1A58A4525ED8FAC00AE7B1A /* DiscoverTextCell.swift in Sources */,
+				214E812325F16E2500B13CE4 /* UIColor+Utils.swift in Sources */,
 				EFC74C1125EC5F700037CFEC /* InputRecipeIngredientsViewController.swift in Sources */,
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,
 				21A8367125E0364B005933AE /* RecipeExt.swift in Sources */,
 				EFC74C1425EC5FE30037CFEC /* EditIngredientViewController.swift in Sources */,
 				A1A58A6925ED925800AE7B1A /* AvatarCell.swift in Sources */,
 				21F2AE4B25E2DFA300C6F973 /* RecipeComponents.swift in Sources */,
+				214E804A25F010CF00B13CE4 /* CustomOverlay.swift in Sources */,
 				C56C5D0F25E4524900DD1CD7 /* RecipePreviewCellController.swift in Sources */,
 				C54B905F25EF604C00DCE690 /* UserListViewController.swift in Sources */,
 				A1A58A4625ED8FAC00AE7B1A /* DiscoverImageCell.swift in Sources */,

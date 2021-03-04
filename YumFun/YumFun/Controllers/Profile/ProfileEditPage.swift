@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import QCropper
+import JGProgressHUD
+import WXImageCompress
+import SwiftEntryKit
+import FirebaseFirestoreSwift
 
 class ProfileEditPage: UITableViewController {
 
@@ -14,6 +19,7 @@ class ProfileEditPage: UITableViewController {
     @IBOutlet weak var Bio: UILabel!
     @IBOutlet weak var Email: UILabel!
     @IBOutlet weak var UserName: UILabel!
+    
     fileprivate func Cosmetic() {
         ProfileImage.layer.borderWidth = 1
         ProfileImage.layer.masksToBounds = true
@@ -24,7 +30,9 @@ class ProfileEditPage: UITableViewController {
     
     fileprivate func DisplayInfo(){
         guard let CurrentUser = Core.currentUser else {return}
+        
         LoadImage()
+
         if let displayname = CurrentUser.displayName{
             DisplayName.text = displayname
         }else{
@@ -63,13 +71,13 @@ class ProfileEditPage: UITableViewController {
         switch indexPath.row {
         case 0:
             //image picker
-            ImagePickerManager().pickImage(self){ image in
-                self.ProfileImage.image = image
-                guard let CurrentUser = Core.currentUser else {return}
-                CurrentUser.updateProfileImage(with: image) { error in
-                    print(error?.localizedDescription ?? "Unknown error")
-                }
-                }
+            ImagePickerManager().pickImage(self) { image in
+//                self.ProfileImage.image = image
+                
+                let cropper = CustomImageClipViewController(originalImage: image)
+                cropper.delegate = self
+                self.present(cropper, animated: true, completion: nil)
+            }
 
         case 1:
             //name change
@@ -100,6 +108,7 @@ class ProfileEditPage: UITableViewController {
                 viewController.Mode = "UserNameEdit"
                     navigationController?.pushViewController(viewController, animated: true)
                 }
+
         case 5:
             //set password
             if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
@@ -116,7 +125,6 @@ class ProfileEditPage: UITableViewController {
         }
     }
     
-    
     func LoadImage(){
         guard let currentUser = Core.currentUser, let picUrl = currentUser.photoUrl else {
             ProfileImage.image = #imageLiteral(resourceName: "Goopy")
@@ -125,16 +133,57 @@ class ProfileEditPage: UITableViewController {
         
         let myStorage = CloudStorage(picUrl)
         
-        self.ProfileImage.sd_setImage(
-            with: myStorage.fileRef,
-            maxImageSize: 1 * 2048 * 2048,
-            placeholderImage: nil,
-            options: [ .refreshCached]) { (image, error, cache, storageRef) in
-            if let error = error {
-                print("Error load Image: \(error)")
-            } else {
-                print("Finished loading current user profile image.")
+        self.ProfileImage.sd_setImage(with: myStorage.fileRef,
+                                      placeholderImage: nil,
+                                      completion: nil)
+    }
+}
+
+extension ProfileEditPage: CropperViewControllerDelegate {
+    func cropperDidConfirm(_ cropper: CropperViewController, state: CropperState?) {
+        guard let CurrentUser = Core.currentUser, let cropper = cropper as? CustomImageClipViewController else {
+            displayErrorBottomPopUp(title: "ERROR",
+                                    description: "Sorry, current user info has been correctly loaded. Please reload the entire app, and try again.")
+            return
+        }
+        
+        let hud = JGProgressHUD()
+        hud.textLabel.text = "Loading"
+        hud.show(in: cropper.view, animated: true)
+
+        if let state = state,
+            let image = cropper.originalImage.cropped(withCropperState: state) {
+            
+            print(cropper.isCurrentlyInInitialState)
+            print(image)
+            
+            CurrentUser.updateProfileImage(with: image) { error, cs in
+                hud.dismiss()
+                
+                if let error = error {
+                    displayErrorBottomPopUp(title: "ERROR",
+                                            description: "Sorry, upload failed.")
+                    print(error.localizedDescription)
+                } else {
+                    cropper.dismiss(animated: true, completion: nil)
+                    if let cs = cs {
+                        displaySuccessBottomPopUp(title: "Congrats!",
+                                                description: "Your profile image has been updated!")
+                        DispatchQueue.main.async {
+                            self.ProfileImage.sd_setImage(
+                                with: cs.fileRef,
+                                maxImageSize: 3 * 2048 * 2048,
+                                placeholderImage: nil,
+                                options: [.refreshCached],
+                                completion: nil)
+                        }
+                    }
+                }
             }
+        } else {
+            hud.dismiss()
+            displayErrorBottomPopUp(title: "ERROR",
+                                    description: "Sorry, we cannot finish current operation.")
         }
     }
 }

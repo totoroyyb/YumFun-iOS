@@ -227,34 +227,34 @@ extension User {
      Current user upload a profile image to the server
      */
     func updateProfileImage(with image: UIImage,
-                            _ completion: @escaping (Error?) -> Void) -> CloudStorage? {
+                            _ completion: @escaping (Error?, CloudStorage?) -> Void) {
         guard let currUserId = self.id else {
             print("Failed to fetch current user id")
-            completion(CoreError.currUserNoDataError)
-            return nil
+            completion(CoreError.currUserNoDataError, nil)
+            return
         }
         
-        let data = image.jpegData(compressionQuality: 0.6)
+        let image = image.wxCompress()
+        
+        let data = image.jpegData(compressionQuality: 0.5)
         
         guard let validData = data else {
-            completion(CoreError.failedCompressImageError)
-            return nil
+            completion(CoreError.failedCompressImageError, nil)
+            return
         }
         
         let storage = CloudStorage(.profileImage)
         storage.child("\(currUserId).jpeg")
         
         storage.upload(validData, metadata: nil) { (error) in
-            completion(error)
+            completion(error, nil)
         } completionHandler: { metadata in
             self.photoUrl = storage.fileRef.fullPath
             let newData = ["photoUrl": storage.fileRef.fullPath]
             User.update(named: currUserId, with: newData) { (error) in
-                completion(error)
+                completion(error, storage)
             }
         }
-        
-        return storage
     }
     
     /**
