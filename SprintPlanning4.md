@@ -30,16 +30,19 @@ We also designed cook mode and collaborative cook mode for cooking with friends,
 
 - What I worked on:
 
-  - 
+  - [Parsing Recipes](https://github.com/ECS189E/project-w21-codex-coders/commit/7faeaba0e7cdd2e1f23fdc4793b36c69066313f2)
+  - [Recipe input and editing](https://github.com/ECS189E/project-w21-codex-coders/commit/a205fae04ea6c2ecc0ec2cac52b11a13e9f44cb9)
 
 - What I plan on working on next:
 
-  - 
+  - Cleaning up recipe input and parsing recipe UI
+  - Merging with main
+  - Saving recipes to user
   
 - Anything I’m stuck on:
-  - 
+  - N/A
 - Anything I need:
-  - 
+  - N/A
   
 ---
 
