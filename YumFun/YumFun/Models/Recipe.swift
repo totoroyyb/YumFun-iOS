@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import WXImageCompress
 
 /**
  Record all information about a recipe
@@ -79,7 +80,9 @@ extension Recipe {
             return
         }
         
-        guard let data = image.jpegData(compressionQuality: 0.8) else {
+        let image = image.wxCompress()
+        
+        guard let data = image.jpegData(compressionQuality: 0.7) else {
             if let errorHandler = errorHandler {
                 errorHandler(CoreError.failedCompressImageError)
             }

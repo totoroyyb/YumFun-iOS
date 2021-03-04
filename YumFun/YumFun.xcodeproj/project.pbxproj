@@ -14,6 +14,9 @@
 		214E7F9325EFB27000B13CE4 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E7F9225EFB27000B13CE4 /* NotificationType.swift */; };
 		214E804725F010A700B13CE4 /* CustomImageClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E804625F010A700B13CE4 /* CustomImageClipViewController.swift */; };
 		214E804A25F010CF00B13CE4 /* CustomOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E804925F010CF00B13CE4 /* CustomOverlay.swift */; };
+		214E80DE25F02C6500B13CE4 /* BottomPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E80DD25F02C6500B13CE4 /* BottomPopUp.swift */; };
+		214E812025F16D5500B13CE4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E811F25F16D5500B13CE4 /* Font.swift */; };
+		214E812325F16E2500B13CE4 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E812225F16E2500B13CE4 /* UIColor+Utils.swift */; };
 		2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052525E9015100A9D46C /* CloudStorageApi.swift */; };
 		2185052925E941BC00A9D46C /* CloudStorageTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */; };
 		2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */; };
@@ -78,6 +81,9 @@
 		214E7F9225EFB27000B13CE4 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		214E804625F010A700B13CE4 /* CustomImageClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageClipViewController.swift; sourceTree = "<group>"; };
 		214E804925F010CF00B13CE4 /* CustomOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOverlay.swift; sourceTree = "<group>"; };
+		214E80DD25F02C6500B13CE4 /* BottomPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPopUp.swift; sourceTree = "<group>"; };
+		214E811F25F16D5500B13CE4 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		214E812225F16E2500B13CE4 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		2185052525E9015100A9D46C /* CloudStorageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageApi.swift; sourceTree = "<group>"; };
 		2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CloudStorageTest.storyboard; sourceTree = "<group>"; };
 		2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageTestViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +159,14 @@
 				214E804925F010CF00B13CE4 /* CustomOverlay.swift */,
 			);
 			path = CustomImageClipController;
+			sourceTree = "<group>";
+		};
+		214E80DC25F02C5600B13CE4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				214E80DD25F02C6500B13CE4 /* BottomPopUp.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		2185054C25E9896800A9D46C /* Core */ = {
@@ -259,6 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				A137B1B925ED4EA2009A661D /* Utility.swift */,
+				214E811F25F16D5500B13CE4 /* Font.swift */,
+				214E812225F16E2500B13CE4 /* UIColor+Utils.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -362,6 +378,7 @@
 		C57662B925DBF9D600642CF2 /* YumFun */ = {
 			isa = PBXGroup;
 			children = (
+				214E80DC25F02C5600B13CE4 /* Components */,
 				2185055725EA8E5A00A9D46C /* PropertyWrappers */,
 				2185054C25E9896800A9D46C /* Core */,
 				21F2AE2425E2870900C6F973 /* Protocols */,
@@ -566,7 +583,9 @@
 				21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */,
 				A1A58A5E25ED8FD700AE7B1A /* CVPixelBufferExtension.swift in Sources */,
 				A1A58A4725ED8FAC00AE7B1A /* CircularImageView.swift in Sources */,
+				214E80DE25F02C6500B13CE4 /* BottomPopUp.swift in Sources */,
 				C5FD261125EC0E2200EA28E0 /* ImagePickerManager.swift in Sources */,
+				214E812025F16D5500B13CE4 /* Font.swift in Sources */,
 				2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */,
 				C56C5D1025E4524900DD1CD7 /* ProfileViewController.swift in Sources */,
 				2185055925EA8E7F00A9D46C /* Notifiable.swift in Sources */,
@@ -578,6 +597,7 @@
 				A1A58A6125ED8FD700AE7B1A /* PreviewView.swift in Sources */,
 				2185055425EA75EC00A9D46C /* Error.swift in Sources */,
 				A1A58A4525ED8FAC00AE7B1A /* DiscoverTextCell.swift in Sources */,
+				214E812325F16E2500B13CE4 /* UIColor+Utils.swift in Sources */,
 				EFC74C1125EC5F700037CFEC /* InputRecipeIngredientsViewController.swift in Sources */,
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,
 				21A8367125E0364B005933AE /* RecipeExt.swift in Sources */,

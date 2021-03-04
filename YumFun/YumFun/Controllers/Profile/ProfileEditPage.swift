@@ -9,7 +9,8 @@ import UIKit
 import QCropper
 import JGProgressHUD
 import WXImageCompress
-import JSSAlertView
+import SwiftEntryKit
+import FirebaseFirestoreSwift
 
 class ProfileEditPage: UITableViewController {
 
@@ -18,6 +19,7 @@ class ProfileEditPage: UITableViewController {
     @IBOutlet weak var Bio: UILabel!
     @IBOutlet weak var Email: UILabel!
     @IBOutlet weak var UserName: UILabel!
+    
     fileprivate func Cosmetic() {
         ProfileImage.layer.borderWidth = 0
         ProfileImage.layer.masksToBounds = true
@@ -28,7 +30,9 @@ class ProfileEditPage: UITableViewController {
     
     fileprivate func DisplayInfo(){
         guard let CurrentUser = Core.currentUser else {return}
+        
         LoadImage()
+
         if let displayname = CurrentUser.displayName{
             DisplayName.text = displayname
         }else{
@@ -69,14 +73,10 @@ class ProfileEditPage: UITableViewController {
             //image picker
             ImagePickerManager().pickImage(self) { image in
 //                self.ProfileImage.image = image
-                guard let CurrentUser = Core.currentUser else { return }
                 
                 let cropper = CustomImageClipViewController(originalImage: image)
                 cropper.delegate = self
                 self.present(cropper, animated: true, completion: nil)
-//                CurrentUser.updateProfileImage(with: image) { error in
-//                    print(error?.localizedDescription ?? "Unknown error")
-//                }
             }
 
         case 1:
@@ -108,6 +108,7 @@ class ProfileEditPage: UITableViewController {
                 viewController.Mode = "UserNameEdit"
                     navigationController?.pushViewController(viewController, animated: true)
                 }
+
         case 5:
             //set password
             if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
@@ -124,7 +125,6 @@ class ProfileEditPage: UITableViewController {
         }
     }
     
-    
     func LoadImage(){
         guard let currentUser = Core.currentUser, let picUrl = currentUser.photoUrl else {
             ProfileImage.image = #imageLiteral(resourceName: "Goopy")
@@ -133,68 +133,57 @@ class ProfileEditPage: UITableViewController {
         
         let myStorage = CloudStorage(picUrl)
         
-        self.ProfileImage.sd_setImage(
-            with: myStorage.fileRef,
-            maxImageSize: 1 * 2048 * 2048,
-            placeholderImage: nil,
-            options: [ .refreshCached]) { (image, error, cache, storageRef) in
-            if let error = error {
-                print("Error load Image: \(error)")
-            } else {
-                print("Finished loading current user profile image.")
-            }
-        }
+        self.ProfileImage.sd_setImage(with: myStorage.fileRef,
+                                      placeholderImage: nil,
+                                      completion: nil)
     }
 }
 
 extension ProfileEditPage: CropperViewControllerDelegate {
     func cropperDidConfirm(_ cropper: CropperViewController, state: CropperState?) {
-//        cropper.dismiss(animated: true, completion: nil)
+        guard let CurrentUser = Core.currentUser, let cropper = cropper as? CustomImageClipViewController else {
+            displayErrorBottomPopUp(title: "ERROR",
+                                    description: "Sorry, current user info has been correctly loaded. Please reload the entire app, and try again.")
+            return
+        }
         
-//        let hud = JGProgressHUD()
-//        hud.textLabel.text = "Loading"
-//
-//
-//        cropper.view.addSubview(hud)
-//        cropper.view.bringSubviewToFront(hud)
-//        
-//        hud.show(in: self.view)
-//        hud.dismiss(afterDelay: 3.0)
-//        guard let cropper = cropper as? CustomImageClipViewController else {
-//            print("Cannot convert to custom clip view controller")
-//            return
-//        }
-        
-//        cropper.hud.show(in: self.view)
-//        cropper.hud.dismiss(afterDelay: 3.0)
         let hud = JGProgressHUD()
-        hud.textLabel.text = "Cropping"
-        hud.show(in: cropper.view)
-//        hud.dismiss(afterDelay: 3.0)
-        
-        
+        hud.textLabel.text = "Loading"
+        hud.show(in: cropper.view, animated: true)
 
         if let state = state,
             let image = cropper.originalImage.cropped(withCropperState: state) {
-//            cropperState = state
-//            imageView.image = image
-//            self.ProfileImage.sd
-            hud.textLabel.text = "Compressing"
-            let compressedImage = image.wxCompress()
             
             print(cropper.isCurrentlyInInitialState)
             print(image)
             
-            hud.dismiss()
-            
-            JSSAlertView().warning(
-                cropper,
-                title: "Error",
-                text: "Sorry, we failed to crop this image",
-                buttonText: "Sad"
-            )
+            CurrentUser.updateProfileImage(with: image) { error, cs in
+                hud.dismiss()
+                
+                if let error = error {
+                    displayErrorBottomPopUp(title: "ERROR",
+                                            description: "Sorry, upload failed.")
+                    print(error.localizedDescription)
+                } else {
+                    cropper.dismiss(animated: true, completion: nil)
+                    if let cs = cs {
+                        displaySuccessBottomPopUp(title: "Congrats!",
+                                                description: "Your profile image has been updated!")
+                        DispatchQueue.main.async {
+                            self.ProfileImage.sd_setImage(
+                                with: cs.fileRef,
+                                maxImageSize: 3 * 2048 * 2048,
+                                placeholderImage: nil,
+                                options: [.refreshCached],
+                                completion: nil)
+                        }
+                    }
+                }
+            }
         } else {
-            
+            hud.dismiss()
+            displayErrorBottomPopUp(title: "ERROR",
+                                    description: "Sorry, we cannot finish current operation.")
         }
     }
 }

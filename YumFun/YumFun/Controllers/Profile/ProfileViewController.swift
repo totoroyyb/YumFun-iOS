@@ -97,17 +97,9 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
         
         let myStorage = CloudStorage(picUrl)
         
-        self.ProfileImage.sd_setImage(
-            with: myStorage.fileRef,
-            maxImageSize: 1 * 2048 * 2048,
-            placeholderImage: nil,
-            options: [ .refreshCached]) { (image, error, cache, storageRef) in
-            if let error = error {
-                print("Error load Image: \(error)")
-            } else {
-                print("Finished loading current user profile image.")
-            }
-        }
+        self.ProfileImage.sd_setImage(with: myStorage.fileRef,
+                                      placeholderImage: nil,
+                                      completion: nil)
     }
     
 }

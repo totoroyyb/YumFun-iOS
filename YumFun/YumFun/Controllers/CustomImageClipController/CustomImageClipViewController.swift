@@ -8,6 +8,7 @@
 import Foundation
 import QCropper
 import JGProgressHUD
+import SwiftEntryKit
 
 class CustomImageClipViewController: CropperViewController {
 
@@ -29,9 +30,6 @@ class CustomImageClipViewController: CropperViewController {
             }
         }
     }
-    
-//    let hud = JGProgressHUD()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,17 +37,6 @@ class CustomImageClipViewController: CropperViewController {
         topBar.isHidden = true
         angleRuler.isHidden = false
         aspectRatioPicker.isHidden = true
-        
-//        self.view.addSubview(hud.hudView)
-//        self.view.bringSubviewToFront(hud.hudView)
-//        hud.textLabel.text = "Loading"
-        
-        
-//        cropper.view.addSubview(hud)
-//        cropper.view.bringSubviewToFront(hud)
-        
-//        hud.show(in: self.view)
-//        hud.dismiss(afterDelay: 3.0)
     }
 
     override func resetToDefaultLayout() {
