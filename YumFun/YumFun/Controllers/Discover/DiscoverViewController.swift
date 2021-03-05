@@ -163,7 +163,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                 }
                 self.semaphore.wait()
             }
-            if let url = firstUrl {
+            if let url = secondUrl {
                 DispatchQueue.global(qos: .userInitiated).async {
                     Utility.setImage(url: url, imageView: secondCover, placeholder: nil, semaphore: self.semaphore)
                 }

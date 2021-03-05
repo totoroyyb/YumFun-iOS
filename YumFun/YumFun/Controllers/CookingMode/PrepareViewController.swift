@@ -52,6 +52,7 @@ class PrepareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.isNavigationBarHidden = true
         if let sid = sessionID {  // user is invited, join session here
             self.listner = self.curUser.joinCollabSession(withSessionId: sid,
                                            completion: {error in

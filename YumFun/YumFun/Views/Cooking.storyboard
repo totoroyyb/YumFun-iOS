@@ -32,8 +32,8 @@
                                     <action selector="invitePressed" destination="SGV-b7-YCF" eventType="touchUpInside" id="LIr-Jm-rkm"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kTl-G3-BGO">
-                                <rect key="frame" x="10" y="161" width="394" height="563"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kTl-G3-BGO">
+                                <rect key="frame" x="10" y="150" width="394" height="574"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="amX-Ke-cLW">
                                     <size key="itemSize" width="394" height="115"/>
@@ -127,8 +127,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ggd-SL-NJW">
-                                <rect key="frame" x="10" y="103" width="394" height="50"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ggd-SL-NJW">
+                                <rect key="frame" x="10" y="92" width="394" height="50"/>
                                 <color key="backgroundColor" red="0.84213569929999998" green="0.9703433923" blue="0.64462788090000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="gXs-kS-cVY"/>
@@ -168,14 +168,22 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCq-dj-Pc1">
+                                <rect key="frame" x="354" y="54" width="40" height="30"/>
+                                <state key="normal" title="Leave"/>
+                                <connections>
+                                    <action selector="leavePressed" destination="SGV-b7-YCF" eventType="touchUpInside" id="GHv-W5-s7d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gdj-Sp-fqj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="wCq-dj-Pc1" firstAttribute="top" secondItem="gdj-Sp-fqj" secondAttribute="top" constant="10" id="0PE-Qv-naW"/>
                             <constraint firstItem="pSD-Ms-gBd" firstAttribute="top" secondItem="OLh-Ak-S9h" secondAttribute="bottom" constant="20" id="BEa-7J-Tie"/>
-                            <constraint firstItem="Ggd-SL-NJW" firstAttribute="top" secondItem="gdj-Sp-fqj" secondAttribute="top" constant="10" id="CFR-e2-UCz"/>
                             <constraint firstItem="kTl-G3-BGO" firstAttribute="leading" secondItem="Ggd-SL-NJW" secondAttribute="leading" id="FOr-pe-wvj"/>
                             <constraint firstItem="kTl-G3-BGO" firstAttribute="trailing" secondItem="Ggd-SL-NJW" secondAttribute="trailing" id="KJ5-pj-qKd"/>
+                            <constraint firstItem="gdj-Sp-fqj" firstAttribute="trailing" secondItem="wCq-dj-Pc1" secondAttribute="trailing" constant="20" id="MYN-M3-eoV"/>
                             <constraint firstItem="OLh-Ak-S9h" firstAttribute="top" secondItem="kTl-G3-BGO" secondAttribute="bottom" constant="8" symbolic="YES" id="PFx-tb-l6H"/>
                             <constraint firstItem="Ggd-SL-NJW" firstAttribute="leading" secondItem="gdj-Sp-fqj" secondAttribute="leading" constant="10" id="Q5P-rh-HUk"/>
                             <constraint firstItem="pSD-Ms-gBd" firstAttribute="centerX" secondItem="ZfL-bN-IS6" secondAttribute="centerX" id="WQ0-Jn-Oka"/>
@@ -183,13 +191,14 @@
                             <constraint firstItem="OLh-Ak-S9h" firstAttribute="centerX" secondItem="ZfL-bN-IS6" secondAttribute="centerX" id="cdO-NE-NlE"/>
                             <constraint firstItem="gdj-Sp-fqj" firstAttribute="bottom" secondItem="pSD-Ms-gBd" secondAttribute="bottom" constant="50" id="jg7-bS-CTY"/>
                             <constraint firstItem="kTl-G3-BGO" firstAttribute="top" secondItem="Ggd-SL-NJW" secondAttribute="bottom" constant="8" symbolic="YES" id="vhn-h5-wSH"/>
+                            <constraint firstItem="Ggd-SL-NJW" firstAttribute="top" secondItem="wCq-dj-Pc1" secondAttribute="bottom" constant="8" symbolic="YES" id="yev-iw-8pC"/>
                             <constraint firstItem="gdj-Sp-fqj" firstAttribute="trailing" secondItem="Ggd-SL-NJW" secondAttribute="trailing" constant="10" id="ygw-wv-Pma"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="TWz-e4-8sv">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="vhZ-kf-iao">
+                    <toolbarItems>
+                        <barButtonItem style="plain" id="vhZ-kf-iao">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="3sZ-Zn-JoC">
-                                <rect key="frame" x="354" y="7" width="40" height="30"/>
+                                <rect key="frame" x="20" y="12" width="374" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Leave"/>
                                 <connections>
@@ -197,7 +206,9 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                    </navigationItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Title" id="TWz-e4-8sv"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="avatarCollectionView" destination="Ggd-SL-NJW" id="RhU-93-dBE"/>
                         <outlet property="inviteButton" destination="OLh-Ak-S9h" id="c2j-CF-byb"/>
