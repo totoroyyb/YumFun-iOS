@@ -47,17 +47,7 @@ class UserListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             if let picUrl = u.photoUrl{
                 let myStorage = CloudStorage(picUrl)
                 
-                cell.UserImage.sd_setImage(
-                    with: myStorage.fileRef,
-                    maxImageSize: 1 * 2048 * 2048,
-                    placeholderImage: nil,
-                    options: [ .refreshCached]) { (image, error, cache, storageRef) in
-                    if let error = error {
-                        print("Error load Image: \(error)")
-                    } else {
-                        print("Finished loading current user profile image.")
-                    }
-                }
+                cell.UserImage.sd_setImage(with: myStorage.fileRef, placeholderImage: PlaceholderImage.imageWith(name: u.displayName), completion: nil)
             }else{
                 cell.UserImage.image = PlaceholderImage.imageWith(name: u.displayName)
             }
