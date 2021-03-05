@@ -85,11 +85,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             cell.indexPath = indexPath
             
             // profile image
-            discoverQueue.async {
-                self.setAuthorProfileImage(userID: recipe.author, profileImage: cell.profileImage)
-                self.semaphore?.wait()
-            }
-            
+            self.setAuthorProfileImage(userID: recipe.author, profileImage: cell.profileImage)
+                
             // TODO: set isCollected
             if let user = Core.currentUser, let id = recipe.id {
                 cell.isFavored = user.likedRecipes.contains(id)

@@ -345,6 +345,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ysQ-BP-aVa">
                                 <rect key="frame" x="270" y="809" width="124" height="30"/>
                                 <state key="normal" title="Hands-Free Mode"/>
+                                <connections>
+                                    <action selector="handsFreePressed" destination="5D0-uI-zY1" eventType="touchUpInside" id="blb-5B-fDr"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VWo-O5-COP">
                                 <rect key="frame" x="10" y="97" width="394" height="50"/>
