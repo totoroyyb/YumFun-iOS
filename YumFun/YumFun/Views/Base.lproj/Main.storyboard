@@ -606,6 +606,7 @@
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IjU-8X-tFD">
                                 <rect key="frame" x="0.0" y="321.5" width="375" height="296.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tEW-Kv-sLI">
                                     <size key="itemSize" width="429" height="317"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -682,8 +683,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="BioDisplay" destination="i9e-do-DU1" id="ve3-Qp-J9d"/>
+                        <outlet property="EditButton" destination="qSI-Ws-TLU" id="hXB-QT-p3M"/>
                         <outlet property="FollowerCount" destination="TF5-mS-bTv" id="nID-8t-jLv"/>
+                        <outlet property="FollowersStack" destination="jgC-Bv-3u8" id="xqP-kE-eJ1"/>
                         <outlet property="FollowingCount" destination="5ak-cR-Daq" id="a38-AZ-8ss"/>
+                        <outlet property="FollowingStack" destination="TBd-Ka-cGf" id="nY3-s8-WIa"/>
                         <outlet property="Name" destination="hFx-gk-jMu" id="x3R-kb-zrN"/>
                         <outlet property="ProfileImage" destination="m2s-Pj-OQI" id="cF2-OM-beS"/>
                         <outlet property="RecipePreviews" destination="IjU-8X-tFD" id="z8t-7m-VaE"/>
@@ -701,7 +705,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="218.40000000000001" y="2394.1529235382309"/>
+            <point key="canvasLocation" x="220" y="2393"/>
         </scene>
         <!--Profile Edit Page-->
         <scene sceneID="IOr-D4-VrC">
@@ -1016,12 +1020,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="Searchbar" destination="vpi-Bz-vDj" id="kYh-q0-KzG"/>
                         <outlet property="tableView" destination="USi-hF-cFT" id="ffr-R7-shC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbz-8W-bvV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168.8" y="2393.2533733133437"/>
+            <point key="canvasLocation" x="1180" y="2394"/>
         </scene>
         <!--Edit Detail Controller-->
         <scene sceneID="L5v-up-frt">
@@ -1084,14 +1089,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientTableCell" id="0lb-vf-uML" customClass="IngredientTableCell" customModule="YumFun" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="335" height="43"/>
+                                        <rect key="frame" x="0.0" y="28" width="335" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0lb-vf-uML" id="hTJ-az-6p8">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edo-ue-ced">
-                                                    <rect key="frame" x="26" y="11" width="120" height="21"/>
+                                                    <rect key="frame" x="26" y="11" width="120" height="21.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="noC-UV-VY2"/>
                                                     </constraints>
@@ -1100,7 +1105,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfC-f3-L5q">
-                                                    <rect key="frame" x="156" y="11" width="143" height="21"/>
+                                                    <rect key="frame" x="156" y="11" width="143" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
