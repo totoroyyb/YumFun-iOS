@@ -15,6 +15,8 @@ class PrepareViewController: UIViewController {
     
     @IBOutlet weak var inviteButton: UIButton!
     
+    var cookingViewController : CookingViewController?
+    
     var recipe: Recipe = Recipe()
     
     private var curUser: User {
@@ -49,8 +51,8 @@ class PrepareViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationController?.setNavigationBarHidden(true, animated: true)
         
+        navigationController?.isNavigationBarHidden = true
         if let sid = sessionID {  // user is invited, join session here
             self.listner = self.curUser.joinCollabSession(withSessionId: sid,
                                            completion: {error in
@@ -61,6 +63,7 @@ class PrepareViewController: UIViewController {
                                            whenChanged: { session in
                                             self.collabSession = session
                                             self.recipe = session.targetRecipe
+                                            self.cookingViewController?.collabSession = session
                                            })
         }
         
@@ -105,6 +108,7 @@ class PrepareViewController: UIViewController {
                                 },
                                 whenChanged: { session in
                                     self.collabSession = session
+                                    self.cookingViewController?.collabSession = session
                                 })
                         }
                     }
@@ -134,8 +138,35 @@ class PrepareViewController: UIViewController {
         
         navigationController?.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func startPressed() {
+        let storyboard = UIStoryboard(name: "Cooking", bundle: nil)
+        guard let cookingViewController = storyboard.instantiateViewController(withIdentifier: "CookingViewController") as? CookingViewController else {
+            assertionFailure("couldn't find CookingViewController")
+            return
+        }
+        
+        if let session = collabSession {  // collab Mode
+            // check step assignment completion
+            for stepAssignment in session.workLoad {
+                if stepAssignment.assignee.count == 0 {
+                    print("need to complete step assignment first")
+                    return
+                }
+            }
+            
+            // ready for navigating to cooking mode
+            cookingViewController.collabSession = self.collabSession
+            cookingViewController.listner = self.listner
+        }
+        
+        cookingViewController.recipe = self.recipe
+        cookingViewController.curUser = self.curUser
+        cookingViewController.avatarDic = self.avatarDic
+        navigationController?.pushViewController(cookingViewController, animated: true)
+    }
 }
-
+    
 // UICollectionViewDataSource Impelmentation
 extension PrepareViewController: UICollectionViewDataSource {
 
@@ -187,7 +218,7 @@ extension PrepareViewController: UICollectionViewDataSource {
             
             if let session = collabSession {  // collab mode
                 
-                cell.assigneeAvatars = session.workLoad[indexPath.row].assignee.map() {(avatarDic[$0] ?? nil)}
+                cell.assigneeAvatars = session.workLoad[indexPath.row].assignee.map() {(avatarDic[$0] ?? avatarPlaceholder)}
                 cell.notAssigned.isHidden = (cell.assigneeAvatars.count != 0)
                 cell.collectionView.isHidden = (cell.assigneeAvatars.count == 0)
                 
@@ -242,16 +273,6 @@ extension PrepareViewController: UICollectionViewDataSource {
     }
     
 }
-
-//protocol StepCellAvatarDataSource: UICollectionViewDataSource {
-//    func avatarDicDidUpdate(_ collectionView: UICollectionView)
-//}
-//
-//extension PrepareViewController: StepCellAvatarDataSource {
-//    func avatarDicDidUpdate(_ collectionView: UICollectionView) {
-//        collectionView.data
-//    }
-//}
 
 // UICollectionViewDelegate Implementation
 extension PrepareViewController: UICollectionViewDelegate {

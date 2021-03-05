@@ -158,14 +158,12 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     private func setCoverImages(firstUrl: String?, secondUrl: String?, firstCover: UIImageView, secondCover: UIImageView) {
         discoverQueue.async {
             if let url = firstUrl {
-                firstCover.contentMode = .scaleAspectFit
                 DispatchQueue.global(qos: .userInitiated).async {
                     Utility.setImage(url: url, imageView: firstCover, placeholder: nil, semaphore: self.semaphore)
                 }
                 self.semaphore.wait()
             }
-            if let url = firstUrl {
-                secondCover.contentMode = .scaleAspectFit
+            if let url = secondUrl {
                 DispatchQueue.global(qos: .userInitiated).async {
                     Utility.setImage(url: url, imageView: secondCover, placeholder: nil, semaphore: self.semaphore)
                 }
