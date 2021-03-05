@@ -9,15 +9,23 @@ import UIKit
 
 class StepDetailViewController: UIViewController {
 
-    @IBOutlet weak var stepTitle: UILabel!
-    @IBOutlet weak var stepDescrip: UILabel!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    var index: Int = 0
+    var recipe = Recipe()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        _ = Utility.layoutStep(contentView: contentView, index: index, recipe: recipe, previous: timerLabel)
     }
     
+    @IBAction func cancelPressed() {
+        print("pressed!")
+        dismiss(animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

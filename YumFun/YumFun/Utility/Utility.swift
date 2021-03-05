@@ -60,6 +60,9 @@ class Utility {
         return elements[0] + elements.dropFirst().reduce("") {$0 + "\(binder)\($1)"}
     }
     
+    /**
+     Layout step programmingly on a view
+     */
     static func layoutStep(contentView: UIView, index: Int, recipe: Recipe, previous: UIView) -> UIView {
         let step = recipe.steps[index]
         var previous = previous
@@ -70,7 +73,7 @@ class Utility {
         contentView.addSubview(stepNum)
         stepNum.translatesAutoresizingMaskIntoConstraints = false
         stepNum.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: index == 0 ? 20 : 30).isActive = true
-        stepNum.leadingAnchor.constraint(equalTo: previous.leadingAnchor).isActive = true
+        stepNum.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
 
         
         // step description
@@ -176,7 +179,7 @@ class Utility {
         if let url = step.photoUrl {
             let stepImage = UIImageView()
             stepImage.contentMode = .scaleAspectFit
-            setImage(url: url.absoluteString, imageView: stepImage)
+            setImage(url: url, imageView: stepImage)
             contentView.addSubview(stepImage)
             stepImage.translatesAutoresizingMaskIntoConstraints = false
             stepImage.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: 15).isActive = true

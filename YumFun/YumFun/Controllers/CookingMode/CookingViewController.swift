@@ -14,6 +14,9 @@ class CookingViewController: UIViewController {
     @IBOutlet weak var stepCollectionView: UICollectionView!
     
     var recipe = Recipe()
+    private lazy var completeStatus : [Bool] = {
+        return [Bool](repeating: false, count: recipe.steps.count)
+    }()
     var curUser = User()
     var avatarDic : [String: UIImage?] = [:]
     var collabSession: CollabSession?
@@ -37,6 +40,18 @@ class CookingViewController: UIViewController {
                 height: 100
             )
         }
+    }
+    
+    @IBAction func leavePressed() {
+        if let session = collabSession, let lis = listner, let sid = session.id {
+            curUser.leaveCollabSession(withSessionId: sid, withListener: lis) { error in
+                if let err = error {
+                    print(err.localizedDescription)
+                }
+            }
+        }
+       
+        dismiss(animated: true, completion: nil)
     }
     
 
@@ -91,7 +106,8 @@ extension CookingViewController: UICollectionViewDataSource {
                 indexPath.row + 1,
                 recipe.steps.count,
                 recipe.steps[indexPath.row].title ?? "")
-            cell.checkButton.setImage(UIImage(systemName: "checkmark.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
+
+            // TODO: change timer appearance based on status
             cell.timerButton.setImage(UIImage(systemName: "clock")?.withRenderingMode(.alwaysTemplate), for: .normal)
 
             
@@ -101,18 +117,40 @@ extension CookingViewController: UICollectionViewDataSource {
                 
                 cell.assigneeAvatars = session.workLoad[indexPath.row].assignee.map() {(avatarDic[$0] ?? avatarPlaceholder)}
                 
-                // special UI for assigned steps
-                if let uid = curUser.id,
-                session.workLoad[indexPath.row].assignee.contains(uid) {
-                    cell.layer.backgroundColor = UIColor.blue.cgColor
+                // special UI for checked steps
+                if session.workLoad[indexPath.row].isCompleted {
+                    cell.layer.backgroundColor = UIColor.red.cgColor
+                    cell.checkButton.isUserInteractionEnabled = false
                     cell.checkButton.isHidden = false
-                    cell.timerButton.isHidden = false
-                } else {
-                    cell.layer.backgroundColor = UIColor.clear.cgColor
-                    cell.checkButton.isHidden = true
                     cell.timerButton.isHidden = true
+                    cell.checkButton.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+                } else {
+                    // special UI for assigned steps
+                    cell.checkButton.setImage(UIImage(systemName: "checkmark.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
+                    if let uid = curUser.id,
+                    session.workLoad[indexPath.row].assignee.contains(uid) {
+                        cell.layer.backgroundColor = UIColor.blue.cgColor
+                        cell.checkButton.isUserInteractionEnabled = true
+                        cell.checkButton.isHidden = false
+                        cell.timerButton.isHidden = false
+                    } else {
+                        cell.layer.backgroundColor = UIColor.clear.cgColor
+                        cell.checkButton.isHidden = true
+                        cell.timerButton.isHidden = true
+                    }
                 }
-            } else {
+            } else {  // cooking by oneself
+                if completeStatus[indexPath.row] {  // checked steps
+                    cell.layer.backgroundColor = UIColor.red.cgColor
+                    cell.checkButton.isUserInteractionEnabled = false
+                    cell.timerButton.isHidden = true
+                    cell.checkButton.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+                } else {  // unchecked
+                    cell.layer.backgroundColor = UIColor.clear.cgColor
+                    cell.checkButton.isUserInteractionEnabled = true
+                    cell.timerButton.isHidden = false
+                    cell.checkButton.setImage(UIImage(systemName: "checkmark.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
+                }
                 if cell.collectionView != nil {
                     cell.collectionView.removeFromSuperview()
                 }
@@ -139,7 +177,15 @@ extension CookingViewController: UICollectionViewDataSource {
 
 extension CookingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Cooking", bundle: nil)
+        guard let stepDetailViewController = storyboard.instantiateViewController(withIdentifier: "StepDetailViewController") as? StepDetailViewController else {
+            assertionFailure("couldn't find StepDetailViewController")
+            return
+        }
         
+        stepDetailViewController.index = indexPath.row
+        stepDetailViewController.recipe = recipe
+        present(stepDetailViewController, animated: true)
     }
 }
 
@@ -168,16 +214,44 @@ extension CookingViewController: StepCollectionViewControllerDelegate {
                 } else {
                     collectionView.performBatchUpdates({
                         collectionView.reloadSections(IndexSet.init(integersIn: 0...0))
-                    }, completion: nil)
+                    }) {[weak self] _ in
+                        if let indexPath = self?.getNextStep() {
+                            collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+                        }
+                    }
                 }
-                
             }
         } else {  // cooking by oneself
-            recipe.steps.remove(at: indexPath.row)
+            completeStatus[indexPath.row] = true
+           
             collectionView.performBatchUpdates({
                 collectionView.reloadSections(IndexSet.init(integersIn: 0...0))
-            }, completion: nil)
+            }) { [weak self] _ in
+                if let indexPath = self?.getNextStep() {
+                    collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+                }
+            }
         }
         
     }
+    
+    private func getNextStep() -> IndexPath? {
+        if let session = collabSession, let uid = curUser.id {
+            for (i, load) in session.workLoad.enumerated() {
+                if load.assignee.contains(uid) && !load.isCompleted {
+                    return IndexPath(index: i)
+                }
+            }
+            return nil
+        } else {
+            for (i, complete) in completeStatus.enumerated() {
+                if !complete {
+                    return IndexPath(index: i)
+                }
+            }
+            return nil
+        }
+    }
+    
+    
 }
