@@ -9,7 +9,10 @@ import UIKit
 
 class UserListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var List:[String] = []
+    var SearchedList:[String] = []
+    var searching = false
     
+    @IBOutlet weak var Searchbar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
@@ -20,14 +23,24 @@ class UserListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.tableView.backgroundView = emptyLabel
             self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
             return 0
-        } else {
+        } else if searching == false {
             return self.List.count
         }
+        else if searching == true{
+            return self.SearchedList.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var DisplayList: [String]
+        if searching {
+            DisplayList = SearchedList
+        }else{
+            DisplayList = List
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier:"usercell",for: indexPath) as! UserCell
-        User.get(named: List[indexPath.row],{_,user,_ in
+        User.get(named: DisplayList[indexPath.row],{_,user,_ in
             guard let u = user else{return}
             cell.UserName.text = u.displayName
             cell.UserBio.text = u.bio
@@ -66,6 +79,18 @@ class UserListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         return .delete    }
     
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            if searching {
+                
+            } else {
+                
+            }
+            // Close keyboard when you select cell
+        self.Searchbar.searchTextField.endEditing(true)
+        }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -75,9 +100,22 @@ class UserListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.tableView.reloadData()
     }
     
     
     
+}
+
+extension UserListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        SearchedList = List.filter { $0.lowercased().prefix(searchText.count) == searchText.lowercased() }
+                searching = true
+                tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+                searchBar.text = ""
+                tableView.reloadData()
+    }
 }
