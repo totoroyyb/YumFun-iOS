@@ -35,7 +35,7 @@
 		21F2AE4B25E2DFA300C6F973 /* RecipeComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE4A25E2DFA300C6F973 /* RecipeComponents.swift */; };
 		21F2AE5225E3A39600C6F973 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE5125E3A39600C6F973 /* User.swift */; };
 		21F2AE5625E3B44300C6F973 /* CrudProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE5525E3B44300C6F973 /* CrudProtocol.swift */; };
-		27EEED4B96116007E5C80910 /* Pods_YumFun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F8AF42751F2B66D075A2993 /* Pods_YumFun.framework */; };
+		3575CA63614524F830A396D1 /* Pods_YumFun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F8ACA5AAA81A8AB8DA023FD /* Pods_YumFun.framework */; };
 		84A8860025DD9374004684DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A885FF25DD9374004684DA /* GoogleService-Info.plist */; };
 		84A8865F25E3316A004684DA /* swift+gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8865E25E3316A004684DA /* swift+gif.swift */; };
 		84A8866225E3317F004684DA /* flavors-of-youth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 84A8866125E3317F004684DA /* flavors-of-youth.gif */; };
@@ -81,8 +81,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0F8AF42751F2B66D075A2993 /* Pods_YumFun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YumFun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		19808E7616160D342C2D7749 /* Pods-YumFun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumFun.debug.xcconfig"; path = "Target Support Files/Pods-YumFun/Pods-YumFun.debug.xcconfig"; sourceTree = "<group>"; };
 		214E7E8925ECC6D000B13CE4 /* CollabSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollabSession.swift; sourceTree = "<group>"; };
 		214E7E8C25ED11C200B13CE4 /* CollabTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CollabTest.storyboard; sourceTree = "<group>"; };
 		214E7E8F25ED11D700B13CE4 /* CollabTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollabTestViewController.swift; sourceTree = "<group>"; };
@@ -111,12 +109,13 @@
 		21F2AE4A25E2DFA300C6F973 /* RecipeComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeComponents.swift; sourceTree = "<group>"; };
 		21F2AE5125E3A39600C6F973 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		21F2AE5525E3B44300C6F973 /* CrudProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrudProtocol.swift; sourceTree = "<group>"; };
+		5F8ACA5AAA81A8AB8DA023FD /* Pods_YumFun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YumFun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		632557288F4F5C8AC6039F6F /* Pods-YumFun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumFun.debug.xcconfig"; path = "Target Support Files/Pods-YumFun/Pods-YumFun.debug.xcconfig"; sourceTree = "<group>"; };
 		84A885FF25DD9374004684DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84A8865E25E3316A004684DA /* swift+gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "swift+gif.swift"; sourceTree = "<group>"; };
 		84A8866125E3317F004684DA /* flavors-of-youth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "flavors-of-youth.gif"; sourceTree = "<group>"; };
 		84A8866D25E33B0C004684DA /* LaunchScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenController.swift; sourceTree = "<group>"; };
 		84A8867B25E34EAA004684DA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		89B911A85F24D0BE5EC25DF1 /* Pods-YumFun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumFun.release.xcconfig"; path = "Target Support Files/Pods-YumFun/Pods-YumFun.release.xcconfig"; sourceTree = "<group>"; };
 		A137B1B925ED4EA2009A661D /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		A1A58A4025ED8FAC00AE7B1A /* DiscoverTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTextCell.swift; sourceTree = "<group>"; };
 		A1A58A4125ED8FAC00AE7B1A /* DiscoverImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverImageCell.swift; sourceTree = "<group>"; };
@@ -152,6 +151,7 @@
 		C588202825EF7B4300FC2540 /* PlaceholderImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderImage.swift; sourceTree = "<group>"; };
 		C5F6B44D25E7218100EA5ACE /* EditDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailController.swift; sourceTree = "<group>"; };
 		C5FD261025EC0E2200EA28E0 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
+		D13C6BBEE5AF44513B2E12C4 /* Pods-YumFun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumFun.release.xcconfig"; path = "Target Support Files/Pods-YumFun/Pods-YumFun.release.xcconfig"; sourceTree = "<group>"; };
 		EFC74C0625EC5E120037CFEC /* StartRecipeInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRecipeInputViewController.swift; sourceTree = "<group>"; };
 		EFC74C0925EC5EC20037CFEC /* SecondRecipeInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondRecipeInputViewController.swift; sourceTree = "<group>"; };
 		EFC74C1025EC5F700037CFEC /* InputRecipeIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputRecipeIngredientsViewController.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27EEED4B96116007E5C80910 /* Pods_YumFun.framework in Frameworks */,
+				3575CA63614524F830A396D1 /* Pods_YumFun.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,19 +273,11 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2524DFB5F3339D736582D1D2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0F8AF42751F2B66D075A2993 /* Pods_YumFun.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		32B98297541E3E0DA7B82006 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				19808E7616160D342C2D7749 /* Pods-YumFun.debug.xcconfig */,
-				89B911A85F24D0BE5EC25DF1 /* Pods-YumFun.release.xcconfig */,
+				632557288F4F5C8AC6039F6F /* Pods-YumFun.debug.xcconfig */,
+				D13C6BBEE5AF44513B2E12C4 /* Pods-YumFun.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -390,7 +382,7 @@
 				C57662B925DBF9D600642CF2 /* YumFun */,
 				C57662B825DBF9D600642CF2 /* Products */,
 				32B98297541E3E0DA7B82006 /* Pods */,
-				2524DFB5F3339D736582D1D2 /* Frameworks */,
+				D4364C6F56674A9661673100 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -456,6 +448,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D4364C6F56674A9661673100 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5F8ACA5AAA81A8AB8DA023FD /* Pods_YumFun.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EFC74C0525EC5DDF0037CFEC /* RecipeInput */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,11 +474,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C57662CB25DBF9D700642CF2 /* Build configuration list for PBXNativeTarget "YumFun" */;
 			buildPhases = (
-				7E0BADBC16ED92EF74F42FE1 /* [CP] Check Pods Manifest.lock */,
+				9892C3AF6CF1A966F594E2CD /* [CP] Check Pods Manifest.lock */,
 				C57662B325DBF9D600642CF2 /* Sources */,
 				C57662B425DBF9D600642CF2 /* Frameworks */,
 				C57662B525DBF9D600642CF2 /* Resources */,
-				DF0D1EB9A773047130C4EE20 /* [CP] Embed Pods Frameworks */,
+				9ADA458C6C2DE7C865F82F41 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -544,7 +544,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7E0BADBC16ED92EF74F42FE1 /* [CP] Check Pods Manifest.lock */ = {
+		9892C3AF6CF1A966F594E2CD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -566,7 +566,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DF0D1EB9A773047130C4EE20 /* [CP] Embed Pods Frameworks */ = {
+		9ADA458C6C2DE7C865F82F41 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -793,7 +793,7 @@
 		};
 		C57662CC25DBF9D700642CF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19808E7616160D342C2D7749 /* Pods-YumFun.debug.xcconfig */;
+			baseConfigurationReference = 632557288F4F5C8AC6039F6F /* Pods-YumFun.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -817,7 +817,7 @@
 		};
 		C57662CD25DBF9D700642CF2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89B911A85F24D0BE5EC25DF1 /* Pods-YumFun.release.xcconfig */;
+			baseConfigurationReference = D13C6BBEE5AF44513B2E12C4 /* Pods-YumFun.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
