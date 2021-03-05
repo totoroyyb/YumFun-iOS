@@ -124,7 +124,7 @@ struct Step: Codable {
     var stepId: String? = UUID().uuidString
     var title: String?
     var description: String
-    var photoUrl: URL?
+    var photoUrl: String?
     var utensils = [Utensil]()
     var ingredients = [Ingredient]()
     var time: TimeInterval?
