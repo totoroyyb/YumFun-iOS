@@ -1,13 +1,13 @@
 //
-//  StepCell.swift
+//  CookingStepCell.swift
 //  YumFun
 //
-//  Created by Xiyu Zhang on 3/2/21.
+//  Created by Xiyu Zhang on 3/5/21.
 //
 
 import UIKit
 
-class StepCell: UICollectionViewCell{
+class CookingStepCell: UICollectionViewCell{
     
     var assigneeAvatars : [UIImage?] = [] {
         didSet {
@@ -15,9 +15,14 @@ class StepCell: UICollectionViewCell{
         }
     }
     
+    var indexPath = IndexPath()
+    
+    weak var delegate: CookingStepCellDelegate?
+    
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var notAssigned: UILabel!
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var checkButton: UIButton!
+    @IBOutlet weak var timerButton: UIButton!
     
     // for dynamically resized height
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
@@ -32,22 +37,32 @@ class StepCell: UICollectionViewCell{
         return layoutAttributes
     }
     
+    @IBAction func checkPressed() {
+        checkButton.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        delegate?.didCheckCellAt(at: indexPath)
+    }
 }
 
-extension StepCell: UICollectionViewDataSource {
+extension CookingStepCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return assigneeAvatars.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepAvatarCell", for: indexPath) as? AvatarCell ?? AvatarCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepAvatrCell", for: indexPath) as? AvatarCell ?? AvatarCell()
         cell.avatar.image = assigneeAvatars[indexPath.row]
         return cell
     }
 }
 
-extension StepCell:  UICollectionViewDelegateFlowLayout {
+extension CookingStepCell:  UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 42, height: 42)
     }
 }
+
+// CookingStepCellDelegate informs its master collctionView a button click event on the cell
+protocol CookingStepCellDelegate: class {
+    func didCheckCellAt(at indexPath: IndexPath)
+}
+
