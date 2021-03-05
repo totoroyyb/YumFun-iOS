@@ -70,11 +70,16 @@ We also designed cook mode and collaborative cook mode for cooking with friends,
 
 - What I worked on:
 
-  - 
+  - Profile page
+  - Profile edit page
+  - follower/follwing list
   
 - What I plan on working on next:
 
-  - 
+  - add support for changing username
+  - add support for changing password
+  - add support for changing email
+  - User page(for displaying other users)
 
 - Anything I’m stuck on:
 
