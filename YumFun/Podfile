@@ -37,4 +37,7 @@ target 'YumFun' do
   
   # Notification and Alert
   pod 'SwiftEntryKit', '1.2.7'
+
+  # App Store Card View
+  pod 'Cards'
 end

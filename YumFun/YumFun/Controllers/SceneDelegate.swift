@@ -8,7 +8,14 @@
 import UIKit
 import Firebase
 
+enum TestViewType {
+    case testViewComponents
+    case noTestView
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
+    let testViewType: TestViewType = .noTestView
 
     var window: UIWindow?
 
@@ -17,6 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        if navToTestViews(windowScene) {
+            return
+        }
         
         if Auth.auth().currentUser != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -32,7 +43,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         self.scene(scene, openURLContexts: connectionOptions.urlContexts)
-        
+    }
+    
+    func navToTestViews(_ windowScene: UIWindowScene) -> Bool {
+        switch testViewType {
+        case .testViewComponents:
+            let storyboard = UIStoryboard(name: "ViewComponentTest", bundle: nil)
+            guard let viewComponentTestViewController = storyboard.instantiateViewController(identifier: "ViewComponentTestViewController") as? ViewComponentTestViewController else {
+                assertionFailure("Cannot instantiate ViewComponentTestViewController")
+                return true
+            }
+            self.window?.windowScene = windowScene
+            self.window?.rootViewController = viewComponentTestViewController
+            self.window?.makeKeyAndVisible()
+            return true
+        default:
+            return false
+        }
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {

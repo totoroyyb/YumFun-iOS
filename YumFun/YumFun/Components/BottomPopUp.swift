@@ -8,7 +8,7 @@
 import Foundation
 import SwiftEntryKit
 
-private var displayMode: EKAttributes.DisplayMode {
+var displayMode: EKAttributes.DisplayMode {
     return .inferred
 }
 
@@ -20,12 +20,12 @@ func displaySuccessBottomPopUp(title: String,
             text: buttonText ?? "Got it!",
             style: .init(
                 font: MainFont.bold.with(size: 16),
-                color: .white,
+                color: .black,
                 displayMode: displayMode
             )
         ),
-        backgroundColor: .amber,
-        highlightedBackgroundColor: EKColor.white.with(alpha: 0.05),
+        backgroundColor: .white,
+        highlightedBackgroundColor: Color.Teal.a600.with(alpha: 0.05),
         displayMode: displayMode,
         accessibilityIdentifier: "button"
     )
@@ -37,7 +37,8 @@ func displaySuccessBottomPopUp(title: String,
                      descriptionColor: .white,
                      buttonTitleColor: .white,
                      buttonBackgroundColor: .amber,
-                     actionButton: actionButton)
+                     actionButton: actionButton,
+                     image: UIImage(named: "ic_success"))
 }
 
 func displayErrorBottomPopUp(title: String,
@@ -65,7 +66,8 @@ func displayErrorBottomPopUp(title: String,
                      descriptionColor: .white,
                      buttonTitleColor: .black,
                      buttonBackgroundColor: .white,
-                     actionButton: actionButton)
+                     actionButton: actionButton,
+                     image: UIImage(named: "ic_error"))
 }
 
 private func showPopupMessage(attributes: EKAttributes,
@@ -144,7 +146,7 @@ private func showPopupMessage(attributes: EKAttributes,
 var bottomPopUpSuccessAlertAttributes: EKAttributes {
     var attributes = bottomAlertAttributes
     attributes.hapticFeedbackType = .success
-    attributes.entryBackground = .color(color: .greenGrass)
+    attributes.entryBackground = .color(color: Color.Teal.a600)
     return attributes
 }
 
@@ -182,7 +184,7 @@ var bottomAlertAttributes: EKAttributes {
     attributes.entranceAnimation = .init(
         translate: .init(
             duration: 0.5,
-            spring: .init(damping: 1, initialVelocity: 0)
+            spring: .init(damping: 0.8, initialVelocity: 0)
         ),
         scale: .init(
             from: 1.05,
