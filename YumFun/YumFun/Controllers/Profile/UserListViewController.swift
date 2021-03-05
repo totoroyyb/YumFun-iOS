@@ -68,7 +68,7 @@ class UserListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             if searching {
                 User.get(named: SearchedList[indexPath.row]) { (_,User, _) in
                     guard let U = User else {return}
-                    guard let UserView = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else {
+                    guard let UserView = self.storyboard?.instantiateViewController(withIdentifier: "ProfileView") as? ProfileViewController else {
                         assertionFailure("Cannot find ViewController")
                         return
                     }
@@ -78,6 +78,16 @@ class UserListViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 }
             } else {
                 
+                User.get(named: List[indexPath.row]) { (_,User, _) in
+                    guard let U = User else {return}
+                    guard let UserView = self.storyboard?.instantiateViewController(withIdentifier: "ProfileView") as? ProfileViewController else {
+                        assertionFailure("Cannot find ViewController")
+                        return
+                    }
+                    UserView.OU = U
+                    UserView.isSelf = false
+                    self.navigationController?.pushViewController(UserView, animated: true)
+                }
             }
             // Close keyboard when you select cell
         self.Searchbar.searchTextField.endEditing(true)
@@ -93,6 +103,7 @@ class UserListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     

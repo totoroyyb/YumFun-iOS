@@ -70,7 +70,7 @@ class ProfileViewController: UIViewController {
         navigationController?.pushViewController(UserList, animated: true)
     }
     @objc func Follow_Unfollow(){
-        var alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let FollowAction = UIAlertAction(title: "Follow", style: .default){
             UIAlertAction in
             guard let CurrentUser = Core.currentUser else{return}
@@ -91,6 +91,8 @@ class ProfileViewController: UIViewController {
         alert.addAction(FollowAction)
         alert.addAction(UnFollowAction)
         alert.addAction(CancelAction)
+        self.present(alert, animated: true)
+
     }
     func Cosmetic(){
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -114,9 +116,7 @@ class ProfileViewController: UIViewController {
         FollowingStack.layer.cornerRadius = ProfileImage.frame.height/16
         FollowingStack.clipsToBounds = true
         
-        if !isSelf{
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(Follow_Unfollow))
-        }
+
     }
 
     
@@ -137,6 +137,9 @@ class ProfileViewController: UIViewController {
         LoadImage()
         FollowingCount.text = String(CurrentUser.followings.count)
         FollowerCount.text = String(CurrentUser.followers.count)
+        if !isSelf{
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(Follow_Unfollow))
+        }
     }
     @IBAction func EditPressed(_ sender: UIBarButtonItem) {
         guard let ProfileEditPageController = storyboard?.instantiateViewController(withIdentifier: "PEPage") as? ProfileEditPage else {
