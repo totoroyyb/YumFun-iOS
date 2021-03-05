@@ -42,16 +42,15 @@ class DiscoverTextCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         // cell rounded section
-        self.layer.cornerRadius = 20.0
-        self.layer.borderWidth = 5.0
-        self.layer.borderColor = UIColor.clear.cgColor
+        self.layer.cornerRadius = 22
+        self.layer.borderWidth = 0.0
         self.layer.masksToBounds = false
         
         // cell shadow section
-        self.contentView.layer.cornerRadius = 20.0
-        self.contentView.layer.borderWidth = 5.0
-        self.contentView.layer.borderColor = UIColor.clear.cgColor
+        self.contentView.layer.cornerRadius = 20
+        self.contentView.layer.borderWidth = 0.0
         self.contentView.layer.masksToBounds = true
+        
         self.layer.shadowColor = UIColor(named: "shadow_color")?.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0.0)
         self.layer.shadowRadius = 8.0

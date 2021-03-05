@@ -8,7 +8,6 @@
 import UIKit
 import PhotosUI
 import FirebaseUI
-import ShadowView
 
 extension UICollectionView {
     var widestCellWidth: CGFloat {
