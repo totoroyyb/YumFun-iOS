@@ -140,18 +140,6 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                 let myStorage = CloudStorage(AssetType.profileImage)
                 myStorage.child("\(userID).jpeg")
                 
-//                profileImage.sd_setImage(
-//                    with: myStorage.fileRef,
-//                    maxImageSize: 1 * 2048 * 2048,
-//                    placeholderImage: nil,
-//                    options: [.progressiveLoad]) { (image, error, cache, storageRef) in
-//                    if let err = error {
-//                        print(err.localizedDescription)
-//                    }
-//
-//                    self.semaphore?.signal()
-//                }
-                
                 profileImage.sd_setImage(with: myStorage.fileRef,
                                          placeholderImage: nil) { (_, error, _, _) in
                     if let err = error {
