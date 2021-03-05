@@ -72,8 +72,6 @@ class ProfileEditPage: UITableViewController {
         case 0:
             //image picker
             ImagePickerManager().pickImage(self) { image in
-//                self.ProfileImage.image = image
-                
                 let cropper = CustomImageClipViewController(originalImage: image)
                 cropper.delegate = self
                 self.present(cropper, animated: true, completion: nil)

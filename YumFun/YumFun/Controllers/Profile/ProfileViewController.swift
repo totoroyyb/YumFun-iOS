@@ -185,32 +185,30 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
        
         return cell
     }
-    func LoadImage(){
-        guard let currentUser = CU else {
+
+    func LoadImage() {
+        guard let currentUser = Core.currentUser, let currId = currentUser.id else {
             return
         }
-        if let picUrl = currentUser.photoUrl{
-            let myStorage = CloudStorage(picUrl)
-            
-            self.ProfileImage.sd_setImage(
-                with: myStorage.fileRef,
-                maxImageSize: 1 * 2048 * 2048,
-                placeholderImage: nil,
-                options: [ .refreshCached]) { (image, error, cache, storageRef) in
-                if let error = error {
-                    print("Error load Image: \(error)")
-                } else {
-                    print("Finished loading current user profile image.")
-                }
-            }
+        
+        let myStorage = CloudStorage(.profileImage)
+        myStorage.child(currId + ".jpeg")
+        
+//            self.ProfileImage.sd_setImage(
+//                with: myStorage.fileRef,
+//                maxImageSize: 1 * 2048 * 2048,
+//                placeholderImage: nil,
+//                options: [ .refreshCached]) { (image, error, cache, storageRef) in
+//                if let error = error {
+//                    print("Error load Image: \(error)")
+//                } else {
+//                    print("Finished loading current user profile image.")
+//                }
+//            }
 
-            self.ProfileImage.sd_setImage(with: myStorage.fileRef,
-                                      placeholderImage: PlaceholderImage.imageWith(name: currentUser.displayName),
-                                      completion: nil)
-        }else{
-            ProfileImage.image = PlaceholderImage.imageWith(name: currentUser.displayName)
-        }
-       
+        self.ProfileImage.sd_setImage(with: myStorage.fileRef,
+                                  placeholderImage: PlaceholderImage.imageWith(name: currentUser.displayName),
+                                  completion: nil)
     }
 
 }
