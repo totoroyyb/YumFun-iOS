@@ -163,6 +163,7 @@ class PrepareViewController: UIViewController {
         cookingViewController.recipe = self.recipe
         cookingViewController.curUser = self.curUser
         cookingViewController.avatarDic = self.avatarDic
+        self.cookingViewController = cookingViewController
         navigationController?.pushViewController(cookingViewController, animated: true)
     }
 }
