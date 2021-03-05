@@ -151,8 +151,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                     self.semaphore.signal()
                 }
             }
+            self.semaphore.wait()
         }
-        self.semaphore.wait()
     }
     
     private func setCoverImages(firstUrl: String?, secondUrl: String?, firstCover: UIImageView, secondCover: UIImageView) {
