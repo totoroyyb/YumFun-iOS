@@ -52,6 +52,9 @@ struct Recipe: Identifiable, Codable {
     
     var likedCount: Int = 0
     
+    var url: URL?
+    
+    var portionLabel: String?
 //    var likedUser = [String]()
     
 }

@@ -13,11 +13,11 @@ class SecondRecipeInputViewController: UIViewController {
     @IBOutlet weak var prepTimePicker: UIPickerView!
     @IBOutlet weak var cookTimePicker: UIPickerView!
     @IBOutlet weak var restTimePicker: UIPickerView!
-    
+    @IBOutlet weak var parsedRecipeInfo: UILabel!
     var recipe: Recipe = Recipe()
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Step 2/5"
+        navigationItem.title = "Progress 2/5"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(pushInputRecipeIngredientsViewController))
         portionPicker.delegate = self
         portionPicker.dataSource = self
@@ -27,11 +27,48 @@ class SecondRecipeInputViewController: UIViewController {
         cookTimePicker.dataSource = self
         restTimePicker.delegate = self
         restTimePicker.dataSource = self
-
+        if recipe.ingredients.count > 0 {
+            initializePreviousRecipe()
+        }
+    }
+    
+    func initializePreviousRecipe() {
+        portionPicker.selectRow(recipe.portionSize, inComponent: 0, animated: true)
+        if let duration = recipe.duration {
+            prepTimePicker.selectRow(duration.prep, inComponent: 0, animated: true)
+            if let cook = duration.cook {
+                cookTimePicker.selectRow(cook, inComponent: 0, animated: true)
+            }
+            if let rest = duration.rest {
+                restTimePicker.selectRow(rest, inComponent: 0, animated: true)
+            }
+            var parseText = "Here's what we weren't able to automatically fill in:\n\n"
+            var wasParsed = false
+            if let parsedText = recipe.portionLabel {
+                wasParsed = true
+                parseText += "Portion Size: " + parsedText + "\n"
+            }
+            if let parsedText = duration.totalTimeLabel {
+                wasParsed = true
+                parseText += "Total time: " + parsedText + "\n"
+            }
+            if let parsedText = duration.cookLabel {
+                wasParsed = true
+                parseText += "Cook Time: " + parsedText + "\n"
+            }
+            if let parsedText = duration.restLabel {
+                wasParsed = true
+                parseText += "Rest Time: " + parsedText + "\n"
+            }
+            if wasParsed {
+                parsedRecipeInfo.text = parseText
+            }
+        }
+        
     }
     
     @objc func pushInputRecipeIngredientsViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "RecipeInput", bundle: nil)
         guard let inputRecipeIngredientsViewController = storyboard.instantiateViewController(identifier: "inputRecipeIngredientsVC") as InputRecipeIngredientsViewController? else {
             assertionFailure("couln't get vc")
             return

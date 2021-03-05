@@ -212,6 +212,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - Alamofire (5.4.1)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -336,6 +337,7 @@ PODS:
   - GTMSessionFetcher/Core (1.5.0)
   - JGProgressHUD (2.2)
   - JSSAlertView (5.0.2)
+  - Kanna (5.2.4)
   - leveldb-library (1.22)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
@@ -367,6 +369,7 @@ PODS:
   - WXImageCompress (0.1.3)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.2)
   - Cards
   - Firebase/Auth
   - Firebase/Core
@@ -376,6 +379,7 @@ DEPENDENCIES:
   - FirebaseUI/Storage
   - JGProgressHUD
   - JSSAlertView
+  - Kanna (~> 5.2.2)
   - NVActivityIndicatorView
   - QCropper
   - SwiftEntryKit (= 1.2.7)
@@ -385,6 +389,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - abseil
+    - Alamofire
     - BoringSSL-GRPC
     - Cards
     - Firebase
@@ -405,6 +410,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - JGProgressHUD
     - JSSAlertView
+    - Kanna
     - leveldb-library
     - nanopb
     - NVActivityIndicatorView
@@ -420,6 +426,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Cards: 45ae6bd0eca7b5e8016d3b6cb30b60b04753f68f
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
@@ -440,6 +447,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   JSSAlertView: 18345e37d8295827428c12b773b6d75d0dfd0b28
+  Kanna: b9d00d7c11428308c7f95e1f1f84b8205f567a8f
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
@@ -453,6 +461,6 @@ SPEC CHECKSUMS:
   TensorFlowLiteSwift: f062dc1178120100d825d7799fd9f115b4a37fee
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: aee636ba0dee6afb1ed2431490b075834cc70329
+PODFILE CHECKSUM: 72b198bebd83956e3ed3fc95baf4c9c347735bd5
 
 COCOAPODS: 1.10.1
