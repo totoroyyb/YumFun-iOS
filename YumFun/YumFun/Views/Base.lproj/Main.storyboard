@@ -683,6 +683,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="BioDisplay" destination="i9e-do-DU1" id="ve3-Qp-J9d"/>
+                        <outlet property="EditButton" destination="qSI-Ws-TLU" id="hXB-QT-p3M"/>
                         <outlet property="FollowerCount" destination="TF5-mS-bTv" id="nID-8t-jLv"/>
                         <outlet property="FollowersStack" destination="jgC-Bv-3u8" id="xqP-kE-eJ1"/>
                         <outlet property="FollowingCount" destination="5ak-cR-Daq" id="a38-AZ-8ss"/>
@@ -704,7 +705,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="218.40000000000001" y="2394.1529235382309"/>
+            <point key="canvasLocation" x="220" y="2393"/>
         </scene>
         <!--Profile Edit Page-->
         <scene sceneID="IOr-D4-VrC">
@@ -1025,7 +1026,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbz-8W-bvV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168.8" y="2393.2533733133437"/>
+            <point key="canvasLocation" x="1180" y="2394"/>
         </scene>
         <!--Edit Detail Controller-->
         <scene sceneID="L5v-up-frt">

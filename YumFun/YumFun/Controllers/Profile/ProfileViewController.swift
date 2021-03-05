@@ -14,7 +14,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var ProfileImage: UIImageView!
     @IBOutlet weak var RecipePreviews: UICollectionView!
     @IBOutlet weak var Name: UILabel!
+    var CU:User?
+    var OU:User?
+    var isSelf = true
     
+    @IBOutlet weak var EditButton: UIBarButtonItem!
     @IBOutlet weak var FollowingStack: UIStackView!
     @IBOutlet weak var FollowersStack: UIStackView!
     @IBOutlet weak var BioDisplay: UILabel!
@@ -30,6 +34,11 @@ class ProfileViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if isSelf{
+            CU = Core.currentUser
+        }else{
+            CU = OU
+        }
         DisplayUserInfo();
     }
     @IBAction func FllowingPressed(_ sender: UITapGestureRecognizer) {
@@ -37,7 +46,7 @@ class ProfileViewController: UIViewController {
             self.FollowingStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
             self.FollowingStack.layer.backgroundColor = UIColor.clear.cgColor
         }
-        guard let CurrentUser = Core.currentUser else {return}
+        guard let CurrentUser = CU else {return}
         guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
             assertionFailure("Cannot find ViewController")
             return
@@ -52,13 +61,36 @@ class ProfileViewController: UIViewController {
             self.FollowersStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
             self.FollowersStack.layer.backgroundColor = UIColor.clear.cgColor
         }
-        guard let CurrentUser = Core.currentUser else {return}
+        guard let CurrentUser = CU else {return}
         guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
             assertionFailure("Cannot find ViewController")
             return
         }
         UserList.List = CurrentUser.followers
         navigationController?.pushViewController(UserList, animated: true)
+    }
+    @objc func Follow_Unfollow(){
+        var alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let FollowAction = UIAlertAction(title: "Follow", style: .default){
+            UIAlertAction in
+            guard let CurrentUser = Core.currentUser else{return}
+            guard let followid = self.OU?.id else {return}
+            CurrentUser.followUser(withId: followid) { (_) in}
+        }
+        let UnFollowAction = UIAlertAction(title: "Unfollow", style: .default){
+            UIAlertAction in
+            guard let CurrentUser = Core.currentUser else{return}
+            guard let unfollowid = self.OU?.id else {return}
+            CurrentUser.unfollowUser(withId: unfollowid) { (_) in}
+            
+        }
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel){
+            UIAlertAction in
+            alert.dismiss(animated: true) {}
+        }
+        alert.addAction(FollowAction)
+        alert.addAction(UnFollowAction)
+        alert.addAction(CancelAction)
     }
     func Cosmetic(){
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -73,18 +105,23 @@ class ProfileViewController: UIViewController {
         FollowersStack.layer.borderWidth = 0
         FollowersStack.layer.masksToBounds = true
         FollowersStack.layer.borderColor = UIColor.black.cgColor
-        FollowersStack.layer.cornerRadius = ProfileImage.frame.height/8
+        FollowersStack.layer.cornerRadius = ProfileImage.frame.height/16
         FollowersStack.clipsToBounds = true
         
         FollowingStack.layer.borderWidth = 0
         FollowingStack.layer.masksToBounds = true
         FollowingStack.layer.borderColor = UIColor.black.cgColor
-        FollowingStack.layer.cornerRadius = ProfileImage.frame.height/8
+        FollowingStack.layer.cornerRadius = ProfileImage.frame.height/16
         FollowingStack.clipsToBounds = true
+        
+        if !isSelf{
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(Follow_Unfollow))
+        }
     }
+
     
     func DisplayUserInfo(){
-        guard let CurrentUser = Core.currentUser else {return}
+        guard let CurrentUser = CU else {return}
         //name
         if let displayname = CurrentUser.displayName {
             Name.text = displayname
@@ -117,7 +154,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
         return CGSize(width: RecipePreviews.frame.width-8, height: RecipePreviews.frame.height-8)
         }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let CurrentUser = Core.currentUser else{
+        guard let CurrentUser = CU else{
             let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
             emptyLabel.text = "If you see this error please logout and login again"
             emptyLabel.textAlignment = NSTextAlignment.center
@@ -136,7 +173,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PreviewCell", for: indexPath) as! RecipePreviewCell
-        guard let CurrentUser = Core.currentUser else{return cell}
+        guard let CurrentUser = CU else{return cell}
         if CurrentUser.recipes[indexPath.row] != ""{
             cell.Title.text = CurrentUser.recipes[indexPath.row]
         }else {
@@ -146,7 +183,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
         return cell
     }
     func LoadImage(){
-        guard let currentUser = Core.currentUser else {
+        guard let currentUser = CU else {
             return
         }
         if let picUrl = currentUser.photoUrl{

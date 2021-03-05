@@ -64,25 +64,18 @@ class UserListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         })
         return cell
     }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
-            tableView.beginUpdates()
-            guard let CurrentUser = Core.currentUser else{ return}
-            CurrentUser.unfollowUser(withId: List[indexPath.row]) { (_) in
-            }
-            List.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.endUpdates()
-        }
-    }
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete    }
-    
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             if searching {
-                
+                User.get(named: SearchedList[indexPath.row]) { (_,User, _) in
+                    guard let U = User else {return}
+                    guard let UserView = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else {
+                        assertionFailure("Cannot find ViewController")
+                        return
+                    }
+                    UserView.OU = U
+                    UserView.isSelf = false
+                    self.navigationController?.pushViewController(UserView, animated: true)
+                }
             } else {
                 
             }
