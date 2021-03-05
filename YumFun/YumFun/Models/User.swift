@@ -69,7 +69,6 @@ final class User: Identifiable, Codable {
         self.id = authUser.uid
         self.displayName = authUser.displayName
         self.email = authUser.email
-//        self.photoUrl = authUser.photoURL
     }
 }
 

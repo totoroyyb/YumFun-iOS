@@ -24,7 +24,8 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var cookButton: UIButton!
     
     let detailQueue = DispatchQueue(label: "detailQueue")
-    let semaphore = DispatchSemaphore(value: 3)
+    let semaphore: DispatchSemaphore? = DispatchSemaphore(value: 3)
+//    let semaphore: DispatchSemaphore? = nil
     
     var recipe : Recipe?
     
@@ -175,7 +176,7 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
             if let url = step.photoUrl {
                 let stepImage = UIImageView()
                 stepImage.contentMode = .scaleAspectFit
-                setStepImage(url: url.absoluteString, stepImageView: stepImage)
+                setStepImage(url: url, stepImageView: stepImage)
                 contentView.addSubview(stepImage)
                 stepImage.translatesAutoresizingMaskIntoConstraints = false
                 stepImage.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: 15).isActive = true
@@ -196,7 +197,7 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
                 Utility.setImage(url: url, imageView: stepImageView, placeholder: nil, semaphore: self.semaphore)
                 
             }
-            self.semaphore.wait()
+            self.semaphore?.wait()
         }
     }
     
@@ -215,11 +216,11 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
                         print(err.localizedDescription)
                     }
                     
-                    self.semaphore.signal()
+                    self.semaphore?.signal()
                 }
             }
         }
-        self.semaphore.wait()
+        self.semaphore?.wait()
     }
     
     

@@ -17,7 +17,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     private var recipes : [Recipe] = []
     
     let discoverQueue = DispatchQueue(label: "discoverQueue")
-    let semaphore = DispatchSemaphore(value: 6)
+    let semaphore: DispatchSemaphore? = DispatchSemaphore(value: 6)
+//    let semaphore: DispatchSemaphore? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +87,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             // profile image
             discoverQueue.async {
                 self.setAuthorProfileImage(userID: recipe.author, profileImage: cell.profileImage)
-                self.semaphore.wait()
+                self.semaphore?.wait()
             }
             
             // TODO: set isCollected
@@ -139,20 +140,29 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                 let myStorage = CloudStorage(AssetType.profileImage)
                 myStorage.child("\(userID).jpeg")
                 
-                profileImage.sd_setImage(
-                    with: myStorage.fileRef,
-                    maxImageSize: 1 * 2048 * 2048,
-                    placeholderImage: nil,
-                    options: [.progressiveLoad]) { (image, error, cache, storageRef) in
+//                profileImage.sd_setImage(
+//                    with: myStorage.fileRef,
+//                    maxImageSize: 1 * 2048 * 2048,
+//                    placeholderImage: nil,
+//                    options: [.progressiveLoad]) { (image, error, cache, storageRef) in
+//                    if let err = error {
+//                        print(err.localizedDescription)
+//                    }
+//
+//                    self.semaphore?.signal()
+//                }
+                
+                profileImage.sd_setImage(with: myStorage.fileRef,
+                                         placeholderImage: nil) { (_, error, _, _) in
                     if let err = error {
                         print(err.localizedDescription)
                     }
                     
-                    self.semaphore.signal()
+                    self.semaphore?.signal()
                 }
             }
+            self.semaphore?.wait()
         }
-        self.semaphore.wait()
     }
     
     private func setCoverImages(firstUrl: String?, secondUrl: String?, firstCover: UIImageView, secondCover: UIImageView) {
@@ -161,13 +171,13 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                 DispatchQueue.global(qos: .userInitiated).async {
                     Utility.setImage(url: url, imageView: firstCover, placeholder: nil, semaphore: self.semaphore)
                 }
-                self.semaphore.wait()
+                self.semaphore?.wait()
             }
             if let url = secondUrl {
                 DispatchQueue.global(qos: .userInitiated).async {
                     Utility.setImage(url: url, imageView: secondCover, placeholder: nil, semaphore: self.semaphore)
                 }
-                self.semaphore.wait()
+                self.semaphore?.wait()
             }
         }
         
@@ -196,11 +206,11 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                             if err != nil {
                                 print(err.debugDescription)
                             }
-                            self.semaphore.signal()
+                            self.semaphore?.signal()
                         }
                     }
                 }
-                self.semaphore.wait()
+                self.semaphore?.wait()
             }
         }
     }
@@ -214,11 +224,11 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                             if err != nil {
                                 print(err.debugDescription)
                             }
-                            self.semaphore.signal()
+                            self.semaphore?.signal()
                         }
                     }
                 }
-                self.semaphore.wait()
+                self.semaphore?.wait()
             }
         }
     }
