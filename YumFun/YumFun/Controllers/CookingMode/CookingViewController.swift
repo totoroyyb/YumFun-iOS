@@ -138,6 +138,9 @@ extension CookingViewController: UICollectionViewDataSource {
 }
 
 extension CookingViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
 }
 
 extension UICollectionView: CookingStepCellDelegate {
