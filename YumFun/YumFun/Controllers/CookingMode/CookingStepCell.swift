@@ -49,7 +49,7 @@ extension CookingStepCell: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepAvatrCell", for: indexPath) as? AvatarCell ?? AvatarCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepAvatarCell", for: indexPath) as? AvatarCell ?? AvatarCell()
         cell.avatar.image = assigneeAvatars[indexPath.row]
         return cell
     }
