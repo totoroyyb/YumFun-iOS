@@ -28,18 +28,6 @@ class Utility {
     static func setImage(url: String, imageView: UIImageView, placeholder: UIImage? = nil, semaphore: DispatchSemaphore? = nil) {
         let myStorage = CloudStorage(url)
         
-//        imageView.sd_setImage(
-//            with: myStorage.fileRef,
-//            maxImageSize: 1 * 2048 * 2048,
-//            placeholderImage: nil,
-//            options: [.progressiveLoad]) { (image, error, cache, storageRef) in
-//            if error != nil {
-//                //assertionFailure(error.debugDescription)
-//            }
-//
-//            semaphore?.signal()
-//        }
-        
         imageView.sd_setImage(with: myStorage.fileRef, placeholderImage: nil) { (_, error, _, _) in
             if error != nil {
                 //assertionFailure(error.debugDescription)
@@ -176,7 +164,7 @@ class Utility {
         if let url = step.photoUrl {
             let stepImage = UIImageView()
             stepImage.contentMode = .scaleAspectFit
-            setImage(url: url.absoluteString, imageView: stepImage)
+            setImage(url: url, imageView: stepImage)
             contentView.addSubview(stepImage)
             stepImage.translatesAutoresizingMaskIntoConstraints = false
             stepImage.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: 15).isActive = true
