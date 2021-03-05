@@ -28,11 +28,19 @@ class Utility {
     static func setImage(url: String, imageView: UIImageView, placeholder: UIImage? = nil, semaphore: DispatchSemaphore? = nil) {
         let myStorage = CloudStorage(url)
         
-        imageView.sd_setImage(
-            with: myStorage.fileRef,
-            maxImageSize: 1 * 2048 * 2048,
-            placeholderImage: nil,
-            options: [.progressiveLoad]) { (image, error, cache, storageRef) in
+//        imageView.sd_setImage(
+//            with: myStorage.fileRef,
+//            maxImageSize: 1 * 2048 * 2048,
+//            placeholderImage: nil,
+//            options: [.progressiveLoad]) { (image, error, cache, storageRef) in
+//            if error != nil {
+//                //assertionFailure(error.debugDescription)
+//            }
+//
+//            semaphore?.signal()
+//        }
+        
+        imageView.sd_setImage(with: myStorage.fileRef, placeholderImage: nil) { (_, error, _, _) in
             if error != nil {
                 //assertionFailure(error.debugDescription)
             }

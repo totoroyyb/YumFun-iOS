@@ -24,7 +24,8 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var cookButton: UIButton!
     
     let detailQueue = DispatchQueue(label: "detailQueue")
-    let semaphore = DispatchSemaphore(value: 3)
+    let semaphore: DispatchSemaphore? = DispatchSemaphore(value: 3)
+//    let semaphore: DispatchSemaphore? = nil
     
     var recipe : Recipe?
     
@@ -206,11 +207,11 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
                         print(err.localizedDescription)
                     }
                     
-                    self.semaphore.signal()
+                    self.semaphore?.signal()
                 }
             }
         }
-        self.semaphore.wait()
+        self.semaphore?.wait()
     }
     
     
