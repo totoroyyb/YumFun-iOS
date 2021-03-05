@@ -8,18 +8,44 @@
 import UIKit
 import Firebase
 
+enum ModelClass {
+    static let round = "0 round"
+    static let palm = "1 palm"
+    static let side = "2 fist"
+    static let background = "3 background"
+}
+
 class CookingViewController: UIViewController {
 
     @IBOutlet weak var avatarCollectionView: UICollectionView!
     @IBOutlet weak var stepCollectionView: UICollectionView!
     
+    // for collab mode
     var recipe = Recipe()
+    private lazy var completeStatus : [Bool] = {
+        return [Bool](repeating: false, count: recipe.steps.count)
+    }()
     var curUser = User()
     var avatarDic : [String: UIImage?] = [:]
     var collabSession: CollabSession?
     var listner: ListenerRegistration?
+    var curStep: Int = 0  // index of the current step
     
     let avatarPlaceholder = UIImage(named: "mascot")
+    
+    // gesture recognition
+    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: MobileNet.modelInfo, labelsFileInfo: MobileNet.labelsInfo)
+    
+    private var camera: CameraFeedManager?
+        
+    private var firstPress = true
+    private var isCapturing = false
+    
+    private var previousInference = Date().timeIntervalSince1970 * 1000  // current time in ms
+    private var inferenceInterval = 1000 // in ms
+    private var reinforceClass = ModelClass.background
+    private var reinforceCount = 0  // track the number of successive recognized gestures
+    private var previousClass = ModelClass.background
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +53,17 @@ class CookingViewController: UIViewController {
         stepCollectionView.delegate = self
         stepCollectionView.dataSource = self
         avatarCollectionView.dataSource = self
+        
+        if let indexPath = getNextStep() {
+            curStep = indexPath.row
+        }
+        
+        if modelDataHandler == nil {
+            print("model initialization falied")
+        }
+        
+        camera = CameraFeedManager()
+        camera?.delegate = self
         
         let layout = stepCollectionView.collectionViewLayout
         if let flowLayout = layout as? UICollectionViewFlowLayout{
@@ -39,17 +76,37 @@ class CookingViewController: UIViewController {
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func leavePressed() {
+        if let session = collabSession, let lis = listner, let sid = session.id {
+            curUser.leaveCollabSession(withSessionId: sid, withListener: lis) { error in
+                if let err = error {
+                    print(err.localizedDescription)
+                }
+            }
+        }
+       
+        dismiss(animated: true, completion: nil)
     }
-    */
+    
 
+    @IBAction func handsFreePressed() {
+        if !isCapturing {
+            if firstPress {
+                camera?.checkCameraConfigurationAndStartSession()
+                firstPress = false
+            } else {
+                camera?.resumeInterruptedSession { success in
+                    print("Resume \(success ? "Successfully" : "Failed")")
+                }
+            }
+            isCapturing = true
+        } else {
+            camera?.stopSession()
+            isCapturing = false
+        }
+
+    }
+    
 }
 
 extension CookingViewController: UICollectionViewDataSource {
@@ -91,7 +148,8 @@ extension CookingViewController: UICollectionViewDataSource {
                 indexPath.row + 1,
                 recipe.steps.count,
                 recipe.steps[indexPath.row].title ?? "")
-            cell.checkButton.setImage(UIImage(systemName: "checkmark.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
+
+            // TODO: change timer appearance based on status
             cell.timerButton.setImage(UIImage(systemName: "clock")?.withRenderingMode(.alwaysTemplate), for: .normal)
 
             
@@ -101,18 +159,40 @@ extension CookingViewController: UICollectionViewDataSource {
                 
                 cell.assigneeAvatars = session.workLoad[indexPath.row].assignee.map() {(avatarDic[$0] ?? avatarPlaceholder)}
                 
-                // special UI for assigned steps
-                if let uid = curUser.id,
-                session.workLoad[indexPath.row].assignee.contains(uid) {
-                    cell.layer.backgroundColor = UIColor.blue.cgColor
+                // special UI for checked steps
+                if session.workLoad[indexPath.row].isCompleted {
+                    cell.layer.backgroundColor = UIColor.red.cgColor
+                    cell.checkButton.isUserInteractionEnabled = false
                     cell.checkButton.isHidden = false
-                    cell.timerButton.isHidden = false
-                } else {
-                    cell.layer.backgroundColor = UIColor.clear.cgColor
-                    cell.checkButton.isHidden = true
                     cell.timerButton.isHidden = true
+                    cell.checkButton.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+                } else {
+                    // special UI for assigned steps
+                    cell.checkButton.setImage(UIImage(systemName: "checkmark.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
+                    if let uid = curUser.id,
+                    session.workLoad[indexPath.row].assignee.contains(uid) {
+                        cell.layer.backgroundColor = UIColor.blue.cgColor
+                        cell.checkButton.isUserInteractionEnabled = true
+                        cell.checkButton.isHidden = false
+                        cell.timerButton.isHidden = false
+                    } else {
+                        cell.layer.backgroundColor = UIColor.clear.cgColor
+                        cell.checkButton.isHidden = true
+                        cell.timerButton.isHidden = true
+                    }
                 }
-            } else {
+            } else {  // cooking by oneself
+                if completeStatus[indexPath.row] {  // checked steps
+                    cell.layer.backgroundColor = UIColor.red.cgColor
+                    cell.checkButton.isUserInteractionEnabled = false
+                    cell.timerButton.isHidden = true
+                    cell.checkButton.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+                } else {  // unchecked
+                    cell.layer.backgroundColor = UIColor.clear.cgColor
+                    cell.checkButton.isUserInteractionEnabled = true
+                    cell.timerButton.isHidden = false
+                    cell.checkButton.setImage(UIImage(systemName: "checkmark.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
+                }
                 if cell.collectionView != nil {
                     cell.collectionView.removeFromSuperview()
                 }
@@ -139,7 +219,15 @@ extension CookingViewController: UICollectionViewDataSource {
 
 extension CookingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Cooking", bundle: nil)
+        guard let stepDetailViewController = storyboard.instantiateViewController(withIdentifier: "StepDetailViewController") as? StepDetailViewController else {
+            assertionFailure("couldn't find StepDetailViewController")
+            return
+        }
         
+        stepDetailViewController.index = indexPath.row
+        stepDetailViewController.recipe = recipe
+        present(stepDetailViewController, animated: true)
     }
 }
 
@@ -168,16 +256,150 @@ extension CookingViewController: StepCollectionViewControllerDelegate {
                 } else {
                     collectionView.performBatchUpdates({
                         collectionView.reloadSections(IndexSet.init(integersIn: 0...0))
-                    }, completion: nil)
+                    }) {[weak self] _ in
+                        if let indexPath = self?.getNextStep() {
+                            self?.curStep = indexPath.row
+                            collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+                        }
+                    }
                 }
-                
             }
         } else {  // cooking by oneself
-            recipe.steps.remove(at: indexPath.row)
+            completeStatus[indexPath.row] = true
+           
             collectionView.performBatchUpdates({
                 collectionView.reloadSections(IndexSet.init(integersIn: 0...0))
-            }, completion: nil)
+            }) { [weak self] _ in
+                if let indexPath = self?.getNextStep() {
+                    self?.curStep = indexPath.row
+                    collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+                }
+            }
         }
         
     }
+    
+    private func getNextStep() -> IndexPath? {
+        if let session = collabSession, let uid = curUser.id {
+            for (i, load) in session.workLoad.enumerated() {
+                if load.assignee.contains(uid) && !load.isCompleted {
+                    return IndexPath(row: i, section: 0)
+                }
+            }
+            return nil
+        } else {
+            for (i, complete) in completeStatus.enumerated() {
+                if !complete {
+                    return IndexPath(row: i, section: 0)
+                }
+            }
+            return nil
+        }
+    }
 }
+
+// gesture recognization model data handling
+extension CookingViewController {
+    private func handleResult(modelClass: String) {
+        switch modelClass {
+        case ModelClass.palm:
+            print("palm")
+            if previousClass != ModelClass.palm {
+                collectionView(stepCollectionView, didSelectItemAt: IndexPath(row: curStep, section: 0))
+            }
+            break
+        case ModelClass.side:
+            print("side")
+            if presentedViewController != nil {
+                presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+            break
+        case ModelClass.round:
+            print("round")
+            if presentedViewController != nil {
+                presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+            didCheckCellAt(stepCollectionView, at: IndexPath(row: curStep, section: 0))
+            break
+        default:
+            break
+        }
+    }
+}
+
+// gesture recognization camera capture
+extension CookingViewController: CameraFeedManagerDelegate {
+    func didOutput(pixelBuffer: CVPixelBuffer) {
+        let currentTime = Date().timeIntervalSince1970 * 1000
+        guard Int(currentTime - previousInference) >= inferenceInterval else {
+            return
+        }
+        previousInference = currentTime
+        
+        let result = modelDataHandler?.runModel(onFrame: pixelBuffer)
+        
+        DispatchQueue.main.async {
+            if let res = result {
+                let inference = res.inferences[0]
+                if inference.label != ModelClass.background {
+                    if self.reinforceClass == inference.label {  // same gesture detected
+                        self.reinforceCount += 1  // reinforce gesture
+                        if self.reinforceCount == 3 {  // confirm gesture and reset
+//                            self.resultLabel.text = inference.label
+                            self.handleResult(modelClass: self.reinforceClass)
+                            self.reinforceCount = 0
+                            self.reinforceClass = ModelClass.background
+                            
+                            self.inferenceInterval = 2000
+                        }
+                    } else if self.reinforceClass == ModelClass.background{
+                        self.reinforceClass = inference.label  // first time
+                        self.reinforceCount += 1
+                        
+                        self.inferenceInterval = 500
+                    } else { // not same gesture, reset
+                        self.reinforceClass = ModelClass.background
+                        self.reinforceCount = 0
+                    }
+                } else {
+                    self.reinforceClass = ModelClass.background
+                    self.reinforceCount = 0
+//                    self.resultLabel.text = inference.label
+                }
+            }
+        }
+    }
+    
+    func presentCameraPermissionsDeniedAlert() {
+        let alert = UIAlertController(title: "Camera Permision Denied", message: "Please change Permission settings in system settings to ", preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func presentVideoConfigurationErrorAlert() {
+        let alert = UIAlertController(title: "Video Configure Error", message: "THere is an error configuring the camera", preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func sessionRunTimeErrorOccured() {
+        print("session runtime error")
+    }
+    
+    func sessionWasInterrupted(canResumeManually resumeManually: Bool) {
+        print("session was interrupted")
+    }
+    
+    func sessionInterruptionEnded() {
+        print("session interrupt ended")
+    }
+    
+    
+}
+

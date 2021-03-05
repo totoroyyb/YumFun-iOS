@@ -69,7 +69,7 @@ class CameraFeedManager: NSObject {
 
   // MARK: Camera Related Instance Variables
   private let session: AVCaptureSession = AVCaptureSession()
-  private let previewView: PreviewView
+//  private let previewView: PreviewView
   private let sessionQueue = DispatchQueue(label: "sessionQueue")
   private var cameraConfiguration: CameraConfiguration = .failed
   private lazy var videoDataOutput = AVCaptureVideoDataOutput()
@@ -79,15 +79,15 @@ class CameraFeedManager: NSObject {
   weak var delegate: CameraFeedManagerDelegate?
 
   // MARK: Initializer
-    init(previewView: PreviewView) {
-    self.previewView = previewView
+    override init() {
+//    self.previewView = previewView
     super.init()
 
     // Initializes the session
     session.sessionPreset = .high
-    self.previewView.session = session
-    self.previewView.previewLayer.connection?.videoOrientation = .portrait
-    self.previewView.previewLayer.videoGravity = .resizeAspectFill
+//    self.previewView.session = session
+//    self.previewView.previewLayer.connection?.videoOrientation = .portrait
+//    self.previewView.previewLayer.videoGravity = .resizeAspectFill
     self.attemptToConfigureSession()
   }
 
