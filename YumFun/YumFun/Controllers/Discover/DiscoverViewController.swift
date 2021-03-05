@@ -8,7 +8,14 @@
 import UIKit
 import PhotosUI
 import FirebaseUI
-import NVActivityIndicatorView
+import ShadowView
+
+extension UICollectionView {
+    var widestCellWidth: CGFloat {
+        let insets = contentInset.left + contentInset.right
+        return bounds.width - insets
+    }
+}
 
 class DiscoverViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DiscoverCollectionViewDelegate {
 
@@ -46,12 +53,12 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         let layout = self.collectionView.collectionViewLayout
-        if let flowLayout = layout as? UICollectionViewFlowLayout{
+        if let flowLayout = layout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = CGSize(
-                width: self.view.frame.width,
+                width: collectionView.widestCellWidth - flowLayout.sectionInset.left - flowLayout.sectionInset.right,
                 // Make the height a reasonable estimate to
                 // ensure the scroll bar remains smooth
-                height: 500
+                height: 300
             )
         }
     }
@@ -71,67 +78,32 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let recipe = recipes[indexPath.row]
         
-        if recipe.picUrls.count == 0 {  // text cell
-            print("text Cell")
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverTextCell", for: indexPath) as? DiscoverTextCell else {
-                assertionFailure("no discovertextcell")
-                return DiscoverTextCell()
-            }
-            
-            cell.title.text = recipe.title
-            cell.descrip.text = recipe.description
-            
-            cell.delegate = collectionView
-            cell.indexPath = indexPath
-            
-            // profile image
-            discoverQueue.async {
-                self.setAuthorProfileImage(userID: recipe.author, profileImage: cell.profileImage)
-                self.semaphore?.wait()
-            }
-            
-            // TODO: set isCollected
-            if let user = Core.currentUser, let id = recipe.id {
-                cell.isFavored = user.likedRecipes.contains(id)
-                cell.favorCount = recipe.likedCount
-                print(cell.favorCount)
-                
-                cell.isCollected = false
-                cell.setUpButtonUI()
-            }
-
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverImageCell", for: indexPath) as? DiscoverImageCell ?? DiscoverImageCell()
-            
-            cell.title.text = recipe.title
-            cell.descrip.text = recipe.description
-            
-            cell.delegate = collectionView
-            cell.indexPath = indexPath
-            
-            // profile image
-            setAuthorProfileImage(userID: recipe.author, profileImage: cell.profileImage)
-            
-            // set up cover images
-            if recipe.picUrls.count == 1 {
-                self.setCoverImages(firstUrl: recipe.picUrls[0], secondUrl: nil, firstCover: cell.coverImage1, secondCover: cell.coverImage2)
-            } else {
-                self.setCoverImages(firstUrl: recipe.picUrls[0], secondUrl: recipe.picUrls[1], firstCover: cell.coverImage1, secondCover: cell.coverImage2)
-            }
-        
-            // TODO: set isCollected
-            
-            if let user = Core.currentUser, let id = recipe.id {
-                cell.isFavored = user.likedRecipes.contains(id)
-                cell.favorCount = recipe.likedCount
-                
-                cell.isCollected = false
-                cell.setUpButtonUI()
-            }
-            
-            return cell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverTextCell", for: indexPath) as? DiscoverTextCell else {
+            assertionFailure("no discovertextcell")
+            return DiscoverTextCell()
         }
+        
+        cell.title.text = recipe.title
+        cell.delegate = collectionView
+        cell.indexPath = indexPath
+        
+        self.setAuthorProfileImage(userID: recipe.author, profileImage: cell.profileImage)
+
+        if let user = Core.currentUser, let id = recipe.id {
+            cell.isFavored = user.likedRecipes.contains(id)
+            cell.favorCount = recipe.likedCount
+//            print(cell.favorCount)
+            
+            cell.setUpButtonUI()
+        }
+        
+        if recipe.picUrls.count == 0 {
+            cell.recipeImage.image = UIImage(named: "empty_image_placeholder")
+        } else {
+            self.setCoverImages(firstUrl: recipe.picUrls[0], firstCover: cell.recipeImage)
+        }
+        
+        return cell
     }
     
     private func setAuthorProfileImage(userID: String, profileImage: UIImageView) {
@@ -153,7 +125,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    private func setCoverImages(firstUrl: String?, secondUrl: String?, firstCover: UIImageView, secondCover: UIImageView) {
+    private func setCoverImages(firstUrl: String?, firstCover: UIImageView) {
         discoverQueue.async {
             if let url = firstUrl {
                 DispatchQueue.global(qos: .userInitiated).async {
@@ -161,14 +133,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
                 }
                 self.semaphore?.wait()
             }
-            if let url = secondUrl {
-                DispatchQueue.global(qos: .userInitiated).async {
-                    Utility.setImage(url: url, imageView: secondCover, placeholder: nil, semaphore: self.semaphore)
-                }
-                self.semaphore?.wait()
-            }
         }
-        
     }
     
     // UICollectionViewDelegate Implementation
