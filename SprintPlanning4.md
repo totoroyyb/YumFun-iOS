@@ -50,11 +50,17 @@ We also designed cook mode and collaborative cook mode for cooking with friends,
 
 - What I worked on:
 
-  - 
+  - [Updated Login Screen](https://github.com/ECS189E/project-w21-codex-coders/commit/7957a373557d8de05dff945c78f9fffad6201208)
+  - [Timer Implementation](https://github.com/ECS189E/project-w21-codex-coders/commit/d394a0a78d1faed33b9945011179f8f8a0c484d5)
+  - [Timer Finished + Voice Recognition](https://github.com/ECS189E/project-w21-codex-coders/commit/d5559c751cba7503fbba7b9864dec2c79315afa1)
 
 - What I plan on working on next:
 
-  - 
+  - Merge with main
+  - Attach timer with cooking mode
+  - Cook Mode
+  - Help where needed
+  - More Design
 
 - Anything I’m stuck on:
 
