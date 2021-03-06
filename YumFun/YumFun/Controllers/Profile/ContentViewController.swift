@@ -9,7 +9,6 @@ import UIKit
 import SegementSlide
 class ContentViewController: UITableViewController, SegementSlideContentScrollViewDelegate {
     @objc var scrollView: UIScrollView {
-           return tableView
-       }
-
+        return tableView
+    }
 }

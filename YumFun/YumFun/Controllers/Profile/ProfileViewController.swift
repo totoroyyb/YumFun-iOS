@@ -7,68 +7,78 @@
 
 import UIKit
 import Firebase
-
-class ProfileViewController: UIViewController {
+import SegementSlide
+class ProfileViewController: SegementSlideDefaultViewController {
     
-    
-    @IBOutlet weak var ProfileImage: UIImageView!
-    @IBOutlet weak var RecipePreviews: UICollectionView!
-    @IBOutlet weak var Name: UILabel!
     var CU:User?
     var OU:User?
     var isSelf = true
     
-    @IBOutlet weak var EditButton: UIBarButtonItem!
-    @IBOutlet weak var FollowingStack: UIStackView!
-    @IBOutlet weak var FollowersStack: UIStackView!
-    @IBOutlet weak var BioDisplay: UILabel!
-    @IBOutlet weak var NoRecipe: UILabel!
-    @IBOutlet weak var FollowingCount: UILabel!
-    @IBOutlet weak var FollowerCount: UILabel!
+    
+    
+    override func segementSlideHeaderView() -> UIView? {
+        
+        let headerView = BasicProfileView()
+        Cosmetic(View: headerView)
+        DisplayUserInfo(View: headerView)
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        headerView.heightAnchor.constraint(equalToConstant: view.bounds.height/2).isActive = true
+        return headerView
+    }
+    override var titlesInSwitcher: [String] {
+        return ["My Recipes", "Liked Recipes"]
+    }
+
+    override func segementSlideContentViewController(at index: Int) -> SegementSlideContentScrollViewDelegate? {
+        return ContentViewController()
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-            RecipePreviews.delegate = self
-            RecipePreviews.dataSource = self
-            Cosmetic()
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         if isSelf{
             CU = Core.currentUser
         }else{
             CU = OU
         }
-        DisplayUserInfo();
+        defaultSelectedIndex = 0
+        reloadData()
+//        DisplayUserInfo();
     }
-    @IBAction func FllowingPressed(_ sender: UITapGestureRecognizer) {
-        UIView.animate(withDuration: 1) {
-            self.FollowingStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-            self.FollowingStack.layer.backgroundColor = UIColor.clear.cgColor
-        }
-        guard let CurrentUser = CU else {return}
-        guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
-            assertionFailure("Cannot find ViewController")
-            return
-        }
-        UserList.List = CurrentUser.followings
-        navigationController?.pushViewController(UserList, animated: true)
-    }
-    
-    @IBAction func FollowersPressed(_ sender: UITapGestureRecognizer) {
-        
-        UIView.animate(withDuration: 1) {
-            self.FollowersStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-            self.FollowersStack.layer.backgroundColor = UIColor.clear.cgColor
-        }
-        guard let CurrentUser = CU else {return}
-        guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
-            assertionFailure("Cannot find ViewController")
-            return
-        }
-        UserList.List = CurrentUser.followers
-        navigationController?.pushViewController(UserList, animated: true)
-    }
+//    @IBAction func FllowingPressed(_ sender: UITapGestureRecognizer) {
+//        UIView.animate(withDuration: 1) {
+//            self.FollowingStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+//            self.FollowingStack.layer.backgroundColor = UIColor.clear.cgColor
+//        }
+//        guard let CurrentUser = CU else {return}
+//        guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
+//            assertionFailure("Cannot find ViewController")
+//            return
+//        }
+//        UserList.List = CurrentUser.followings
+//        navigationController?.pushViewController(UserList, animated: true)
+//    }
+//
+//    @IBAction func FollowersPressed(_ sender: UITapGestureRecognizer) {
+//
+//        UIView.animate(withDuration: 1) {
+//            self.FollowersStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+//            self.FollowersStack.layer.backgroundColor = UIColor.clear.cgColor
+//        }
+//        guard let CurrentUser = CU else {return}
+//        guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
+//            assertionFailure("Cannot find ViewController")
+//            return
+//        }
+//        UserList.List = CurrentUser.followers
+//        navigationController?.pushViewController(UserList, animated: true)
+//    }
     @objc func Follow_Unfollow(){
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let FollowAction = UIAlertAction(title: "Follow", style: .default){
@@ -82,7 +92,7 @@ class ProfileViewController: UIViewController {
             guard let CurrentUser = Core.currentUser else{return}
             guard let unfollowid = self.OU?.id else {return}
             CurrentUser.unfollowUser(withId: unfollowid) { (_) in}
-            
+
         }
         let CancelAction = UIAlertAction(title: "Cancel", style: .cancel){
             UIAlertAction in
@@ -94,107 +104,72 @@ class ProfileViewController: UIViewController {
         self.present(alert, animated: true)
 
     }
-    func Cosmetic(){
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController!.navigationBar.isTranslucent = true
-        ProfileImage.layer.borderWidth = 1
-        ProfileImage.layer.masksToBounds = true
-        ProfileImage.layer.borderColor = UIColor.black.cgColor
-        ProfileImage.layer.cornerRadius = ProfileImage.frame.height/2
-        ProfileImage.clipsToBounds = true
-        
-        FollowersStack.layer.borderWidth = 0
-        FollowersStack.layer.masksToBounds = true
-        FollowersStack.layer.borderColor = UIColor.black.cgColor
-        FollowersStack.layer.cornerRadius = ProfileImage.frame.height/16
-        FollowersStack.clipsToBounds = true
-        
-        FollowingStack.layer.borderWidth = 0
-        FollowingStack.layer.masksToBounds = true
-        FollowingStack.layer.borderColor = UIColor.black.cgColor
-        FollowingStack.layer.cornerRadius = ProfileImage.frame.height/16
-        FollowingStack.clipsToBounds = true
-        
+    func Cosmetic(View:BasicProfileView){
+//        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        self.navigationController!.navigationBar.shadowImage = UIImage()
+//        self.navigationController!.navigationBar.isTranslucent = true
+        View.ProfileImage.layer.borderWidth = 1
+        View.ProfileImage.layer.masksToBounds = true
+        View.ProfileImage.layer.borderColor = UIColor.black.cgColor
+        View.ProfileImage.layer.cornerRadius = View.ProfileImage.frame.height/2
+        View.ProfileImage.clipsToBounds = true
+
+        View.FollowersStack.layer.borderWidth = 0
+        View.FollowersStack.layer.masksToBounds = true
+        View.FollowersStack.layer.borderColor = UIColor.black.cgColor
+        View.FollowersStack.layer.cornerRadius = View.FollowersStack.frame.height/8
+        View.FollowersStack.clipsToBounds = true
+
+        View.FollowingStack.layer.borderWidth = 0
+        View.FollowingStack.layer.masksToBounds = true
+        View.FollowingStack.layer.borderColor = UIColor.black.cgColor
+        View.FollowingStack.layer.cornerRadius = View.FollowingStack.frame.height/8
+        View.FollowingStack.clipsToBounds = true
+
 
     }
-
-    
-    func DisplayUserInfo(){
+//
+//
+    func DisplayUserInfo(View:BasicProfileView){
         guard let CurrentUser = CU else {return}
         //name
         if let displayname = CurrentUser.displayName {
-            Name.text = displayname
+            View.DisplayName.text = displayname
         }else {
-            Name.text = "please set a name"
+            View.DisplayName.text = "please set a name"
         }
         if let Bio = CurrentUser.bio{
-            BioDisplay.text = Bio
+            View.Bio.text = Bio
         }else{
-            BioDisplay.text = "empty person"
+            View.Bio.text = "empty person"
         }
         //profile image
-        LoadImage()
-        FollowingCount.text = String(CurrentUser.followings.count)
-        FollowerCount.text = String(CurrentUser.followers.count)
+        LoadImage(View: View)
+        View.FollowingCount.text = String(CurrentUser.followings.count)
+        View.FollowersCount.text = String(CurrentUser.followers.count)
         if !isSelf{
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(Follow_Unfollow))
         }
     }
-    @IBAction func EditPressed(_ sender: UIBarButtonItem) {
+    @IBAction func Editpress(_ sender: Any) {
         guard let ProfileEditPageController = storyboard?.instantiateViewController(withIdentifier: "PEPage") as? ProfileEditPage else {
             assertionFailure("Cannot find ViewController")
             return
         }
         navigationController?.pushViewController(ProfileEditPageController, animated: true)
     }
-    
-   
-
 }
-extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: RecipePreviews.frame.width-8, height: RecipePreviews.frame.height-8)
-        }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let CurrentUser = CU else{
-            let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
-            emptyLabel.text = "If you see this error please logout and login again"
-            emptyLabel.textAlignment = NSTextAlignment.center
-            self.RecipePreviews.backgroundView = emptyLabel
-            return 0}
-        if(CurrentUser.recipes.count == 0){
-            let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
-            emptyLabel.text = "No Recipe Yet"
-            emptyLabel.textAlignment = NSTextAlignment.center
-            self.RecipePreviews.backgroundView = emptyLabel
-            return 0
-        }else{
-            return CurrentUser.recipes.count
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PreviewCell", for: indexPath) as! RecipePreviewCell
-        guard let CurrentUser = CU else{return cell}
-        if CurrentUser.recipes[indexPath.row] != ""{
-            cell.Title.text = CurrentUser.recipes[indexPath.row]
-        }else {
-            cell.Title.text = "Untitled"
-        }
-       
-        return cell
-    }
+extension ProfileViewController{
 
-    func LoadImage() {
+
+    func LoadImage(View:BasicProfileView) {
         guard let currentUser = Core.currentUser, let currId = currentUser.id else {
             return
         }
-        
+
         let myStorage = CloudStorage(.profileImage)
         myStorage.child(currId + ".jpeg")
-        
-        self.ProfileImage.sd_setImage(with: myStorage.fileRef,
+        View.ProfileImage.sd_setImage(with: myStorage.fileRef,
                                   placeholderImage: PlaceholderImage.imageWith(name: currentUser.displayName),
                                   completion: nil)
     }
