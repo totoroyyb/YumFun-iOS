@@ -30,7 +30,6 @@ class ProfileEditPage: UITableViewController {
     
     fileprivate func DisplayInfo(){
         guard let CurrentUser = Core.currentUser else {return}
-        
         LoadImage()
 
         if let displayname = CurrentUser.displayName{

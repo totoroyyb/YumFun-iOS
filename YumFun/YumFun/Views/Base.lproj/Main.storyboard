@@ -622,9 +622,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="429" height="317"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R8x-Ls-BHq">
-                                                    <rect key="frame" x="32" y="4" width="365" height="273"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6Y-as-QFh">
                                                     <rect key="frame" x="194" y="281" width="41.5" height="32"/>
                                                     <constraints>
@@ -639,14 +636,9 @@
                                         <constraints>
                                             <constraint firstItem="Q6Y-as-QFh" firstAttribute="centerX" secondItem="omJ-XG-uEa" secondAttribute="centerX" id="1Do-fA-Qha"/>
                                             <constraint firstAttribute="bottom" secondItem="Q6Y-as-QFh" secondAttribute="bottom" constant="4" id="2da-4t-m3P"/>
-                                            <constraint firstItem="Q6Y-as-QFh" firstAttribute="top" secondItem="R8x-Ls-BHq" secondAttribute="bottom" constant="4" id="E84-93-dfR"/>
-                                            <constraint firstItem="R8x-Ls-BHq" firstAttribute="top" secondItem="omJ-XG-uEa" secondAttribute="topMargin" constant="-4" id="EdV-Lh-oXd"/>
-                                            <constraint firstItem="R8x-Ls-BHq" firstAttribute="leading" secondItem="omJ-XG-uEa" secondAttribute="leadingMargin" constant="24" id="SrZ-dS-Fek"/>
-                                            <constraint firstItem="R8x-Ls-BHq" firstAttribute="centerX" secondItem="Q6Y-as-QFh" secondAttribute="centerX" id="aP8-j0-1sg"/>
                                         </constraints>
                                         <size key="customSize" width="429" height="317"/>
                                         <connections>
-                                            <outlet property="PreviewImage" destination="R8x-Ls-BHq" id="akb-e1-yw9"/>
                                             <outlet property="Title" destination="Q6Y-as-QFh" id="hi4-us-NLD"/>
                                         </connections>
                                     </collectionViewCell>
@@ -1079,14 +1071,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientTableCell" id="0lb-vf-uML" customClass="IngredientTableCell" customModule="YumFun" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="335" height="43"/>
+                                        <rect key="frame" x="0.0" y="28" width="335" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0lb-vf-uML" id="hTJ-az-6p8">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edo-ue-ced">
-                                                    <rect key="frame" x="26" y="11" width="120" height="21"/>
+                                                    <rect key="frame" x="26" y="11" width="120" height="21.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="noC-UV-VY2"/>
                                                     </constraints>
@@ -1095,7 +1087,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfC-f3-L5q">
-                                                    <rect key="frame" x="156" y="11" width="143" height="21"/>
+                                                    <rect key="frame" x="156" y="11" width="143" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

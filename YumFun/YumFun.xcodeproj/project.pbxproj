@@ -62,6 +62,8 @@
 		A1A58BE525F2668F00AE7B1A /* StepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58BE425F2668F00AE7B1A /* StepDetailViewController.swift */; };
 		C54B905F25EF604C00DCE690 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54B905E25EF604C00DCE690 /* UserListViewController.swift */; };
 		C54B906225EF66A800DCE690 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54B906125EF66A800DCE690 /* UserCell.swift */; };
+		C568031C25F425DE003A6AFB /* SegmentedProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C568031B25F425DE003A6AFB /* SegmentedProfileViewController.swift */; };
+		C568031F25F42653003A6AFB /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C568031E25F42653003A6AFB /* ContentViewController.swift */; };
 		C56C5D0F25E4524900DD1CD7 /* RecipePreviewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C5D0C25E4524900DD1CD7 /* RecipePreviewCellController.swift */; };
 		C56C5D1025E4524900DD1CD7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C5D0D25E4524900DD1CD7 /* ProfileViewController.swift */; };
 		C56C5D1125E4524900DD1CD7 /* ProfileEditPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C5D0E25E4524900DD1CD7 /* ProfileEditPage.swift */; };
@@ -137,6 +139,8 @@
 		A1A58BE425F2668F00AE7B1A /* StepDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepDetailViewController.swift; sourceTree = "<group>"; };
 		C54B905E25EF604C00DCE690 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		C54B906125EF66A800DCE690 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		C568031B25F425DE003A6AFB /* SegmentedProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedProfileViewController.swift; sourceTree = "<group>"; };
+		C568031E25F42653003A6AFB /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		C56C5D0C25E4524900DD1CD7 /* RecipePreviewCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipePreviewCellController.swift; sourceTree = "<group>"; };
 		C56C5D0D25E4524900DD1CD7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C56C5D0E25E4524900DD1CD7 /* ProfileEditPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditPage.swift; sourceTree = "<group>"; };
@@ -372,6 +376,8 @@
 				C56C5D0C25E4524900DD1CD7 /* RecipePreviewCellController.swift */,
 				C54B905E25EF604C00DCE690 /* UserListViewController.swift */,
 				C54B906125EF66A800DCE690 /* UserCell.swift */,
+				C568031B25F425DE003A6AFB /* SegmentedProfileViewController.swift */,
+				C568031E25F42653003A6AFB /* ContentViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -622,6 +628,7 @@
 				A1A58BBF25F23B4800AE7B1A /* CookingStepCell.swift in Sources */,
 				2185055925EA8E7F00A9D46C /* Notifiable.swift in Sources */,
 				21F2AE5225E3A39600C6F973 /* User.swift in Sources */,
+				C568031C25F425DE003A6AFB /* SegmentedProfileViewController.swift in Sources */,
 				C5F6B44E25E7218100EA5ACE /* EditDetailController.swift in Sources */,
 				214E7E9025ED11D700B13CE4 /* CollabTestViewController.swift in Sources */,
 				84A8867C25E34EAA004684DA /* SignUpViewController.swift in Sources */,
@@ -629,6 +636,7 @@
 				A1A58A6125ED8FD700AE7B1A /* PreviewView.swift in Sources */,
 				2185055425EA75EC00A9D46C /* Error.swift in Sources */,
 				A1A58A4525ED8FAC00AE7B1A /* DiscoverTextCell.swift in Sources */,
+				C568031F25F42653003A6AFB /* ContentViewController.swift in Sources */,
 				214E812325F16E2500B13CE4 /* UIColor+Utils.swift in Sources */,
 				EFC74C1125EC5F700037CFEC /* InputRecipeIngredientsViewController.swift in Sources */,
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,
@@ -799,7 +807,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BLHQ787DMR;
+				DEVELOPMENT_TEAM = Q65H9K9VZ6;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -807,7 +815,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = chrissy.edu.ucdavcs.189e.CodexCoders.YumFun;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -823,7 +831,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BLHQ787DMR;
+				DEVELOPMENT_TEAM = Q65H9K9VZ6;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -831,7 +839,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = chrissy.edu.ucdavcs.189e.CodexCoders.YumFun;
+				PRODUCT_BUNDLE_IDENTIFIER = chrissy.edu.ucdavcs.189e.CodexCoders.YumFun1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
