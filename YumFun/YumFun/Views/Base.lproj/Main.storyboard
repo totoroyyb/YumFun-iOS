@@ -39,10 +39,9 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6R-TX-wR1" userLabel="Login Button" customClass="LGButton" customModule="LGButton">
-                                <rect key="frame" x="137.5" y="378" width="100" height="45"/>
+                                <rect key="frame" x="40" y="383" width="295" height="45"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="1Zg-qs-b80"/>
                                     <constraint firstAttribute="height" constant="45" id="4Xc-MK-2O5"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -54,21 +53,7 @@
                                         <real key="value" value="21"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="titleString" value="Login"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="rightIconString" value="arrow-circle-o-right"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="rightIconFontName" value="fa"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="spacingTrailing">
-                                        <real key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="spacingTitleIcon">
-                                        <real key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="spacingLeading">
-                                        <real key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="titleFontSize">
-                                        <real key="value" value="18"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="rightIconFontSize">
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
@@ -124,8 +109,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VyN-oT-Cly" secondAttribute="trailing" constant="35" id="EJc-ZW-Gk0"/>
                             <constraint firstItem="pOa-cx-xcq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="I7C-Xi-tmo"/>
                             <constraint firstItem="HEp-OC-7e0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MPj-vn-TnX"/>
-                            <constraint firstItem="v6R-TX-wR1" firstAttribute="top" secondItem="VyN-oT-Cly" secondAttribute="bottom" constant="35" id="MZ3-sx-rNg"/>
+                            <constraint firstItem="v6R-TX-wR1" firstAttribute="top" secondItem="VyN-oT-Cly" secondAttribute="bottom" constant="40" id="MZ3-sx-rNg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MOc-nx-e0Q" secondAttribute="trailing" constant="35" id="UAZ-y6-0ZA"/>
+                            <constraint firstItem="v6R-TX-wR1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="V6D-Ex-4e5"/>
                             <constraint firstItem="l1i-FG-Ape" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="YVO-Aq-Y8f"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HEp-OC-7e0" secondAttribute="bottom" constant="15" id="aW4-8r-tPg"/>
                             <constraint firstItem="VyN-oT-Cly" firstAttribute="top" secondItem="MOc-nx-e0Q" secondAttribute="bottom" constant="20" id="dX9-Qp-UnI"/>
@@ -133,6 +119,7 @@
                             <constraint firstItem="pOa-cx-xcq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mn4-1X-4fB"/>
                             <constraint firstItem="v6R-TX-wR1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qQR-FD-uCN"/>
                             <constraint firstItem="pOa-cx-xcq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="43" id="s2q-u1-pgz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="v6R-TX-wR1" secondAttribute="trailing" constant="40" id="sUS-4N-9Tx"/>
                             <constraint firstItem="l1i-FG-Ape" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tMw-8T-eTO"/>
                             <constraint firstItem="VyN-oT-Cly" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="vtR-nM-uDn"/>
                         </constraints>
@@ -1574,11 +1561,6 @@
             <point key="canvasLocation" x="1815" y="-72"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="v6R-TX-wR1">
-            <size key="intrinsicContentSize" width="10" height="10"/>
-        </designable>
-    </designables>
     <resources>
         <image name="Goopy" width="371" height="384"/>
         <image name="YumFunLogo" width="621" height="222"/>
