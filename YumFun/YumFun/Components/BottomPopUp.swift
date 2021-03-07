@@ -5,7 +5,6 @@
 //  Created by Yibo Yan on 2021/3/4.
 //
 
-import Foundation
 import SwiftEntryKit
 
 var displayMode: EKAttributes.DisplayMode {

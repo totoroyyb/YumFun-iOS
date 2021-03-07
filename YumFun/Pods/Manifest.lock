@@ -213,6 +213,7 @@ PODS:
     - abseil/base/config
     - abseil/meta/type_traits
   - Alamofire (5.4.1)
+  - AnimatedField (2.4.4)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -221,6 +222,7 @@ PODS:
   - BoringSSL-GRPC/Interface (0.0.7)
   - Cards (1.4.0):
     - Player (= 0.13.0)
+  - Comets (0.3.1)
   - Firebase/Auth (6.34.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.9.2)
@@ -335,10 +337,12 @@ PODS:
     - gRPC-Core/Interface (= 1.28.2)
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.5.0)
+  - Hue (5.0.0)
   - JGProgressHUD (2.2)
   - JSSAlertView (5.0.2)
   - Kanna (5.2.4)
   - leveldb-library (1.22)
+  - LGButton (1.1.6)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -347,6 +351,7 @@ PODS:
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
+  - Pastel (0.6.0)
   - Player (0.13.0)
   - PromisesObjC (1.2.12)
   - QCropper (0.1.4)
@@ -370,17 +375,22 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
+  - AnimatedField
   - Cards
+  - Comets
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseFirestoreSwift
   - FirebaseUI/Storage
+  - Hue
   - JGProgressHUD
   - JSSAlertView
   - Kanna (~> 5.2.2)
+  - LGButton
   - NVActivityIndicatorView
+  - Pastel
   - QCropper
   - SwiftEntryKit (= 1.2.7)
   - TensorFlowLiteSwift/CoreML (~> 2.4.0)
@@ -390,8 +400,10 @@ SPEC REPOS:
   trunk:
     - abseil
     - Alamofire
+    - AnimatedField
     - BoringSSL-GRPC
     - Cards
+    - Comets
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -408,12 +420,15 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - Hue
     - JGProgressHUD
     - JSSAlertView
     - Kanna
     - leveldb-library
+    - LGButton
     - nanopb
     - NVActivityIndicatorView
+    - Pastel
     - Player
     - PromisesObjC
     - QCropper
@@ -427,8 +442,10 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  AnimatedField: af48a2d59a50b33b30446267f7f2af274296203c
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Cards: 45ae6bd0eca7b5e8016d3b6cb30b60b04753f68f
+  Comets: ff75eb4658d612af66073bf9fcf6e8bef274817b
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
   FirebaseAuth: c92d49ada7948d1a23466e3db17bc4c2039dddc3
@@ -445,12 +462,15 @@ SPEC CHECKSUMS:
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  Hue: c129cb67be7d093a82bbbc30ce8a96757bf6f37a
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   JSSAlertView: 18345e37d8295827428c12b773b6d75d0dfd0b28
   Kanna: b9d00d7c11428308c7f95e1f1f84b8205f567a8f
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  LGButton: 9f0a7f9d3030e3f504108342f6b66d64a429371b
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  Pastel: 814f081efbe2859c37e65ee44f396e6e5be88619
   Player: 968d8d07d923bcdd6f7e4091c9e306eb44a5f7a4
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   QCropper: 55bce5393c872d5f9c4bfa9ff277e0d98d9f282f
@@ -461,6 +481,6 @@ SPEC CHECKSUMS:
   TensorFlowLiteSwift: f062dc1178120100d825d7799fd9f115b4a37fee
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: 72b198bebd83956e3ed3fc95baf4c9c347735bd5
+PODFILE CHECKSUM: 20c48775424a74c6521aec0341f9d97603915e2d
 
 COCOAPODS: 1.10.1

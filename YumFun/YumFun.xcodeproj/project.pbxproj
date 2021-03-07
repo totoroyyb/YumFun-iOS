@@ -20,6 +20,8 @@
 		214E81C925F2314800B13CE4 /* TopPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E81C825F2314800B13CE4 /* TopPopUp.swift */; };
 		214E81CC25F233D300B13CE4 /* ViewComponentTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214E81CB25F233D300B13CE4 /* ViewComponentTest.storyboard */; };
 		214E81CF25F233E900B13CE4 /* ViewComponentTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E81CE25F233E900B13CE4 /* ViewComponentTestViewController.swift */; };
+		214E84A625F4FFFD00B13CE4 /* LoginInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E84A525F4FFFD00B13CE4 /* LoginInputField.swift */; };
+		214E84A925F508C500B13CE4 /* BgCometEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E84A825F508C500B13CE4 /* BgCometEffect.swift */; };
 		2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052525E9015100A9D46C /* CloudStorageApi.swift */; };
 		2185052925E941BC00A9D46C /* CloudStorageTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */; };
 		2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */; };
@@ -103,6 +105,8 @@
 		214E81C825F2314800B13CE4 /* TopPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPopUp.swift; sourceTree = "<group>"; };
 		214E81CB25F233D300B13CE4 /* ViewComponentTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewComponentTest.storyboard; sourceTree = "<group>"; };
 		214E81CE25F233E900B13CE4 /* ViewComponentTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewComponentTestViewController.swift; sourceTree = "<group>"; };
+		214E84A525F4FFFD00B13CE4 /* LoginInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputField.swift; sourceTree = "<group>"; };
+		214E84A825F508C500B13CE4 /* BgCometEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BgCometEffect.swift; sourceTree = "<group>"; };
 		2185052525E9015100A9D46C /* CloudStorageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageApi.swift; sourceTree = "<group>"; };
 		2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CloudStorageTest.storyboard; sourceTree = "<group>"; };
 		2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageTestViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 			children = (
 				214E80DD25F02C6500B13CE4 /* BottomPopUp.swift */,
 				214E81C825F2314800B13CE4 /* TopPopUp.swift */,
+				214E84A525F4FFFD00B13CE4 /* LoginInputField.swift */,
+				214E84A825F508C500B13CE4 /* BgCometEffect.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -634,6 +640,7 @@
 				EF9A1E3125F2E73100F732D3 /* InputRecipeStepsViewController.swift in Sources */,
 				A137B1BA25ED4EA2009A661D /* Utility.swift in Sources */,
 				C54B906225EF66A800DCE690 /* UserCell.swift in Sources */,
+				214E84A625F4FFFD00B13CE4 /* LoginInputField.swift in Sources */,
 				21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */,
 				A1A58A5E25ED8FD700AE7B1A /* CVPixelBufferExtension.swift in Sources */,
 				214E81CF25F233E900B13CE4 /* ViewComponentTestViewController.swift in Sources */,
@@ -653,6 +660,7 @@
 				C57662BB25DBF9D600642CF2 /* AppDelegate.swift in Sources */,
 				A1A58A6125ED8FD700AE7B1A /* PreviewView.swift in Sources */,
 				2185055425EA75EC00A9D46C /* Error.swift in Sources */,
+				214E84A925F508C500B13CE4 /* BgCometEffect.swift in Sources */,
 				A1A58A4525ED8FAC00AE7B1A /* DiscoverTextCell.swift in Sources */,
 				214E812325F16E2500B13CE4 /* UIColor+Utils.swift in Sources */,
 				EFC74C1125EC5F700037CFEC /* InputRecipeIngredientsViewController.swift in Sources */,

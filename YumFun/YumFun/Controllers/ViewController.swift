@@ -7,7 +7,10 @@
 
 import UIKit
 import Firebase
-
+import AnimatedField
+import Pastel
+import Hue
+import LGButton
 
 let testFirestore = false
 let testCloudStorage = false
@@ -16,82 +19,111 @@ let testCollab = false
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var errorContainer: UILabel!
+    @IBOutlet weak var bgEffectView: UIView!
+    @IBOutlet weak var emailField: AnimatedField!
+    @IBOutlet weak var passwordField: AnimatedField!
+    @IBOutlet weak var bottomHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var loginButton: LGButton!
+    
+    var inCurrentView = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBgGradientEffect()
+//        addCometEffect(for: self.bgEffectView)
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        // Do any additional setup after loading the view.
-        emailField.becomeFirstResponder()
-        //if there is a user already logged in, skip login
-//        if FirebaseAuth.Auth.auth().currentUser != nil {
-//            self.navToHomeView()
-//        }
-        emailField.layer.shadowColor = UIColor.black.cgColor
-        emailField.layer.shadowOffset = CGSize(width: 5, height: 5)
-        emailField.layer.shadowRadius = 5
-        emailField.layer.shadowOpacity = 1.0
-        passwordField.layer.shadowColor = UIColor.black.cgColor
-        passwordField.layer.shadowOffset = CGSize(width: 5, height: 5)
-        passwordField.layer.shadowRadius = 5
-        passwordField.layer.shadowOpacity = 1.0
+        
+        setupEmailField()
+        setupPasswordField()
+        
+        emailField.dataSource = self
+        passwordField.dataSource = self
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+        
+        _ = emailField.becomeFirstResponder()
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let size = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+
+            if bottomHeightConstraint.constant == 15 {
+                bottomHeightConstraint.constant += size.height
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.view.layoutIfNeeded()
+                })
+            }
+        }
+
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if bottomHeightConstraint.constant != 15 {
+            bottomHeightConstraint.constant = 15
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
     }
 
-    @IBAction func didTapScreen(_ sender: Any){
-        emailField.resignFirstResponder()
-        passwordField.resignFirstResponder()
+    @IBAction func didTapScreen() {
+        _ = emailField.resignFirstResponder()
+        _ = passwordField.resignFirstResponder()
     }
-    @IBAction func testPressed(_ sender: Any) {
-        FirebaseAuth.Auth.auth().signIn(withEmail: "aa@gmail.com", password: "123456", completion: {result, error in
+    
+    @IBAction func didTapButton() {
+        print ("Pressed Log in button")
+        
+        //get the email and username
+        guard let email = emailField.text, !email.isEmpty,
+              let password = passwordField.text, !password.isEmpty else {
+            //add error message later
+//            self.errorContainer.text = "Missing field data"
+            displayWarningTopPopUp(title: "Error", description: "Cannot leave any field empty.")
+            return
+        }
+        
+        loginButton.isLoading = true
+        
+        //If email and password found, Get auth instance and attempt to sign in
+        //if fails, present alert to create account, if user continues, create account
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { [weak self] result, error in
+            
+            guard let self = self, self.inCurrentView else {
+                return
+            }
 
+            //error means it could not sign in due to no accounts found
             if error == nil {
                 Core.setupCurrentUser { (error) in
                     if let error = error {
-                        print("Failed to setup current user: \(error)")
+                        self.loginButton.isLoading = false
+                        let errorMesasge = error.localizedDescription
+                        displayWarningTopPopUp(title: "Error", description: errorMesasge)
                     } else {
                         DispatchQueue.main.async {
+                            self.loginButton.isLoading = false
                             self.navToHomeView()
                         }
                     }
                 }
-                
             } else {
+                self.loginButton.isLoading = false
                 let errorMesasge = error?.localizedDescription
-                self.errorContainer.text = errorMesasge
+                displayWarningTopPopUp(title: "Error", description: errorMesasge ?? "Unknown error is detected.")
                 //if the error is "no account record create the account, else..."
             }
         })
     }
-    
-    @IBAction func didTapButton(_ sender: UIButton){
-        print ("pressed Button")
-        //get the email and username
-        guard let email = emailField.text, !email.isEmpty,
-              let password = passwordField.text, !password.isEmpty else {
-                //add error message later
-                self.errorContainer.text = "Missing field data"
-                return
-        }
-        //If email and password found, Get auth instance and attempt to sign in
-        //if fails, present alert to create account, if user continues, create account
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: {result, error in
-
-            //error means it could not sign in due to no accounts found
-            if error == nil {
-                DispatchQueue.main.async {
-                    self.navToHomeView()
-                }
-            } else {
-                let errorMesasge = error?.localizedDescription
-                self.errorContainer.text = errorMesasge
-                //if the error is "no account record create the account, else..."
-            }
-        })
-    }
-    
-    
     
     func navToHomeView() {
         if testCollab {
@@ -129,6 +161,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func signUpButton(_ sender: UIButton){
+        self.inCurrentView = false
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         guard let signUpViewController = storyboard.instantiateViewController(identifier: "signupView") as? SignUpViewController else {
@@ -137,6 +171,65 @@ class ViewController: UIViewController {
         }
 
         self.navigationController?.pushViewController(signUpViewController, animated: true)
+    }
+    
+    private func setupEmailField() {
+        emailField.format = emailFieldFormat
+        emailField.type = AnimatedFieldType.email
+        emailField.text = ""
+        emailField.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                                 attributes:[.foregroundColor: UIColor.lightGray])
+            
+        /// Keyboard type
+        emailField.keyboardType = UIKeyboardType.emailAddress
+    }
+    
+    private func setupPasswordField() {
+        passwordField.format = passwordFieldFormat
+        passwordField.type = AnimatedFieldType.password(0, 20)
+        passwordField.text = ""
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                                 attributes:[.foregroundColor: UIColor.lightGray])
+        passwordField.keyboardType = UIKeyboardType.alphabet
+        passwordField.isSecure = true
+        passwordField.showVisibleButton = true
+    }
+    
+    private func setupBgGradientEffect() {
+        let pastelView = PastelView(frame: view.bounds)
+        
+        pastelView.startPastelPoint = .bottomLeft
+        pastelView.endPastelPoint = .topRight
+
+        // Custom Duration
+        pastelView.animationDuration = 6
+
+        // Custom Color
+        pastelView.setColors([
+            UIColor(hex: "#7117EA"),
+            UIColor(hex: "#EA6066"),
+            UIColor(hex: "#6078EA"),
+            UIColor(hex: "#57CA85")
+        ])
+
+        pastelView.startAnimation()
+        view.insertSubview(pastelView, at: 0)
+    }
+}
+
+extension ViewController: AnimatedFieldDataSource {
+    func animatedFieldShouldReturn(_ animatedField: AnimatedField) -> Bool {
+        switch animatedField.placeholder {
+        case "Email":
+            _ = emailField.resignFirstResponder()
+            _ = passwordField.becomeFirstResponder()
+        case "Password":
+            _ = passwordField.resignFirstResponder()
+            didTapButton()
+        default:
+            break
+        }
+        return false
     }
 }
 
