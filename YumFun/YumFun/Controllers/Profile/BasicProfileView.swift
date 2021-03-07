@@ -35,9 +35,9 @@ import UIKit
     func commonInit() {
             Bundle.main.loadNibNamed(kCONTENT_XIB_NAME, owner: self, options: nil)
             contentView.fixInView(self)
+        
         }
     
-
 }
 
 extension UIStackView

@@ -13,7 +13,7 @@ class ProfileViewController: SegementSlideDefaultViewController {
     var CU:User?
     var OU:User?
     var isSelf = true
-    
+    var headerOutlet = BasicProfileView()
     
     
     override func segementSlideHeaderView() -> UIView? {
@@ -21,9 +21,39 @@ class ProfileViewController: SegementSlideDefaultViewController {
         let headerView = BasicProfileView()
         Cosmetic(View: headerView)
         DisplayUserInfo(View: headerView)
+        self.headerOutlet = headerView
+        headerView.FollowingStack.addGestureRecognizer(UITapGestureRecognizer(target:self,action: #selector(FollowingPressed)))
+        headerView.FollowersStack.addGestureRecognizer(UITapGestureRecognizer(target:self,action: #selector(FollowersPressed)))
         headerView.translatesAutoresizingMaskIntoConstraints = false
         headerView.heightAnchor.constraint(equalToConstant: view.bounds.height/2).isActive = true
         return headerView
+    }
+    @objc func FollowingPressed(){
+        UIView.animate(withDuration: 1) {
+            self.headerOutlet.FollowingStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+            self.headerOutlet.FollowersStack.layer.backgroundColor = UIColor.clear.cgColor
+               }
+               guard let CurrentUser = CU else {return}
+               guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
+                   assertionFailure("Cannot find ViewController")
+                   return
+               }
+               UserList.List = CurrentUser.followings
+               navigationController?.pushViewController(UserList, animated: true)
+    }
+    @objc func FollowersPressed(){
+        UIView.animate(withDuration: 1) {
+            self.headerOutlet.FollowersStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+            self.headerOutlet.FollowersStack.layer.backgroundColor = UIColor.clear.cgColor
+               }
+               guard let CurrentUser = CU else {return}
+               guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
+                   assertionFailure("Cannot find ViewController")
+                   return
+               }
+               UserList.List = CurrentUser.followers
+               navigationController?.pushViewController(UserList, animated: true)
+        
     }
     override var titlesInSwitcher: [String] {
         return ["My Recipes", "Liked Recipes"]
@@ -49,36 +79,7 @@ class ProfileViewController: SegementSlideDefaultViewController {
         }
         defaultSelectedIndex = 0
         reloadData()
-//        DisplayUserInfo();
     }
-//    @IBAction func FllowingPressed(_ sender: UITapGestureRecognizer) {
-//        UIView.animate(withDuration: 1) {
-//            self.FollowingStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-//            self.FollowingStack.layer.backgroundColor = UIColor.clear.cgColor
-//        }
-//        guard let CurrentUser = CU else {return}
-//        guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
-//            assertionFailure("Cannot find ViewController")
-//            return
-//        }
-//        UserList.List = CurrentUser.followings
-//        navigationController?.pushViewController(UserList, animated: true)
-//    }
-//
-//    @IBAction func FollowersPressed(_ sender: UITapGestureRecognizer) {
-//
-//        UIView.animate(withDuration: 1) {
-//            self.FollowersStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-//            self.FollowersStack.layer.backgroundColor = UIColor.clear.cgColor
-//        }
-//        guard let CurrentUser = CU else {return}
-//        guard let UserList = storyboard?.instantiateViewController(withIdentifier: "UserList") as? UserListViewController else {
-//            assertionFailure("Cannot find ViewController")
-//            return
-//        }
-//        UserList.List = CurrentUser.followers
-//        navigationController?.pushViewController(UserList, animated: true)
-//    }
     @objc func Follow_Unfollow(){
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let FollowAction = UIAlertAction(title: "Follow", style: .default){
@@ -105,9 +106,6 @@ class ProfileViewController: SegementSlideDefaultViewController {
 
     }
     func Cosmetic(View:BasicProfileView){
-//        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        self.navigationController!.navigationBar.shadowImage = UIImage()
-//        self.navigationController!.navigationBar.isTranslucent = true
         View.ProfileImage.layer.borderWidth = 1
         View.ProfileImage.layer.masksToBounds = true
         View.ProfileImage.layer.borderColor = UIColor.black.cgColor
@@ -128,8 +126,6 @@ class ProfileViewController: SegementSlideDefaultViewController {
 
 
     }
-//
-//
     func DisplayUserInfo(View:BasicProfileView){
         guard let CurrentUser = CU else {return}
         //name
