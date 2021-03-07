@@ -337,6 +337,7 @@ PODS:
     - gRPC-Core/Interface (= 1.28.2)
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.5.0)
+  - Hero (1.6.0)
   - Hue (5.0.0)
   - JGProgressHUD (2.2)
   - JSSAlertView (5.0.2)
@@ -384,6 +385,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseFirestoreSwift
   - FirebaseUI/Storage
+  - Hero
   - Hue
   - JGProgressHUD
   - JSSAlertView
@@ -420,6 +422,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - Hero
     - Hue
     - JGProgressHUD
     - JSSAlertView
@@ -462,6 +465,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  Hero: 052b9b9bab68fc4e30cc04e5936eaf0de97b59d3
   Hue: c129cb67be7d093a82bbbc30ce8a96757bf6f37a
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   JSSAlertView: 18345e37d8295827428c12b773b6d75d0dfd0b28
@@ -481,6 +485,6 @@ SPEC CHECKSUMS:
   TensorFlowLiteSwift: f062dc1178120100d825d7799fd9f115b4a37fee
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: 20c48775424a74c6521aec0341f9d97603915e2d
+PODFILE CHECKSUM: 91acea8cd7ce2daa27c81d1bf6c8bd40f9b7d2d8
 
 COCOAPODS: 1.10.1

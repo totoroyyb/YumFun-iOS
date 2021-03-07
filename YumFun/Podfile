@@ -56,6 +56,9 @@ target 'YumFun' do
   # Button Lib
   pod "LGButton"
 
+  # View Transition Lib
+  pod 'Hero'
+
   # Recipe searching and parsing		
   pod 'Alamofire', '~> 5.2'
   pod 'Kanna', '~> 5.2.2'
