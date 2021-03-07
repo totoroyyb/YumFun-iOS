@@ -29,6 +29,14 @@ class ViewController: UIViewController {
 //        if FirebaseAuth.Auth.auth().currentUser != nil {
 //            self.navToHomeView()
 //        }
+        emailField.layer.shadowColor = UIColor.black.cgColor
+        emailField.layer.shadowOffset = CGSize(width: 5, height: 5)
+        emailField.layer.shadowRadius = 5
+        emailField.layer.shadowOpacity = 1.0
+        passwordField.layer.shadowColor = UIColor.black.cgColor
+        passwordField.layer.shadowOffset = CGSize(width: 5, height: 5)
+        passwordField.layer.shadowRadius = 5
+        passwordField.layer.shadowOpacity = 1.0
     }
 
     @IBAction func didTapScreen(_ sender: Any){
