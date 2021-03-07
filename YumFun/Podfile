@@ -59,6 +59,9 @@ target 'YumFun' do
   # View Transition Lib
   pod 'Hero'
 
+  # Email Validator
+  pod 'EmailValidator'
+
   # Recipe searching and parsing		
   pod 'Alamofire', '~> 5.2'
   pod 'Kanna', '~> 5.2.2'

@@ -118,7 +118,6 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="l1i-FG-Ape" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="2Kt-gd-2gY"/>
-                            <constraint firstItem="VyN-oT-Cly" firstAttribute="leading" secondItem="MOc-nx-e0Q" secondAttribute="leading" id="5cX-Ka-RAw"/>
                             <constraint firstItem="VyN-oT-Cly" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7tP-a3-AZb"/>
                             <constraint firstItem="l1i-FG-Ape" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="CMl-ul-nI8"/>
                             <constraint firstItem="MOc-nx-e0Q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="Dps-mW-qOu"/>
@@ -128,7 +127,6 @@
                             <constraint firstItem="v6R-TX-wR1" firstAttribute="top" secondItem="VyN-oT-Cly" secondAttribute="bottom" constant="35" id="MZ3-sx-rNg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MOc-nx-e0Q" secondAttribute="trailing" constant="35" id="UAZ-y6-0ZA"/>
                             <constraint firstItem="l1i-FG-Ape" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="YVO-Aq-Y8f"/>
-                            <constraint firstItem="VyN-oT-Cly" firstAttribute="trailing" secondItem="MOc-nx-e0Q" secondAttribute="trailing" id="Zzi-i0-hBG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HEp-OC-7e0" secondAttribute="bottom" constant="15" id="aW4-8r-tPg"/>
                             <constraint firstItem="VyN-oT-Cly" firstAttribute="top" secondItem="MOc-nx-e0Q" secondAttribute="bottom" constant="20" id="dX9-Qp-UnI"/>
                             <constraint firstItem="MOc-nx-e0Q" firstAttribute="top" secondItem="pOa-cx-xcq" secondAttribute="bottom" constant="20" id="f3r-pq-yL6"/>
@@ -137,7 +135,6 @@
                             <constraint firstItem="pOa-cx-xcq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="43" id="s2q-u1-pgz"/>
                             <constraint firstItem="l1i-FG-Ape" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tMw-8T-eTO"/>
                             <constraint firstItem="VyN-oT-Cly" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="vtR-nM-uDn"/>
-                            <constraint firstItem="MOc-nx-e0Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zSf-HM-VJa"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="zTi-ls-WeS" appends="YES" id="uEm-4f-C7i"/>
@@ -559,25 +556,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9kj-Mq-bCs" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="oEX-Rj-OL8"/>
             </objects>
-            <point key="canvasLocation" x="2727" y="-824"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Ra2-Ot-GdR">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W1W-bM-amQ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IFS-tk-dVJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="erE-EP-yVd" kind="relationship" relationship="rootViewController" id="3SW-4e-OMi"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VfA-En-rOe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1815" y="-827"/>
+            <point key="canvasLocation" x="1814" y="-824"/>
         </scene>
         <!--Me-->
         <scene sceneID="6lF-y7-qqc">
