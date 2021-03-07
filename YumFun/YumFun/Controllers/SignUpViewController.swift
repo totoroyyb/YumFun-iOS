@@ -7,13 +7,18 @@
 
 import UIKit
 import Firebase
+import Hero
+
 class SignUpViewController: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorContainer: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.navigationController?.hero.isEnabled = true
+//        self.navigationController?.hero.navigationAnimationType = .zoom
     }
     
     @IBAction func createAccountButton(_ sender: UIButton){

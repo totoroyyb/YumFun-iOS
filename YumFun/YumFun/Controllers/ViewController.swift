@@ -11,6 +11,9 @@ import AnimatedField
 import Pastel
 import Hue
 import LGButton
+import EmailValidator
+import JGProgressHUD
+import SwiftEntryKit
 
 let testFirestore = false
 let testCloudStorage = false
@@ -26,9 +29,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginButton: LGButton!
     
     var inCurrentView = true
+    var currentSignUpEmail: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupBgGradientEffect()
 //        addCometEffect(for: self.bgEffectView)
         
@@ -161,16 +166,54 @@ class ViewController: UIViewController {
     }
     
     @IBAction func signUpButton(_ sender: UIButton){
-        self.inCurrentView = false
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        guard let signUpViewController = storyboard.instantiateViewController(identifier: "signupView") as? SignUpViewController else {
-            assertionFailure("Cannot instantiate HomeViewController.")
-            return
+        displayBottomUpSignUpForm(prefillEmail: self.currentSignUpEmail) { signupEmailField, signupPasswordField in
+            guard let currentView = SwiftEntryKit.window?.rootViewController?.view else {
+                return
+            }
+            
+            let enteredEmail = signupEmailField.textContent
+            let enteredPassword = signupPasswordField.textContent
+            
+            if enteredEmail.isEmpty || enteredPassword.isEmpty {
+                displayWarningTopPopUp(title: "Error", description: "Cannot leave any field empty.")
+                return
+            }
+            
+            if !EmailValidator.validate(email: enteredEmail, allowTopLevelDomains: true, allowInternational: true) {
+                displayWarningTopPopUp(title: "Error", description: "It seems that this email address is not valid.")
+                return
+            }
+            
+            let hud = JGProgressHUD()
+            hud.textLabel.text = "Loading"
+            hud.show(in: currentView, animated: true)
+            
+            User.createUser(withEmail: enteredEmail, withPassword: enteredPassword) { result, error in
+                guard error == nil else {
+                    //find the type of error and give back the error message
+                    let errorMesasge = error?.localizedDescription
+                    
+                    self.currentSignUpEmail = enteredEmail
+                    
+                    DispatchQueue.main.async {
+                        hud.dismiss()
+                        hud.removeFromSuperview()
+                        displayWarningTopPopUp(title: "Error", description: errorMesasge ?? "Unknown Error.")
+                    }
+                    return
+                }
+                
+                self.currentSignUpEmail = nil
+                
+                DispatchQueue.main.async {
+                    hud.dismiss()
+                    hud.removeFromSuperview()
+                    SwiftEntryKit.dismiss()
+                    self.emailField.text = enteredEmail
+                    displaySuccessBottomPopUp(title: "Congrats!", description: "I have successfully signed up an account with email \(enteredEmail)")
+                }
+            }
         }
-
-        self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
     
     private func setupEmailField() {

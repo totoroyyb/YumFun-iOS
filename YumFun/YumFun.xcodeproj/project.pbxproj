@@ -22,6 +22,8 @@
 		214E81CF25F233E900B13CE4 /* ViewComponentTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E81CE25F233E900B13CE4 /* ViewComponentTestViewController.swift */; };
 		214E84A625F4FFFD00B13CE4 /* LoginInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E84A525F4FFFD00B13CE4 /* LoginInputField.swift */; };
 		214E84A925F508C500B13CE4 /* BgCometEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E84A825F508C500B13CE4 /* BgCometEffect.swift */; };
+		214E85FA25F5539D00B13CE4 /* BottomUpForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E85F925F5539D00B13CE4 /* BottomUpForm.swift */; };
+		214E85FD25F5547E00B13CE4 /* FormFieldPresetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E85FC25F5547E00B13CE4 /* FormFieldPresetFactory.swift */; };
 		2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052525E9015100A9D46C /* CloudStorageApi.swift */; };
 		2185052925E941BC00A9D46C /* CloudStorageTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */; };
 		2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */; };
@@ -107,6 +109,8 @@
 		214E81CE25F233E900B13CE4 /* ViewComponentTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewComponentTestViewController.swift; sourceTree = "<group>"; };
 		214E84A525F4FFFD00B13CE4 /* LoginInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputField.swift; sourceTree = "<group>"; };
 		214E84A825F508C500B13CE4 /* BgCometEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BgCometEffect.swift; sourceTree = "<group>"; };
+		214E85F925F5539D00B13CE4 /* BottomUpForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomUpForm.swift; sourceTree = "<group>"; };
+		214E85FC25F5547E00B13CE4 /* FormFieldPresetFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormFieldPresetFactory.swift; sourceTree = "<group>"; };
 		2185052525E9015100A9D46C /* CloudStorageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageApi.swift; sourceTree = "<group>"; };
 		2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CloudStorageTest.storyboard; sourceTree = "<group>"; };
 		2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageTestViewController.swift; sourceTree = "<group>"; };
@@ -200,10 +204,12 @@
 		214E80DC25F02C5600B13CE4 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				214E85FC25F5547E00B13CE4 /* FormFieldPresetFactory.swift */,
 				214E80DD25F02C6500B13CE4 /* BottomPopUp.swift */,
 				214E81C825F2314800B13CE4 /* TopPopUp.swift */,
 				214E84A525F4FFFD00B13CE4 /* LoginInputField.swift */,
 				214E84A825F508C500B13CE4 /* BgCometEffect.swift */,
+				214E85F925F5539D00B13CE4 /* BottomUpForm.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -672,8 +678,10 @@
 				214E804A25F010CF00B13CE4 /* CustomOverlay.swift in Sources */,
 				C56C5D0F25E4524900DD1CD7 /* RecipePreviewCellController.swift in Sources */,
 				C54B905F25EF604C00DCE690 /* UserListViewController.swift in Sources */,
+				214E85FD25F5547E00B13CE4 /* FormFieldPresetFactory.swift in Sources */,
 				8432C50025F45CF500564AD2 /* TimerViewController.swift in Sources */,
 				EF9A1E3D25F2E76F00F732D3 /* ChooseRecipeInputViewController.swift in Sources */,
+				214E85FA25F5539D00B13CE4 /* BottomUpForm.swift in Sources */,
 				A1A58BE525F2668F00AE7B1A /* StepDetailViewController.swift in Sources */,
 				A1A58A4625ED8FAC00AE7B1A /* DiscoverImageCell.swift in Sources */,
 				A1A58A4D25ED8FBA00AE7B1A /* PrepareViewController.swift in Sources */,
@@ -835,7 +843,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BLHQ787DMR;
+				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -859,7 +867,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BLHQ787DMR;
+				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
