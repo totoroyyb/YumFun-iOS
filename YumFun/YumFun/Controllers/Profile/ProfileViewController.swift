@@ -66,7 +66,17 @@ class ProfileViewController: SegementSlideDefaultViewController {
     }
 
     override func segementSlideContentViewController(at index: Int) -> SegementSlideContentScrollViewDelegate? {
-        return ContentViewController()
+        let layout = UICollectionViewFlowLayout()
+        guard let CurrentUser = CU else{return nil}
+        let content = ContentViewController(collectionViewLayout: layout)
+        if title == "My Recipes"{
+            content.List = CurrentUser.recipes
+        }else {
+            content.List = CurrentUser.likedRecipes
+        }
+        
+        
+        return content
     }
     
     
