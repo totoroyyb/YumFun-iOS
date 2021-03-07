@@ -28,6 +28,12 @@ class ProfileViewController: SegementSlideDefaultViewController {
         headerView.heightAnchor.constraint(equalToConstant: view.bounds.height/2).isActive = true
         return headerView
     }
+    
+    override var switcherConfig: SegementSlideDefaultSwitcherConfig {
+        var config = super.switcherConfig
+        config.type = .tab
+        return config
+    }
     @objc func FollowingPressed(){
         UIView.animate(withDuration: 1) {
             self.headerOutlet.FollowingStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
