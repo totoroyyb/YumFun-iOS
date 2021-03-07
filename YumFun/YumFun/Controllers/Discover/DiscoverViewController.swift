@@ -29,6 +29,10 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(viewSetup), name: .userDidSet, object: nil)
+        
+        if Core.currentUser != nil {
+            viewSetup()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -54,7 +58,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         let layout = self.collectionView.collectionViewLayout
         if let flowLayout = layout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = CGSize(
-                width: collectionView.widestCellWidth - flowLayout.sectionInset.left - flowLayout.sectionInset.right,
+                width: self.collectionView.frame.width - 40,
                 // Make the height a reasonable estimate to
                 // ensure the scroll bar remains smooth
                 height: 300
@@ -71,6 +75,11 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // TODO: integrate with view model
         return recipes.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.collectionView.frame.width - 40,
+                      height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

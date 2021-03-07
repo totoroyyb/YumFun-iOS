@@ -104,9 +104,17 @@ class ViewController: UIViewController {
 
             //error means it could not sign in due to no accounts found
             if error == nil {
-                DispatchQueue.main.async {
-                    self.loginButton.isLoading = false
-                    self.navToHomeView()
+                Core.setupCurrentUser { (error) in
+                    if let error = error {
+                        self.loginButton.isLoading = false
+                        let errorMesasge = error.localizedDescription
+                        displayWarningTopPopUp(title: "Error", description: errorMesasge)
+                    } else {
+                        DispatchQueue.main.async {
+                            self.loginButton.isLoading = false
+                            self.navToHomeView()
+                        }
+                    }
                 }
             } else {
                 self.loginButton.isLoading = false
@@ -169,7 +177,8 @@ class ViewController: UIViewController {
         emailField.format = emailFieldFormat
         emailField.type = AnimatedFieldType.email
         emailField.text = ""
-        emailField.placeholder = "Email"
+        emailField.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                                 attributes:[.foregroundColor: UIColor.lightGray])
             
         /// Keyboard type
         emailField.keyboardType = UIKeyboardType.emailAddress
@@ -179,7 +188,8 @@ class ViewController: UIViewController {
         passwordField.format = passwordFieldFormat
         passwordField.type = AnimatedFieldType.password(0, 20)
         passwordField.text = ""
-        passwordField.placeholder = "Password"
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                                 attributes:[.foregroundColor: UIColor.lightGray])
         passwordField.keyboardType = UIKeyboardType.alphabet
         passwordField.isSecure = true
         passwordField.showVisibleButton = true
