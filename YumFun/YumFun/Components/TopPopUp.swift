@@ -5,7 +5,6 @@
 //  Created by Yibo Yan on 2021/3/5.
 //
 
-import Foundation
 import SwiftEntryKit
 
 func displayWarningTopPopUp(title: String,
@@ -67,7 +66,7 @@ func showNotificationMessage(attributes: EKAttributes,
 
 var topPopUpWarningAttribute: EKAttributes {
     var attribute = topPopUpAttribute
-    attribute.displayDuration = 5
+    attribute.displayDuration = 4
     attribute.hapticFeedbackType = .warning
 //    attribute.entryBackground = .gradient(
 //        gradient: .init(

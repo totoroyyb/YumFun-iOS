@@ -12,15 +12,14 @@ class InputRecipeIngredientsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var recipe: Recipe = Recipe()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Step 3/5"
+        navigationItem.title = "Progress 3/5"
         tableView.delegate = self
         tableView.dataSource = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(pushInputRecipeStepsViewController))
     }
     
-
     @IBAction func addIngredientClicked(_ sender: Any) {
         if let addIngredientViewController = storyboard?.instantiateViewController(identifier: "editIngredientVC") as? EditIngredientViewController {
         
@@ -41,12 +40,24 @@ class InputRecipeIngredientsViewController: UIViewController {
         print("Ingredient updated")
         self.tableView.reloadData()
     }
+    
+    @objc func pushInputRecipeStepsViewController() {
+        let storyboard = UIStoryboard(name: "RecipeInput", bundle: nil)
+        guard let inputRecipeStepsViewController = storyboard.instantiateViewController(identifier: "inputRecipeStepsVC") as InputRecipeStepsViewController? else {
+            assertionFailure("couln't get vc")
+            return
+        }
+        
+        inputRecipeStepsViewController.recipe = recipe
+        navigationController?.pushViewController(inputRecipeStepsViewController, animated: true)
+    }
 }
 
 class IngredientTableCell: UITableViewCell {
         
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var unitLabel: UILabel!
+    var isChecked: Bool = false
 }
 
 extension InputRecipeIngredientsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -61,7 +72,7 @@ extension InputRecipeIngredientsViewController: UITableViewDataSource, UITableVi
         }
         let ingredient = recipe.ingredients[indexPath.row]
         unwrappedCell.nameLabel.text = ingredient.name
-        unwrappedCell.unitLabel.text = ingredient.amount.description + " " + ingredient.unit.toString()
+//        unwrappedCell.unitLabel.text = ingredient.amount.description + " " + ingredient.unit.toString()
         
         return unwrappedCell
     }
@@ -92,7 +103,7 @@ extension InputRecipeIngredientsViewController: UITableViewDataSource, UITableVi
             editIngredientViewController.name = ingredient.name
             editIngredientViewController.amount = ingredient.amount
             editIngredientViewController.selectedIngredientIndex = index
-            editIngredientViewController.isEditingIngredient = true
+            editIngredientViewController.isPreviousIngredient = true
             var unitIndex = 0
             for unit in MeasureUnit.allCases {
                 if unit == ingredient.unit {

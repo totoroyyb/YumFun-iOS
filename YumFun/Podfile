@@ -42,4 +42,29 @@ target 'YumFun' do
   pod 'SegementSlide', '3.0.1'
   # App Store Card View
   pod 'Cards'
+  
+  # Animated Text Field
+  pod 'AnimatedField'
+
+  # Comet BG animated
+  pod "Comets"
+
+  # Gradient Color
+  pod "Pastel"
+
+  # Helper Color Utility
+  pod 'Hue'
+
+  # Button Lib
+  pod "LGButton"
+
+  # View Transition Lib
+  pod 'Hero'
+
+  # Email Validator
+  pod 'EmailValidator'
+
+  # Recipe searching and parsing		
+  pod 'Alamofire', '~> 5.2'
+  pod 'Kanna', '~> 5.2.2'
 end

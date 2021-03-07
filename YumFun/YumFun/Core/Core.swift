@@ -38,8 +38,31 @@ class Core {
      */
     static func setupCurrentUser(completion: @escaping (Error?) -> Void) {
         self.isFetching = true
-        if let user = Auth.auth().currentUser {
-            User.get(named: user.uid) { (error, user, _) in
+        if let authUser = Auth.auth().currentUser {
+            User.get(named: authUser.uid) { (error, user, snapshot) in
+                guard let snapshot = snapshot else {
+                    DispatchQueue.main.async {
+                        self.isFetching = false
+                        completion(error)
+                    }
+                    return
+                }
+                
+                // If user info is created in the firebase authen db, but not in the firestore db.
+                if !snapshot.exists {
+                    let newUser = User(fromAuthUser: authUser)
+                    User.post(with: newUser, named: authUser.uid) { (error, _) in
+                        if let error = error {
+                            completion(error)
+                        } else {
+                            Core.setupCurrentUser(completion: completion)
+                        }
+                    }
+                    self.isFetching = false
+                    return
+                }
+                
+                
                 guard let user = user, error == nil else {
                     DispatchQueue.main.async {
                         self.isFetching = false

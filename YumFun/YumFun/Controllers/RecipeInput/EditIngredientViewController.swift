@@ -18,7 +18,7 @@ class EditIngredientViewController: UIViewController {
     var selectedUnitIndex: Int = 0
     var name: String?
     var amount: Double?
-    var isEditingIngredient: Bool = false
+    var isPreviousIngredient: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing)))
@@ -28,7 +28,7 @@ class EditIngredientViewController: UIViewController {
     }
     
     func initialize() {
-        if !isEditingIngredient {
+        if !isPreviousIngredient {
             saveButton.isUserInteractionEnabled = false
             saveButton.backgroundColor = .gray
         }
@@ -74,7 +74,7 @@ class EditIngredientViewController: UIViewController {
         }
         let selectedUnit = MeasureUnit.allCases[unitPicker.selectedRow(inComponent: 0)]
         let ingredient = Ingredient(name: nameTextField.text ?? "", amount: Double(amountTextField.text ?? "0") ?? 0, unit: selectedUnit)
-        if isEditingIngredient {
+        if isPreviousIngredient {
             inputVC.updateIngredient(ingredient, selectedIngredientIndex)
         } else {
             inputVC.addIngredient(ingredient)

@@ -20,7 +20,9 @@ struct Duration: Codable {
     var prep: Int = 0
     var cook: Int?
     var rest: Int?
-    
+    var totalTimeLabel: String?
+    var cookLabel: String?
+    var restLabel: String?
     init(prepTime: Int) {
         self.prep = prepTime
     }
@@ -104,7 +106,7 @@ enum MeasureUnit: String, Codable, CaseIterable {
     }
 }
 
-struct Ingredient: Codable {
+struct Ingredient: Codable, Equatable {
     var name: String
     var amount: Double
     var unit: MeasureUnit
@@ -115,7 +117,7 @@ struct Ingredient: Codable {
     }
 }
 
-struct Utensil: Codable {
+struct Utensil: Codable, Equatable {
     var name: String
     var amount: Int = 1
 }
