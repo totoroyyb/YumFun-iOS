@@ -19,13 +19,20 @@ class ContentViewController: UICollectionViewController, SegementSlideContentScr
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileRecipeCell", for: indexPath) as! ProfileRecipeCell
         cell.PreviewImage.image = #imageLiteral(resourceName: "Goopy")
         cell.Title.text = "placveholder"
-//        Recipe.get(named: List[indexPath.row]) { (Error, Recipe, DocumentSnapshot) in
-//            if Error == nil{
-//                guard let recipe = Recipe else {return}
-//
-//
-//            }
-//        }
+        if List.count > 0{
+            Recipe.get(named: List[indexPath.row]) { (Error, Recipe, DocumentSnapshot) in
+                if Error == nil{
+                    guard let recipeid = Recipe?.id else {return}
+                    let myStorage = CloudStorage(.recipeImage)
+                    myStorage.child(recipeid + ".jpeg")
+                    cell.PreviewImage.sd_setImage(with: myStorage.fileRef,placeholderImage: nil,completion: nil)
+                    guard let recipetitle = Recipe?.title else {return}
+                    cell.Title.text = recipetitle
+
+                }
+            }
+        }
+
         return cell
     }
     
@@ -37,7 +44,7 @@ class ContentViewController: UICollectionViewController, SegementSlideContentScr
         
         super.viewDidLoad()
         collectionView.register(UINib(nibName: "ProfileRecipeCell", bundle: nil), forCellWithReuseIdentifier: "ProfileRecipeCell")
+        collectionView.backgroundColor = UIColor.clear
         self.collectionView.reloadData()
     }
-    
 }

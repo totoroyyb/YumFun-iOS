@@ -74,12 +74,11 @@ class ProfileViewController: SegementSlideDefaultViewController {
         )
         guard let CurrentUser = CU else{return nil}
         let content = ContentViewController(collectionViewLayout: layout)
-        if title == "My Recipes"{
+        if index == 0{
             content.List = CurrentUser.recipes
-        }else {
+        }else if index == 1{
             content.List = CurrentUser.likedRecipes
         }
-        
         
         return content
     }
