@@ -66,7 +66,12 @@ class ProfileViewController: SegementSlideDefaultViewController {
     }
 
     override func segementSlideContentViewController(at index: Int) -> SegementSlideContentScrollViewDelegate? {
-        let layout = UICollectionViewFlowLayout()
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.estimatedItemSize = CGSize(
+            width: UIScreen.main.bounds.width - 40,
+            height: 300
+        )
         guard let CurrentUser = CU else{return nil}
         let content = ContentViewController(collectionViewLayout: layout)
         if title == "My Recipes"{
