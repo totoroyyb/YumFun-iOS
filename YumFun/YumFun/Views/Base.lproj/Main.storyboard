@@ -1192,19 +1192,19 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oI-N4-vD8">
                                                 <rect key="frame" x="20" y="78" width="335" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="text_high_emphasis"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serving Size:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqi-ph-WGT">
                                                 <rect key="frame" x="20" y="241.5" width="103.5" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="text_high_emphasis"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Serving_Size&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKO-Rv-QJ7">
                                                 <rect key="frame" x="234.5" y="241.5" width="120.5" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="text_medium_emphasis"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dish Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6M-RZ-GzJ">
@@ -1213,20 +1213,20 @@
                                                     <constraint firstAttribute="width" constant="85" id="AKM-9q-TPK"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="text_high_emphasis"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Dish_Type&gt;" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1R-FL-OWI">
                                                 <rect key="frame" x="254.5" y="293" width="100.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="text_medium_emphasis"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6R-vm-uxB">
                                                 <rect key="frame" x="20" y="110" width="335" height="101.5"/>
                                                 <string key="text">Here is some general description of the recipe. Here is some general description of the recipe. Here is some general description of the recipe. Here is some general description of the recipe.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="text_medium_emphasis"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRK-2Q-aSx">
@@ -1235,49 +1235,34 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGn-EN-WaX">
-                                                <rect key="frame" x="257" y="44" width="98" height="42"/>
-                                                <color key="backgroundColor" red="0.74029872109999995" green="0.81361559939999994" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="98" id="5Oa-H3-vHF"/>
-                                                    <constraint firstAttribute="height" constant="42" id="M9g-bQ-mBm"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
-                                                <state key="normal" title="Cook Now!">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="cookPressed:" destination="khE-6G-hSq" eventType="touchUpInside" id="sjK-oT-UGA"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cuisine:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOY-EI-sWI">
                                                 <rect key="frame" x="20" y="343.5" width="64.5" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="64.670000000000002" id="HFA-Cd-hWw"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="text_high_emphasis"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Cuisine&gt;, &lt;Cuisine&gt;" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0m-Ei-76I">
                                                 <rect key="frame" x="92.5" y="343.5" width="262.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="text_medium_emphasis"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Occasion:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="166-Qm-BUb">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Occasion:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="166-Qm-BUb">
                                                 <rect key="frame" x="20" y="394" width="79.5" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="79.670000000000002" id="a8u-GZ-LmA"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="text_high_emphasis"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Occasion&gt;, &lt;Occasion&gt;" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sym-9N-5NE">
                                                 <rect key="frame" x="107.5" y="394" width="247.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="text_medium_emphasis"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -1333,11 +1318,9 @@
                         <constraints>
                             <constraint firstItem="BAd-ac-R87" firstAttribute="trailing" secondItem="oFr-yY-y43" secondAttribute="trailing" id="1J7-4a-VTE"/>
                             <constraint firstItem="BAd-ac-R87" firstAttribute="leading" secondItem="oFr-yY-y43" secondAttribute="leading" id="3Of-3V-Y5i"/>
-                            <constraint firstItem="oFr-yY-y43" firstAttribute="trailing" secondItem="FGn-EN-WaX" secondAttribute="trailing" constant="20" id="6vw-nk-FLg"/>
                             <constraint firstItem="BAd-ac-R87" firstAttribute="top" secondItem="oFr-yY-y43" secondAttribute="top" id="CdA-5N-fwj"/>
                             <constraint firstItem="BAd-ac-R87" firstAttribute="top" secondItem="oFr-yY-y43" secondAttribute="top" id="Q4h-qT-zv1"/>
                             <constraint firstItem="BAd-ac-R87" firstAttribute="bottom" secondItem="oFr-yY-y43" secondAttribute="bottom" id="TJ8-G1-2hH"/>
-                            <constraint firstItem="FGn-EN-WaX" firstAttribute="top" secondItem="oFr-yY-y43" secondAttribute="top" constant="60" id="YyY-He-Jb4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Recipe Detail" id="Eg6-xB-SkT"/>
@@ -1345,7 +1328,6 @@
                     <connections>
                         <outlet property="authorName" destination="C64-91-w8d" id="00A-xz-4A4"/>
                         <outlet property="contentView" destination="o18-2r-eCT" id="vzo-4y-WNA"/>
-                        <outlet property="cookButton" destination="FGn-EN-WaX" id="yg4-Vt-2Qk"/>
                         <outlet property="cuisine" destination="D0m-Ei-76I" id="JLC-cg-aMJ"/>
                         <outlet property="dishType" destination="P1R-FL-OWI" id="XC6-5z-Nqe"/>
                         <outlet property="occasion" destination="sym-9N-5NE" id="3dY-tZ-3eX"/>
@@ -1379,7 +1361,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DiscoverTextCell" translatesAutoresizingMaskIntoConstraints="NO" id="JPt-cl-3HB" customClass="DiscoverTextCell" customModule="YumFun" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="DiscoverTextCell" translatesAutoresizingMaskIntoConstraints="NO" id="JPt-cl-3HB" customClass="DiscoverTextCell" customModule="YumFun" customModuleProvider="target">
                                         <rect key="frame" x="20" y="20" width="335" height="280"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="S9Z-4s-mf1">
@@ -1583,11 +1565,6 @@
             <point key="canvasLocation" x="1815" y="-72"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="v6R-TX-wR1">
-            <size key="intrinsicContentSize" width="10" height="10"/>
-        </designable>
-    </designables>
     <resources>
         <image name="Goopy" width="371" height="384"/>
         <image name="YumFunLogo" width="621" height="222"/>
@@ -1608,6 +1585,12 @@
         </namedColor>
         <namedColor name="collection_bg_color">
             <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text_high_emphasis">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text_medium_emphasis">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

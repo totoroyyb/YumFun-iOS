@@ -62,24 +62,7 @@ class CookingViewController: UIViewController {
         avatarCollectionView.dataSource = self
         
         // Floting button
-        view.addSubview(handsFreeButton)
-        handsFreeButton.translatesAutoresizingMaskIntoConstraints = false
-        handsFreeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        handsFreeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
-        handsFreeButton.handleSingleActionDirectly = true
-        handsFreeButton.buttonImage = UIImage(systemName: "hand.raised.slash.fill")
-        handsFreeButton.buttonDiameter = 65
-        handsFreeButton.buttonImageColor = UIColor(named: "text_high_emphasis") ?? UIColor.white
-        handsFreeButton.buttonColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
-        handsFreeButton.buttonImageSize = CGSize(width: 30, height: 30)
-        handsFreeButton.layer.shadowColor = UIColor(named: "shadow_color")?.cgColor ?? UIColor.clear.cgColor
-        handsFreeButton.layer.shadowOffset = CGSize(width: 0, height: 1)
-        handsFreeButton.layer.shadowOpacity = Float(0.4)
-        handsFreeButton.layer.shadowRadius = CGFloat(2)
-        
-        handsFreeButton.addItem(title: nil, image: nil) {[weak self] _ in
-            self?.handsFreePressed()
-        }
+        setupHandsFreeFloatingButton()
         
         // cur step
         if let indexPath = getNextStep() {
@@ -103,6 +86,27 @@ class CookingViewController: UIViewController {
                 // ensure the scroll bar remains smooth
                 height: 100
             )
+        }
+    }
+    
+    private func setupHandsFreeFloatingButton() {
+        view.addSubview(handsFreeButton)
+        handsFreeButton.translatesAutoresizingMaskIntoConstraints = false
+        handsFreeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        handsFreeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
+        handsFreeButton.handleSingleActionDirectly = true
+        handsFreeButton.buttonImage = UIImage(systemName: "hand.raised.slash.fill")
+        handsFreeButton.buttonDiameter = 65
+        handsFreeButton.buttonImageColor = UIColor(named: "text_high_emphasis") ?? UIColor.white
+        handsFreeButton.buttonColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
+        handsFreeButton.buttonImageSize = CGSize(width: 30, height: 30)
+        handsFreeButton.layer.shadowColor = UIColor(named: "shadow_color")?.cgColor ?? UIColor.clear.cgColor
+        handsFreeButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        handsFreeButton.layer.shadowOpacity = Float(0.4)
+        handsFreeButton.layer.shadowRadius = CGFloat(2)
+        
+        handsFreeButton.addItem(title: nil, image: nil) {[weak self] _ in
+            self?.handsFreePressed()
         }
     }
     

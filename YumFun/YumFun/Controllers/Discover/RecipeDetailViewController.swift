@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JJFloatingActionButton
 
 class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
     
@@ -21,7 +22,8 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var cuisine: UILabel!
     @IBOutlet weak var occasion: UILabel!
     
-    @IBOutlet weak var cookButton: UIButton!
+
+    var cookButton: JJFloatingActionButton = JJFloatingActionButton()
     
     let detailQueue = DispatchQueue(label: "detailQueue")
     let semaphore: DispatchSemaphore? = DispatchSemaphore(value: 3)
@@ -44,7 +46,29 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         setAuthorProfileImage(userID: rec.author, profileImage: profileImage)
         
         makeSteps(recipe: rec)
-        contentView.bringSubviewToFront(cookButton)
+        setupCookFloatingButton()
+        
+    }
+    
+    private func setupCookFloatingButton() {
+        contentView.addSubview(cookButton)
+        cookButton.translatesAutoresizingMaskIntoConstraints = false
+        cookButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        cookButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
+        cookButton.handleSingleActionDirectly = true
+        cookButton.buttonImage = UIImage(named: "cooking")
+        cookButton.buttonDiameter = 65
+        cookButton.buttonImageColor = UIColor(named: "text_high_emphasis") ?? UIColor.white
+        cookButton.buttonColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
+        cookButton.buttonImageSize = CGSize(width: 30, height: 30)
+        cookButton.layer.shadowColor = UIColor(named: "shadow_color")?.cgColor ?? UIColor.clear.cgColor
+        cookButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        cookButton.layer.shadowOpacity = Float(0.4)
+        cookButton.layer.shadowRadius = CGFloat(2)
+        
+        cookButton.addItem(title: nil, image: nil) {[weak self] _ in
+            self?.cookPressed()
+        }
     }
     
     // set the fetched author name to label
@@ -92,7 +116,7 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
     }
     
     
-    @IBAction func cookPressed(_ sender: Any) {
+    private func cookPressed() {
         
         if let rec = recipe {
             let storyboard = UIStoryboard(name: "Cooking", bundle: nil)
