@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import JJFloatingActionButton
 
 enum ModelClass {
     static let round = "0 round"
@@ -19,6 +20,7 @@ class CookingViewController: UIViewController {
 
     @IBOutlet weak var avatarCollectionView: UICollectionView!
     @IBOutlet weak var stepCollectionView: UICollectionView!
+    var handsFreeButton = JJFloatingActionButton()
     
     // for collab mode
     var recipe = Recipe()
@@ -27,7 +29,11 @@ class CookingViewController: UIViewController {
     }()
     var curUser = User()
     var avatarDic : [String: UIImage?] = [:]
-    var collabSession: CollabSession?
+    var collabSession: CollabSession? {
+        didSet {
+            stepCollectionView?.reloadData()
+        }
+    }
     var listner: ListenerRegistration?
     var curStep: Int = 0  // index of the current step
     
@@ -49,19 +55,43 @@ class CookingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // data source & delegate
         stepCollectionView.delegate = self
         stepCollectionView.dataSource = self
         avatarCollectionView.dataSource = self
         
+        // Floting button
+        view.addSubview(handsFreeButton)
+        handsFreeButton.translatesAutoresizingMaskIntoConstraints = false
+        handsFreeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        handsFreeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
+        handsFreeButton.handleSingleActionDirectly = true
+        handsFreeButton.buttonImage = UIImage(systemName: "hand.raised.slash.fill")
+        handsFreeButton.buttonDiameter = 65
+        handsFreeButton.buttonImageColor = UIColor(named: "text_high_emphasis") ?? UIColor.white
+        handsFreeButton.buttonColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
+        handsFreeButton.buttonImageSize = CGSize(width: 30, height: 30)
+        handsFreeButton.layer.shadowColor = UIColor(named: "shadow_color")?.cgColor ?? UIColor.clear.cgColor
+        handsFreeButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        handsFreeButton.layer.shadowOpacity = Float(0.4)
+        handsFreeButton.layer.shadowRadius = CGFloat(2)
+        
+        handsFreeButton.addItem(title: nil, image: nil) {[weak self] _ in
+            self?.handsFreePressed()
+        }
+        
+        // cur step
         if let indexPath = getNextStep() {
             curStep = indexPath.row
         }
         
+        // model handler check
         if modelDataHandler == nil {
             print("model initialization falied")
         }
         
+        // camera set up
         camera = CameraFeedManager()
         camera?.delegate = self
         
@@ -89,7 +119,7 @@ class CookingViewController: UIViewController {
     }
     
 
-    @IBAction func handsFreePressed() {
+    private func handsFreePressed() {
         if !isCapturing {
             if firstPress {
                 camera?.checkCameraConfigurationAndStartSession()
@@ -100,9 +130,11 @@ class CookingViewController: UIViewController {
                 }
             }
             isCapturing = true
+            handsFreeButton.buttonImage = UIImage(systemName: "hand.raised.fill")
         } else {
             camera?.stopSession()
             isCapturing = false
+            handsFreeButton.buttonImage = UIImage(systemName: "hand.raised.slash.fill")
         }
 
     }
@@ -131,11 +163,12 @@ extension CookingViewController: UICollectionViewDataSource {
             if indexPath.row == 0 {  // display the current user's avatar first
                 if let uid = curUser.id {
                     cell.avatar.image = avatarDic[uid] ?? avatarPlaceholder
-                    cell.avatar.chooseWithBorder(width: 5.0, color: UIColor.blue.cgColor)
+                    cell.avatar.setBorder(width: 2.0, color: UIColor(named: "primary")?.cgColor)
                 }
             } else {  // display others' avatars
                 let uid = getOtherParticipants()[indexPath.row - 1]
                 cell.avatar.image = avatarDic[uid] ?? avatarPlaceholder
+                cell.avatar.setBorder(width: 2.0, color: UIColor(named: "text_high_emphasis")?.cgColor)
             }
 
             return cell
@@ -148,7 +181,10 @@ extension CookingViewController: UICollectionViewDataSource {
                 indexPath.row + 1,
                 recipe.steps.count,
                 recipe.steps[indexPath.row].title ?? "")
-
+            cell.layer.backgroundColor = UIColor(named: "cell_bg_color")?.cgColor
+            cell.layer.borderWidth = 0.0
+            
+        
             // TODO: change timer appearance based on status
             cell.timerButton.setImage(UIImage(systemName: "clock")?.withRenderingMode(.alwaysTemplate), for: .normal)
 
@@ -161,7 +197,7 @@ extension CookingViewController: UICollectionViewDataSource {
                 
                 // special UI for checked steps
                 if session.workLoad[indexPath.row].isCompleted {
-                    cell.layer.backgroundColor = UIColor.red.cgColor
+                    cell.layer.backgroundColor = UIColor(named: "text_low_emphasis")?.cgColor
                     cell.checkButton.isUserInteractionEnabled = false
                     cell.checkButton.isHidden = false
                     cell.timerButton.isHidden = true
@@ -171,24 +207,23 @@ extension CookingViewController: UICollectionViewDataSource {
                     cell.checkButton.setImage(UIImage(systemName: "checkmark.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
                     if let uid = curUser.id,
                     session.workLoad[indexPath.row].assignee.contains(uid) {
-                        cell.layer.backgroundColor = UIColor.blue.cgColor
+                        cell.layer.borderColor = UIColor(named: "secondary")?.cgColor
+                        cell.layer.borderWidth = 1.0
                         cell.checkButton.isUserInteractionEnabled = true
                         cell.checkButton.isHidden = false
                         cell.timerButton.isHidden = false
                     } else {
-                        cell.layer.backgroundColor = UIColor.clear.cgColor
                         cell.checkButton.isHidden = true
                         cell.timerButton.isHidden = true
                     }
                 }
             } else {  // cooking by oneself
                 if completeStatus[indexPath.row] {  // checked steps
-                    cell.layer.backgroundColor = UIColor.red.cgColor
+                    cell.layer.backgroundColor = UIColor(named: "text_low_emphasis")?.cgColor
                     cell.checkButton.isUserInteractionEnabled = false
                     cell.timerButton.isHidden = true
                     cell.checkButton.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
                 } else {  // unchecked
-                    cell.layer.backgroundColor = UIColor.clear.cgColor
                     cell.checkButton.isUserInteractionEnabled = true
                     cell.timerButton.isHidden = false
                     cell.checkButton.setImage(UIImage(systemName: "checkmark.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -196,6 +231,12 @@ extension CookingViewController: UICollectionViewDataSource {
                 if cell.collectionView != nil {
                     cell.collectionView.removeFromSuperview()
                 }
+            }
+            
+            // special UI for cur step
+            if indexPath.row == curStep {
+                cell.layer.borderColor = UIColor(named: "primary")?.cgColor
+                cell.layer.borderWidth = 2.8
             }
             
             cell.indexPath = indexPath
@@ -254,26 +295,26 @@ extension CookingViewController: StepCollectionViewControllerDelegate {
                 if let err = error {
                     print(err.localizedDescription)
                 } else {
+                    if let indexPath = self.getNextStep() {
+                        self.curStep = indexPath.row
+                    }
                     collectionView.performBatchUpdates({
                         collectionView.reloadSections(IndexSet.init(integersIn: 0...0))
-                    }) {[weak self] _ in
-                        if let indexPath = self?.getNextStep() {
-                            self?.curStep = indexPath.row
-                            collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
-                        }
+                    }) { _ in
+                        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
                     }
                 }
             }
         } else {  // cooking by oneself
             completeStatus[indexPath.row] = true
-           
+            if let indexPath = self.getNextStep() {
+                self.curStep = indexPath.row
+               
+            }
             collectionView.performBatchUpdates({
                 collectionView.reloadSections(IndexSet.init(integersIn: 0...0))
-            }) { [weak self] _ in
-                if let indexPath = self?.getNextStep() {
-                    self?.curStep = indexPath.row
-                    collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
-                }
+            }) { _ in
+                collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
             }
         }
         

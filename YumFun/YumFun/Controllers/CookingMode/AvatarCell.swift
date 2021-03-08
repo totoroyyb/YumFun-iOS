@@ -12,7 +12,7 @@ class AvatarCell: UICollectionViewCell {
 }
 
 extension CircularImageView {
-    func chooseWithBorder(width: CGFloat, color: CGColor) {
+    func setBorder(width: CGFloat, color: CGColor?) {
         self.layer.borderWidth = width
         self.layer.borderColor = color
     }

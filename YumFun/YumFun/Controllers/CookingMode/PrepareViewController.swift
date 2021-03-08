@@ -14,6 +14,7 @@ class PrepareViewController: UIViewController {
     @IBOutlet weak var stepCollectionView: UICollectionView!
     
     @IBOutlet weak var inviteButton: UIButton!
+    @IBOutlet weak var leaveButton: UIButton!
     
     var cookingViewController : CookingViewController?
     
@@ -52,7 +53,23 @@ class PrepareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Basic UI set up
         navigationController?.isNavigationBarHidden = true
+        
+        avatarCollectionView.dataSource = self
+        stepCollectionView.dataSource = self
+        stepCollectionView.delegate = self
+        
+        let layout = stepCollectionView.collectionViewLayout
+        if let flowLayout = layout as? UICollectionViewFlowLayout{
+            flowLayout.estimatedItemSize = CGSize(
+                width: view.frame.width - 20,
+                // Make the height a reasonable estimate to
+                // ensure the scroll bar remains smooth
+                height: 500
+            )
+        }
+        
         if let sid = sessionID {  // user is invited, join session here
             self.listner = self.curUser.joinCollabSession(withSessionId: sid,
                                            completion: {error in
@@ -65,21 +82,6 @@ class PrepareViewController: UIViewController {
                                             self.recipe = session.targetRecipe
                                             self.cookingViewController?.collabSession = session
                                            })
-        }
-        
-        
-        avatarCollectionView.dataSource = self
-        stepCollectionView.dataSource = self
-        stepCollectionView.delegate = self
-        
-        let layout = stepCollectionView.collectionViewLayout
-        if let flowLayout = layout as? UICollectionViewFlowLayout{
-            flowLayout.estimatedItemSize = CGSize(
-                width: view.frame.width - 20,
-                // Make the height a reasonable estimate to
-                // ensure the scroll bar remains smooth
-                height: 200
-            )
         }
     }
     
@@ -192,11 +194,12 @@ extension PrepareViewController: UICollectionViewDataSource {
             if indexPath.row == 0 {  // display the current user's avatar first
                 if let uid = curUser.id {
                     setAvatar(userID: uid, imageView: cell.avatar)
-                    cell.avatar.chooseWithBorder(width: 5.0, color: UIColor.blue.cgColor)
+                    cell.avatar.setBorder(width: 2.0, color: UIColor(named: "primary")?.cgColor)
                 }
             } else {  // display others' avatars
                 let userID = getOtherParticipants()[indexPath.row - 1]
                 setAvatar(userID: userID, imageView: cell.avatar)
+                cell.avatar.setBorder(width: 2.0, color: UIColor(named: "text_high_emphasis")?.cgColor)
             }
             
             return cell
@@ -208,11 +211,14 @@ extension PrepareViewController: UICollectionViewDataSource {
                 cell = StepCell()
             }
             
+            // Basic UI set up
             cell.title.text = String(
                 format: "Step %d/%d: %@",
                 indexPath.row + 1,
                 recipe.steps.count,
                 recipe.steps[indexPath.row].title ?? "")
+            
+            cell.descrip.text = recipe.steps[indexPath.row].description
             
             cell.collectionView.dataSource = cell
             cell.collectionView.delegate = cell

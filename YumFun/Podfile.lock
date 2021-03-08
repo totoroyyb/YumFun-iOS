@@ -341,6 +341,7 @@ PODS:
   - Hero (1.6.0)
   - Hue (5.0.0)
   - JGProgressHUD (2.2)
+  - JJFloatingActionButton (2.5.0)
   - JSSAlertView (5.0.2)
   - Kanna (5.2.4)
   - leveldb-library (1.22)
@@ -391,6 +392,7 @@ DEPENDENCIES:
   - Hero
   - Hue
   - JGProgressHUD
+  - JJFloatingActionButton
   - JSSAlertView
   - Kanna (~> 5.2.2)
   - LGButton
@@ -430,6 +432,7 @@ SPEC REPOS:
     - Hero
     - Hue
     - JGProgressHUD
+    - JJFloatingActionButton
     - JSSAlertView
     - Kanna
     - leveldb-library
@@ -475,6 +478,7 @@ SPEC CHECKSUMS:
   Hero: 052b9b9bab68fc4e30cc04e5936eaf0de97b59d3
   Hue: c129cb67be7d093a82bbbc30ce8a96757bf6f37a
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
+  JJFloatingActionButton: fdc3aefb0f28f04d0f988fa25d5fac97028a9ea7
   JSSAlertView: 18345e37d8295827428c12b773b6d75d0dfd0b28
   Kanna: b9d00d7c11428308c7f95e1f1f84b8205f567a8f
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
@@ -493,6 +497,6 @@ SPEC CHECKSUMS:
   TensorFlowLiteSwift: f062dc1178120100d825d7799fd9f115b4a37fee
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: 7b37f30119ac51117451dd0cfb79964409e76075
+PODFILE CHECKSUM: 09fefdf9b976bc97e5c5101d7c4ff3f28fe3bfde
 
 COCOAPODS: 1.10.1

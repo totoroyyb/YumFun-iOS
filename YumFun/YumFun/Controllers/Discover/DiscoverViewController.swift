@@ -24,7 +24,6 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     let discoverQueue = DispatchQueue(label: "discoverQueue")
     let semaphore: DispatchSemaphore? = DispatchSemaphore(value: 6)
-//    let semaphore: DispatchSemaphore? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,11 +64,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             )
         }
     }
-    
-//    let testData : [(UIImage?, UIImage?)] = [(nil,nil), (nil,nil), (nil,nil), (nil,nil), (nil,nil), (nil,nil), (nil,nil)]
-    
-//    let testData = [(nil, nil), (UIImage(named: "mascot"), UIImage(named: "mascot")), (nil, nil), (UIImage(named: "mascot"), nil), (UIImage(named: "mascot"), UIImage(named: "mascot")), (nil, nil), (UIImage(named: "mascot"), nil)]
-    
+
     
     // DataSouce Implementation
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -100,7 +95,6 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         if let user = Core.currentUser, let id = recipe.id {
             cell.isFavored = user.likedRecipes.contains(id)
             cell.favorCount = recipe.likedCount
-//            print(cell.favorCount)
             
             cell.setUpButtonUI()
         }

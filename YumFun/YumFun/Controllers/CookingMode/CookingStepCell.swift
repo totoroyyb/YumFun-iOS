@@ -24,6 +24,19 @@ class CookingStepCell: UICollectionViewCell{
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var timerButton: UIButton!
     
+    override func layoutSubviews() {
+        // cell rounded section
+        self.layer.cornerRadius = 22
+        self.layer.masksToBounds = false
+        
+        self.layer.shadowColor = UIColor(named: "shadow_color")?.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 0.0)
+        self.layer.shadowRadius = 8.0
+        self.layer.shadowOpacity = 0.6
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds,
+                                             cornerRadius: self.contentView.layer.cornerRadius).cgPath
+    }
+    
     // for dynamically resized height
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         setNeedsLayout()
