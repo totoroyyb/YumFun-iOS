@@ -29,12 +29,12 @@ class StepCell: UICollectionViewCell{
         self.layer.borderWidth = 0.0
         self.layer.masksToBounds = false
         
-        self.layer.shadowColor = UIColor(named: "shadow_color")?.cgColor
-        self.layer.shadowOffset = CGSize(width: 0, height: 0.0)
-        self.layer.shadowRadius = 8.0
-        self.layer.shadowOpacity = 0.6
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds,
-                                             cornerRadius: self.contentView.layer.cornerRadius).cgPath
+//        self.layer.shadowColor = UIColor(named: "shadow_color")?.cgColor
+//        self.layer.shadowOffset = CGSize(width: 0, height: 0.0)
+//        self.layer.shadowRadius = 8.0
+//        self.layer.shadowOpacity = 0.6
+//        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds,
+//                                             cornerRadius: self.contentView.layer.cornerRadius).cgPath
     }
     
     // for dynamically resized height

@@ -231,7 +231,7 @@ class Utility {
         
 //        previous = icon
         
-        card.layer.backgroundColor = UIColor(named: "cell_bg_color")?.cgColor
+        card.backgroundColor = UIColor(named: "cell_bg_color")
         card.layer.cornerRadius = 22
         card.layer.borderWidth = 0.0
         card.layer.masksToBounds = false

@@ -95,7 +95,7 @@ class CookingViewController: UIViewController {
         handsFreeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         handsFreeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
         handsFreeButton.handleSingleActionDirectly = true
-        handsFreeButton.buttonImage = UIImage(systemName: "hand.raised.slash.fill")
+        handsFreeButton.buttonImage = UIImage(systemName: "hand.raised.fill")
         handsFreeButton.buttonDiameter = 65
         handsFreeButton.buttonImageColor = UIColor(named: "text_high_emphasis") ?? UIColor.white
         handsFreeButton.buttonColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
@@ -134,11 +134,11 @@ class CookingViewController: UIViewController {
                 }
             }
             isCapturing = true
-            handsFreeButton.buttonImage = UIImage(systemName: "hand.raised.fill")
+            handsFreeButton.buttonImage = UIImage(systemName: "hand.raised.slash.fill")
         } else {
             camera?.stopSession()
             isCapturing = false
-            handsFreeButton.buttonImage = UIImage(systemName: "hand.raised.slash.fill")
+            handsFreeButton.buttonImage = UIImage(systemName: "hand.raised.fill")
         }
 
     }
@@ -201,7 +201,7 @@ extension CookingViewController: UICollectionViewDataSource {
                 
                 // special UI for checked steps
                 if session.workLoad[indexPath.row].isCompleted {
-                    cell.layer.backgroundColor = UIColor(named: "text_low_emphasis")?.cgColor
+                    cell.layer.backgroundColor = UIColor(named: "disabled")?.cgColor
                     cell.checkButton.isUserInteractionEnabled = false
                     cell.checkButton.isHidden = false
                     cell.timerButton.isHidden = true
@@ -223,7 +223,7 @@ extension CookingViewController: UICollectionViewDataSource {
                 }
             } else {  // cooking by oneself
                 if completeStatus[indexPath.row] {  // checked steps
-                    cell.layer.backgroundColor = UIColor(named: "text_low_emphasis")?.cgColor
+                    cell.layer.backgroundColor = UIColor(named: "disabled")?.cgColor
                     cell.checkButton.isUserInteractionEnabled = false
                     cell.timerButton.isHidden = true
                     cell.checkButton.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
