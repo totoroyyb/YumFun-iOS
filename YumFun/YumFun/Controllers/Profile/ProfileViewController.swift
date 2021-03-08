@@ -15,17 +15,21 @@ class ProfileViewController: SegementSlideDefaultViewController {
     var isSelf = true
     var headerOutlet = BasicProfileView()
     
+    var fetchedRecipe: [Recipe]? = nil
+    var fetchedLikedRecipe: [Recipe]? = nil
+    
     
     override func segementSlideHeaderView() -> UIView? {
-        
         let headerView = BasicProfileView()
+
         Cosmetic(View: headerView)
         DisplayUserInfo(View: headerView)
         self.headerOutlet = headerView
         headerView.FollowingStack.addGestureRecognizer(UITapGestureRecognizer(target:self,action: #selector(FollowingPressed)))
         headerView.FollowersStack.addGestureRecognizer(UITapGestureRecognizer(target:self,action: #selector(FollowersPressed)))
         headerView.translatesAutoresizingMaskIntoConstraints = false
-        headerView.heightAnchor.constraint(equalToConstant: view.bounds.height/2).isActive = true
+        
+        headerView.heightAnchor.constraint(equalToConstant: 210).isActive = true
         return headerView
     }
     
@@ -34,6 +38,7 @@ class ProfileViewController: SegementSlideDefaultViewController {
         config.type = .tab
         return config
     }
+    
     @objc func FollowingPressed(){
         UIView.animate(withDuration: 1) {
             self.headerOutlet.FollowingStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
@@ -47,6 +52,7 @@ class ProfileViewController: SegementSlideDefaultViewController {
                UserList.List = CurrentUser.followings
                navigationController?.pushViewController(UserList, animated: true)
     }
+    
     @objc func FollowersPressed(){
         UIView.animate(withDuration: 1) {
             self.headerOutlet.FollowersStack.layer.backgroundColor = UIColor.gray.withAlphaComponent(0.5).cgColor
@@ -61,6 +67,7 @@ class ProfileViewController: SegementSlideDefaultViewController {
                navigationController?.pushViewController(UserList, animated: true)
         
     }
+    
     override var titlesInSwitcher: [String] {
         return ["My Recipes", "Liked Recipes"]
     }
@@ -70,25 +77,25 @@ class ProfileViewController: SegementSlideDefaultViewController {
         layout.scrollDirection = .vertical
         layout.estimatedItemSize = CGSize(
             width: UIScreen.main.bounds.width - 40,
-            height: 300
+            height: 200
         )
         guard let CurrentUser = CU else{return nil}
         let content = ContentViewController(collectionViewLayout: layout)
-        if index == 0{
+        if index == 0 {
             content.List = CurrentUser.recipes
-        }else if index == 1{
+        } else if index == 1 {
             content.List = CurrentUser.likedRecipes
         }
         
         return content
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.tabBarController?.tabBar.isTranslucent = false
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -100,6 +107,7 @@ class ProfileViewController: SegementSlideDefaultViewController {
         defaultSelectedIndex = 0
         reloadData()
     }
+    
     @objc func Follow_Unfollow(){
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let FollowAction = UIAlertAction(title: "Follow", style: .default){
@@ -123,8 +131,8 @@ class ProfileViewController: SegementSlideDefaultViewController {
         alert.addAction(UnFollowAction)
         alert.addAction(CancelAction)
         self.present(alert, animated: true)
-
     }
+    
     func Cosmetic(View:BasicProfileView){
         View.ProfileImage.layer.borderWidth = 1
         View.ProfileImage.layer.masksToBounds = true
@@ -143,9 +151,8 @@ class ProfileViewController: SegementSlideDefaultViewController {
         View.FollowingStack.layer.borderColor = UIColor.black.cgColor
         View.FollowingStack.layer.cornerRadius = View.FollowingStack.frame.height/8
         View.FollowingStack.clipsToBounds = true
-
-
     }
+    
     func DisplayUserInfo(View:BasicProfileView){
         guard let CurrentUser = CU else {return}
         //name
@@ -167,6 +174,7 @@ class ProfileViewController: SegementSlideDefaultViewController {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(Follow_Unfollow))
         }
     }
+    
     @IBAction func Editpress(_ sender: Any) {
         guard let ProfileEditPageController = storyboard?.instantiateViewController(withIdentifier: "PEPage") as? ProfileEditPage else {
             assertionFailure("Cannot find ViewController")
@@ -175,9 +183,8 @@ class ProfileViewController: SegementSlideDefaultViewController {
         navigationController?.pushViewController(ProfileEditPageController, animated: true)
     }
 }
+
 extension ProfileViewController{
-
-
     func LoadImage(View:BasicProfileView) {
         guard let currentUser = Core.currentUser, let currId = currentUser.id else {
             return
@@ -189,7 +196,6 @@ extension ProfileViewController{
                                   placeholderImage: PlaceholderImage.imageWith(name: currentUser.displayName),
                                   completion: nil)
     }
-
 }
 
 

@@ -24,14 +24,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOc-nx-e0Q" customClass="AnimatedField" customModule="AnimatedField">
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOc-nx-e0Q" customClass="AnimatedField" customModule="AnimatedField">
                                 <rect key="frame" x="35" y="233" width="305" height="45"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="G2f-jo-E6u"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VyN-oT-Cly" customClass="AnimatedField" customModule="AnimatedField">
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VyN-oT-Cly" customClass="AnimatedField" customModule="AnimatedField">
                                 <rect key="frame" x="35" y="298" width="305" height="45"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
@@ -255,7 +255,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sSW-2r-tbs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="collection_bg_color"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0yf-ky-N4I">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="p4p-9E-SFy" kind="relationship" relationship="rootViewController" id="vL2-yg-KwA"/>
                     </connections>
@@ -545,7 +549,7 @@
             </objects>
             <point key="canvasLocation" x="1814" y="-824"/>
         </scene>
-        <!--Me-->
+        <!--Profile-->
         <scene sceneID="6lF-y7-qqc">
             <objects>
                 <viewController storyboardIdentifier="ProfileView" id="p4p-9E-SFy" customClass="ProfileViewController" customModule="YumFun" customModuleProvider="target" sceneMemberID="viewController">
@@ -553,9 +557,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="RAd-e2-YTv"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="collection_bg_color"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Me" id="Psb-ew-eYy">
+                    <navigationItem key="navigationItem" title="Profile" id="Psb-ew-eYy">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="qSI-Ws-TLU">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>
@@ -949,14 +953,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientTableCell" id="0lb-vf-uML" customClass="IngredientTableCell" customModule="YumFun" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="335" height="43"/>
+                                        <rect key="frame" x="0.0" y="28" width="335" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0lb-vf-uML" id="hTJ-az-6p8">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edo-ue-ced">
-                                                    <rect key="frame" x="26" y="11" width="120" height="21"/>
+                                                    <rect key="frame" x="26" y="11" width="120" height="21.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="noC-UV-VY2"/>
                                                     </constraints>
@@ -965,7 +969,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfC-f3-L5q">
-                                                    <rect key="frame" x="156" y="11" width="143" height="21"/>
+                                                    <rect key="frame" x="156" y="11" width="143" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

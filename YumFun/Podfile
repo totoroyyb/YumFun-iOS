@@ -64,6 +64,12 @@ target 'YumFun' do
   # Email Validator
   pod 'EmailValidator'
 
+  # Programmatical Autolayout
+  pod 'SnapKit', '~> 5.0.0'
+
+  # Icon Lib
+  pod 'SwiftIconFont'
+
   # Recipe searching and parsing		
   pod 'Alamofire', '~> 5.2'
   pod 'Kanna', '~> 5.2.2'

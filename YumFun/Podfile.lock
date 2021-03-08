@@ -362,8 +362,10 @@ PODS:
     - SDWebImage/Core (= 5.10.4)
   - SDWebImage/Core (5.10.4)
   - SegementSlide (3.0.1)
+  - SnapKit (5.0.1)
   - SwiftEntryKit (1.2.7):
     - QuickLayout (= 3.0.0)
+  - SwiftIconFont (6.1.1)
   - TensorFlowLiteC (2.4.0):
     - TensorFlowLiteC/Core (= 2.4.0)
   - TensorFlowLiteC/Core (2.4.0)
@@ -398,7 +400,9 @@ DEPENDENCIES:
   - Pastel
   - QCropper
   - SegementSlide (= 3.0.1)
+  - SnapKit (~> 5.0.0)
   - SwiftEntryKit (= 1.2.7)
+  - SwiftIconFont
   - TensorFlowLiteSwift/CoreML (~> 2.4.0)
   - WXImageCompress (~> 0.1.1)
 
@@ -443,7 +447,9 @@ SPEC REPOS:
     - QuickLayout
     - SDWebImage
     - SegementSlide
+    - SnapKit
     - SwiftEntryKit
+    - SwiftIconFont
     - TensorFlowLiteC
     - TensorFlowLiteSwift
     - WXImageCompress
@@ -488,11 +494,13 @@ SPEC CHECKSUMS:
   QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   SegementSlide: 83b56ffb66b9c0edc4e4f2a74229309c62915db3
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftEntryKit: 537c92699d6034efb1ef9c32b11e0b37c97aa589
+  SwiftIconFont: 0a772c5ac65a40c9b0675efa37b4928158bd8e43
   TensorFlowLiteC: 09f8ac75a76caeadb19bcfa694e97454cc1ecf87
   TensorFlowLiteSwift: f062dc1178120100d825d7799fd9f115b4a37fee
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: 7b37f30119ac51117451dd0cfb79964409e76075
+PODFILE CHECKSUM: 9cb3a107c2b4c5641f0979faa76d9c9a2f622b0f
 
 COCOAPODS: 1.10.1
