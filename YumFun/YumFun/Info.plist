@@ -37,12 +37,12 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>This app wants to take pictures for user profile, recipes or provide gesture recognition in hands-free cooking mode.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app wants to use microphone for speech recognition.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app wants to use photos for user profile or recipes.</string>
-    <key>NSSpeechRecognitionUsageDescription</key>
-    <string>This app wants to use speech recognition for easier recipe input.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>This app wants to use microphone for speech recognition.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>This app wants to use speech recognition for easier recipe input.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
