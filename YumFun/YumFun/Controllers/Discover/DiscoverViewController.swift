@@ -29,6 +29,9 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(viewSetup), name: .userDidSet, object: nil)
         
+        self.view.backgroundColor = UIColor(named: "collection_bg_color")
+        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "collection_bg_color")
+        
         if Core.currentUser != nil {
             viewSetup()
         }
@@ -95,7 +98,6 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         if let user = Core.currentUser, let id = recipe.id {
             cell.isFavored = user.likedRecipes.contains(id)
             cell.favorCount = recipe.likedCount
-            
             cell.setUpButtonUI()
         }
         

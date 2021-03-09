@@ -33,6 +33,9 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor(named: "collection_bg_color")
+        
         guard let rec = recipe else {return}
         
         setAuthorName(authorID: rec.author)
