@@ -38,6 +38,7 @@ import SnapKit
     
     private func layoutView() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = UIColor(named: "cell_bg_color")
         self.addSubview(contentView)
         contentView.snp.makeConstraints { (make) in
             make.edges.equalTo(self).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))

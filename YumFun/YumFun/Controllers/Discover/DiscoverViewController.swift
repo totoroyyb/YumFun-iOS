@@ -103,8 +103,6 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         if let user = Core.currentUser, let id = recipe.id {
             cell.isFavored = user.likedRecipes.contains(id)
             cell.favorCount = recipe.likedCount
-//            print(cell.favorCount)
-            
             cell.setUpButtonUI()
         }
         

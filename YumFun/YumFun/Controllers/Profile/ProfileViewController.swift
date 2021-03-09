@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import SegementSlide
+import SwiftEntryKit
+
 class ProfileViewController: SegementSlideDefaultViewController {
     
     var CU:User?
@@ -18,10 +20,9 @@ class ProfileViewController: SegementSlideDefaultViewController {
     var fetchedRecipe: [Recipe]? = nil
     var fetchedLikedRecipe: [Recipe]? = nil
     
-    
     override func segementSlideHeaderView() -> UIView? {
         let headerView = BasicProfileView()
-
+        
         Cosmetic(View: headerView)
         DisplayUserInfo(View: headerView)
         self.headerOutlet = headerView
@@ -33,9 +34,24 @@ class ProfileViewController: SegementSlideDefaultViewController {
         return headerView
     }
     
+    override func segementSlideSwitcherView() -> SegementSlideSwitcherDelegate {
+        let segementSlideSwitcher = super.segementSlideSwitcherView()
+        segementSlideSwitcher.backgroundColor = UIColor(named: "cell_bg_color")
+        return segementSlideSwitcher
+    }
+    
     override var switcherConfig: SegementSlideDefaultSwitcherConfig {
+//        let test = SegementSlideDefaultSwitcherView()
         var config = super.switcherConfig
         config.type = .tab
+        if let unselected_color = UIColor(named: "unselected_text_color") {
+            config.normalTitleColor = unselected_color
+        }
+        
+        if let selected_color = UIColor(named: "selected_text_color") {
+            config.selectedTitleColor = selected_color
+            config.indicatorColor = selected_color
+        }
         return config
     }
     
@@ -65,7 +81,6 @@ class ProfileViewController: SegementSlideDefaultViewController {
                }
                UserList.List = CurrentUser.followers
                navigationController?.pushViewController(UserList, animated: true)
-        
     }
     
     override var titlesInSwitcher: [String] {
@@ -73,12 +88,16 @@ class ProfileViewController: SegementSlideDefaultViewController {
     }
 
     override func segementSlideContentViewController(at index: Int) -> SegementSlideContentScrollViewDelegate? {
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.estimatedItemSize = CGSize(
-            width: UIScreen.main.bounds.width - 40,
+            width: self.view.frame.width - 40,
             height: 200
         )
+        //Margin between different cells
+        layout.minimumLineSpacing = 25
+        
         guard let CurrentUser = CU else{return nil}
         let content = ContentViewController(collectionViewLayout: layout)
         if index == 0 {
@@ -92,6 +111,9 @@ class ProfileViewController: SegementSlideDefaultViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.scrollView.backgroundColor = UIColor(named: "cell_bg_color")
+//        self.view.backgroundColor = UIColor(named: "cell_bg_color")
+        self.contentView.backgroundColor = UIColor(named: "collection_bg_color")
         self.navigationController?.navigationBar.isTranslucent = false
         self.tabBarController?.tabBar.isTranslucent = false
     }
