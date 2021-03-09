@@ -9,6 +9,7 @@ import UIKit
 import WebKit
 import Alamofire
 import Kanna
+import JJFloatingActionButton
 
 struct RecipeParser1: Codable {
     let graph: [RecipeParser2]
@@ -74,6 +75,7 @@ class RecipeSearchViewController: UIViewController, WKUIDelegate, WKNavigationDe
 
     var webView: WKWebView!
     var recipe: Recipe = Recipe()
+    var cookButton: JJFloatingActionButton = JJFloatingActionButton()
     
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
@@ -81,6 +83,7 @@ class RecipeSearchViewController: UIViewController, WKUIDelegate, WKNavigationDe
         webView.uiDelegate = self
         webView.allowsBackForwardNavigationGestures = true
         webView.navigationDelegate = self
+        webView.addSubview(cookButton)
         view = webView
     }
     
@@ -95,7 +98,7 @@ class RecipeSearchViewController: UIViewController, WKUIDelegate, WKNavigationDe
     }
     
     func setupWebView() {
-        navigationItem.rightBarButtonItems = [ UIBarButtonItem(title: ">", style: .plain, target: self, action: #selector(goForward)), UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(goBack)), UIBarButtonItem(title: "clip", style: .plain, target: self, action: #selector(parseRecipe))]
+        navigationItem.rightBarButtonItems = [  UIBarButtonItem(title: ">", style: .plain, target: self, action: #selector(goForward)), UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(goBack)), UIBarButtonItem(title: "clip", style: .plain, target: self, action: #selector(parseRecipe))]
         
         if webView.isLoading {
             let loader = UIActivityIndicatorView(style: .medium)
@@ -104,6 +107,24 @@ class RecipeSearchViewController: UIViewController, WKUIDelegate, WKNavigationDe
         } else {
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh))
         }
+    }
+    
+    @objc func setupCookFloatingButton() {
+        webView.addSubview(cookButton)
+        cookButton.translatesAutoresizingMaskIntoConstraints = false
+        cookButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        cookButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
+        cookButton.handleSingleActionDirectly = true
+        cookButton.buttonImage = UIImage(named: "cooking")
+        cookButton.buttonDiameter = 65
+        cookButton.buttonImageColor = UIColor(named: "text_high_emphasis") ?? UIColor.white
+        cookButton.buttonColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
+        cookButton.buttonImageSize = CGSize(width: 30, height: 30)
+        cookButton.layer.shadowColor = UIColor(named: "shadow_color")?.cgColor ?? UIColor.clear.cgColor
+        cookButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        cookButton.layer.shadowOpacity = Float(0.4)
+        cookButton.layer.shadowRadius = CGFloat(2)
+        
     }
     
     @objc func parseRecipe() {
@@ -249,7 +270,7 @@ class RecipeSearchViewController: UIViewController, WKUIDelegate, WKNavigationDe
     }
     
     func pushEditRecipeDisplay() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "RecipeInput", bundle: nil)
         guard let startRecipeInputViewController = storyboard.instantiateViewController(identifier: "startRecipeInputVC") as StartRecipeInputViewController? else {
             assertionFailure("couln't get vc")
             return
@@ -274,7 +295,16 @@ class RecipeSearchViewController: UIViewController, WKUIDelegate, WKNavigationDe
         webView.reload()
     }
     
+    @objc func returnHome() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let chooseRecipeInputViewController = storyboard.instantiateViewController(identifier: "chooseRecipeInputVC") as ChooseRecipeInputViewController? else {
+            assertionFailure("couln't get vc")
+            return
+        }
+        navigationController?.pushViewController(chooseRecipeInputViewController, animated: true)
+    }
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh))
+        navigationItem.leftBarButtonItems = [ UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh)), UIBarButtonItem(title: "home", style: .plain, target: self, action: #selector(returnHome)) ]
     }
 }
