@@ -7,48 +7,41 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
-@IBDesignable class BasicProfileView:UIStackView{
+@IBDesignable class BasicProfileView: UIView {
     let kCONTENT_XIB_NAME = "BasicProfile"
-    @IBOutlet var contentView: UIStackView!
+    @IBOutlet var contentView: UIView!
     @IBOutlet weak var ProfileImage: UIImageView!
     @IBOutlet weak var DisplayName: UILabel!
     @IBOutlet weak var Bio: UILabel!
-    @IBOutlet weak var RecipeCount: UILabel!
     @IBOutlet weak var FollowingStack: UIStackView!
     @IBOutlet weak var FollowingCount: UILabel!
     @IBOutlet weak var FollowersStack: UIStackView!
     @IBOutlet weak var FollowersCount: UILabel!
+    @IBOutlet weak var FollowRelatedStackView: UIStackView!
     
     override init(frame: CGRect) {
             super.init(frame: frame)
-            commonInit()
-        }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-                commonInit()
+        commonInit()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
 
-    
     func commonInit() {
-            Bundle.main.loadNibNamed(kCONTENT_XIB_NAME, owner: self, options: nil)
-            contentView.fixInView(self)
-        
-        }
+        Bundle.main.loadNibNamed(kCONTENT_XIB_NAME, owner: self, options: nil)
+        layoutView()
+    }
     
-}
-
-extension UIStackView
-{
-    func fixInView(_ container: UIView!) -> Void{
-        self.translatesAutoresizingMaskIntoConstraints = false;
-        self.frame = container.frame;
-        container.addSubview(self);
-        NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: container, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: container, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 8).isActive = true
-        NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
+    private func layoutView() {
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = UIColor(named: "cell_bg_color")
+        self.addSubview(contentView)
+        contentView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        }
     }
 }

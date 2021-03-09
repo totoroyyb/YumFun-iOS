@@ -41,6 +41,8 @@ class DiscoverTextCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
+        
         // cell rounded section
         self.layer.cornerRadius = 22
         self.layer.borderWidth = 0.0
