@@ -32,6 +32,7 @@ class RecipeSaveViewController: UIViewController {
         }
     
         recipeDetailViewController.recipe = recipe
-        navigationController?.pushViewController(recipeDetailViewController, animated: true)
+        recipeDetailViewController.isEditView = true
+        self.navigationController?.setViewControllers([recipeDetailViewController], animated: true)
     }
 }

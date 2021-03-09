@@ -30,12 +30,12 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
 //    let semaphore: DispatchSemaphore? = nil
     
     var recipe : Recipe?
+    var isEditView = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(named: "collection_bg_color")
-        
         guard let rec = recipe else {return}
         
         setAuthorName(authorID: rec.author)
@@ -69,8 +69,23 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         cookButton.layer.shadowOpacity = Float(0.4)
         cookButton.layer.shadowRadius = CGFloat(2)
         
-        cookButton.addItem(title: nil, image: nil) {[weak self] _ in
-            self?.cookPressed()
+//        cookButton.addItem(title: nil, image: nil) {[weak self] _ in
+//            self?.cookPressed()
+//        }
+
+        cookButton.addItem(title: "Cook Now!", image: UIImage(named: "chef")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.cookPressed()
+        }
+        if isEditView {
+            cookButton.addItem(title: "New Recipe", image: UIImage(named: "add")?.withRenderingMode(.alwaysTemplate)) { item in
+                self.newRecipePressed()
+            }
+        }
+        cookButton.addItem(title: "Save", image: UIImage(named: "bookmark")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.savePressed()
+        }
+        cookButton.addItem(title: "Edit", image: UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.editPressed()
         }
     }
     
@@ -142,14 +157,39 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func editPressed() {
+        let storyboard = UIStoryboard(name: "RecipeInput", bundle: nil)
+        guard let startRecipeViewController = storyboard.instantiateViewController(identifier: "startRecipeInputVC") as StartRecipeInputViewController? else {
+            assertionFailure("couln't get vc")
+            return
+        }
+        if let rec = recipe {
+            startRecipeViewController.recipe = rec
+        }
+        navigationController?.pushViewController(startRecipeViewController, animated: true)
     }
-    */
-
+    
+    func savePressed() {
+        if let rec = recipe {
+            guard let currUser = Core.currentUser else { return }
+            currUser.createRecipe(with: rec) { (error, docRef) in
+                if error == nil {
+                    print("created recipe with id: \(docRef?.documentID)")
+                }
+            }
+            let alertController = UIAlertController(title: "Recipe Saved!", message:
+                                                        rec.title, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            self.present(alertController, animated: true)
+        }
+    }
+    
+    func newRecipePressed() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let chooseRecipeViewController = storyboard.instantiateViewController(identifier: "chooseRecipeInputVC") as ChooseRecipeInputViewController? else {
+            assertionFailure("couln't get vc")
+            return
+        }
+        navigationController?.setViewControllers([chooseRecipeViewController], animated: true)
+    }
 }

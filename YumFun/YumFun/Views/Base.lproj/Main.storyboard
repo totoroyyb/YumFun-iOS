@@ -1460,7 +1460,7 @@
         <!--Choose Recipe Input View Controller-->
         <scene sceneID="SoX-m4-WNl">
             <objects>
-                <viewController id="1v7-6m-Daj" customClass="ChooseRecipeInputViewController" customModule="YumFun" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chooseRecipeInputVC" id="1v7-6m-Daj" customClass="ChooseRecipeInputViewController" customModule="YumFun" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5ym-9R-6em">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
