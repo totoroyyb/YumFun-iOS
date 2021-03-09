@@ -73,4 +73,7 @@ target 'YumFun' do
   # Recipe searching and parsing		
   pod 'Alamofire', '~> 5.2'
   pod 'Kanna', '~> 5.2.2'
+
+  # Floating Button
+  pod 'JJFloatingActionButton'
 end
