@@ -54,6 +54,10 @@ class CookingStepCell: UICollectionViewCell{
         checkButton.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
         delegate?.didCheckCellAt(at: indexPath)
     }
+    @IBAction func timerPressed() {
+        delegate?.didCheckCellTimerAt(at: indexPath)
+    }
+    
 }
 
 extension CookingStepCell: UICollectionViewDataSource {
@@ -77,5 +81,8 @@ extension CookingStepCell:  UICollectionViewDelegateFlowLayout {
 // CookingStepCellDelegate informs its master collctionView a button click event on the cell
 protocol CookingStepCellDelegate: class {
     func didCheckCellAt(at indexPath: IndexPath)
+    
+    func didCheckCellTimerAt(at indexPath: IndexPath)
 }
+
 

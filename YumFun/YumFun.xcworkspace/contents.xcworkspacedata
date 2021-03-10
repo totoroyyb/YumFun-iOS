@@ -2,7 +2,8 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:YumFun.xcodeproj">
+      location = "group:YumFun.xcodeproj"
+      assignedFileDataType = "com.apple.xcode.project">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

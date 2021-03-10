@@ -14,7 +14,8 @@ import Speech
 
 
 class TimerViewController: UIViewController {
-
+    var index: Int = 0
+    var recipe = Recipe()
 
     let shapeLayer = CAShapeLayer()
 
@@ -56,7 +57,7 @@ class TimerViewController: UIViewController {
         // Do any additional setup after loading the view.
         let trackLayer = CAShapeLayer()
         let center = timerLabel.center
-        let circularPath = UIBezierPath(arcCenter: center, radius: 110, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: center, radius: 150, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
         shapeLayer.path = circularPath.cgPath
         shapeLayer.strokeColor = UIColor.red.cgColor
         shapeLayer.fillColor = UIColor.clear.cgColor

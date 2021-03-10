@@ -280,6 +280,14 @@ extension UICollectionView: CookingStepCellDelegate {
     func didCheckCellAt(at indexPath: IndexPath) {
         if let del = delegate as? StepCollectionViewControllerDelegate {
             del.didCheckCellAt(self, at: indexPath)
+
+        }
+    }
+    
+    func didCheckCellTimerAt(at indexPath: IndexPath) {
+        if let del = delegate as? StepCollectionViewControllerDelegate {
+            del.didCheckCellTimerAt(self, at: indexPath)
+
         }
     }
 }
@@ -288,6 +296,8 @@ extension UICollectionView: CookingStepCellDelegate {
 // TODO: integrate with DiscoverView protocols
 protocol StepCollectionViewControllerDelegate: UICollectionViewDelegate {
     func didCheckCellAt(_ collectionView: UICollectionView, at indexPath: IndexPath)
+    
+    func didCheckCellTimerAt(_ collectionView: UICollectionView, at indexPath: IndexPath)
 }
 
 extension CookingViewController: StepCollectionViewControllerDelegate {
@@ -310,6 +320,7 @@ extension CookingViewController: StepCollectionViewControllerDelegate {
                 }
             }
         } else {  // cooking by oneself
+            print(indexPath)
             completeStatus[indexPath.row] = true
             if let indexPath = self.getNextStep() {
                 self.curStep = indexPath.row
@@ -321,6 +332,19 @@ extension CookingViewController: StepCollectionViewControllerDelegate {
                 collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
             }
         }
+        
+    }
+    
+    func didCheckCellTimerAt(_ collectionView: UICollectionView, at indexPath: IndexPath){
+        
+            let storyboard = UIStoryboard(name: "Cooking", bundle: nil)
+            guard let TimerViewController = storyboard.instantiateViewController(withIdentifier: "TimerViewController") as? TimerViewController else {
+                assertionFailure("couldn't find StepDetailViewController")
+                return
+            }
+            
+
+            present(TimerViewController, animated: true)
         
     }
     

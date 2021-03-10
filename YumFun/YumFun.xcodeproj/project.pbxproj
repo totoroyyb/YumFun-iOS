@@ -350,6 +350,7 @@
 				A1A58A6B25ED94C600AE7B1A /* StepCell.swift */,
 				A1A58BBE25F23B4800AE7B1A /* CookingStepCell.swift */,
 				A1A58BE425F2668F00AE7B1A /* StepDetailViewController.swift */,
+				8432C4FF25F45CF500564AD2 /* TimerViewController.swift */,
 			);
 			path = CookingMode;
 			sourceTree = "<group>";
@@ -473,7 +474,6 @@
 				84A8866D25E33B0C004684DA /* LaunchScreenController.swift */,
 				84A8867B25E34EAA004684DA /* SignUpViewController.swift */,
 				214E7F8F25EFA55000B13CE4 /* CustomTabBarViewController.swift */,
-				8432C4FF25F45CF500564AD2 /* TimerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
