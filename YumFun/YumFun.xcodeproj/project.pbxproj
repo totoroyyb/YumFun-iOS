@@ -121,6 +121,7 @@
 		2185054D25E98B3A00A9D46C /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		2185055325EA75EC00A9D46C /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		2185055825EA8E7F00A9D46C /* Notifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifiable.swift; sourceTree = "<group>"; };
+		21872BF125F91890001F0A8F /* YumFun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YumFun.entitlements; sourceTree = "<group>"; };
 		21A8364625E02252005933AE /* FirestoreTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirestoreTest.storyboard; sourceTree = "<group>"; };
 		21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestViewController.swift; sourceTree = "<group>"; };
 		21A8365125E023E4005933AE /* FirestoreApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreApi.swift; sourceTree = "<group>"; };
@@ -441,6 +442,7 @@
 		C57662B925DBF9D600642CF2 /* YumFun */ = {
 			isa = PBXGroup;
 			children = (
+				21872BF125F91890001F0A8F /* YumFun.entitlements */,
 				214E80DC25F02C5600B13CE4 /* Components */,
 				2185055725EA8E5A00A9D46C /* PropertyWrappers */,
 				2185054C25E9896800A9D46C /* Core */,
@@ -865,9 +867,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = YumFun/YumFun.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BLHQ787DMR;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -875,7 +878,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun.testflight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -889,9 +893,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = YumFun/YumFun.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BLHQ787DMR;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -899,7 +904,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun.testflight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
