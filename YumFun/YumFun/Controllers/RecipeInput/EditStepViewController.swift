@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import QCropper
+import JGProgressHUD
 
-class EditStepViewController: UIViewController {
+class EditStepViewController: UIViewController, CropperViewControllerDelegate {
+    
 
     @IBOutlet weak var imageView: UIImageView!
     
@@ -16,6 +19,9 @@ class EditStepViewController: UIViewController {
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var utensilsTableView: UITableView!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var addUtensilButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var addImageButton: UIButton!
     var imagePicker = UIImagePickerController()
     let highlighted: UIColor = UIColor.gray
     var inputRecipeStepsViewController: InputRecipeStepsViewController?
@@ -23,11 +29,16 @@ class EditStepViewController: UIViewController {
     var stepCopy: Step = Step(description: "")
     var currentStepIndex: Int = 0
     var isPreviousStep: Bool = false
+    var imageUploaded = false
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(EditStepViewController.tapRecognized))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        setupButton(saveButton)
+        setupButton(addUtensilButton)
+        setupButton(cancelButton)
+        setupButton(addImageButton)
         initialize()
         if isPreviousStep {
             initializePreviousStepData()
@@ -50,10 +61,12 @@ class EditStepViewController: UIViewController {
         utensilsTableView.delegate = self
         utensilsTableView.dataSource = self
         imageView.layer.borderWidth = 5
-        imageView.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0).cgColor
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-            imageView.isUserInteractionEnabled = true
-            imageView.addGestureRecognizer(tapGestureRecognizer)
+        imageView.layer.borderColor = UIColor(named: "primary")?.cgColor ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8).cgColor
+    }
+    
+    func setupButton(_ button: UIButton) {
+        button.layer.cornerRadius = 10.0
+        button.backgroundColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
     }
     
     // Copy previous step so if cancel is pressed, can revert changes
@@ -71,7 +84,7 @@ class EditStepViewController: UIViewController {
     @objc func tapRecognized(_ gesture: UITapGestureRecognizer) {
         if let count = recipeDescription.text?.count, count > 0 {
             saveButton.isUserInteractionEnabled = true
-            saveButton.backgroundColor = .systemBlue
+            saveButton.backgroundColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
             recipe.steps[currentStepIndex].description = recipeDescription.text ?? ""
         }
         view.endEditing(true)
@@ -106,12 +119,49 @@ class EditStepViewController: UIViewController {
         dismissCurrentView()
     }
     
+    @IBAction func addImagePressed(_ sender: Any) {
+        ImagePickerManager().pickImage(self) { image in
+            let cropper = CustomImageClipViewController(originalImage: image)
+            cropper.delegate = self
+            self.present(cropper, animated: true, completion: nil)
+        }
+    }
+    
+    func cropperDidConfirm(_ cropper: CropperViewController, state: CropperState?) {
+        guard let cropper = cropper as? CustomImageClipViewController else {
+            displayErrorBottomPopUp(title: "ERROR",
+                                    description: "Sorry, current user info has been correctly loaded. Please reload the entire app, and try again.")
+            return
+        }
+        let hud = JGProgressHUD()
+        hud.textLabel.text = "Loading"
+        hud.show(in: cropper.view, animated: true)
+        if let state = state,
+            let image = cropper.originalImage.cropped(withCropperState: state) {
+            hud.dismiss()
+            cropper.dismiss(animated: true, completion: nil)
+            imageView.image = image
+            imageUploaded = true
+        } else {
+            hud.dismiss()
+            displayErrorBottomPopUp(title: "ERROR",
+                                    description: "Sorry, we cannot finish current operation.")
+        }
+    }
     
     @IBAction func savePressed(_ sender: Any) {
         let hoursToSeconds = recipeTime.selectedRow(inComponent: 0) * 60 * 60
         let minutesToSeconds = recipeTime.selectedRow(inComponent: 1) * 60
         let seconds: TimeInterval = TimeInterval(hoursToSeconds + minutesToSeconds)
         recipe.steps[currentStepIndex].time = seconds
+        if let image = imageView.image {
+            recipe.uploadRecipeImage(with: image, nil) { (path) in
+                if let path = path {
+                    print("Path is \(path)")
+                    self.recipe.steps[self.currentStepIndex].photoUrl = path
+                }
+            }
+        }
         dismissCurrentView()
     }
     
@@ -210,12 +260,6 @@ extension EditStepViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension EditStepViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-            imagePicker.sourceType = .savedPhotosAlbum
-            present(imagePicker, animated: true, completion: nil)
-        }
-    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {

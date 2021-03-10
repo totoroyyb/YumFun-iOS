@@ -141,7 +141,6 @@ class RecipeSearchViewController: UIViewController, WKUIDelegate, WKNavigationDe
         }
     
         recipeDetailViewController.recipe = recipe
-        recipeDetailViewController.isEditView = true
         navigationController?.pushViewController(recipeDetailViewController, animated: true)
     }
     

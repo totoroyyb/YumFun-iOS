@@ -30,7 +30,6 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
 //    let semaphore: DispatchSemaphore? = nil
     
     var recipe : Recipe?
-    var isEditView = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +75,7 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         cookButton.addItem(title: "Cook Now!", image: UIImage(named: "chef")?.withRenderingMode(.alwaysTemplate)) { item in
             self.cookPressed()
         }
-        if isEditView {
+        if let tabBarController = self.navigationController?.tabBarController, tabBarController.selectedIndex == 2 {
             cookButton.addItem(title: "New Recipe", image: UIImage(named: "add")?.withRenderingMode(.alwaysTemplate)) { item in
                 self.newRecipePressed()
             }
@@ -85,7 +84,23 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
             self.savePressed()
         }
         cookButton.addItem(title: "Edit", image: UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)) { item in
-            self.editPressed()
+            if let tabBarController = self.navigationController?.tabBarController {
+                if let arrController = tabBarController.viewControllers {
+                    for vc in arrController {
+                        if vc.restorationIdentifier == "Edit" {
+                            if let navVC = vc as? UINavigationController {
+                                if tabBarController.selectedIndex == 2 {
+                                    self.setEditView()
+                                } else if let chooseRecipeVC = navVC.viewControllers.first as? ChooseRecipeInputViewController, let rec = self.recipe {
+                                    chooseRecipeVC.recipe = rec
+                                    chooseRecipeVC.startEditMode = true
+                                    tabBarController.selectedIndex = 2
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -157,18 +172,6 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         }
     }
     
-    func editPressed() {
-        let storyboard = UIStoryboard(name: "RecipeInput", bundle: nil)
-        guard let startRecipeViewController = storyboard.instantiateViewController(identifier: "startRecipeInputVC") as StartRecipeInputViewController? else {
-            assertionFailure("couln't get vc")
-            return
-        }
-        if let rec = recipe {
-            startRecipeViewController.recipe = rec
-        }
-        navigationController?.pushViewController(startRecipeViewController, animated: true)
-    }
-    
     func savePressed() {
         if let rec = recipe {
             guard let currUser = Core.currentUser else { return }
@@ -189,6 +192,19 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         guard let chooseRecipeViewController = storyboard.instantiateViewController(identifier: "chooseRecipeInputVC") as ChooseRecipeInputViewController? else {
             assertionFailure("couln't get vc")
             return
+        }
+        navigationController?.setViewControllers([chooseRecipeViewController], animated: true)
+    }
+    
+    func setEditView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let chooseRecipeViewController = storyboard.instantiateViewController(identifier: "chooseRecipeInputVC") as ChooseRecipeInputViewController? else {
+            assertionFailure("couln't get vc")
+            return
+        }
+        if let rec = self.recipe {
+            chooseRecipeViewController.recipe = rec
+            chooseRecipeViewController.startEditMode = true
         }
         navigationController?.setViewControllers([chooseRecipeViewController], animated: true)
     }

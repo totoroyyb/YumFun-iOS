@@ -12,6 +12,7 @@ class EditIngredientViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var unitPicker: UIPickerView!
     var inputRecipeViewController: InputRecipeIngredientsViewController?
     var selectedIngredientIndex = 0
@@ -21,10 +22,17 @@ class EditIngredientViewController: UIViewController {
     var isPreviousIngredient: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupButton(saveButton)
+        setupButton(cancelButton)
         view.addGestureRecognizer(UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing)))
         unitPicker.delegate = self
         unitPicker.dataSource = self
         initialize()
+    }
+    
+    func setupButton(_ button: UIButton) {
+        button.layer.cornerRadius = 10.0
+        button.backgroundColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
     }
     
     func initialize() {
@@ -52,7 +60,7 @@ class EditIngredientViewController: UIViewController {
         let count = nameTextField.text?.count ?? 0
         if count > 0 {
             saveButton.isUserInteractionEnabled = true
-            saveButton.backgroundColor = .blue
+            saveButton.backgroundColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
         } else {
             saveButton.isUserInteractionEnabled = false
             saveButton.backgroundColor = .gray

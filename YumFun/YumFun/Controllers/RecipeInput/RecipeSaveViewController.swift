@@ -11,15 +11,22 @@ class RecipeSaveViewController: UIViewController {
 
     @IBOutlet weak var textInput: UITextView!
     @IBOutlet var urlLabel: UITextField!
+    @IBOutlet weak var previewButton: UIButton!
     var recipe: Recipe = Recipe()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupButton(previewButton)
         navigationItem.title = "Progress 5/5"
         view.addGestureRecognizer(UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing)))
         if let link = recipe.url {
             urlLabel.text = "Recipe from: \n" + link.absoluteString
             // TODO input reference to parsed recipe site
         }
+    }
+    
+    func setupButton(_ button: UIButton) {
+        button.layer.cornerRadius = 10.0
+        button.backgroundColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
     }
 
     @IBAction func previewPressed(_ sender: Any) {
@@ -32,7 +39,6 @@ class RecipeSaveViewController: UIViewController {
         }
     
         recipeDetailViewController.recipe = recipe
-        recipeDetailViewController.isEditView = true
         self.navigationController?.setViewControllers([recipeDetailViewController], animated: true)
     }
 }

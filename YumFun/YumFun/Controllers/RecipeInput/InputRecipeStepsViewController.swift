@@ -10,14 +10,21 @@ import UIKit
 class InputRecipeStepsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addStepButton: UIButton!
     var recipe: Recipe = Recipe()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Progress 4/5"
+        setupButton(addStepButton)
         tableView.delegate = self
         tableView.dataSource = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(pushRecipeSaveView))
+    }
+    
+    func setupButton(_ button: UIButton) {
+        button.layer.cornerRadius = 10.0
+        button.backgroundColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
     }
     
     @IBAction func addStep(_ sender: Any) {
