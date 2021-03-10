@@ -42,8 +42,8 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         recipeDescrip.text = rec.description
         serveSize.text = String(rec.portionSize)
         dishType.text = rec.dishType.rawValue
-        cuisine.text = Utility.join(elements: rec.cuisine.map({$0.toString()}), with: " ,")
-        occasion.text = Utility.join(elements: rec.occasion, with: " ,")
+        cuisine.text = Utility.join(elements: rec.cuisine.map({$0.toString()}), with: ", ")
+        occasion.text = Utility.join(elements: rec.occasion, with: ", ")
         
         setAuthorProfileImage(userID: rec.author, profileImage: profileImage)
         

@@ -1442,6 +1442,11 @@
             <point key="canvasLocation" x="3024" y="2395"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="v6R-TX-wR1">
+            <size key="intrinsicContentSize" width="10" height="10"/>
+        </designable>
+    </designables>
     <resources>
         <image name="Goopy" width="371" height="384"/>
         <image name="YumFunLogo" width="621" height="222"/>

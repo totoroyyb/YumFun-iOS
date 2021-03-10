@@ -76,4 +76,7 @@ target 'YumFun' do
 
   # Floating Button
   pod 'JJFloatingActionButton'
+
+  # Page View
+  pod 'paper-onboarding'
 end
