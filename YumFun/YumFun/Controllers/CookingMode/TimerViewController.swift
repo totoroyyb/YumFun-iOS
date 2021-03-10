@@ -14,12 +14,10 @@ import Speech
 
 
 class TimerViewController: UIViewController {
-    var index: Int = 0
-    var recipe = Recipe()
-
-    let shapeLayer = CAShapeLayer()
 
     @IBOutlet weak var timerLabel: UILabel!
+    let shapeLayer = CAShapeLayer()
+
     
 
     @IBOutlet weak var startAndpauseButton: UIButton!
@@ -33,7 +31,7 @@ class TimerViewController: UIViewController {
     var timeRemaining: Int = 100
     var fullTime: Int = 100
     var timer: Timer!
-    
+
     //Voice Recognition Locals
     let audioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
@@ -45,6 +43,7 @@ class TimerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         startAndpauseButton.layer.cornerRadius = startAndpauseButton.frame.size.width/2
         startAndpauseButton.clipsToBounds = true
         startAndpauseButton.layer.borderColor = UIColor.systemGreen.cgColor
