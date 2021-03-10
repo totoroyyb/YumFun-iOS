@@ -870,7 +870,7 @@
 				CODE_SIGN_ENTITLEMENTS = YumFun/YumFun.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BLHQ787DMR;
+				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -879,7 +879,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun.testflight;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -896,7 +896,7 @@
 				CODE_SIGN_ENTITLEMENTS = YumFun/YumFun.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BLHQ787DMR;
+				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -905,7 +905,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun.testflight;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
