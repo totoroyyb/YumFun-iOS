@@ -510,11 +510,11 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhZ-wC-Nf2">
                                                 <rect key="frame" x="20" y="40" width="48.5" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="text_medium_emphasis"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="collection_bg_color"/>
                                         <constraints>
                                             <constraint firstItem="MhZ-wC-Nf2" firstAttribute="top" secondItem="Lqt-i4-kzC" secondAttribute="top" constant="40" id="8Js-qg-ge1"/>
                                             <constraint firstItem="MhZ-wC-Nf2" firstAttribute="leading" secondItem="Lqt-i4-kzC" secondAttribute="leading" constant="20" symbolic="YES" id="Y5F-tl-Rdh"/>
@@ -532,17 +532,21 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="a0H-9D-GM0"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="KWY-Oj-mrg"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wld-SK-Qxr">
-                                <rect key="frame" x="341" y="59" width="53" height="33"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Cancel"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wld-SK-Qxr">
+                                <rect key="frame" x="370.5" y="59" width="23.5" height="23"/>
+                                <color key="tintColor" name="text_medium_emphasis"/>
+                                <state key="normal">
+                                    <color key="titleColor" name="text_medium_emphasis"/>
+                                    <imageReference key="image" image="xmark" catalog="system" renderingMode="template"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" weight="bold"/>
+                                </state>
                                 <connections>
                                     <action selector="cancelPressed" destination="yr3-gZ-8Lp" eventType="touchUpInside" id="DeN-PD-6VG"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Nw5-ds-dR9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="collection_bg_color"/>
                         <constraints>
                             <constraint firstItem="CPe-rG-Q0k" firstAttribute="leading" secondItem="Nw5-ds-dR9" secondAttribute="leading" id="3tv-Lf-zc8"/>
                             <constraint firstItem="CPe-rG-Q0k" firstAttribute="top" secondItem="Nw5-ds-dR9" secondAttribute="top" constant="30" id="Nnv-Hh-F3E"/>
@@ -572,6 +576,7 @@
         <image name="local_dining-24px" width="24" height="24"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="power" catalog="system" width="128" height="124"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="collection_bg_color">
             <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
