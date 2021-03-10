@@ -594,9 +594,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aca-cv-hzM">
-                                <rect key="frame" x="339" y="590" width="55" height="53"/>
+                                <rect key="frame" x="344" y="590" width="50" height="53"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="53" id="vtC-pX-Qds"/>
+                                    <constraint firstAttribute="width" constant="50" id="d9s-ui-LFQ"/>
+                                    <constraint firstAttribute="height" constant="53" id="wmZ-Rc-UsO"/>
                                 </constraints>
                                 <state key="normal" image="micOff"/>
                                 <connections>
@@ -619,40 +620,52 @@
                                     <action selector="startTapped:" destination="2UN-yV-bHO" eventType="touchUpInside" id="3TI-5O-Ror"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnj-kS-XaF">
-                                <rect key="frame" x="174" y="247" width="67" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nsM-aw-OvM">
+                                <rect key="frame" x="159" y="263" width="97" height="39.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="changeTime:" destination="2UN-yV-bHO" eventType="editingDidEnd" id="TlL-hn-u4T"/>
+                                    <action selector="checkIfChangeWhenTimerOn:" destination="2UN-yV-bHO" eventType="editingDidBegin" id="WDZ-lE-MhB"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Lkn-PO-Xvs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Lkn-PO-Xvs" firstAttribute="trailing" secondItem="aca-cv-hzM" secondAttribute="trailing" constant="20" id="5L4-49-jpc"/>
-                            <constraint firstItem="aca-cv-hzM" firstAttribute="leading" secondItem="Lkn-PO-Xvs" secondAttribute="leading" constant="339" id="8MW-PJ-uLF"/>
+                            <constraint firstItem="Lkn-PO-Xvs" firstAttribute="trailing" secondItem="aca-cv-hzM" secondAttribute="trailing" constant="20" id="15f-hi-uF0"/>
                             <constraint firstItem="poP-gU-K9J" firstAttribute="leading" secondItem="zYl-DJ-ghf" secondAttribute="trailing" constant="51" id="ALA-Yi-fOV"/>
                             <constraint firstItem="Lkn-PO-Xvs" firstAttribute="trailing" secondItem="poP-gU-K9J" secondAttribute="trailing" constant="87" id="CB6-Fn-xBc"/>
                             <constraint firstItem="poP-gU-K9J" firstAttribute="width" secondItem="zYl-DJ-ghf" secondAttribute="width" id="D9u-gw-jfT"/>
                             <constraint firstItem="DZF-OZ-lyn" firstAttribute="trailing" secondItem="Lkn-PO-Xvs" secondAttribute="trailing" id="E1c-Ec-Jqj"/>
+                            <constraint firstItem="Lkn-PO-Xvs" firstAttribute="bottom" secondItem="aca-cv-hzM" secondAttribute="bottom" constant="219" id="F0A-OI-C7d"/>
                             <constraint firstItem="poP-gU-K9J" firstAttribute="height" secondItem="zYl-DJ-ghf" secondAttribute="height" id="Fsx-I4-HxA"/>
                             <constraint firstItem="DZF-OZ-lyn" firstAttribute="leading" secondItem="Lkn-PO-Xvs" secondAttribute="leading" id="V3q-nw-qFE"/>
                             <constraint firstItem="poP-gU-K9J" firstAttribute="baseline" secondItem="zYl-DJ-ghf" secondAttribute="baseline" id="V9F-AL-bUB"/>
                             <constraint firstAttribute="bottom" secondItem="DZF-OZ-lyn" secondAttribute="bottom" id="Zq1-8z-Dg4"/>
-                            <constraint firstItem="aca-cv-hzM" firstAttribute="top" secondItem="Lkn-PO-Xvs" secondAttribute="top" constant="546" id="me7-fb-K7i"/>
                             <constraint firstItem="Lkn-PO-Xvs" firstAttribute="bottom" secondItem="poP-gU-K9J" secondAttribute="bottom" constant="93" id="nmP-J1-zaT"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="1E3-Xx-WNt" appends="YES" id="tqn-Uo-9a6"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="CaF-12-tRr"/>
                     <connections>
                         <outlet property="resetButton" destination="zYl-DJ-ghf" id="nQn-FC-tZo"/>
                         <outlet property="startAndpauseButton" destination="poP-gU-K9J" id="cjY-if-Rkh"/>
-                        <outlet property="timerLabel" destination="fnj-kS-XaF" id="XFQ-3w-LkY"/>
+                        <outlet property="timerLabel" destination="nsM-aw-OvM" id="XcL-Rc-eS7"/>
                         <outlet property="voiceButton" destination="aca-cv-hzM" id="2Q4-2H-0l9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8og-D0-iyc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="1E3-Xx-WNt">
+                    <connections>
+                        <action selector="didTapView:" destination="2UN-yV-bHO" id="q5O-56-qXy"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2037.68115942029" y="662.94642857142856"/>
         </scene>

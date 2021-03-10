@@ -17,6 +17,7 @@ enum ModelClass {
 }
 
 class CookingViewController: UIViewController {
+    var allTimers = [TimerObject(), TimerObject(), TimerObject(),TimerObject(),TimerObject(),TimerObject()]
 
     @IBOutlet weak var avatarCollectionView: UICollectionView!
     @IBOutlet weak var stepCollectionView: UICollectionView!
@@ -342,7 +343,7 @@ extension CookingViewController: StepCollectionViewControllerDelegate {
                 assertionFailure("couldn't find StepDetailViewController")
                 return
             }
-            
+            TimerViewController.TimerObj = allTimers[indexPath.row]
 
             present(TimerViewController, animated: true)
         

@@ -14,10 +14,11 @@ import Speech
 
 
 class TimerViewController: UIViewController {
-
-    @IBOutlet weak var timerLabel: UILabel!
+    
+    var TimerObj = TimerObject()
     let shapeLayer = CAShapeLayer()
 
+    @IBOutlet weak var timerLabel: UITextField!
     
 
     @IBOutlet weak var startAndpauseButton: UIButton!
@@ -30,7 +31,6 @@ class TimerViewController: UIViewController {
     //will be changed to whatever the recipe sends
     var timeRemaining: Int = 100
     var fullTime: Int = 100
-    var timer: Timer!
 
     //Voice Recognition Locals
     let audioEngine = AVAudioEngine()
@@ -43,7 +43,9 @@ class TimerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        timerLabel.text = String(TimerObj.timeRemaining)
+        
         startAndpauseButton.layer.cornerRadius = startAndpauseButton.frame.size.width/2
         startAndpauseButton.clipsToBounds = true
         startAndpauseButton.layer.borderColor = UIColor.systemGreen.cgColor
@@ -69,14 +71,30 @@ class TimerViewController: UIViewController {
         trackLayer.lineWidth = 10
         trackLayer.lineCap = CAShapeLayerLineCap.round
         
-        
-        shapeLayer.strokeEnd = 0
+        if TimerObj.fullTime != 0{
+
+            shapeLayer.strokeEnd = (CGFloat(TimerObj.fullTime)-CGFloat(TimerObj.timeRemaining))/CGFloat(TimerObj.fullTime)
+        }
+        else{
+            shapeLayer.strokeEnd = 0
+        }
         view.layer.addSublayer(trackLayer)
         view.layer.addSublayer(shapeLayer)
-        
+        if TimerObj.isOn == true{
+            TimerObj.timer.invalidate()
+            startAndpauseButton.setTitle("Start", for: .normal)
+            startAndpauseButton.layer.backgroundColor = UIColor.systemGreen.cgColor
+            startAndpauseButton.layer.borderColor = UIColor.systemGreen.cgColor
+            TimerObj.isOn = false
+            
+        }
         
         //Voice Recognition
         requestVoicePermissions()
+        if task != nil{
+            stopSpeechRecognition()
+        }
+        
     }
 
 
@@ -86,7 +104,8 @@ class TimerViewController: UIViewController {
             startAndpauseButton.setTitle("Pause", for: .normal)
             startAndpauseButton.layer.backgroundColor = UIColor.systemRed.cgColor
             startAndpauseButton.layer.borderColor = UIColor.systemRed.cgColor
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(step), userInfo: nil, repeats: true)
+            TimerObj.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(step), userInfo: nil, repeats: true)
+            TimerObj.isOn = true
         }
 
     }
@@ -94,18 +113,19 @@ class TimerViewController: UIViewController {
     @IBAction func pauseTapped(_ sender: UIButton){
 
         if startAndpauseButton.titleLabel?.text == "Pause"{
-            timer.invalidate()
+            TimerObj.timer.invalidate()
             
             startAndpauseButton.setTitle("Start", for: .normal)
             startAndpauseButton.layer.backgroundColor = UIColor.systemGreen.cgColor
             startAndpauseButton.layer.borderColor = UIColor.systemGreen.cgColor
+            TimerObj.isOn = false
         }
         
     }
     @IBAction func resetTapped(_ sender: UIButton){
-        timer.invalidate()
-        timeRemaining = fullTime
-        timerLabel.text = "\(timeRemaining)"
+        TimerObj.timer.invalidate()
+        TimerObj.timeRemaining = TimerObj.fullTime
+        timerLabel.text = "\(TimerObj.fullTime)"
         
         startAndpauseButton.setTitle("Start", for: .normal)
         startAndpauseButton.layer.backgroundColor = UIColor.systemGreen.cgColor
@@ -114,21 +134,21 @@ class TimerViewController: UIViewController {
     }
 
     @objc func step(){
-        if timeRemaining > 0 {
-            timeRemaining -= 1
+        if TimerObj.timeRemaining > 0 {
+            TimerObj.timeRemaining -= 1
             let percentage = calculatePercentageofSecond()
             shapeLayer.strokeEnd += percentage
         }
         else{
-            timer.invalidate()
-            timeRemaining = 10
+            TimerObj.timer.invalidate()
+            // TODO Alert
         }
-        timerLabel.text = "\(timeRemaining)"
+        timerLabel.text = "\(String(TimerObj.timeRemaining))"
     }
     
     func calculatePercentageofSecond() -> CGFloat{
-        print (CGFloat(1.0)/CGFloat(fullTime))
-        return CGFloat(1.0)/CGFloat(fullTime)
+        print (CGFloat(1.0)/CGFloat(TimerObj.fullTime))
+        return CGFloat(1.0)/CGFloat(TimerObj.fullTime)
     }
     
     
@@ -269,5 +289,29 @@ class TimerViewController: UIViewController {
             controller.dismiss(animated: true, completion: nil)
         }))
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func didTapView(_ sender: Any){
+        self.timerLabel.resignFirstResponder()
+    }
+    
+    @IBAction func changeTime(_ sender: Any){
+        if TimerObj.isOn == false{
+            let newTime = Int(self.timerLabel.text!)
+            TimerObj.timeRemaining = newTime!
+            TimerObj.fullTime = newTime!
+            shapeLayer.strokeEnd = 0
+        }
+
+    }
+    @IBAction func checkIfChangeWhenTimerOn(_ sender: Any){
+        if TimerObj.isOn == true{
+            timerLabel.resignFirstResponder()
+            let alert = UIAlertController(title: "Timer is On!", message: ("Pause timer to change"), preferredStyle: .alert)
+            //if user press continue, use firebase to create an account with email and password
+            alert.addAction(UIAlertAction(title: "OK!", style: .default, handler: nil))
+            present(alert, animated: true)
+        }
     }
 }
