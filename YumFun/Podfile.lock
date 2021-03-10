@@ -354,6 +354,7 @@ PODS:
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
+  - paper-onboarding (6.1.5)
   - Pastel (0.6.0)
   - Player (0.13.0)
   - PromisesObjC (1.2.12)
@@ -399,6 +400,7 @@ DEPENDENCIES:
   - Kanna (~> 5.2.2)
   - LGButton
   - NVActivityIndicatorView
+  - paper-onboarding
   - Pastel
   - QCropper
   - SegementSlide (= 3.0.1)
@@ -443,6 +445,7 @@ SPEC REPOS:
     - LGButton
     - nanopb
     - NVActivityIndicatorView
+    - paper-onboarding
     - Pastel
     - Player
     - PromisesObjC
@@ -491,6 +494,7 @@ SPEC CHECKSUMS:
   LGButton: 9f0a7f9d3030e3f504108342f6b66d64a429371b
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  paper-onboarding: fede1799b1da6988f3788e3b71654583c6f3bce1
   Pastel: 814f081efbe2859c37e65ee44f396e6e5be88619
   Player: 968d8d07d923bcdd6f7e4091c9e306eb44a5f7a4
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
@@ -505,6 +509,6 @@ SPEC CHECKSUMS:
   TensorFlowLiteSwift: f062dc1178120100d825d7799fd9f115b4a37fee
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: e405265813eea1e87a966aa5b30dbdd2c7524ea5
+PODFILE CHECKSUM: b5179563b84512d46064863ac04ccc7059abebe0
 
 COCOAPODS: 1.10.1

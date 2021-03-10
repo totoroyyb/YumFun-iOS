@@ -54,6 +54,9 @@ class CookingViewController: UIViewController {
     private var reinforceCount = 0  // track the number of successive recognized gestures
     private var previousClass = ModelClass.background
     
+    // show tutorial or not
+    private var disableTutorial = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,6 +128,25 @@ class CookingViewController: UIViewController {
     
 
     private func handsFreePressed() {
+        let userDefaults = UserDefaults.standard
+        if !disableTutorial && !userDefaults.bool(forKey: "disableTutorial") {
+            let storyboard = UIStoryboard(name: "Cooking", bundle: nil)
+            
+            guard let tutorialViewController = storyboard.instantiateViewController(withIdentifier: "TutorialViewController") as? TutorialViewController else {
+                assertionFailure("couldn't find TutorialViewController")
+                return
+            }
+            
+            disableTutorial = true
+            
+            tutorialViewController.cookingViewController = self
+            present(tutorialViewController, animated: true, completion: nil)
+        } else {
+            startCapture()
+        }
+    }
+    
+    public func startCapture() {
         if !isCapturing {
             if firstPress {
                 camera?.checkCameraConfigurationAndStartSession()
@@ -141,9 +163,7 @@ class CookingViewController: UIViewController {
             isCapturing = false
             handsFreeButton.buttonImage = UIImage(systemName: "hand.raised.fill")
         }
-
     }
-    
 }
 
 extension CookingViewController: UICollectionViewDataSource {
@@ -420,13 +440,13 @@ extension CookingViewController: CameraFeedManagerDelegate {
                             self.reinforceCount = 0
                             self.reinforceClass = ModelClass.background
                             
-                            self.inferenceInterval = 2000
+                            self.inferenceInterval = 1000
                         }
                     } else if self.reinforceClass == ModelClass.background{
                         self.reinforceClass = inference.label  // first time
                         self.reinforceCount += 1
                         
-                        self.inferenceInterval = 500
+                        self.inferenceInterval = 300
                     } else { // not same gesture, reset
                         self.reinforceClass = ModelClass.background
                         self.reinforceCount = 0

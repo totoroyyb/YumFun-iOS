@@ -28,7 +28,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="tintColor" name="text_high_emphasis"/>
-                                <state key="normal" title="  Start Cooking" image="local_dining-24px">
+                                <state key="normal" title="  Start Cooking" image="cooking">
                                     <color key="titleColor" name="text_high_emphasis"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -673,20 +673,103 @@
             </objects>
             <point key="canvasLocation" x="2037.68115942029" y="662.94642857142856"/>
         </scene>
+        <!--Tutorial View Controller-->
+        <scene sceneID="bvV-2e-edU">
+            <objects>
+                <viewController storyboardIdentifier="TutorialViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4Ty-Qy-JZJ" customClass="TutorialViewController" customModule="YumFun" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZkA-cQ-2ig">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JVU-zb-f7G" customClass="PaperOnboarding" customModule="paper_onboarding">
+                                <rect key="frame" x="10" y="44" width="394" height="648"/>
+                                <color key="backgroundColor" name="cell_bg_color"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="4Ty-Qy-JZJ" id="dX3-kj-7HF"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Km9-yA-3I7">
+                                <rect key="frame" x="40" y="722" width="334" height="40"/>
+                                <color key="backgroundColor" name="secondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="we0-Td-c2a"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="OK">
+                                    <color key="titleColor" name="text_high_emphasis"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="okPressed" destination="4Ty-Qy-JZJ" eventType="touchUpInside" id="yUJ-cC-I6q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5RA-za-Qpx">
+                                <rect key="frame" x="40" y="792" width="334" height="40"/>
+                                <color key="backgroundColor" name="secondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="nB7-Gc-YR9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Don't remind me next time">
+                                    <color key="titleColor" name="text_high_emphasis"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="dontPressed" destination="4Ty-Qy-JZJ" eventType="touchUpInside" id="vrJ-rf-Pcz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="h2x-dK-N5G"/>
+                        <color key="backgroundColor" name="cell_bg_color"/>
+                        <constraints>
+                            <constraint firstItem="JVU-zb-f7G" firstAttribute="top" secondItem="h2x-dK-N5G" secondAttribute="top" id="1EI-S8-9SO"/>
+                            <constraint firstItem="Km9-yA-3I7" firstAttribute="leading" secondItem="h2x-dK-N5G" secondAttribute="leading" constant="40" id="52F-et-bb7"/>
+                            <constraint firstItem="JVU-zb-f7G" firstAttribute="leading" secondItem="h2x-dK-N5G" secondAttribute="leading" constant="10" id="6Do-h9-Ihr"/>
+                            <constraint firstItem="h2x-dK-N5G" firstAttribute="trailing" secondItem="Km9-yA-3I7" secondAttribute="trailing" constant="40" id="ISE-tL-9EL"/>
+                            <constraint firstItem="5RA-za-Qpx" firstAttribute="trailing" secondItem="Km9-yA-3I7" secondAttribute="trailing" id="Uwq-gh-1lJ"/>
+                            <constraint firstItem="h2x-dK-N5G" firstAttribute="trailing" secondItem="JVU-zb-f7G" secondAttribute="trailing" constant="10" id="Whq-Kd-Ad6"/>
+                            <constraint firstItem="5RA-za-Qpx" firstAttribute="top" secondItem="Km9-yA-3I7" secondAttribute="bottom" constant="30" id="gzT-oB-ecg"/>
+                            <constraint firstItem="Km9-yA-3I7" firstAttribute="top" secondItem="JVU-zb-f7G" secondAttribute="bottom" constant="30" id="lX0-EX-5fM"/>
+                            <constraint firstItem="5RA-za-Qpx" firstAttribute="leading" secondItem="Km9-yA-3I7" secondAttribute="leading" id="rZy-GN-gap"/>
+                            <constraint firstItem="h2x-dK-N5G" firstAttribute="bottom" secondItem="5RA-za-Qpx" secondAttribute="bottom" constant="30" id="wKm-B7-EJh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="JVU-zb-f7G" id="gaB-Ak-ZTq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2OO-sp-0iY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2886.9565217391305" y="676.33928571428567"/>
+        </scene>
     </scenes>
     <resources>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="clock" catalog="system" width="128" height="121"/>
-        <image name="local_dining-24px" width="24" height="24"/>
+        <image name="cooking" width="24" height="24"/>
         <image name="micOff" width="300" height="300"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="power" catalog="system" width="128" height="124"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="cell_bg_color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="collection_bg_color">
             <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="primary">
             <color red="0.090000003576278687" green="0.60000002384185791" blue="0.50999999046325684" alpha="0.80099999904632568" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondary">
+            <color red="0.090000003576278687" green="0.60000002384185791" blue="0.50999999046325684" alpha="0.58899998664855957" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="text_high_emphasis">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
