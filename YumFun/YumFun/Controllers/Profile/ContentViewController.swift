@@ -48,6 +48,18 @@ class ContentViewController: UICollectionViewController, SegementSlideContentScr
 
         return cell
     }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let recipeId = List[indexPath.row]
+        let recipe = recipeCache[recipeId]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let detailViewController = storyboard.instantiateViewController(identifier: "RecipeDetailViewController") as RecipeDetailViewController? else {
+            assertionFailure("couln't get vc")
+            return
+        }
+        
+        detailViewController.recipe = recipe
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
     
     var List = [String]()
     private var recipeCache = [String : Recipe]()
