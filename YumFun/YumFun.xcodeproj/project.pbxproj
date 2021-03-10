@@ -46,6 +46,7 @@
 		84A8866225E3317F004684DA /* flavors-of-youth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 84A8866125E3317F004684DA /* flavors-of-youth.gif */; };
 		84A8866E25E33B0C004684DA /* LaunchScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8866D25E33B0C004684DA /* LaunchScreenController.swift */; };
 		84A8867C25E34EAA004684DA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8867B25E34EAA004684DA /* SignUpViewController.swift */; };
+		84E0F31E25F88B3B0008F8F6 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0F31D25F88B3B0008F8F6 /* Timer.swift */; };
 		A137B1BA25ED4EA2009A661D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137B1B925ED4EA2009A661D /* Utility.swift */; };
 		A1A58A4525ED8FAC00AE7B1A /* DiscoverTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A4025ED8FAC00AE7B1A /* DiscoverTextCell.swift */; };
 		A1A58A4625ED8FAC00AE7B1A /* DiscoverImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A4125ED8FAC00AE7B1A /* DiscoverImageCell.swift */; };
@@ -137,6 +138,7 @@
 		84A8866125E3317F004684DA /* flavors-of-youth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "flavors-of-youth.gif"; sourceTree = "<group>"; };
 		84A8866D25E33B0C004684DA /* LaunchScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenController.swift; sourceTree = "<group>"; };
 		84A8867B25E34EAA004684DA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		84E0F31D25F88B3B0008F8F6 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		A137B1B925ED4EA2009A661D /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		A1A58A4025ED8FAC00AE7B1A /* DiscoverTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTextCell.swift; sourceTree = "<group>"; };
 		A1A58A4125ED8FAC00AE7B1A /* DiscoverImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverImageCell.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				21F2AE4A25E2DFA300C6F973 /* RecipeComponents.swift */,
 				C5FD261025EC0E2200EA28E0 /* ImagePickerManager.swift */,
 				214E7E8925ECC6D000B13CE4 /* CollabSession.swift */,
+				84E0F31D25F88B3B0008F8F6 /* Timer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				A1A58A6B25ED94C600AE7B1A /* StepCell.swift */,
 				A1A58BBE25F23B4800AE7B1A /* CookingStepCell.swift */,
 				A1A58BE425F2668F00AE7B1A /* StepDetailViewController.swift */,
+				8432C4FF25F45CF500564AD2 /* TimerViewController.swift */,
 			);
 			path = CookingMode;
 			sourceTree = "<group>";
@@ -445,9 +449,9 @@
 				21A8365025E023A3005933AE /* Services */,
 				21F2AE4125E287FC00C6F973 /* Models */,
 				C57662DF25DBFF4100642CF2 /* Views */,
+				C57662DD25DBFEF400642CF2 /* Controllers */,
 				A137B1B825ED4E8B009A661D /* Utility */,
 				A1A58A5225ED8FD700AE7B1A /* GestureRecognition */,
-				C57662DD25DBFEF400642CF2 /* Controllers */,
 				21F2AE7E25E3CC0300C6F973 /* Supporting Files */,
 				C57662C325DBF9D700642CF2 /* Assets.xcassets */,
 				C57662C825DBF9D700642CF2 /* Info.plist */,
@@ -473,7 +477,6 @@
 				84A8866D25E33B0C004684DA /* LaunchScreenController.swift */,
 				84A8867B25E34EAA004684DA /* SignUpViewController.swift */,
 				214E7F8F25EFA55000B13CE4 /* CustomTabBarViewController.swift */,
-				8432C4FF25F45CF500564AD2 /* TimerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				214E804725F010A700B13CE4 /* CustomImageClipViewController.swift in Sources */,
 				214E7E8A25ECC6D000B13CE4 /* CollabSession.swift in Sources */,
 				A1A58A6225ED8FD700AE7B1A /* CameraFeedManager.swift in Sources */,
+				84E0F31E25F88B3B0008F8F6 /* Timer.swift in Sources */,
 				C57662BF25DBF9D600642CF2 /* ViewController.swift in Sources */,
 				A1A58A5D25ED8FD700AE7B1A /* ModelDataHandler.swift in Sources */,
 				C56C5D1125E4524900DD1CD7 /* ProfileEditPage.swift in Sources */,

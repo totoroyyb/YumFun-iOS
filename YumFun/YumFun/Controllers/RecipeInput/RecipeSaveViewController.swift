@@ -24,6 +24,15 @@ class RecipeSaveViewController: UIViewController {
 
     @IBAction func previewPressed(_ sender: Any) {
         recipe.chefNote = textInput.text
-        // TODO preview recipe
+        // TODO preview recipe RecipeDetailViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let recipeDetailViewController = storyboard.instantiateViewController(identifier: "RecipeDetailViewController") as RecipeDetailViewController? else {
+            assertionFailure("couln't get vc")
+            return
+        }
+    
+        recipeDetailViewController.recipe = recipe
+        recipeDetailViewController.isEditView = true
+        self.navigationController?.setViewControllers([recipeDetailViewController], animated: true)
     }
 }

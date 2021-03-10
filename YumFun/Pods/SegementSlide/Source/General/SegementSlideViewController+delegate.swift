@@ -47,12 +47,14 @@ extension SegementSlideViewController: SegementSlideContentDelegate {
             return
         }
         let keyValueObservation = childScrollView.observe(\.contentOffset, options: [.new, .old], changeHandler: { [weak self] (scrollView, change) in
+            
             guard let self = self else {
                 return
             }
-            guard change.newValue != change.oldValue else {
+            guard let newVal = change.newValue, let oldVal = change.oldValue, newVal != oldVal else {
                 return
             }
+            
             if let contentOffsetY = scrollView.forceFixedContentOffsetY {
                 scrollView.forceFixedContentOffsetY = nil
                 scrollView.contentOffset.y = contentOffsetY

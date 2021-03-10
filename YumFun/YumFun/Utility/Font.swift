@@ -30,4 +30,20 @@ enum Font {
             return UIFont(name: "HelveticaNeue-\(rawValue)", size: size)!
         }
     }
+    
+    enum icon: String {
+        case fontAwesome5 = "FontAwesome5Free-Regular"
+        case fontAwesome5Brand = "FontAwesome5Brands-Regular"
+        case fontAwesome5Solid = "FontAwesome5Free-Solid"
+        case iconic = "open-iconic"
+        case ionicon = "Ionicons"
+        case octicon = "octicons"
+        case themify = "themify"
+        case mapIcon = "map-icons"
+        case materialIcon = "MaterialIcons-Regular"
+        case segoeMDL2 = "Segoe mdl2 assets"
+        case foundation = "fontcustom"
+        case elegantIcon = "ElegantIcons"
+        case captain = "captainicon"
+    }
 }
