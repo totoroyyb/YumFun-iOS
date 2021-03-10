@@ -840,14 +840,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientTableCell" id="0lb-vf-uML" customClass="IngredientTableCell" customModule="YumFun" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="335" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="335" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0lb-vf-uML" id="hTJ-az-6p8">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edo-ue-ced">
-                                                    <rect key="frame" x="26" y="11" width="120" height="21.5"/>
+                                                    <rect key="frame" x="26" y="11" width="120" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="noC-UV-VY2"/>
                                                     </constraints>
@@ -856,7 +856,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfC-f3-L5q">
-                                                    <rect key="frame" x="156" y="11" width="143" height="21.5"/>
+                                                    <rect key="frame" x="156" y="11" width="143" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1061,11 +1061,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BAd-ac-R87">
-                                <rect key="frame" x="0.0" y="28" width="375" height="774"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAd-ac-R87">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o18-2r-eCT">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="775"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o18-2r-eCT">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z8H-MR-EB7" customClass="CircularImageView" customModule="YumFun" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="20" width="50" height="50"/>
@@ -1198,7 +1198,8 @@
                                     <constraint firstItem="o18-2r-eCT" firstAttribute="top" secondItem="X57-MZ-td0" secondAttribute="top" id="Cqp-a9-YBY"/>
                                     <constraint firstItem="o18-2r-eCT" firstAttribute="trailing" secondItem="X57-MZ-td0" secondAttribute="trailing" id="FN0-0p-NxP"/>
                                     <constraint firstItem="o18-2r-eCT" firstAttribute="leading" secondItem="X57-MZ-td0" secondAttribute="leading" id="eu4-rS-2oW"/>
-                                    <constraint firstItem="o18-2r-eCT" firstAttribute="bottom" secondItem="X57-MZ-td0" secondAttribute="bottom" id="sGh-24-dei"/>
+                                    <constraint firstItem="o18-2r-eCT" firstAttribute="bottom" secondItem="X57-MZ-td0" secondAttribute="bottom" priority="250" id="sGh-24-dei"/>
+                                    <constraint firstItem="o18-2r-eCT" firstAttribute="height" secondItem="nD6-xk-8Za" secondAttribute="height" priority="250" id="v4U-KU-r6Z"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="X57-MZ-td0"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="nD6-xk-8Za"/>
@@ -1210,7 +1211,6 @@
                             <constraint firstItem="BAd-ac-R87" firstAttribute="trailing" secondItem="oFr-yY-y43" secondAttribute="trailing" id="1J7-4a-VTE"/>
                             <constraint firstItem="BAd-ac-R87" firstAttribute="leading" secondItem="oFr-yY-y43" secondAttribute="leading" id="3Of-3V-Y5i"/>
                             <constraint firstItem="BAd-ac-R87" firstAttribute="top" secondItem="oFr-yY-y43" secondAttribute="top" id="CdA-5N-fwj"/>
-                            <constraint firstItem="BAd-ac-R87" firstAttribute="top" secondItem="oFr-yY-y43" secondAttribute="top" id="Q4h-qT-zv1"/>
                             <constraint firstItem="BAd-ac-R87" firstAttribute="bottom" secondItem="oFr-yY-y43" secondAttribute="bottom" id="TJ8-G1-2hH"/>
                         </constraints>
                     </view>
@@ -1232,7 +1232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hyb-zy-AIE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1284" y="3056"/>
+            <point key="canvasLocation" x="-1284" y="3055.3223388305851"/>
         </scene>
         <!--Discover-->
         <scene sceneID="Dft-Ja-fIc">
@@ -1438,11 +1438,6 @@
             <point key="canvasLocation" x="3024" y="2395"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="v6R-TX-wR1">
-            <size key="intrinsicContentSize" width="10" height="10"/>
-        </designable>
-    </designables>
     <resources>
         <image name="Goopy" width="371" height="384"/>
         <image name="YumFunLogo" width="621" height="222"/>
