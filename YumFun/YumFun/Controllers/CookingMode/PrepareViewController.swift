@@ -189,6 +189,10 @@ class PrepareViewController: UIViewController {
             return
         }
         
+        cookingViewController.recipe = self.recipe
+        cookingViewController.curUser = self.curUser
+        cookingViewController.avatarDic = self.avatarDic
+        
         if let session = collabSession {  // collab Mode
             // check step assignment completion
             for stepAssignment in session.workLoad {
@@ -203,9 +207,6 @@ class PrepareViewController: UIViewController {
             cookingViewController.listner = self.listner
         }
         
-        cookingViewController.recipe = self.recipe
-        cookingViewController.curUser = self.curUser
-        cookingViewController.avatarDic = self.avatarDic
         self.cookingViewController = cookingViewController
         navigationController?.pushViewController(cookingViewController, animated: true)
     }

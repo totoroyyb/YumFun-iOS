@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TKSwarmAlert
 
 class ViewComponentTestViewController: UIViewController {
 
@@ -18,6 +19,12 @@ class ViewComponentTestViewController: UIViewController {
     @IBAction func warningTopPopupTapped(_ sender: Any) {
         displayWarningTopPopUp(title: "Hello", description: "Description")
     }
+    
+    @IBAction func testCompletionAnimationTapped(_ sender: Any) {
+        displayCompletionAnimation()
+    }
+    
+    
     
     /*
     // MARK: - Navigation

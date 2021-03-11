@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import JJFloatingActionButton
+import TKSwarmAlert
 
 enum ModelClass {
     static let round = "0 round"
@@ -40,6 +41,7 @@ class CookingViewController: UIViewController {
                 if self.isCapturing {  // turn off capture
                     self.toggleCapture()
                 }
+                displayCompletionAnimation()
             }
             
             // update collectionView UI
@@ -52,6 +54,7 @@ class CookingViewController: UIViewController {
             }
         }
     }
+    
     var listner: ListenerRegistration?
     var curStep: Int = 0  // index of the current step
     
@@ -318,7 +321,6 @@ extension UICollectionView: CookingStepCellDelegate {
     func didCheckCellAt(at indexPath: IndexPath) {
         if let del = delegate as? StepCollectionViewControllerDelegate {
             del.didCheckCellAt(self, at: indexPath)
-
         }
     }
     
@@ -379,6 +381,7 @@ extension CookingViewController: StepCollectionViewControllerDelegate {
                 if self.isCapturing {  // turn off capture
                     self.toggleCapture()
                 }
+                displayCompletionAnimation()
             }
             
             collectionView.performBatchUpdates({
@@ -452,6 +455,27 @@ extension CookingViewController {
         }
     }
 }
+
+//extension CookingViewController {
+//    private func displayCompletionAnimation() {
+//        let alert = TKSwarmAlert(backgroundType: .brightBlur)
+////        alert.show(type)
+//
+//        let myView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+//        let testImageView = UIImageView()
+//        testImageView.contentMode = .scaleAspectFill
+//        testImageView.image = UIImage(systemName: "highlighter")
+//        myView.addSubview(testImageView)
+//        testImageView.snp.makeConstraints { (make) in
+//            make.leading.equalTo(myView)
+//            make.trailing.equalTo(myView)
+//            make.top.equalTo(myView)
+//            make.bottom.equalTo(myView)
+//        }
+//
+//        alert.show([myView])
+//    }
+//}
 
 // gesture recognization camera capture
 extension CookingViewController: CameraFeedManagerDelegate {

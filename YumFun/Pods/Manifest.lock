@@ -378,6 +378,7 @@ PODS:
   - TensorFlowLiteSwift/CoreML (2.4.0):
     - TensorFlowLiteC/CoreML (= 2.4.0)
     - TensorFlowLiteSwift/Core (= 2.4.0)
+  - TKSwarmAlert (1.0.4)
   - WXImageCompress (0.1.3)
 
 DEPENDENCIES:
@@ -408,6 +409,7 @@ DEPENDENCIES:
   - SwiftEntryKit (= 1.2.7)
   - SwiftIconFont
   - TensorFlowLiteSwift/CoreML (~> 2.4.0)
+  - TKSwarmAlert (from `https://github.com/entotsu/TKSwarmAlert`, branch `master`)
   - WXImageCompress (~> 0.1.1)
 
 SPEC REPOS:
@@ -460,6 +462,16 @@ SPEC REPOS:
     - TensorFlowLiteSwift
     - WXImageCompress
 
+EXTERNAL SOURCES:
+  TKSwarmAlert:
+    :branch: master
+    :git: https://github.com/entotsu/TKSwarmAlert
+
+CHECKOUT OPTIONS:
+  TKSwarmAlert:
+    :commit: cd0a8cf37adf24ca90c4c64148afffdf78ec0ab8
+    :git: https://github.com/entotsu/TKSwarmAlert
+
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
@@ -507,8 +519,9 @@ SPEC CHECKSUMS:
   SwiftIconFont: 0a772c5ac65a40c9b0675efa37b4928158bd8e43
   TensorFlowLiteC: 09f8ac75a76caeadb19bcfa694e97454cc1ecf87
   TensorFlowLiteSwift: f062dc1178120100d825d7799fd9f115b4a37fee
+  TKSwarmAlert: ab34152af48391d8aa80b2386b5e6fe9f335ace7
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: b5179563b84512d46064863ac04ccc7059abebe0
+PODFILE CHECKSUM: 72cb4febeae5464a5a351cc9725754537bb5e673
 
 COCOAPODS: 1.10.1

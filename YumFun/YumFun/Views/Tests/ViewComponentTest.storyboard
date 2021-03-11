@@ -24,11 +24,20 @@
                                     <action selector="warningTopPopupTapped:" destination="O2i-Z7-T0E" eventType="touchUpInside" id="m9v-vR-9ui"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVe-2H-xTx">
+                                <rect key="frame" x="114.5" y="164" width="185" height="30"/>
+                                <state key="normal" title="Test Completion Animation"/>
+                                <connections>
+                                    <action selector="testCompletionAnimationTapped:" destination="O2i-Z7-T0E" eventType="touchUpInside" id="eyU-1i-33Y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bJy-j0-Ol3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Mul-cy-jqt" firstAttribute="centerX" secondItem="CY4-Jy-NmU" secondAttribute="centerX" id="7P7-Kv-dRE"/>
+                            <constraint firstItem="pVe-2H-xTx" firstAttribute="top" secondItem="Mul-cy-jqt" secondAttribute="bottom" constant="20" id="AHa-QL-26Z"/>
+                            <constraint firstItem="pVe-2H-xTx" firstAttribute="centerX" secondItem="CY4-Jy-NmU" secondAttribute="centerX" id="RyQ-62-l3b"/>
                             <constraint firstItem="Mul-cy-jqt" firstAttribute="top" secondItem="bJy-j0-Ol3" secondAttribute="top" constant="70" id="YSB-4Z-k4t"/>
                         </constraints>
                     </view>

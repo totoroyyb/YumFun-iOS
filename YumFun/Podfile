@@ -79,4 +79,7 @@ target 'YumFun' do
 
   # Page View
   pod 'paper-onboarding'
+
+  # Completion Animation
+  pod 'TKSwarmAlert', :git => 'https://github.com/entotsu/TKSwarmAlert', branch: 'master'
 end

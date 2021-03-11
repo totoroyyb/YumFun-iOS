@@ -24,6 +24,9 @@
 		214E84A925F508C500B13CE4 /* BgCometEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E84A825F508C500B13CE4 /* BgCometEffect.swift */; };
 		214E85FA25F5539D00B13CE4 /* BottomUpForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E85F925F5539D00B13CE4 /* BottomUpForm.swift */; };
 		214E85FD25F5547E00B13CE4 /* FormFieldPresetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214E85FC25F5547E00B13CE4 /* FormFieldPresetFactory.swift */; };
+		216144AB25FA737000C317B8 /* CompletionComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216144AA25FA737000C317B8 /* CompletionComponent.xib */; };
+		216144AE25FA7C7E00C317B8 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216144AD25FA7C7E00C317B8 /* Layer.swift */; };
+		216144B125FA81D300C317B8 /* CompletionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216144B025FA81D300C317B8 /* CompletionAnimation.swift */; };
 		2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052525E9015100A9D46C /* CloudStorageApi.swift */; };
 		2185052925E941BC00A9D46C /* CloudStorageTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */; };
 		2185052C25E941E900A9D46C /* CloudStorageTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */; };
@@ -116,6 +119,9 @@
 		214E84A825F508C500B13CE4 /* BgCometEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BgCometEffect.swift; sourceTree = "<group>"; };
 		214E85F925F5539D00B13CE4 /* BottomUpForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomUpForm.swift; sourceTree = "<group>"; };
 		214E85FC25F5547E00B13CE4 /* FormFieldPresetFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormFieldPresetFactory.swift; sourceTree = "<group>"; };
+		216144AA25FA737000C317B8 /* CompletionComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletionComponent.xib; sourceTree = "<group>"; };
+		216144AD25FA7C7E00C317B8 /* Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
+		216144B025FA81D300C317B8 /* CompletionAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionAnimation.swift; sourceTree = "<group>"; };
 		2185052525E9015100A9D46C /* CloudStorageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageApi.swift; sourceTree = "<group>"; };
 		2185052825E941BC00A9D46C /* CloudStorageTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CloudStorageTest.storyboard; sourceTree = "<group>"; };
 		2185052B25E941E900A9D46C /* CloudStorageTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageTestViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +231,7 @@
 				214E84A525F4FFFD00B13CE4 /* LoginInputField.swift */,
 				214E84A825F508C500B13CE4 /* BgCometEffect.swift */,
 				214E85F925F5539D00B13CE4 /* BottomUpForm.swift */,
+				216144B025FA81D300C317B8 /* CompletionAnimation.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -282,6 +289,7 @@
 			children = (
 				21A8367025E0364B005933AE /* RecipeExt.swift */,
 				214E7F9225EFB27000B13CE4 /* NotificationType.swift */,
+				216144AD25FA7C7E00C317B8 /* Layer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -495,6 +503,7 @@
 				C568033825F43789003A6AFB /* BasicProfile.xib */,
 				A1A58A4F25ED8FC800AE7B1A /* Cooking.storyboard */,
 				EF9A1E2D25F2E6C400F732D3 /* RecipeInput.storyboard */,
+				216144AA25FA737000C317B8 /* CompletionComponent.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -587,6 +596,7 @@
 				21A8364725E02252005933AE /* FirestoreTest.storyboard in Resources */,
 				214E7E8D25ED11C200B13CE4 /* CollabTest.storyboard in Resources */,
 				2185052925E941BC00A9D46C /* CloudStorageTest.storyboard in Resources */,
+				216144AB25FA737000C317B8 /* CompletionComponent.xib in Resources */,
 				EF9A1E2E25F2E6C400F732D3 /* RecipeInput.storyboard in Resources */,
 				84A8866225E3317F004684DA /* flavors-of-youth.gif in Resources */,
 				A1A58A5025ED8FC800AE7B1A /* Cooking.storyboard in Resources */,
@@ -674,6 +684,7 @@
 				A137B1BA25ED4EA2009A661D /* Utility.swift in Sources */,
 				C54B906225EF66A800DCE690 /* UserCell.swift in Sources */,
 				214E84A625F4FFFD00B13CE4 /* LoginInputField.swift in Sources */,
+				216144B125FA81D300C317B8 /* CompletionAnimation.swift in Sources */,
 				21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */,
 				A1A58A5E25ED8FD700AE7B1A /* CVPixelBufferExtension.swift in Sources */,
 				214E81CF25F233E900B13CE4 /* ViewComponentTestViewController.swift in Sources */,
@@ -718,6 +729,7 @@
 				A1A58B7B25F0392000AE7B1A /* CookingViewController.swift in Sources */,
 				2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */,
 				C568033C25F4382A003A6AFB /* BasicProfileView.swift in Sources */,
+				216144AE25FA7C7E00C317B8 /* Layer.swift in Sources */,
 				EF9A1E3425F2E73F00F732D3 /* EditStepViewController.swift in Sources */,
 				EFC74C0725EC5E120037CFEC /* StartRecipeInputViewController.swift in Sources */,
 				2185054E25E98B3A00A9D46C /* Core.swift in Sources */,
@@ -883,7 +895,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -909,7 +921,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
