@@ -1,6 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-YumFun/Pods-YumFun-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/AnimatedField/AnimatedField.framework
+${BUILT_PRODUCTS_DIR}/Blueprints/Blueprints.framework
 ${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework
 ${BUILT_PRODUCTS_DIR}/Cards/Cards.framework
 ${BUILT_PRODUCTS_DIR}/Comets/Comets.framework

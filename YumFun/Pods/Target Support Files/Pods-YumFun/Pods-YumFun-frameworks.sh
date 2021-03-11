@@ -177,6 +177,7 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AnimatedField/AnimatedField.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Blueprints/Blueprints.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Cards/Cards.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Comets/Comets.framework"
@@ -210,6 +211,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AnimatedField/AnimatedField.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Blueprints/Blueprints.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Cards/Cards.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Comets/Comets.framework"

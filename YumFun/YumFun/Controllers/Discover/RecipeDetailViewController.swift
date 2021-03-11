@@ -8,7 +8,7 @@
 import UIKit
 import JJFloatingActionButton
 
-class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
+class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
@@ -32,11 +32,32 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
     var recipe : Recipe?
     var isEditView = false
     
+    var recipeIndex: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupViewAnimation()
+        setupViewColor()
+        setupView()
+    }
+    
+    private func setupViewAnimation() {
+        // Re-enable back pan gesture
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        self.hero.isEnabled = true
+        self.profileImage.hero.id = HeroIdType.profileImage.getIdStr(at: recipeIndex)
+        self.recipeTitle.hero.id = HeroIdType.recipeTitle.getIdStr(at: recipeIndex)
+        self.contentView.hero.modifiers = [
+            .translate(y: 100)
+        ]
+    }
+    
+    private func setupViewColor() {
         self.view.backgroundColor = UIColor(named: "collection_bg_color")
-        guard let rec = recipe else {return}
+    }
+    
+    private func setupView() {
+        guard let rec = recipe else { return }
         
         setAuthorName(authorID: rec.author)
         recipeTitle.text = rec.title
@@ -50,7 +71,6 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         
         makeSteps(recipe: rec)
         setupCookFloatingButton()
-        
     }
     
     private func setupCookFloatingButton() {

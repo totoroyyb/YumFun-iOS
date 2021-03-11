@@ -30,6 +30,8 @@
 		2185054E25E98B3A00A9D46C /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185054D25E98B3A00A9D46C /* Core.swift */; };
 		2185055425EA75EC00A9D46C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185055325EA75EC00A9D46C /* Error.swift */; };
 		2185055925EA8E7F00A9D46C /* Notifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185055825EA8E7F00A9D46C /* Notifiable.swift */; };
+		21872BF425F927C1001F0A8F /* HeroNaviPanGestureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21872BF325F927C1001F0A8F /* HeroNaviPanGestureHelper.swift */; };
+		21872BF725F92CBF001F0A8F /* HeroIdHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21872BF625F92CBF001F0A8F /* HeroIdHelper.swift */; };
 		21A8364725E02252005933AE /* FirestoreTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21A8364625E02252005933AE /* FirestoreTest.storyboard */; };
 		21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */; };
 		21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8365125E023E4005933AE /* FirestoreApi.swift */; };
@@ -122,6 +124,8 @@
 		2185055325EA75EC00A9D46C /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		2185055825EA8E7F00A9D46C /* Notifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifiable.swift; sourceTree = "<group>"; };
 		21872BF125F91890001F0A8F /* YumFun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YumFun.entitlements; sourceTree = "<group>"; };
+		21872BF325F927C1001F0A8F /* HeroNaviPanGestureHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroNaviPanGestureHelper.swift; sourceTree = "<group>"; };
+		21872BF625F92CBF001F0A8F /* HeroIdHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroIdHelper.swift; sourceTree = "<group>"; };
 		21A8364625E02252005933AE /* FirestoreTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirestoreTest.storyboard; sourceTree = "<group>"; };
 		21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestViewController.swift; sourceTree = "<group>"; };
 		21A8365125E023E4005933AE /* FirestoreApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreApi.swift; sourceTree = "<group>"; };
@@ -329,6 +333,8 @@
 				C588202825EF7B4300FC2540 /* PlaceholderImage.swift */,
 				214E811F25F16D5500B13CE4 /* Font.swift */,
 				214E812225F16E2500B13CE4 /* UIColor+Utils.swift */,
+				21872BF325F927C1001F0A8F /* HeroNaviPanGestureHelper.swift */,
+				21872BF625F92CBF001F0A8F /* HeroIdHelper.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -656,6 +662,7 @@
 				214E7F9325EFB27000B13CE4 /* NotificationType.swift in Sources */,
 				84A8865F25E3316A004684DA /* swift+gif.swift in Sources */,
 				84A8866E25E33B0C004684DA /* LaunchScreenController.swift in Sources */,
+				21872BF725F92CBF001F0A8F /* HeroIdHelper.swift in Sources */,
 				21F2AE5625E3B44300C6F973 /* CrudProtocol.swift in Sources */,
 				EFC74C0A25EC5EC20037CFEC /* SecondRecipeInputViewController.swift in Sources */,
 				214E804725F010A700B13CE4 /* CustomImageClipViewController.swift in Sources */,
@@ -712,6 +719,7 @@
 				A1A58A4D25ED8FBA00AE7B1A /* PrepareViewController.swift in Sources */,
 				C588202925EF7B4300FC2540 /* PlaceholderImage.swift in Sources */,
 				A1A58B7B25F0392000AE7B1A /* CookingViewController.swift in Sources */,
+				21872BF425F927C1001F0A8F /* HeroNaviPanGestureHelper.swift in Sources */,
 				2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */,
 				C568033C25F4382A003A6AFB /* BasicProfileView.swift in Sources */,
 				EF9A1E3425F2E73F00F732D3 /* EditStepViewController.swift in Sources */,
@@ -870,7 +878,7 @@
 				CODE_SIGN_ENTITLEMENTS = YumFun/YumFun.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BLHQ787DMR;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -879,7 +887,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun.build;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -896,7 +904,7 @@
 				CODE_SIGN_ENTITLEMENTS = YumFun/YumFun.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BLHQ787DMR;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -905,7 +913,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucdavcs.189e.CodexCoders.YumFun.build;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

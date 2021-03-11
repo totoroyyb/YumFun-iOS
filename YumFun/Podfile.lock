@@ -214,6 +214,7 @@ PODS:
     - abseil/meta/type_traits
   - Alamofire (5.4.1)
   - AnimatedField (2.4.4)
+  - Blueprints (0.13.1)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -382,6 +383,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - AnimatedField
+  - Blueprints
   - Cards
   - Comets
   - EmailValidator
@@ -413,6 +415,7 @@ SPEC REPOS:
     - abseil
     - Alamofire
     - AnimatedField
+    - Blueprints
     - BoringSSL-GRPC
     - Cards
     - Comets
@@ -461,6 +464,7 @@ SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   AnimatedField: af48a2d59a50b33b30446267f7f2af274296203c
+  Blueprints: ddd6ab1e455c98471aaef2fdd0b09b5f9b53af5b
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Cards: 45ae6bd0eca7b5e8016d3b6cb30b60b04753f68f
   Comets: ff75eb4658d612af66073bf9fcf6e8bef274817b
@@ -505,6 +509,6 @@ SPEC CHECKSUMS:
   TensorFlowLiteSwift: f062dc1178120100d825d7799fd9f115b4a37fee
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: e405265813eea1e87a966aa5b30dbdd2c7524ea5
+PODFILE CHECKSUM: 6d7e099ab0dc4c692f7dedba1869efb6b3afa0d8
 
 COCOAPODS: 1.10.1

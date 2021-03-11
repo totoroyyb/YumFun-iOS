@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import Blueprints
 
 class PrepareViewController: UIViewController {
     
@@ -60,14 +61,26 @@ class PrepareViewController: UIViewController {
         stepCollectionView.dataSource = self
         stepCollectionView.delegate = self
         
+//        let layout = stepCollectionView.collectionViewLayout
+//        if let flowLayout = layout as? UICollectionViewFlowLayout{
+//            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+//        }
+        
+//        let blueprintLayout = VerticalBlueprintLayout(
+//            itemsPerRow: 1,
+//            minimumInteritemSpacing: 10,
+//            minimumLineSpacing: 10,
+//            sectionInset: EdgeInsets(top: 10, left: 10, bottom: 10, right: 10),
+//            stickyHeaders: false,
+//            stickyFooters: false
+//        )
+
+//        stepCollectionView.collectionViewLayout = blueprintLayout
+//        stepCollectionView
+        
         let layout = stepCollectionView.collectionViewLayout
         if let flowLayout = layout as? UICollectionViewFlowLayout{
-            flowLayout.estimatedItemSize = CGSize(
-                width: view.frame.width - 20,
-                // Make the height a reasonable estimate to
-                // ensure the scroll bar remains smooth
-                height: 500
-            )
+            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
         
         if let sid = sessionID {  // user is invited, join session here
@@ -244,6 +257,39 @@ extension PrepareViewController: UICollectionViewDataSource {
         }
     }
     
+    private func setupStepCellView(for cell: StepCell, at indexPath: IndexPath) -> StepCell {
+        // Basic UI set up
+        cell.title.text = String(
+            format: "Step %d/%d: %@",
+            indexPath.row + 1,
+            recipe.steps.count,
+            recipe.steps[indexPath.row].title ?? "")
+        
+        cell.descrip.text = recipe.steps[indexPath.row].description
+        
+        cell.collectionView.dataSource = cell
+        cell.collectionView.delegate = cell
+        
+        if let session = collabSession {  // collab mode
+            
+            cell.assigneeAvatars = session.workLoad[indexPath.row].assignee.map() {(avatarDic[$0] ?? avatarPlaceholder)}
+            cell.notAssigned.isHidden = (cell.assigneeAvatars.count != 0)
+            cell.collectionView.isHidden = (cell.assigneeAvatars.count == 0)
+            
+            if let uid = curUser.id,
+            session.workLoad[indexPath.row].assignee.contains(uid) {
+                cell.layer.backgroundColor = UIColor.blue.cgColor
+            } else {
+                cell.layer.backgroundColor = UIColor.clear.cgColor
+            }
+        } else {
+            cell.notAssigned.isHidden = true
+            cell.collectionView.isHidden = true
+        }
+        
+        return cell
+    }
+    
     private func setAvatar(userID: String, imageView: UIImageView) {
         if let image = avatarDic[userID] {
             imageView.image = image
@@ -308,5 +354,79 @@ extension PrepareViewController: UICollectionViewDelegate {
             
         }
 
+    }
+}
+
+extension PrepareViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let flowFayout = collectionViewLayout as? UICollectionViewFlowLayout else {
+            return .zero
+        }
+
+        if collectionView != stepCollectionView {
+            return flowFayout.estimatedItemSize
+        }
+        
+        return flowFayout.estimatedItemSize
+
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepCell", for: indexPath) as? StepCell else {
+//            return .zero
+//        }
+//
+
+////        let preparedCell = setupStepCellView(for: cell, at: indexPath)
+//        // Basic UI set up
+//        cell.title.text = String(
+//            format: "Step %d/%d: %@",
+//            indexPath.row + 1,
+//            recipe.steps.count,
+//            recipe.steps[indexPath.row].title ?? "")
+//
+//        cell.descrip.text = recipe.steps[indexPath.row].description
+//
+//        cell.collectionView.dataSource = cell
+//        cell.collectionView.delegate = cell
+//
+//        if let session = collabSession {  // collab mode
+//
+//            cell.assigneeAvatars = session.workLoad[indexPath.row].assignee.map() {(avatarDic[$0] ?? avatarPlaceholder)}
+//            cell.notAssigned.isHidden = (cell.assigneeAvatars.count != 0)
+//            cell.collectionView.isHidden = (cell.assigneeAvatars.count == 0)
+//
+//            if let uid = curUser.id,
+//            session.workLoad[indexPath.row].assignee.contains(uid) {
+//                cell.layer.backgroundColor = UIColor.blue.cgColor
+//            } else {
+//                cell.layer.backgroundColor = UIColor.clear.cgColor
+//            }
+//        } else {
+//            cell.notAssigned.isHidden = true
+//            cell.collectionView.isHidden = true
+//        }
+//
+//        cell.setNeedsLayout()
+//        cell.layoutIfNeeded()
+//
+//        let cellWidth = widthForCellInCurrentLayout(flowLayout: flowFayout)
+//        let targetSize = CGSize(width: cellWidth, height: 0.0)
+//
+//        let cellSize = .contentView.systemLayoutSizeFitting(targetSize,
+//                                                                withHorizontalFittingPriority: .defaultHigh,
+//                                                                verticalFittingPriority: .fittingSizeLevel)
+//
+//        print("cell height: \(cellSize)")
+//
+//        return cellSize
+    }
+
+    func widthForCellInCurrentLayout(flowLayout: UICollectionViewFlowLayout) -> CGFloat {
+        var cellWidth = stepCollectionView.frame.size.width - (flowLayout.sectionInset.left + flowLayout.sectionInset.right)
+        
+        
+//        if itemsPerRow > 1 {
+//            cellWidth -= minimumInteritemSpacing * (itemsPerRow - 1)
+//        }
+//        return floor(cellWidth / itemsPerRow)
+        return flowLayout.estimatedItemSize.width
     }
 }

@@ -7,6 +7,9 @@
 
 import Foundation
 import UIKit
+
+//let avatarPlaceholder = UIImage(named: "mascot")
+
 class PlaceholderImage{
     static func imageWith(name: String?) -> UIImage? {
             let frame = CGRect(x: 0, y: 0, width: 50, height: 50)

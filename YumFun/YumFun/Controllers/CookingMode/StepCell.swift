@@ -15,6 +15,8 @@ class StepCell: UICollectionViewCell{
         }
     }
     
+    private var isHeightCalculated = false
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var notAssigned: UILabel!
     @IBOutlet weak var title: UILabel!
@@ -38,18 +40,39 @@ class StepCell: UICollectionViewCell{
     }
     
     // for dynamically resized height
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        setNeedsLayout()
-        layoutIfNeeded()
-        let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
-        var newFrame = layoutAttributes.frame
-        // note: don't change the width
-        print(size.height)
-        newFrame.size.height = ceil(size.height)
-        layoutAttributes.frame = newFrame
-        return layoutAttributes
-    }
+//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+////        setNeedsLayout()
+////        layoutIfNeeded()
+////        let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
+//
+////        return layoutAttributes
+//
+////        let size = contentView.systemLayoutSizeFitting(.zero, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+//////
+////        var newFrame = layoutAttributes.frame
+////        newFrame.size.width = size.width
+////        // note: don't change the width
+//////        print(size.height)
+//////        newFrame.size.width = fra
+////        layoutAttributes.frame = newFrame
+////        return layoutAttributes
+//
+////        if !isHeightCalculated {
+////            setNeedsLayout()
+////            layoutIfNeeded()
+////            let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
+////            var newFrame = layoutAttributes.frame
+////            newFrame.size.width = CGFloat(ceilf(Float(size.width)))
+////            layoutAttributes.frame = newFrame
+////            isHeightCalculated = true
+////        }
+////        return layoutAttributes
+//    }
     
+    
+    func fitWithDescription(_ description: String) {
+        self.descrip.text = description
+    }
 }
 
 extension StepCell: UICollectionViewDataSource {
