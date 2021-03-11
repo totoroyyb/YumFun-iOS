@@ -52,6 +52,7 @@ class Utility {
      Layout step programmingly on a view
      */
     static func layoutStep(contentView: UIView, index: Int, recipe: Recipe, previous: UIView) -> UIView {
+        
         let step = recipe.steps[index]
         var previous = previous
         
