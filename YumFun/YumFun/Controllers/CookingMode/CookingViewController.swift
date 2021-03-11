@@ -32,6 +32,14 @@ class CookingViewController: UIViewController {
     var avatarDic : [String: UIImage?] = [:]
     var collabSession: CollabSession? {
         didSet {
+            if let indexPath = self.getNextStep() {
+                self.curStep = indexPath.row
+            } else {  // last step
+                self.curStep = -1
+                if self.isCapturing {  // turn off capture
+                    self.toggleCapture()
+                }
+            }
             stepCollectionView?.reloadData()
         }
     }
@@ -142,11 +150,11 @@ class CookingViewController: UIViewController {
             tutorialViewController.cookingViewController = self
             present(tutorialViewController, animated: true, completion: nil)
         } else {
-            startCapture()
+            toggleCapture()
         }
     }
     
-    public func startCapture() {
+    public func toggleCapture() {
         if !isCapturing {
             if firstPress {
                 camera?.checkCameraConfigurationAndStartSession()
@@ -324,15 +332,31 @@ protocol StepCollectionViewControllerDelegate: UICollectionViewDelegate {
 extension CookingViewController: StepCollectionViewControllerDelegate {
     func didCheckCellAt(_ collectionView: UICollectionView, at indexPath: IndexPath) {
         print("check!")
+        
+        if indexPath.row == -1 {
+            assertionFailure("row should not be -1 here")
+            return
+        }
+        
         // dismiss the step
         if let session = collabSession {  // collab Mode
             session.toggleStepCompletion(at: indexPath.row) { error in
                 if let err = error {
                     print(err.localizedDescription)
                 } else {
-                    if let indexPath = self.getNextStep() {
-                        self.curStep = indexPath.row
-                    }
+//                    if let indexPath = self.getNextStep() {
+//                        self.curStep = indexPath.row
+//                    } else {  // last step
+//                        self.curStep = -1
+//                        if self.isCapturing {  // turn off capture
+//                            self.toggleCapture()
+//                        }
+//                    }
+//
+//                    if self.isCapturing {  // turn off capture
+//                        self.toggleCapture()
+//                    }
+//
                     collectionView.performBatchUpdates({
                         collectionView.reloadSections(IndexSet.init(integersIn: 0...0))
                     }) { _ in
@@ -343,10 +367,16 @@ extension CookingViewController: StepCollectionViewControllerDelegate {
         } else {  // cooking by oneself
             print(indexPath)
             completeStatus[indexPath.row] = true
+            
             if let indexPath = self.getNextStep() {
                 self.curStep = indexPath.row
-               
+            }else {  // last step
+                self.curStep = -1
+                if self.isCapturing {  // turn off capture
+                    self.toggleCapture()
+                }
             }
+            
             collectionView.performBatchUpdates({
                 collectionView.reloadSections(IndexSet.init(integersIn: 0...0))
             }) { _ in

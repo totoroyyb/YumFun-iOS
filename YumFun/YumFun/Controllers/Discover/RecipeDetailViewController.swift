@@ -76,16 +76,23 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
         cookButton.addItem(title: "Cook Now!", image: UIImage(named: "chef")?.withRenderingMode(.alwaysTemplate)) { item in
             self.cookPressed()
         }
+        
         if isEditView {
             cookButton.addItem(title: "New Recipe", image: UIImage(named: "add")?.withRenderingMode(.alwaysTemplate)) { item in
                 self.newRecipePressed()
             }
         }
+        
         cookButton.addItem(title: "Save", image: UIImage(named: "bookmark")?.withRenderingMode(.alwaysTemplate)) { item in
             self.savePressed()
         }
+        
         cookButton.addItem(title: "Edit", image: UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)) { item in
             self.editPressed()
+        }
+        
+        for item in cookButton.items {
+            item.imageSize = CGSize(width: 20, height: 20)
         }
     }
     
