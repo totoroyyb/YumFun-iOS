@@ -80,9 +80,11 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
                 self.newRecipePressed()
             }
         }
+        
         cookButton.addItem(title: "Save", image: UIImage(named: "bookmark")?.withRenderingMode(.alwaysTemplate)) { item in
             self.savePressed()
         }
+        
         cookButton.addItem(title: "Edit", image: UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)) { item in
             if let tabBarController = self.navigationController?.tabBarController {
                 if let arrController = tabBarController.viewControllers {
@@ -101,6 +103,10 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate{
                     }
                 }
             }
+        }
+        
+        for item in cookButton.items {
+            item.imageSize = CGSize(width: 20, height: 20)
         }
     }
     

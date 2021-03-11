@@ -63,7 +63,7 @@ class TutorialViewController: UIViewController {
     
     @IBAction func okPressed() {
         dismiss(animated: true) {
-            self.cookingViewController?.startCapture()
+            self.cookingViewController?.toggleCapture()
         }
     }
     
@@ -71,7 +71,7 @@ class TutorialViewController: UIViewController {
         let userDefaults = UserDefaults.standard
         userDefaults.set(true, forKey: "disableTutorial")
         dismiss(animated: true) {
-            self.cookingViewController?.startCapture()
+            self.cookingViewController?.toggleCapture()
         }
     }
 }

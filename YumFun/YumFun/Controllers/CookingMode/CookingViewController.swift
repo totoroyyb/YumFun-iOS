@@ -32,7 +32,24 @@ class CookingViewController: UIViewController {
     var avatarDic : [String: UIImage?] = [:]
     var collabSession: CollabSession? {
         didSet {
-            stepCollectionView?.reloadData()
+            // update curStep
+            if let indexPath = self.getNextStep() {
+                self.curStep = indexPath.row
+            } else {  // last step
+                self.curStep = -1
+                if self.isCapturing {  // turn off capture
+                    self.toggleCapture()
+                }
+            }
+            
+            // update collectionView UI
+            stepCollectionView?.performBatchUpdates({
+                stepCollectionView.reloadSections(IndexSet.init(integersIn: 0...0))
+            }) { _ in
+                if self.curStep >= 0 {
+                    self.stepCollectionView.scrollToItem(at: IndexPath(row: self.curStep, section: 0), at: .top, animated: true)
+                }
+            }
         }
     }
     var listner: ListenerRegistration?
@@ -68,7 +85,7 @@ class CookingViewController: UIViewController {
         // Floting button
         setupHandsFreeFloatingButton()
         
-        // cur step
+        // set up cur step
         if let indexPath = getNextStep() {
             curStep = indexPath.row
         }
@@ -142,11 +159,11 @@ class CookingViewController: UIViewController {
             tutorialViewController.cookingViewController = self
             present(tutorialViewController, animated: true, completion: nil)
         } else {
-            startCapture()
+            toggleCapture()
         }
     }
     
-    public func startCapture() {
+    public func toggleCapture() {
         if !isCapturing {
             if firstPress {
                 camera?.checkCameraConfigurationAndStartSession()
@@ -324,29 +341,46 @@ protocol StepCollectionViewControllerDelegate: UICollectionViewDelegate {
 extension CookingViewController: StepCollectionViewControllerDelegate {
     func didCheckCellAt(_ collectionView: UICollectionView, at indexPath: IndexPath) {
         print("check!")
+        
         // dismiss the step
         if let session = collabSession {  // collab Mode
             session.toggleStepCompletion(at: indexPath.row) { error in
                 if let err = error {
                     print(err.localizedDescription)
                 } else {
-                    if let indexPath = self.getNextStep() {
-                        self.curStep = indexPath.row
-                    }
-                    collectionView.performBatchUpdates({
-                        collectionView.reloadSections(IndexSet.init(integersIn: 0...0))
-                    }) { _ in
-                        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
-                    }
+//                    if let indexPath = self.getNextStep() {
+//                        self.curStep = indexPath.row
+//                    } else {  // last step
+//                        self.curStep = -1
+//                        if self.isCapturing {  // turn off capture
+//                            self.toggleCapture()
+//                        }
+//                    }
+//
+//                    if self.isCapturing {  // turn off capture
+//                        self.toggleCapture()
+//                    }
+
+//                    collectionView.performBatchUpdates({
+//                        collectionView.reloadSections(IndexSet.init(integersIn: 0...0))
+//                    }) { _ in
+//                        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+//                    }
                 }
             }
         } else {  // cooking by oneself
             print(indexPath)
             completeStatus[indexPath.row] = true
+            
             if let indexPath = self.getNextStep() {
                 self.curStep = indexPath.row
-               
+            }else {  // last step
+                self.curStep = -1
+                if self.isCapturing {  // turn off capture
+                    self.toggleCapture()
+                }
             }
+            
             collectionView.performBatchUpdates({
                 collectionView.reloadSections(IndexSet.init(integersIn: 0...0))
             }) { _ in
@@ -394,7 +428,7 @@ extension CookingViewController {
         switch modelClass {
         case ModelClass.palm:
             print("palm")
-            if previousClass != ModelClass.palm {
+            if previousClass != ModelClass.palm && curStep >= 0 {
                 collectionView(stepCollectionView, didSelectItemAt: IndexPath(row: curStep, section: 0))
             }
             break
@@ -409,7 +443,9 @@ extension CookingViewController {
             if presentedViewController != nil {
                 presentedViewController?.dismiss(animated: true, completion: nil)
             }
-            didCheckCellAt(stepCollectionView, at: IndexPath(row: curStep, section: 0))
+            if curStep >= 0 {
+                didCheckCellAt(stepCollectionView, at: IndexPath(row: curStep, section: 0))
+            }
             break
         default:
             break
@@ -440,7 +476,7 @@ extension CookingViewController: CameraFeedManagerDelegate {
                             self.reinforceCount = 0
                             self.reinforceClass = ModelClass.background
                             
-                            self.inferenceInterval = 1000
+                            self.inferenceInterval = 1500
                         }
                     } else if self.reinforceClass == ModelClass.background{
                         self.reinforceClass = inference.label  // first time
