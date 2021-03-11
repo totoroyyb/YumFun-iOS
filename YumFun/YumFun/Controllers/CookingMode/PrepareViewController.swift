@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import JGProgressHUD
 
 class PrepareViewController: UIViewController {
     
@@ -71,48 +72,88 @@ class PrepareViewController: UIViewController {
         }
         
         if let sid = sessionID {  // user is invited, join session here
-            self.listner = self.curUser.joinCollabSession(withSessionId: sid,
-                                           completion: {error in
+            let hud = JGProgressHUD()
+            hud.textLabel.text = "Joining Room"
+            hud.show(in: self.view)
+            hud.interactionType = .blockAllTouches
+            hud.backgroundColor = UIColor.black.alpha(0.5)
+            
+            self.listner = self.curUser
+                .joinCollabSession(withSessionId: sid,
+                                   completion: { error in
+                                        DispatchQueue.main.async {
+                                            hud.dismiss()
                                             if let err = error {
+                                                displayWarningTopPopUp(title: "Error", description: "Failed to join the room.")
                                                 print(err.localizedDescription)
                                             }
-                                           },
-                                           whenChanged: { session in
-                                            self.collabSession = session
-                                            self.recipe = session.targetRecipe
-                                            self.cookingViewController?.collabSession = session
-                                           })
+                                        }
+                                   },
+                                   whenChanged: { session in
+                                        self.collabSession = session
+                                        self.recipe = session.targetRecipe
+                                        self.cookingViewController?.collabSession = session
+                                   }
+                )
+                                            
         }
     }
     
     @IBAction func invitePressed() {
         if collabSession == nil {   // create and join a session
+            let hud = JGProgressHUD()
+            hud.textLabel.text = "Generating Link"
+            hud.show(in: self.view)
+            hud.interactionType = .blockAllTouches
+            hud.backgroundColor = UIColor.black.alpha(0.5)
+            
             inviteButton.isUserInteractionEnabled = false
             DispatchQueue.global(qos: .userInitiated).async {
                 if let rid = self.recipe.id {
                     self.curUser.createCollabSession(withRecipeId: rid) {(error, sessionID) in
                         if let err = error {
+                            DispatchQueue.main.async {
+                                hud.dismiss()
+                                displayWarningTopPopUp(title: "Error", description: "Failed to generate sharing link.")
+                            }
                             print(err.localizedDescription)
                             return
                         }
                         
-                        if let sid = sessionID {
-                            self.sessionID = sid
+                        DispatchQueue.main.async {
+                            hud.dismiss()
+                            hud.textLabel.text = "Joining Room"
+                            hud.show(in: self.view)
                             
-                            self.listner = self.curUser.joinCollabSession(
-                                withSessionId: sid,
-                                completion: {error in
-                                    if let err = error {
-                                        print(err.localizedDescription)
-                                    }
-                                    self.inviteButton.isUserInteractionEnabled = true
-                                    self.invokeInvitationSharing()
-                                },
-                                whenChanged: { session in
-                                    self.collabSession = session
-                                    self.cookingViewController?.collabSession = session
-                                })
+                            if let sid = sessionID {
+                                self.sessionID = sid
+                                
+                                self.listner = self.curUser.joinCollabSession(
+                                    withSessionId: sid,
+                                    completion: {error in
+                                        if let err = error {
+                                            hud.dismiss()
+                                            displayWarningTopPopUp(title: "Error", description: "Failed to join room.")
+                                            print(err.localizedDescription)
+                                            return
+                                        }
+                                        DispatchQueue.main.async {
+                                            hud.dismiss()
+                                            self.inviteButton.isUserInteractionEnabled = true
+                                        }
+                                        self.invokeInvitationSharing()
+                                    },
+                                    whenChanged: { session in
+                                        self.collabSession = session
+                                        self.cookingViewController?.collabSession = session
+                                    })
+                            }
                         }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        hud.dismiss()
+                        displayWarningTopPopUp(title: "Error", description: "Failed to fetch valid recipe id.")
                     }
                 }
             }
