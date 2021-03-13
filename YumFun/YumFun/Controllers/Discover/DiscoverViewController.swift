@@ -29,11 +29,6 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(viewSetup), name: .userDidSet, object: nil)
         
-//        if let naviController = self.navigationController {
-//            let heroHelper = HeroHelper(navigationController: naviController)
-//        }
-        
-        
         self.view.backgroundColor = UIColor(named: "collection_bg_color")
         self.navigationController?.navigationBar.backgroundColor = UIColor(named: "collection_bg_color")
         
@@ -158,9 +153,6 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         detailViewController.recipe = recipes[indexPath.row]
-        
-//        detailViewController.hero.isEnabled = true
-//        detailViewController.profileImage.hero.id = "profileImage\(indexPath.row)"
         
         detailViewController.recipeIndex = indexPath.row
         navigationController?.hero.isEnabled = true

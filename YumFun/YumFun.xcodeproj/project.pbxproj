@@ -33,14 +33,13 @@
 		2185054E25E98B3A00A9D46C /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185054D25E98B3A00A9D46C /* Core.swift */; };
 		2185055425EA75EC00A9D46C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185055325EA75EC00A9D46C /* Error.swift */; };
 		2185055925EA8E7F00A9D46C /* Notifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185055825EA8E7F00A9D46C /* Notifiable.swift */; };
-		21872BF425F927C1001F0A8F /* HeroNaviPanGestureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21872BF325F927C1001F0A8F /* HeroNaviPanGestureHelper.swift */; };
 		21872BF725F92CBF001F0A8F /* HeroIdHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21872BF625F92CBF001F0A8F /* HeroIdHelper.swift */; };
 		21A8364725E02252005933AE /* FirestoreTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21A8364625E02252005933AE /* FirestoreTest.storyboard */; };
 		21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */; };
 		21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8365125E023E4005933AE /* FirestoreApi.swift */; };
 		21A8367125E0364B005933AE /* RecipeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8367025E0364B005933AE /* RecipeExt.swift */; };
 		21B65D5625FAF6D700B02405 /* StepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21B65D5525FAF6D700B02405 /* StepCell.xib */; };
-		21B65D5925FB0D6100B02405 /* StepCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B65D5825FB0D6100B02405 /* StepCollectionViewCell.swift */; };
+		21B65D5925FB0D6100B02405 /* StepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B65D5825FB0D6100B02405 /* StepCell.swift */; };
 		21B65D5E25FB455400B02405 /* AvatarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21B65D5D25FB455400B02405 /* AvatarCell.xib */; };
 		21B65D6125FB457C00B02405 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B65D6025FB457C00B02405 /* AvatarCell.swift */; };
 		21F2AE4325E2881900C6F973 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE4225E2881900C6F973 /* Recipe.swift */; };
@@ -133,14 +132,13 @@
 		2185055325EA75EC00A9D46C /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		2185055825EA8E7F00A9D46C /* Notifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifiable.swift; sourceTree = "<group>"; };
 		21872BF125F91890001F0A8F /* YumFun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YumFun.entitlements; sourceTree = "<group>"; };
-		21872BF325F927C1001F0A8F /* HeroNaviPanGestureHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroNaviPanGestureHelper.swift; sourceTree = "<group>"; };
 		21872BF625F92CBF001F0A8F /* HeroIdHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroIdHelper.swift; sourceTree = "<group>"; };
 		21A8364625E02252005933AE /* FirestoreTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirestoreTest.storyboard; sourceTree = "<group>"; };
 		21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestViewController.swift; sourceTree = "<group>"; };
 		21A8365125E023E4005933AE /* FirestoreApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreApi.swift; sourceTree = "<group>"; };
 		21A8367025E0364B005933AE /* RecipeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeExt.swift; sourceTree = "<group>"; };
 		21B65D5525FAF6D700B02405 /* StepCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepCell.xib; sourceTree = "<group>"; };
-		21B65D5825FB0D6100B02405 /* StepCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCollectionViewCell.swift; sourceTree = "<group>"; };
+		21B65D5825FB0D6100B02405 /* StepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCell.swift; sourceTree = "<group>"; };
 		21B65D5D25FB455400B02405 /* AvatarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarCell.xib; sourceTree = "<group>"; };
 		21B65D6025FB457C00B02405 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		21F2AE4225E2881900C6F973 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -298,6 +296,7 @@
 				21A8367025E0364B005933AE /* RecipeExt.swift */,
 				214E7F9225EFB27000B13CE4 /* NotificationType.swift */,
 				216144AD25FA7C7E00C317B8 /* Layer.swift */,
+				84A8865E25E3316A004684DA /* swift+gif.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -306,7 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				21B65D5525FAF6D700B02405 /* StepCell.xib */,
-				21B65D5825FB0D6100B02405 /* StepCollectionViewCell.swift */,
+				21B65D5825FB0D6100B02405 /* StepCell.swift */,
 				21B65D5D25FB455400B02405 /* AvatarCell.xib */,
 				21B65D6025FB457C00B02405 /* AvatarCell.swift */,
 			);
@@ -358,7 +357,6 @@
 				C588202825EF7B4300FC2540 /* PlaceholderImage.swift */,
 				214E811F25F16D5500B13CE4 /* Font.swift */,
 				214E812225F16E2500B13CE4 /* UIColor+Utils.swift */,
-				21872BF325F927C1001F0A8F /* HeroNaviPanGestureHelper.swift */,
 				21872BF625F92CBF001F0A8F /* HeroIdHelper.swift */,
 			);
 			path = Utility;
@@ -504,7 +502,6 @@
 				C57662BE25DBF9D600642CF2 /* ViewController.swift */,
 				C57662BC25DBF9D600642CF2 /* SceneDelegate.swift */,
 				C57662BA25DBF9D600642CF2 /* AppDelegate.swift */,
-				84A8865E25E3316A004684DA /* swift+gif.swift */,
 				84A8866125E3317F004684DA /* flavors-of-youth.gif */,
 				84A8866D25E33B0C004684DA /* LaunchScreenController.swift */,
 				84A8867B25E34EAA004684DA /* SignUpViewController.swift */,
@@ -699,7 +696,7 @@
 				84E0F31E25F88B3B0008F8F6 /* Timer.swift in Sources */,
 				C57662BF25DBF9D600642CF2 /* ViewController.swift in Sources */,
 				A1A58A5D25ED8FD700AE7B1A /* ModelDataHandler.swift in Sources */,
-				21B65D5925FB0D6100B02405 /* StepCollectionViewCell.swift in Sources */,
+				21B65D5925FB0D6100B02405 /* StepCell.swift in Sources */,
 				C56C5D1125E4524900DD1CD7 /* ProfileEditPage.swift in Sources */,
 				A1A58A4825ED8FAC00AE7B1A /* DiscoverViewController.swift in Sources */,
 				A1A58A4925ED8FAC00AE7B1A /* RecipeDetailViewController.swift in Sources */,
@@ -749,7 +746,6 @@
 				A1A58A4D25ED8FBA00AE7B1A /* PrepareViewController.swift in Sources */,
 				C588202925EF7B4300FC2540 /* PlaceholderImage.swift in Sources */,
 				A1A58B7B25F0392000AE7B1A /* CookingViewController.swift in Sources */,
-				21872BF425F927C1001F0A8F /* HeroNaviPanGestureHelper.swift in Sources */,
 				2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */,
 				21B65D6125FB457C00B02405 /* AvatarCell.swift in Sources */,
 				C568033C25F4382A003A6AFB /* BasicProfileView.swift in Sources */,
@@ -911,7 +907,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BLHQ787DMR;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -938,7 +934,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BLHQ787DMR;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;

@@ -8,7 +8,7 @@
 import UIKit
 import MagazineLayout
 
-class StepCollectionViewCell: MagazineLayoutCollectionViewCell {
+class StepCell: MagazineLayoutCollectionViewCell {
     private let XIB_NAME = "StepCell"
     
     var assigneeAvatars : [UIImage?] = [] {
@@ -85,7 +85,7 @@ class StepCollectionViewCell: MagazineLayoutCollectionViewCell {
     
 }
 
-extension StepCollectionViewCell: UICollectionViewDataSource {
+extension StepCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return assigneeAvatars.count
     }
@@ -98,7 +98,7 @@ extension StepCollectionViewCell: UICollectionViewDataSource {
     }
 }
 
-extension StepCollectionViewCell:  UICollectionViewDelegateFlowLayout {
+extension StepCell:  UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 42, height: 42)
     }

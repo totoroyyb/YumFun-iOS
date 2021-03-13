@@ -20,7 +20,7 @@ class PrepareViewController: UIViewController {
                                               collectionViewLayout: layout)
         let stepCellXib = UINib(nibName: "StepCell",
                                          bundle: nil)
-        collectionView.register(stepCellXib, forCellWithReuseIdentifier: StepCollectionViewCell.description())
+        collectionView.register(stepCellXib, forCellWithReuseIdentifier: StepCell.description())
           
         collectionView.isPrefetchingEnabled = false
         collectionView.dataSource = self
@@ -260,11 +260,11 @@ extension PrepareViewController: UICollectionViewDataSource {
             
             return cell
         } else {
-            var cell: StepCollectionViewCell
-            if let c = collectionView.dequeueReusableCell(withReuseIdentifier: StepCollectionViewCell.description(), for: indexPath) as? StepCollectionViewCell {
+            var cell: StepCell
+            if let c = collectionView.dequeueReusableCell(withReuseIdentifier: StepCell.description(), for: indexPath) as? StepCell {
                 cell = c
             } else {
-                cell = StepCollectionViewCell()
+                cell = StepCell()
             }
 
             // Basic UI set up
