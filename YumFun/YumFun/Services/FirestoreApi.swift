@@ -276,6 +276,13 @@ class FirestoreApi {
     }
 }
 
+
+extension FirestoreApi {
+    static func test() {
+        db.collection("")
+    }
+}
+
 // - MARK: Test Functions
 extension FirestoreApi {
     /**

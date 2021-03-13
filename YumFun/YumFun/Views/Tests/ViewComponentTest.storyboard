@@ -31,14 +31,23 @@
                                     <action selector="testCompletionAnimationTapped:" destination="O2i-Z7-T0E" eventType="touchUpInside" id="eyU-1i-33Y"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ygr-XT-83F">
+                                <rect key="frame" x="129.5" y="214" width="155" height="30"/>
+                                <state key="normal" title="Get Next Batch Recipe"/>
+                                <connections>
+                                    <action selector="getNextBatchTapped:" destination="O2i-Z7-T0E" eventType="touchUpInside" id="y1r-t6-uek"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bJy-j0-Ol3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Ygr-XT-83F" firstAttribute="top" secondItem="pVe-2H-xTx" secondAttribute="bottom" constant="20" id="1uJ-KP-hAl"/>
                             <constraint firstItem="Mul-cy-jqt" firstAttribute="centerX" secondItem="CY4-Jy-NmU" secondAttribute="centerX" id="7P7-Kv-dRE"/>
                             <constraint firstItem="pVe-2H-xTx" firstAttribute="top" secondItem="Mul-cy-jqt" secondAttribute="bottom" constant="20" id="AHa-QL-26Z"/>
                             <constraint firstItem="pVe-2H-xTx" firstAttribute="centerX" secondItem="CY4-Jy-NmU" secondAttribute="centerX" id="RyQ-62-l3b"/>
                             <constraint firstItem="Mul-cy-jqt" firstAttribute="top" secondItem="bJy-j0-Ol3" secondAttribute="top" constant="70" id="YSB-4Z-k4t"/>
+                            <constraint firstItem="Ygr-XT-83F" firstAttribute="centerX" secondItem="CY4-Jy-NmU" secondAttribute="centerX" id="tSG-5D-chE"/>
                         </constraints>
                     </view>
                 </viewController>

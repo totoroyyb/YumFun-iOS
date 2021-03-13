@@ -9,6 +9,8 @@ import UIKit
 import TKSwarmAlert
 
 class ViewComponentTestViewController: UIViewController {
+    
+    let page = Pagination(collectionPath: "recipe", limit: 5)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,25 @@ class ViewComponentTestViewController: UIViewController {
         displayCompletionAnimation()
     }
     
+    @IBAction func getNextBatchTapped(_ sender: Any) {
+        page.getNewBatch { (error, recipes: [Recipe]?, snapshot) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            } else {
+                
+                guard let fetchRecipes = recipes else {
+                    print("No recipe returned.")
+                    return
+                }
+                
+                for recipe in fetchRecipes {
+                    print("Named: \(recipe.title) with Id: \(recipe.id)")
+                }
+            }
+        }
+    }
     
     
     /*
