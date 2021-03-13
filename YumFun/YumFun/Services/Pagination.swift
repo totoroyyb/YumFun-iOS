@@ -15,7 +15,17 @@ class Pagination {
     private(set) var collectionRef: CollectionReference
     private(set) var collectionQuery: Query
     
-    private(set) var isFetching = false
+    private(set) var isFetching = false {
+        didSet {
+            if isFetching {
+                delegate?.startFetchBatch()
+            } else {
+                delegate?.endFetchBatch()
+            }
+        }
+    }
+    
+    weak var delegate: PaginationDelegate?
     
     init(collectionPath path: String, limit: Int) {
         self.collectionPath = path

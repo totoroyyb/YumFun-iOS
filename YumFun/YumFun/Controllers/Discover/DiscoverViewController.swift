@@ -8,6 +8,7 @@
 import UIKit
 import PhotosUI
 import FirebaseUI
+import GradientLoadingBar
 
 extension UICollectionView {
     var widestCellWidth: CGFloat {
@@ -16,7 +17,7 @@ extension UICollectionView {
     }
 }
 
-class DiscoverViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DiscoverCollectionViewDelegate {
+class DiscoverViewController: UIViewController, UICollectionViewDelegateFlowLayout, DiscoverCollectionViewDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -25,12 +26,28 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     let discoverQueue = DispatchQueue(label: "discoverQueue")
     let semaphore: DispatchSemaphore? = DispatchSemaphore(value: 6)
     
+    private let pagination = Pagination(collectionPath: Recipe.collectionPath, limit: 5)
+    private var hasMoreData = true
+    private let leadingScreensForBatch: CGFloat = 2
+    
+    private let gradientLoadingBar = GradientActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(viewSetup), name: .userDidSet, object: nil)
         
         self.view.backgroundColor = UIColor(named: "collection_bg_color")
         self.navigationController?.navigationBar.backgroundColor = UIColor(named: "collection_bg_color")
+        
+        self.pagination.delegate = self
+        
+        self.view.addSubview(gradientLoadingBar)
+        gradientLoadingBar.snp.makeConstraints { (make) in
+            make.leading.equalTo(collectionView.snp.leading)
+            make.trailing.equalTo(collectionView.snp.trailing)
+            make.bottom.equalTo(collectionView.snp.bottom)
+            make.height.equalTo(5)
+        }
         
         if Core.currentUser != nil {
             viewSetup()
@@ -47,15 +64,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
-        self.collectionView.reloadData()
-        
-        Recipe.getAll() { (err, recipes, _) in
-            if err != nil {
-                print(err.debugDescription)
-            }
-            self.recipes = recipes ?? []
-            self.collectionView.reloadData()
-        }
+        fetchNextBatch()
         
         let layout = self.collectionView.collectionViewLayout
         if let flowLayout = layout as? UICollectionViewFlowLayout {
@@ -67,9 +76,59 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             )
         }
     }
-
     
-    // DataSouce Implementation
+    private func setAuthorProfileImage(userID: String, profileImage: UIImageView) {
+        discoverQueue.async {
+            DispatchQueue.global(qos: .userInitiated).async {
+                let myStorage = CloudStorage(AssetType.profileImage)
+                myStorage.child("\(userID).jpeg")
+                
+                profileImage.sd_setImage(with: myStorage.fileRef,
+                                         placeholderImage: nil) { (_, error, _, _) in
+                    if let err = error {
+                        print(err.localizedDescription)
+                    }
+                    
+                    self.semaphore?.signal()
+                }
+            }
+            self.semaphore?.wait()
+        }
+    }
+    
+    private func setCoverImages(firstUrl: String?, firstCover: UIImageView) {
+        discoverQueue.async {
+            if let url = firstUrl {
+                DispatchQueue.global(qos: .userInitiated).async {
+                    Utility.setImage(url: url, imageView: firstCover, placeholder: nil, semaphore: self.semaphore)
+                }
+                self.semaphore?.wait()
+            }
+        }
+    }
+    
+    private func fetchNextBatch() {
+        if hasMoreData {
+            pagination.getNewBatch { (error, recipes: [Recipe]?, _) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    guard let newRecipes = recipes else {
+                        print("No new data.")
+                        self.hasMoreData = false
+                        return
+                    }
+                    
+                    self.recipes.append(contentsOf: newRecipes)
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
+}
+
+// DataSouce Implementation
+extension DiscoverViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // TODO: integrate with view model
         return recipes.count
@@ -112,38 +171,10 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         cell.title.heroID = HeroIdType.recipeTitle.getIdStr(at: indexPath.row)
         return cell
     }
-    
-    private func setAuthorProfileImage(userID: String, profileImage: UIImageView) {
-        discoverQueue.async {
-            DispatchQueue.global(qos: .userInitiated).async {
-                let myStorage = CloudStorage(AssetType.profileImage)
-                myStorage.child("\(userID).jpeg")
-                
-                profileImage.sd_setImage(with: myStorage.fileRef,
-                                         placeholderImage: nil) { (_, error, _, _) in
-                    if let err = error {
-                        print(err.localizedDescription)
-                    }
-                    
-                    self.semaphore?.signal()
-                }
-            }
-            self.semaphore?.wait()
-        }
-    }
-    
-    private func setCoverImages(firstUrl: String?, firstCover: UIImageView) {
-        discoverQueue.async {
-            if let url = firstUrl {
-                DispatchQueue.global(qos: .userInitiated).async {
-                    Utility.setImage(url: url, imageView: firstCover, placeholder: nil, semaphore: self.semaphore)
-                }
-                self.semaphore?.wait()
-            }
-        }
-    }
-    
-    // UICollectionViewDelegate Implementation
+}
+
+// UICollectionViewDelegate Implementation
+extension DiscoverViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("selected! \(indexPath.row)")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -200,40 +231,24 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, collectWasPressedAt indexPath: IndexPath) {
         print("received!")
     }
-    
 }
 
-// This protocol is for handling button pressing events on a cell.
-// The class coforming to this protocol is informed by its collectionView of these events.
-protocol DiscoverCollectionViewDelegate: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didFavorRecipeAt indexPath: IndexPath) -> Void
-    
-    func collectionView(_ collectionView: UICollectionView, didUnfavorRecipeAt indexPath: IndexPath) -> Void
-    
-    func collectionView(_ collectionView: UICollectionView, collectWasPressedAt indexPath: IndexPath) -> Void
-}
-
-// This protocol is for handling button pressing events on a cell.
-// The UICollectionView will be informed when a button pressing happens in a cell.
-extension UICollectionView : DiscoverCellDelegate{
-    
-    func didFavorRecipeAt(at indexPath: IndexPath) {
-        if let del = delegate as? DiscoverCollectionViewDelegate? {
-            del?.collectionView(self, didFavorRecipeAt: indexPath)
-        }
+extension DiscoverViewController: PaginationDelegate {
+    func startFetchBatch() {
+        gradientLoadingBar.fadeIn()
     }
     
-    func didUnfavorRecipeAt(at indexPath: IndexPath) {
-        if let del = delegate as? DiscoverCollectionViewDelegate? {
-            del?.collectionView(self, didUnfavorRecipeAt: indexPath)
-        }
+    func endFetchBatch() {
+        gradientLoadingBar.fadeOut()
     }
     
-    func collectWasPressed(at indexPath: IndexPath) {
-        if let del = delegate as? DiscoverCollectionViewDelegate? {
-            del?.collectionView(self, collectWasPressedAt: indexPath)
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - leadingScreensForBatch * scrollView.frame.size.height {
+            fetchNextBatch()
         }
     }
 }
-
 
