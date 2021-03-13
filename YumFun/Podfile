@@ -77,6 +77,5 @@ target 'YumFun' do
   # Floating Button
   pod 'JJFloatingActionButton'
  
-  # Easier Layout for Collection View
-  pod 'Blueprints'
+  pod 'MagazineLayout'
 end

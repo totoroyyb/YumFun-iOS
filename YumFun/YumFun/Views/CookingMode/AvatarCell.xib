@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="buU-hr-tUV" customClass="AvatarCell" customModule="YumFun" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="cmY-uP-Dia">
+                <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ATc-V2-GIm" customClass="CircularImageView" customModule="YumFun" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="GFH-zy-REo"/>
+                            <constraint firstAttribute="height" constant="42" id="pbe-cd-u1z"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ATc-V2-GIm" firstAttribute="leading" secondItem="cmY-uP-Dia" secondAttribute="leading" id="Oud-za-ZUn"/>
+                    <constraint firstItem="ATc-V2-GIm" firstAttribute="top" secondItem="cmY-uP-Dia" secondAttribute="top" id="lEJ-c7-g7O"/>
+                    <constraint firstAttribute="trailing" secondItem="ATc-V2-GIm" secondAttribute="trailing" id="qb3-Yn-DkK"/>
+                    <constraint firstAttribute="bottom" secondItem="ATc-V2-GIm" secondAttribute="bottom" id="trb-Mj-6Hz"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="63" height="64"/>
+            <connections>
+                <outlet property="avatar" destination="ATc-V2-GIm" id="miK-ed-j6f"/>
+            </connections>
+            <point key="canvasLocation" x="-184.05797101449278" y="-210.26785714285714"/>
+        </collectionViewCell>
+    </objects>
+</document>

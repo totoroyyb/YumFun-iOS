@@ -214,7 +214,6 @@ PODS:
     - abseil/meta/type_traits
   - Alamofire (5.4.1)
   - AnimatedField (2.4.4)
-  - Blueprints (0.13.1)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -347,6 +346,7 @@ PODS:
   - Kanna (5.2.4)
   - leveldb-library (1.22)
   - LGButton (1.1.6)
+  - MagazineLayout (1.6.3)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -383,7 +383,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - AnimatedField
-  - Blueprints
   - Cards
   - Comets
   - EmailValidator
@@ -400,6 +399,7 @@ DEPENDENCIES:
   - JSSAlertView
   - Kanna (~> 5.2.2)
   - LGButton
+  - MagazineLayout
   - NVActivityIndicatorView
   - Pastel
   - QCropper
@@ -415,7 +415,6 @@ SPEC REPOS:
     - abseil
     - Alamofire
     - AnimatedField
-    - Blueprints
     - BoringSSL-GRPC
     - Cards
     - Comets
@@ -444,6 +443,7 @@ SPEC REPOS:
     - Kanna
     - leveldb-library
     - LGButton
+    - MagazineLayout
     - nanopb
     - NVActivityIndicatorView
     - Pastel
@@ -464,7 +464,6 @@ SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   AnimatedField: af48a2d59a50b33b30446267f7f2af274296203c
-  Blueprints: ddd6ab1e455c98471aaef2fdd0b09b5f9b53af5b
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Cards: 45ae6bd0eca7b5e8016d3b6cb30b60b04753f68f
   Comets: ff75eb4658d612af66073bf9fcf6e8bef274817b
@@ -493,6 +492,7 @@ SPEC CHECKSUMS:
   Kanna: b9d00d7c11428308c7f95e1f1f84b8205f567a8f
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   LGButton: 9f0a7f9d3030e3f504108342f6b66d64a429371b
+  MagazineLayout: 159da0d4d874e04e6b17e580b990cccd00328c5b
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   Pastel: 814f081efbe2859c37e65ee44f396e6e5be88619
@@ -509,6 +509,6 @@ SPEC CHECKSUMS:
   TensorFlowLiteSwift: f062dc1178120100d825d7799fd9f115b4a37fee
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: 6d7e099ab0dc4c692f7dedba1869efb6b3afa0d8
+PODFILE CHECKSUM: ac15fe7df0c399ffeaad3722039ab6f1745197e8
 
 COCOAPODS: 1.10.1
