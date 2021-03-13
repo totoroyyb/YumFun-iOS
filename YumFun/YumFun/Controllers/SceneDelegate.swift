@@ -15,7 +15,7 @@ enum TestViewType {
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
-    let testViewType: TestViewType = .noTestView
+    let testViewType: TestViewType = .testViewComponents
 
     var window: UIWindow?
 
