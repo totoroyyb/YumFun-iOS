@@ -8,11 +8,27 @@
 import UIKit
 import Firebase
 import JGProgressHUD
+import MagazineLayout
 
 class PrepareViewController: UIViewController {
     
     @IBOutlet weak var avatarCollectionView: UICollectionView!
-    @IBOutlet weak var stepCollectionView: UICollectionView!
+    
+    private lazy var stepCollectionView: UICollectionView = {
+        let layout = MagazineLayout()
+        let collectionView = UICollectionView(frame: .zero,
+                                              collectionViewLayout: layout)
+        let stepCellXib = UINib(nibName: "StepCell",
+                                         bundle: nil)
+        collectionView.register(stepCellXib, forCellWithReuseIdentifier: StepCollectionViewCell.description())
+          
+        collectionView.isPrefetchingEnabled = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = .clear
+        collectionView.contentInsetAdjustmentBehavior = .always
+        return collectionView
+    }()
     
     @IBOutlet weak var inviteButton: UIButton!
     @IBOutlet weak var leaveButton: UIButton!
@@ -50,7 +66,6 @@ class PrepareViewController: UIViewController {
     
     let avatarPlaceholder = UIImage(named: "mascot")
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,17 +73,16 @@ class PrepareViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         
         avatarCollectionView.dataSource = self
-        stepCollectionView.dataSource = self
-        stepCollectionView.delegate = self
         
-        let layout = stepCollectionView.collectionViewLayout
-        if let flowLayout = layout as? UICollectionViewFlowLayout{
-            flowLayout.estimatedItemSize = CGSize(
-                width: view.frame.width - 20,
-                // Make the height a reasonable estimate to
-                // ensure the scroll bar remains smooth
-                height: 500
-            )
+        self.view.addSubview(stepCollectionView)
+        
+        stepCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        stepCollectionView.snp.makeConstraints { (make) in
+            make.top.equalTo(avatarCollectionView.snp.bottom).offset(10)
+            make.bottom.equalTo(inviteButton.snp.top).offset(-10)
+            make.leading.equalTo(self.view.snp.leading)
+            make.trailing.equalTo(self.view.snp.trailing)
         }
         
         if let sid = sessionID {  // user is invited, join session here
@@ -246,42 +260,36 @@ extension PrepareViewController: UICollectionViewDataSource {
             
             return cell
         } else {
-            var cell: StepCell
-            if let c = collectionView.dequeueReusableCell(withReuseIdentifier: "StepCell", for: indexPath) as? StepCell {
+            var cell: StepCollectionViewCell
+            if let c = collectionView.dequeueReusableCell(withReuseIdentifier: StepCollectionViewCell.description(), for: indexPath) as? StepCollectionViewCell {
                 cell = c
             } else {
-                cell = StepCell()
+                cell = StepCollectionViewCell()
             }
-            
+
             // Basic UI set up
             cell.title.text = String(
                 format: "Step %d/%d: %@",
                 indexPath.row + 1,
                 recipe.steps.count,
                 recipe.steps[indexPath.row].title ?? "")
-            
+
             cell.descrip.text = recipe.steps[indexPath.row].description
-            
+
             cell.collectionView.dataSource = cell
             cell.collectionView.delegate = cell
             
             if let session = collabSession {  // collab mode
-                
+                cell.setCollectionViewVisible(true)
                 cell.assigneeAvatars = session.workLoad[indexPath.row].assignee.map() {(avatarDic[$0] ?? avatarPlaceholder)}
                 cell.notAssigned.isHidden = (cell.assigneeAvatars.count != 0)
                 cell.collectionView.isHidden = (cell.assigneeAvatars.count == 0)
-                
-                if let uid = curUser.id,
-                session.workLoad[indexPath.row].assignee.contains(uid) {
-                    cell.layer.backgroundColor = UIColor.blue.cgColor
-                } else {
-                    cell.layer.backgroundColor = UIColor.clear.cgColor
-                }
             } else {
                 cell.notAssigned.isHidden = true
                 cell.collectionView.isHidden = true
+                cell.setCollectionViewVisible(false)
             }
-            
+
             return cell
         }
     }
@@ -300,12 +308,8 @@ extension PrepareViewController: UICollectionViewDataSource {
         let myStorage = CloudStorage(AssetType.profileImage)
         myStorage.child("\(userID).jpeg")
         
-        imageView.sd_setImage(
-            with: myStorage.fileRef,
-            maxImageSize: 1 * 2048 * 2048,
-            placeholderImage: nil,
-            options: [.progressiveLoad]) { (image, error, cache, storageRef) in
-        
+        imageView.sd_setImage(with: myStorage.fileRef,
+                              placeholderImage: nil) { (image, error, cache, storageRef) in
             if let err = error {
                 print(err.localizedDescription)
                 self.avatarDic[userID] = self.avatarPlaceholder
@@ -321,6 +325,57 @@ extension PrepareViewController: UICollectionViewDataSource {
         return session.participants.filter() {$0 != curUser.id}
     }
     
+}
+
+extension PrepareViewController: UICollectionViewDelegateMagazineLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, visibilityModeForFooterInSectionAtIndex index: Int) -> MagazineLayoutFooterVisibilityMode {
+        return .hidden
+//        return .visible(heightMode: .dynamic, pinToVisibleBounds: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, visibilityModeForHeaderInSectionAtIndex index: Int) -> MagazineLayoutHeaderVisibilityMode {
+        return .hidden
+//        return .visible(heightMode: .dynamic, pinToVisibleBounds: true)
+    }
+    
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeModeForItemAt indexPath: IndexPath) -> MagazineLayoutItemSizeMode {
+    let heightMode = MagazineLayoutItemHeightMode.dynamic
+    let widthMode = MagazineLayoutItemWidthMode.fullWidth(respectsHorizontalInsets: true)
+    
+//    if collectionView == avatarCollectionView {
+//        let widthMode = MagazineLayoutItemWidthMode.fractionalWidth(divisor: 6)
+//        return MagazineLayoutItemSizeMode(widthMode: widthMode, heightMode: heightMode)
+//    } else if collectionView == stepCollectionView {
+//        return MagazineLayoutItemSizeMode(widthMode: widthMode, heightMode: heightMode)
+//    }
+    return MagazineLayoutItemSizeMode(widthMode: widthMode, heightMode: heightMode)
+  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, visibilityModeForBackgroundInSectionAtIndex index: Int) -> MagazineLayoutBackgroundVisibilityMode {
+    return .hidden
+  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, horizontalSpacingForItemsInSectionAtIndex index: Int) -> CGFloat {
+    return  12
+  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, verticalSpacingForElementsInSectionAtIndex index: Int) -> CGFloat {
+    return  15
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetsForSectionAtIndex index: Int) -> UIEdgeInsets {
+//    if collectionView == avatarCollectionView {
+//        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//    }
+    
+    return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetsForItemsInSectionAtIndex index: Int) -> UIEdgeInsets {
+    return UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
+  }
+  
 }
 
 // UICollectionViewDelegate Implementation
@@ -347,7 +402,7 @@ extension PrepareViewController: UICollectionViewDelegate {
                     }
                 }
             }
-            
+
         }
 
     }

@@ -33,10 +33,16 @@
 		2185054E25E98B3A00A9D46C /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185054D25E98B3A00A9D46C /* Core.swift */; };
 		2185055425EA75EC00A9D46C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185055325EA75EC00A9D46C /* Error.swift */; };
 		2185055925EA8E7F00A9D46C /* Notifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185055825EA8E7F00A9D46C /* Notifiable.swift */; };
+		21872BF425F927C1001F0A8F /* HeroNaviPanGestureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21872BF325F927C1001F0A8F /* HeroNaviPanGestureHelper.swift */; };
+		21872BF725F92CBF001F0A8F /* HeroIdHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21872BF625F92CBF001F0A8F /* HeroIdHelper.swift */; };
 		21A8364725E02252005933AE /* FirestoreTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21A8364625E02252005933AE /* FirestoreTest.storyboard */; };
 		21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */; };
 		21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8365125E023E4005933AE /* FirestoreApi.swift */; };
 		21A8367125E0364B005933AE /* RecipeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8367025E0364B005933AE /* RecipeExt.swift */; };
+		21B65D5625FAF6D700B02405 /* StepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21B65D5525FAF6D700B02405 /* StepCell.xib */; };
+		21B65D5925FB0D6100B02405 /* StepCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B65D5825FB0D6100B02405 /* StepCollectionViewCell.swift */; };
+		21B65D5E25FB455400B02405 /* AvatarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21B65D5D25FB455400B02405 /* AvatarCell.xib */; };
+		21B65D6125FB457C00B02405 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B65D6025FB457C00B02405 /* AvatarCell.swift */; };
 		21F2AE4325E2881900C6F973 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE4225E2881900C6F973 /* Recipe.swift */; };
 		21F2AE4725E288ED00C6F973 /* UpdateTrackableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE4625E288ED00C6F973 /* UpdateTrackableProtocol.swift */; };
 		21F2AE4B25E2DFA300C6F973 /* RecipeComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2AE4A25E2DFA300C6F973 /* RecipeComponents.swift */; };
@@ -64,8 +70,6 @@
 		A1A58A6025ED8FD700AE7B1A /* model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = A1A58A5925ED8FD700AE7B1A /* model.tflite */; };
 		A1A58A6125ED8FD700AE7B1A /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A5B25ED8FD700AE7B1A /* PreviewView.swift */; };
 		A1A58A6225ED8FD700AE7B1A /* CameraFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A5C25ED8FD700AE7B1A /* CameraFeedManager.swift */; };
-		A1A58A6925ED925800AE7B1A /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A6825ED925800AE7B1A /* AvatarCell.swift */; };
-		A1A58A6C25ED94C600AE7B1A /* StepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58A6B25ED94C600AE7B1A /* StepCell.swift */; };
 		A1A58B7B25F0392000AE7B1A /* CookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58B7A25F0392000AE7B1A /* CookingViewController.swift */; };
 		A1A58BBF25F23B4800AE7B1A /* CookingStepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58BBE25F23B4800AE7B1A /* CookingStepCell.swift */; };
 		A1A58BE525F2668F00AE7B1A /* StepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A58BE425F2668F00AE7B1A /* StepDetailViewController.swift */; };
@@ -129,10 +133,16 @@
 		2185055325EA75EC00A9D46C /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		2185055825EA8E7F00A9D46C /* Notifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifiable.swift; sourceTree = "<group>"; };
 		21872BF125F91890001F0A8F /* YumFun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YumFun.entitlements; sourceTree = "<group>"; };
+		21872BF325F927C1001F0A8F /* HeroNaviPanGestureHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroNaviPanGestureHelper.swift; sourceTree = "<group>"; };
+		21872BF625F92CBF001F0A8F /* HeroIdHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroIdHelper.swift; sourceTree = "<group>"; };
 		21A8364625E02252005933AE /* FirestoreTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirestoreTest.storyboard; sourceTree = "<group>"; };
 		21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestViewController.swift; sourceTree = "<group>"; };
 		21A8365125E023E4005933AE /* FirestoreApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreApi.swift; sourceTree = "<group>"; };
 		21A8367025E0364B005933AE /* RecipeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeExt.swift; sourceTree = "<group>"; };
+		21B65D5525FAF6D700B02405 /* StepCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepCell.xib; sourceTree = "<group>"; };
+		21B65D5825FB0D6100B02405 /* StepCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCollectionViewCell.swift; sourceTree = "<group>"; };
+		21B65D5D25FB455400B02405 /* AvatarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarCell.xib; sourceTree = "<group>"; };
+		21B65D6025FB457C00B02405 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		21F2AE4225E2881900C6F973 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		21F2AE4625E288ED00C6F973 /* UpdateTrackableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTrackableProtocol.swift; sourceTree = "<group>"; };
 		21F2AE4A25E2DFA300C6F973 /* RecipeComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeComponents.swift; sourceTree = "<group>"; };
@@ -161,8 +171,6 @@
 		A1A58A5925ED8FD700AE7B1A /* model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.tflite; sourceTree = "<group>"; };
 		A1A58A5B25ED8FD700AE7B1A /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		A1A58A5C25ED8FD700AE7B1A /* CameraFeedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraFeedManager.swift; sourceTree = "<group>"; };
-		A1A58A6825ED925800AE7B1A /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
-		A1A58A6B25ED94C600AE7B1A /* StepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCell.swift; sourceTree = "<group>"; };
 		A1A58B7A25F0392000AE7B1A /* CookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingViewController.swift; sourceTree = "<group>"; };
 		A1A58BBE25F23B4800AE7B1A /* CookingStepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingStepCell.swift; sourceTree = "<group>"; };
 		A1A58BE425F2668F00AE7B1A /* StepDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepDetailViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +302,17 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		21B65D5425FAF6BF00B02405 /* CookingMode */ = {
+			isa = PBXGroup;
+			children = (
+				21B65D5525FAF6D700B02405 /* StepCell.xib */,
+				21B65D5825FB0D6100B02405 /* StepCollectionViewCell.swift */,
+				21B65D5D25FB455400B02405 /* AvatarCell.xib */,
+				21B65D6025FB457C00B02405 /* AvatarCell.swift */,
+			);
+			path = CookingMode;
+			sourceTree = "<group>";
+		};
 		21F2AE2425E2870900C6F973 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +358,8 @@
 				C588202825EF7B4300FC2540 /* PlaceholderImage.swift */,
 				214E811F25F16D5500B13CE4 /* Font.swift */,
 				214E812225F16E2500B13CE4 /* UIColor+Utils.swift */,
+				21872BF325F927C1001F0A8F /* HeroNaviPanGestureHelper.swift */,
+				21872BF625F92CBF001F0A8F /* HeroIdHelper.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -359,7 +380,6 @@
 			isa = PBXGroup;
 			children = (
 				A1A58A4C25ED8FBA00AE7B1A /* PrepareViewController.swift */,
-				A1A58A6825ED925800AE7B1A /* AvatarCell.swift */,
 				A1A58B7A25F0392000AE7B1A /* CookingViewController.swift */,
 				A1A58A6B25ED94C600AE7B1A /* StepCell.swift */,
 				A1C2BDF925F92BA600755A47 /* TutorialViewController.swift */,
@@ -497,6 +517,7 @@
 		C57662DF25DBFF4100642CF2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				21B65D5425FAF6BF00B02405 /* CookingMode */,
 				21A8364925E022AC005933AE /* Tests */,
 				C57662C525DBF9D700642CF2 /* LaunchScreen.storyboard */,
 				C57662C025DBF9D600642CF2 /* Main.storyboard */,
@@ -600,7 +621,9 @@
 				EF9A1E2E25F2E6C400F732D3 /* RecipeInput.storyboard in Resources */,
 				84A8866225E3317F004684DA /* flavors-of-youth.gif in Resources */,
 				A1A58A5025ED8FC800AE7B1A /* Cooking.storyboard in Resources */,
+				21B65D5E25FB455400B02405 /* AvatarCell.xib in Resources */,
 				C57662C725DBF9D700642CF2 /* LaunchScreen.storyboard in Resources */,
+				21B65D5625FAF6D700B02405 /* StepCell.xib in Resources */,
 				C5C5350625F5E90D00447C63 /* ProfileRecipeCell.xib in Resources */,
 				C57662C425DBF9D700642CF2 /* Assets.xcassets in Resources */,
 				A1A58A5F25ED8FD700AE7B1A /* labels.txt in Resources */,
@@ -662,13 +685,13 @@
 				EF9A1E3725F2E74D00F732D3 /* RecipeSaveViewController.swift in Sources */,
 				214E81C925F2314800B13CE4 /* TopPopUp.swift in Sources */,
 				21F2AE4725E288ED00C6F973 /* UpdateTrackableProtocol.swift in Sources */,
-				A1A58A6C25ED94C600AE7B1A /* StepCell.swift in Sources */,
 				C5C5350525F5E90D00447C63 /* ProfileRecipeCell.swift in Sources */,
 				214E7F9025EFA55000B13CE4 /* CustomTabBarViewController.swift in Sources */,
 				21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */,
 				214E7F9325EFB27000B13CE4 /* NotificationType.swift in Sources */,
 				84A8865F25E3316A004684DA /* swift+gif.swift in Sources */,
 				84A8866E25E33B0C004684DA /* LaunchScreenController.swift in Sources */,
+				21872BF725F92CBF001F0A8F /* HeroIdHelper.swift in Sources */,
 				21F2AE5625E3B44300C6F973 /* CrudProtocol.swift in Sources */,
 				EFC74C0A25EC5EC20037CFEC /* SecondRecipeInputViewController.swift in Sources */,
 				214E804725F010A700B13CE4 /* CustomImageClipViewController.swift in Sources */,
@@ -677,6 +700,7 @@
 				84E0F31E25F88B3B0008F8F6 /* Timer.swift in Sources */,
 				C57662BF25DBF9D600642CF2 /* ViewController.swift in Sources */,
 				A1A58A5D25ED8FD700AE7B1A /* ModelDataHandler.swift in Sources */,
+				21B65D5925FB0D6100B02405 /* StepCollectionViewCell.swift in Sources */,
 				C56C5D1125E4524900DD1CD7 /* ProfileEditPage.swift in Sources */,
 				A1A58A4825ED8FAC00AE7B1A /* DiscoverViewController.swift in Sources */,
 				A1A58A4925ED8FAC00AE7B1A /* RecipeDetailViewController.swift in Sources */,
@@ -713,7 +737,6 @@
 				C57662BD25DBF9D600642CF2 /* SceneDelegate.swift in Sources */,
 				21A8367125E0364B005933AE /* RecipeExt.swift in Sources */,
 				EFC74C1425EC5FE30037CFEC /* EditIngredientViewController.swift in Sources */,
-				A1A58A6925ED925800AE7B1A /* AvatarCell.swift in Sources */,
 				21F2AE4B25E2DFA300C6F973 /* RecipeComponents.swift in Sources */,
 				214E804A25F010CF00B13CE4 /* CustomOverlay.swift in Sources */,
 				C56C5D0F25E4524900DD1CD7 /* RecipePreviewCellController.swift in Sources */,
@@ -727,7 +750,9 @@
 				A1A58A4D25ED8FBA00AE7B1A /* PrepareViewController.swift in Sources */,
 				C588202925EF7B4300FC2540 /* PlaceholderImage.swift in Sources */,
 				A1A58B7B25F0392000AE7B1A /* CookingViewController.swift in Sources */,
+				21872BF425F927C1001F0A8F /* HeroNaviPanGestureHelper.swift in Sources */,
 				2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */,
+				21B65D6125FB457C00B02405 /* AvatarCell.swift in Sources */,
 				C568033C25F4382A003A6AFB /* BasicProfileView.swift in Sources */,
 				216144AE25FA7C7E00C317B8 /* Layer.swift in Sources */,
 				EF9A1E3425F2E73F00F732D3 /* EditStepViewController.swift in Sources */,
@@ -886,7 +911,7 @@
 				CODE_SIGN_ENTITLEMENTS = YumFun/YumFun.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BLHQ787DMR;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -912,7 +937,7 @@
 				CODE_SIGN_ENTITLEMENTS = YumFun/YumFun.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BLHQ787DMR;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;

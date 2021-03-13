@@ -530,7 +530,7 @@ extension CookingViewController: CameraFeedManagerDelegate {
     }
     
     func presentVideoConfigurationErrorAlert() {
-        let alert = UIAlertController(title: "Video Configure Error", message: "THere is an error configuring the camera", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Video Configure Error", message: "There is an error configuring the camera", preferredStyle: .alert)
         
         let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alert.addAction(ok)
