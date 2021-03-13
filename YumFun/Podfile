@@ -82,4 +82,7 @@ target 'YumFun' do
 
   # Completion Animation
   pod 'TKSwarmAlert', :git => 'https://github.com/entotsu/TKSwarmAlert', branch: 'master'
+
+  # Dynamic Cell
+  pod 'MagazineLayout'
 end

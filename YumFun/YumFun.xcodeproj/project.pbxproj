@@ -381,7 +381,6 @@
 			children = (
 				A1A58A4C25ED8FBA00AE7B1A /* PrepareViewController.swift */,
 				A1A58B7A25F0392000AE7B1A /* CookingViewController.swift */,
-				A1A58A6B25ED94C600AE7B1A /* StepCell.swift */,
 				A1C2BDF925F92BA600755A47 /* TutorialViewController.swift */,
 				A1A58BBE25F23B4800AE7B1A /* CookingStepCell.swift */,
 				A1A58BE425F2668F00AE7B1A /* StepDetailViewController.swift */,
@@ -911,7 +910,8 @@
 				CODE_SIGN_ENTITLEMENTS = YumFun/YumFun.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BLHQ787DMR;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -937,7 +937,8 @@
 				CODE_SIGN_ENTITLEMENTS = YumFun/YumFun.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BLHQ787DMR;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
