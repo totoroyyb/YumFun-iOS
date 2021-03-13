@@ -85,4 +85,7 @@ target 'YumFun' do
 
   # Dynamic Cell
   pod 'MagazineLayout'
+ 
+  # Gradient Loading Bar
+  pod 'GradientLoadingBar', '~> 2.0'
 end

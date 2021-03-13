@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol DiscoverCellDelegate: class {
-    func didFavorRecipeAt(at indexPath: IndexPath)
-    func didUnfavorRecipeAt(at indexPath: IndexPath)
-    func collectWasPressed(at indexPath: IndexPath)
-}
-
 class DiscoverTextCell: UICollectionViewCell {
     @IBOutlet weak var title: UILabel!
 //    @IBOutlet weak var descrip: UILabel!
