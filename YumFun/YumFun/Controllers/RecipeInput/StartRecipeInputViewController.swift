@@ -32,6 +32,14 @@ class StartRecipeInputViewController: UIViewController, CropperViewControllerDel
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(pushSecondRecipeInput))
         if recipe.steps.count > 0 {
             recipeName.text = recipe.title
+            if let path = recipe.picUrls.first {
+                let storage = CloudStorage(path)
+                recipeImage.sd_setImage(with: storage.fileRef, placeholderImage: nil) { (_, error, _, _) in
+                    if error != nil {
+                        //assertionFailure(error.debugDescription)
+                    }
+                }
+            }
         }
         
     }
@@ -79,15 +87,17 @@ class StartRecipeInputViewController: UIViewController, CropperViewControllerDel
         hud.show(in: cropper.view, animated: true)
         if let state = state,
             let image = cropper.originalImage.cropped(withCropperState: state) {
-            print(cropper.isCurrentlyInInitialState)
-            print(image)
             hud.dismiss()
             cropper.dismiss(animated: true, completion: nil)
             recipeImage.image = image
             recipe.uploadRecipeImage(with: image, nil) { (path) in
                 if let path = path {
                     print("Path is \(path)")
-                    self.recipe.picUrls.append(path)
+                    // if picture already exists, replace
+                    if self.recipe.assetPath.count > 0 {
+                        self.recipe.assetPath.removeAll()
+                        self.recipe.picUrls.append(path)
+                    }
                 }
             }
         } else {

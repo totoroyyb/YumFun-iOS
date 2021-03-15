@@ -29,7 +29,6 @@ class EditStepViewController: UIViewController, CropperViewControllerDelegate {
     var stepCopy: Step = Step(description: "")
     var currentStepIndex: Int = 0
     var isPreviousStep: Bool = false
-    var imageUploaded = false
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(EditStepViewController.tapRecognized))
@@ -79,6 +78,17 @@ class EditStepViewController: UIViewController, CropperViewControllerDelegate {
         stepCopy.utensils = recipe.steps[currentStepIndex].utensils.map { $0 }
         stepCopy.time = recipe.steps[currentStepIndex].time
         recipeDescription.text = recipe.steps[currentStepIndex].description
+        if let path = recipe.steps[currentStepIndex].photoUrl {
+            let storage = CloudStorage(path)
+            imageView.sd_setImage(with: storage.fileRef, placeholderImage: nil) { (_, error, _, _) in
+                if error != nil {
+                    print("Error: \(error)")
+                } else {
+                    print("image set")
+                }
+            }
+        }
+        print("initialized previous data")
     }
     
     @objc func tapRecognized(_ gesture: UITapGestureRecognizer) {
@@ -141,7 +151,15 @@ class EditStepViewController: UIViewController, CropperViewControllerDelegate {
             hud.dismiss()
             cropper.dismiss(animated: true, completion: nil)
             imageView.image = image
-            imageUploaded = true
+            recipe.uploadRecipeImage(with: image, nil) { (path) in
+                if let path = path {
+                    print("set path is \(path)")
+                    self.recipe.steps[self.currentStepIndex].photoUrl = path
+                } else {
+                    print("image not uploaded")
+                }
+            }
+            
         } else {
             hud.dismiss()
             displayErrorBottomPopUp(title: "ERROR",
@@ -154,14 +172,6 @@ class EditStepViewController: UIViewController, CropperViewControllerDelegate {
         let minutesToSeconds = recipeTime.selectedRow(inComponent: 1) * 60
         let seconds: TimeInterval = TimeInterval(hoursToSeconds + minutesToSeconds)
         recipe.steps[currentStepIndex].time = seconds
-        if let image = imageView.image {
-            recipe.uploadRecipeImage(with: image, nil) { (path) in
-                if let path = path {
-                    print("Path is \(path)")
-                    self.recipe.steps[self.currentStepIndex].photoUrl = path
-                }
-            }
-        }
         dismissCurrentView()
     }
     
