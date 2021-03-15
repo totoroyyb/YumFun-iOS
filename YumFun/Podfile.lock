@@ -224,6 +224,7 @@ PODS:
     - Player (= 0.13.0)
   - Comets (0.3.1)
   - EmailValidator (1.0.2)
+  - FaveButton (3.2.1)
   - Firebase/Auth (6.34.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.9.2)
@@ -391,6 +392,7 @@ DEPENDENCIES:
   - Cards
   - Comets
   - EmailValidator
+  - FaveButton
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
@@ -427,6 +429,7 @@ SPEC REPOS:
     - Cards
     - Comets
     - EmailValidator
+    - FaveButton
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -489,6 +492,7 @@ SPEC CHECKSUMS:
   Cards: 45ae6bd0eca7b5e8016d3b6cb30b60b04753f68f
   Comets: ff75eb4658d612af66073bf9fcf6e8bef274817b
   EmailValidator: 366dc0ddedcc457ae14d269fa056416a6730d6ea
+  FaveButton: 93cfebf6030336fa7653fad2068c3152ed668b39
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
   FirebaseAuth: c92d49ada7948d1a23466e3db17bc4c2039dddc3
@@ -534,6 +538,6 @@ SPEC CHECKSUMS:
   TKSwarmAlert: ab34152af48391d8aa80b2386b5e6fe9f335ace7
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
 
-PODFILE CHECKSUM: 061b919d81bd6821a1050a221cfe063128c84567
+PODFILE CHECKSUM: c6f86bbd96345fe7771aa52aa4a4f99b7c85cb27
 
 COCOAPODS: 1.10.1

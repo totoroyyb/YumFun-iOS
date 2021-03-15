@@ -40,6 +40,7 @@ target 'YumFun' do
 
   # Multi-tier UIScrollView
   pod 'SegementSlide', '3.0.1'
+
   # App Store Card View
   pod 'Cards'
   
@@ -88,4 +89,7 @@ target 'YumFun' do
  
   # Gradient Loading Bar
   pod 'GradientLoadingBar', '~> 2.0'
+  
+  # Animated Button
+  pod 'FaveButton'
 end
