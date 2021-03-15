@@ -46,9 +46,6 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
         self.hero.isEnabled = true
         self.profileImage.hero.id = HeroIdType.profileImage.getIdStr(at: recipeIndex)
         self.recipeTitle.hero.id = HeroIdType.recipeTitle.getIdStr(at: recipeIndex)
-        self.contentView.hero.modifiers = [
-            .translate(y: 100)
-        ]
     }
     
     private func setupViewColor() {

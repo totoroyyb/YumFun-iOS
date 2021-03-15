@@ -39,6 +39,8 @@
 		21935C6B25FD5C4A009A22DA /* DiscoverCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21935C6A25FD5C4A009A22DA /* DiscoverCollectionViewDelegate.swift */; };
 		21935C6E25FD5CB3009A22DA /* DiscoverCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21935C6D25FD5CB3009A22DA /* DiscoverCellDelegate.swift */; };
 		21935C7125FD5D09009A22DA /* UICollectionView+DiscoverCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21935C7025FD5D09009A22DA /* UICollectionView+DiscoverCellDelegate.swift */; };
+		21935CE525FECB02009A22DA /* FavButtonColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21935CE425FECB02009A22DA /* FavButtonColor.swift */; };
+		21935CE825FED383009A22DA /* CustomFavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21935CE725FED383009A22DA /* CustomFavButton.swift */; };
 		21A8364725E02252005933AE /* FirestoreTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21A8364625E02252005933AE /* FirestoreTest.storyboard */; };
 		21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */; };
 		21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8365125E023E4005933AE /* FirestoreApi.swift */; };
@@ -143,6 +145,8 @@
 		21935C6A25FD5C4A009A22DA /* DiscoverCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		21935C6D25FD5CB3009A22DA /* DiscoverCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCellDelegate.swift; sourceTree = "<group>"; };
 		21935C7025FD5D09009A22DA /* UICollectionView+DiscoverCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+DiscoverCellDelegate.swift"; sourceTree = "<group>"; };
+		21935CE425FECB02009A22DA /* FavButtonColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavButtonColor.swift; sourceTree = "<group>"; };
+		21935CE725FED383009A22DA /* CustomFavButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFavButton.swift; sourceTree = "<group>"; };
 		21A8364625E02252005933AE /* FirestoreTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirestoreTest.storyboard; sourceTree = "<group>"; };
 		21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestViewController.swift; sourceTree = "<group>"; };
 		21A8365125E023E4005933AE /* FirestoreApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreApi.swift; sourceTree = "<group>"; };
@@ -248,6 +252,7 @@
 				214E84A825F508C500B13CE4 /* BgCometEffect.swift */,
 				214E85F925F5539D00B13CE4 /* BottomUpForm.swift */,
 				216144B025FA81D300C317B8 /* CompletionAnimation.swift */,
+				21935CE725FED383009A22DA /* CustomFavButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -373,6 +378,7 @@
 				214E811F25F16D5500B13CE4 /* Font.swift */,
 				214E812225F16E2500B13CE4 /* UIColor+Utils.swift */,
 				21872BF625F92CBF001F0A8F /* HeroIdHelper.swift */,
+				21935CE425FECB02009A22DA /* FavButtonColor.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -763,11 +769,13 @@
 				A1A58A4625ED8FAC00AE7B1A /* DiscoverImageCell.swift in Sources */,
 				A1A58A4D25ED8FBA00AE7B1A /* PrepareViewController.swift in Sources */,
 				C588202925EF7B4300FC2540 /* PlaceholderImage.swift in Sources */,
+				21935CE825FED383009A22DA /* CustomFavButton.swift in Sources */,
 				A1A58B7B25F0392000AE7B1A /* CookingViewController.swift in Sources */,
 				2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */,
 				21B65D6125FB457C00B02405 /* AvatarCell.swift in Sources */,
 				C568033C25F4382A003A6AFB /* BasicProfileView.swift in Sources */,
 				216144AE25FA7C7E00C317B8 /* Layer.swift in Sources */,
+				21935CE525FECB02009A22DA /* FavButtonColor.swift in Sources */,
 				21935C6325FD5197009A22DA /* PaginationDelegate.swift in Sources */,
 				EF9A1E3425F2E73F00F732D3 /* EditStepViewController.swift in Sources */,
 				21935C5D25FD2A41009A22DA /* Pagination.swift in Sources */,
@@ -927,7 +935,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BLHQ787DMR;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -954,7 +962,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BLHQ787DMR;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = YumFun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
