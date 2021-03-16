@@ -19,13 +19,13 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wGP-kn-rA9">
-                        <rect key="frame" x="0.0" y="0.0" width="350" height="249.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="350" height="200"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="180" id="mS3-v4-7sO"/>
+                            <constraint firstAttribute="height" constant="200" id="mS3-v4-7sO"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3u-f1-cO1">
-                        <rect key="frame" x="20" y="264.5" width="310" height="20.5"/>
+                        <rect key="frame" x="20" y="215" width="310" height="70"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>

@@ -139,7 +139,13 @@ class RecipeSearchViewController: UIViewController, WKUIDelegate, WKNavigationDe
             assertionFailure("couln't get vc")
             return
         }
+        
+        guard let currId = Core.currentUser?.id else {
+            displayWarningTopPopUp(title: "Error", description: "Failed to fetch current user data.")
+            return
+        }
     
+        recipe.author = currId
         recipeDetailViewController.recipe = recipe
         navigationController?.pushViewController(recipeDetailViewController, animated: true)
     }

@@ -110,38 +110,39 @@ class Core {
             print(error.localizedDescription)
         }
     }
+    
+    static func changePassword(from view: UIView,
+                               withOldEmail oldEmail: String,
+                               withOldPassword oldPassword: String,
+                               withNewPassword newPassword: String,
+                               _ completion: @escaping (Error?) -> Void) {
+        guard let authUser = Auth.auth().currentUser else {
+            completion(CoreError.currUserNoDataError)
+            displayWarningTopPopUp(title: "Error", description: "Failed to fetch current user data.")
+            return
+        }
+        
+        let oldCredential = Firebase.EmailAuthProvider.credential(withEmail: oldEmail, password: oldPassword)
+        authUser.reauthenticate(with: oldCredential) { (authResult, error) in
+            if let error = error {
+                completion(error)
+                displayWarningTopPopUp(title: "Error", description: error.localizedDescription)
+                print(error.localizedDescription)
+            } else {
+                authUser.updatePassword(to: newPassword) { (error) in
+                    completion(error)
+                    if let error = error {
+                        displayWarningTopPopUp(title: "Error", description: error.localizedDescription)
+                        print(error.localizedDescription)
+                    } else {
+//                        view.window?.rootViewController?.navigationController?.popViewController(animated: true)
+                        displaySuccessBottomPopUp(title: "Congrats!", description: "You have successfully updated the password.")
+                    }
+                }
+            }
+        }
+    }
 }
-
-//class UrlOpenTask {
-//    private let semaphore = DispatchSemaphore(value: 0)
-//
-//    private var urlOpenTaskQueue = [UrlOpenTaskType]()
-//
-//    func popUrlOpenTask(_ completion: @escaping (UrlOpenTaskType?) -> Void) {
-//        DispatchQueue.global(qos: .userInitiated).async {
-//            if self.urlOpenTaskQueue.count == 0 {
-//                completion(nil)
-//            } else {
-//                completion(self.urlOpenTaskQueue.removeFirst())
-//            }
-//            self.semaphore.signal()
-//        }
-//        semaphore.wait()
-//    }
-//
-//    func addUrlOpenTask(_ task: UrlOpenTaskType) {
-//        DispatchQueue.global(qos: .userInitiated).async  {
-//            self.urlOpenTaskQueue.append(task)
-//            self.semaphore.signal()
-//            NotificationCenter.default.post(name: .newUrlTaskAdded, object: nil)
-//        }
-//        semaphore.wait()
-//    }
-//
-//    func peekNextUrlOpenTask() -> UrlOpenTaskType? {
-//        return urlOpenTaskQueue.first
-//    }
-//}
 
 enum UrlOpenTaskType {
     case joinCollabSession(sessionId: String)

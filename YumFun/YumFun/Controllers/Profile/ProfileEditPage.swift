@@ -108,11 +108,10 @@ class ProfileEditPage: UITableViewController {
 
         case 5:
             //set password
-            if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
+            if let viewController = storyboard?.instantiateViewController(identifier: "UpdatePassword") as? UpdatePasswordViewController {
                 viewController.navigationItem.title = "Password"
-                viewController.Mode = "PasswordEdit"
-                    navigationController?.pushViewController(viewController, animated: true)
-                }
+                navigationController?.pushViewController(viewController, animated: true)
+            }
         case 6:
             print("logout")
             Core.logout(from: self.view)
