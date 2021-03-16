@@ -31,6 +31,12 @@ Steven Tan, Github handle: istevenful
 <br/><br/>
 <img src="Coders' Profiles/Travis.jpg" height="150" width="200">
 Travis Garcia, Github handle: tg1230
+
+- Implemented Recipe Input and Editing UI and logic
+- Implemented Recipe parsing
+- Worked on improving navigation between different views
+- UI polishing and bug fixes
+
 <br/><br/>
 <img src="Coders' Profiles/Chrissy.JPG" height="180" width="180">
 Xiyu Zhang, Github handle: ChrissyKX
@@ -44,8 +50,6 @@ Xiyu Zhang, Github handle: ChrissyKX
 
 - Added floating button for a better UX.
 - UI design and refinements.
-
-  
 
 <br/><br/>
 <img src="Coders' Profiles/Jack.JPG" height="210" width="180">
