@@ -31,6 +31,8 @@ Xiyu Zhang, Github handle: ChrissyKX
 
 - Integrated gesture recognition for touch-free cooking.
 
+- Gesture recognition tutorial view.
+
 - Added floating button for a better UX.
 
 - UI design and refinements.
