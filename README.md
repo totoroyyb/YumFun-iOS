@@ -27,19 +27,30 @@ Xiyu Zhang, Github handle: ChrissyKX
 
 - Implemented cooking preperation view and collaborative cooking view.
 
-- Integrated gesture recognition for touch-free cooking
+- Implemented collaborative cooking client-end logic.
 
-- UI design 
+- Integrated gesture recognition for touch-free cooking.
+
+- Added floating button for a better UX.
+
+- UI design and refinements.
 
   
 
 <br/><br/>
 <img src="Coders' Profiles/Jack.JPG" height="210" width="180">
 Ruifeng Zhang, Github handle: failury
+
 <br/><br/>
 <img src="Coders' Profiles/Yibo.jpg" height="150" width="200">
 Yibo Yan, GitHub Handle: [totoroyyb](https://github.com/totoroyyb)
 
-
-
-
+- Implemented API Wrapper for Firebase, Firestore, CloudStorage, pagination, and all related server-side data structure design.
+- Worked on modeling `Recipe`, `User`, `CollabSession`, and so on.
+- Implemented Collaborative Cooking API structure.
+- Worked with Chrissy for collab cooking client-end design and logic.
+- Worked with Chrissy for discovery view redesign.
+- Worked with Steven for login view redesign.
+- Worked with Ruifeng for profile view - slide segment view implementation and redesign.
+- Implemented several fine tweak, such as image compressor, image cropper, infinite scroll.
+- Custom Alert UI, Activity Indicator, transition animation and several UI refinements.
