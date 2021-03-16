@@ -50,7 +50,13 @@ Xiyu Zhang, Github handle: ChrissyKX
 <br/><br/>
 <img src="Coders' Profiles/Jack.JPG" height="210" width="180">
 Ruifeng Zhang, Github handle: failury
-
+- Implemented profile view - slide segment view implementation.
+- Implemented profile edit view.
+ - Implemented user list view(following/followers).
+- Project structure setup.
+- Implemented viewing other user's profile and follow/unfollow
+- Worked with Steven for timer logic.
+- Implemented image picker manager 
 <br/><br/>
 <img src="Coders' Profiles/Yibo.jpg" height="150" width="200">
 Yibo Yan, GitHub Handle: [totoroyyb](https://github.com/totoroyyb)
