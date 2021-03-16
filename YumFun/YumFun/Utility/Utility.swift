@@ -69,8 +69,13 @@ class Utility {
         stepNum.textColor = UIColor(named: "text_high_emphasis")
         card.addSubview(stepNum)
         stepNum.translatesAutoresizingMaskIntoConstraints = false
-        stepNum.topAnchor.constraint(equalTo: card.topAnchor, constant: 20).isActive = true
-        stepNum.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: 20).isActive = true
+
+        stepNum.snp.makeConstraints { (make) in
+            make.top.equalTo(card).offset(20)
+            make.leading.equalTo(card).offset(20)
+            make.trailing.equalTo(card).offset(-20)
+        }
+        
         previous = stepNum
 
         // add Image
@@ -80,10 +85,13 @@ class Utility {
             setImage(url: url, imageView: stepImage)
             card.addSubview(stepImage)
             stepImage.translatesAutoresizingMaskIntoConstraints = false
-            stepImage.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: 15).isActive = true
-            stepImage.leadingAnchor.constraint(equalTo:previous.leadingAnchor).isActive = true
-            stepImage.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -20).isActive = true
-//            stepImage.heightAnchor.constraint(equalToConstant: ).isActive = true
+            
+            stepImage.snp.makeConstraints { (make) in
+                make.top.equalTo(previous.snp.bottom).offset(20)
+                make.leading.equalTo(card).offset(20)
+                make.trailing.equalTo(card).offset(-20)
+                make.height.lessThanOrEqualTo(300)
+            }
             
             previous = stepImage
         }
@@ -97,7 +105,7 @@ class Utility {
         stepDescrip.lineBreakMode = .byWordWrapping
         card.addSubview(stepDescrip)
         stepDescrip.translatesAutoresizingMaskIntoConstraints = false
-        stepDescrip.topAnchor.constraint(equalToSystemSpacingBelow: previous.bottomAnchor, multiplier: 1).isActive = true
+        stepDescrip.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: 20).isActive = true
         stepDescrip.leadingAnchor.constraint(equalTo: previous.leadingAnchor, constant: 10).isActive = true
         stepDescrip.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -20).isActive = true
         

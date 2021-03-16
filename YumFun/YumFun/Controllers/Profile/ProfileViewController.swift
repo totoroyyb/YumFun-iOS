@@ -93,7 +93,7 @@ class ProfileViewController: SegementSlideDefaultViewController {
         layout.scrollDirection = .vertical
         layout.estimatedItemSize = CGSize(
             width: self.view.frame.width - 40,
-            height: 200
+            height: 220
         )
         //Margin between different cells
         layout.minimumLineSpacing = 25

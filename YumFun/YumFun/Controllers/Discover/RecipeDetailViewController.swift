@@ -7,6 +7,7 @@
 
 import UIKit
 import JJFloatingActionButton
+import JGProgressHUD
 
 class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
     
@@ -80,10 +81,9 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
         cookButton.buttonImageColor = UIColor(named: "text_high_emphasis") ?? UIColor.white
         cookButton.buttonColor = UIColor(named: "primary") ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8)
         cookButton.buttonImageSize = CGSize(width: 30, height: 30)
-        cookButton.layer.shadowColor = UIColor(named: "shadow_color")?.cgColor ?? UIColor.clear.cgColor
-        cookButton.layer.shadowOffset = CGSize(width: 0, height: 1)
-        cookButton.layer.shadowOpacity = Float(0.4)
-        cookButton.layer.shadowRadius = CGFloat(2)
+        
+        cookButton.layer.addShadow(color: UIColor(named: "shadow_color") ?? .darkGray)
+        cookButton.overlayView.backgroundColor = UIColor.black.alpha(0.66)
         
 //        cookButton.addItem(title: nil, image: nil) {[weak self] _ in
 //            self?.cookPressed()
@@ -92,28 +92,33 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
         cookButton.addItem(title: "Cook Now!", image: UIImage(named: "chef")?.withRenderingMode(.alwaysTemplate)) { item in
             self.cookPressed()
         }
-        if let tabBarController = self.navigationController?.tabBarController, tabBarController.selectedIndex == 2 {
-            cookButton.addItem(title: "New Recipe", image: UIImage(named: "add")?.withRenderingMode(.alwaysTemplate)) { item in
-                self.newRecipePressed()
+//        if let tabBarController = self.navigationController?.tabBarController, tabBarController.selectedIndex == 2 {
+//            cookButton.addItem(title: "New Recipe", image: UIImage(named: "add")?.withRenderingMode(.alwaysTemplate)) { item in
+//                self.newRecipePressed()
+//            }
+//        }
+        
+        if self.navigationController?.tabBarController?.selectedIndex == 2 ||
+            Core.currentUser?.id != recipe?.author {
+            cookButton.addItem(title: "Save", image: UIImage(named: "bookmark")?.withRenderingMode(.alwaysTemplate)) { item in
+                self.savePressed()
             }
         }
         
-        cookButton.addItem(title: "Save", image: UIImage(named: "bookmark")?.withRenderingMode(.alwaysTemplate)) { item in
-            self.savePressed()
-        }
-        
-        cookButton.addItem(title: "Edit", image: UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)) { item in
-            if let tabBarController = self.navigationController?.tabBarController {
-                if let arrController = tabBarController.viewControllers {
-                    for vc in arrController {
-                        if vc.restorationIdentifier == "Edit" {
-                            if let navVC = vc as? UINavigationController {
-                                if tabBarController.selectedIndex == 2 {
-                                    self.setEditView()
-                                } else if let chooseRecipeVC = navVC.viewControllers.first as? ChooseRecipeInputViewController, let rec = self.recipe {
-                                    chooseRecipeVC.recipe = rec
-                                    chooseRecipeVC.startEditMode = true
-                                    tabBarController.selectedIndex = 2
+        if Core.currentUser?.id == recipe?.author {
+            cookButton.addItem(title: "Edit", image: UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)) { item in
+                if let tabBarController = self.navigationController?.tabBarController {
+                    if let arrController = tabBarController.viewControllers {
+                        for vc in arrController {
+                            if vc.restorationIdentifier == "Edit" {
+                                if let navVC = vc as? UINavigationController {
+                                    if tabBarController.selectedIndex == 2 {
+                                        self.setEditView()
+                                    } else if let chooseRecipeVC = navVC.viewControllers.first as? ChooseRecipeInputViewController, let rec = self.recipe {
+                                        chooseRecipeVC.recipe = rec
+                                        chooseRecipeVC.startEditMode = true
+                                        tabBarController.selectedIndex = 2
+                                    }
                                 }
                             }
                         }
@@ -124,6 +129,7 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
         
         for item in cookButton.items {
             item.imageSize = CGSize(width: 20, height: 20)
+            item.buttonColor = UIColor(named: "floating_button_bg_color") ?? .white
         }
     }
     
@@ -173,15 +179,19 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
     
     
     private func cookPressed() {
+        guard let rec = recipe, let recId = rec.id, let currUser = Core.currentUser else {
+            displayWarningTopPopUp(title: "Error", description: "Failed to initialize recipe or current user.")
+            return
+        }
         
-        if let rec = recipe {
-            let storyboard = UIStoryboard(name: "Cooking", bundle: nil)
+        if currUser.recipes.contains(recId) {
+            navToCollabCook(rec: rec)
+        } else {
+            let hud = JGProgressHUD()
+            hud.textLabel.text = "Loading"
+            hud.backgroundColor = UIColor.black.alpha(0.55)
+            hud.show(in: self.view)
             
-<<<<<<< Updated upstream
-            guard let cookingNavController = storyboard.instantiateViewController(withIdentifier: "CookingNavigationController") as? UINavigationController else {
-                assertionFailure("couldn't find CookingNavigationController")
-                return
-=======
             currUser.createRecipe(with: rec) { (error, docRef) in
                 hud.dismiss()
                 if let error = error {
@@ -191,22 +201,30 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
                 } else {
                     var newRecipe = rec
                     newRecipe.id = docRef?.documentID
-                    self.navToCollabCook(rec: newRecipe)
+                    self.navToCollabCook(rec: rec)
                 }
->>>>>>> Stashed changes
             }
-            
-            guard let prepareViewController = storyboard.instantiateViewController(withIdentifier: "PrepareViewController") as? PrepareViewController else {
-                assertionFailure("couldn't find PrepareViewController")
-                return
-            }
-            
-            prepareViewController.recipe = rec
-            cookingNavController.setViewControllers([prepareViewController], animated: false)
-            cookingNavController.modalPresentationStyle = .overFullScreen
-            
-            self.present(cookingNavController, animated: true)
         }
+    }
+    
+    private func navToCollabCook(rec: Recipe) {
+        let storyboard = UIStoryboard(name: "Cooking", bundle: nil)
+        
+        guard let cookingNavController = storyboard.instantiateViewController(withIdentifier: "CookingNavigationController") as? UINavigationController else {
+            assertionFailure("couldn't find CookingNavigationController")
+            return
+        }
+        
+        guard let prepareViewController = storyboard.instantiateViewController(withIdentifier: "PrepareViewController") as? PrepareViewController else {
+            assertionFailure("couldn't find PrepareViewController")
+            return
+        }
+        
+        prepareViewController.recipe = rec
+        cookingNavController.setViewControllers([prepareViewController], animated: false)
+        cookingNavController.modalPresentationStyle = .overFullScreen
+        
+        self.present(cookingNavController, animated: true)
     }
     
     func savePressed() {
