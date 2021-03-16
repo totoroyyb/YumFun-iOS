@@ -1,3 +1,15 @@
+# YumFun from Codex Coder
+## How to run?
+There are two ways of running our app.
+
+*Please use the `main` branch, which will remain unchanged after ddl. Other branchs might still involves changes.*
+
+1. Build from source. Theoretically, all necessary files has been included inside this repo. You shouldn't need any additional step. If pod files are missing, please run `pod install` first. You might need to remove the Team ID from the project settings page. If `push notification` entitlement has some trouble to build this app, you can just remove it.
+2. Download from [TestFlight](https://testflight.apple.com/join/yrtyPOHQ). **Note:** This version on the TestFlight might not identical to the one in the main branch. As we might keeps improving this app and publish to the TestFlight after DDL. So `main` branch shall be the source of truth of submitted Final Project.
+
+
+## Important Links
+
 - Trello Link: 
 
   https://trello.com/b/n7b35fDs
@@ -24,17 +36,13 @@ Travis Garcia, Github handle: tg1230
 Xiyu Zhang, Github handle: ChrissyKX
 
 - Implemented discover view and recipe detail view. 
-
 - Implemented cooking preperation view and collaborative cooking view.
-
 - Implemented collaborative cooking client-end logic.
-
 - Integrated gesture recognition for touch-free cooking.
 
 - Gesture recognition tutorial view.
 
 - Added floating button for a better UX.
-
 - UI design and refinements.
 
   
