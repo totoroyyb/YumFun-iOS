@@ -177,9 +177,23 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
         if let rec = recipe {
             let storyboard = UIStoryboard(name: "Cooking", bundle: nil)
             
+<<<<<<< Updated upstream
             guard let cookingNavController = storyboard.instantiateViewController(withIdentifier: "CookingNavigationController") as? UINavigationController else {
                 assertionFailure("couldn't find CookingNavigationController")
                 return
+=======
+            currUser.createRecipe(with: rec) { (error, docRef) in
+                hud.dismiss()
+                if let error = error {
+                    displayWarningTopPopUp(title: "Error", description: "Failed to save recipe before entering cooking.")
+                    print(error.localizedDescription)
+                    return
+                } else {
+                    var newRecipe = rec
+                    newRecipe.id = docRef?.documentID
+                    self.navToCollabCook(rec: newRecipe)
+                }
+>>>>>>> Stashed changes
             }
             
             guard let prepareViewController = storyboard.instantiateViewController(withIdentifier: "PrepareViewController") as? PrepareViewController else {
