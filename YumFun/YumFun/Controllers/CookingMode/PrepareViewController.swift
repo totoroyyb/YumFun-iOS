@@ -154,8 +154,8 @@ class PrepareViewController: UIViewController {
                                         DispatchQueue.main.async {
                                             hud.dismiss()
                                             self.inviteButton.isUserInteractionEnabled = true
+                                            self.invokeInvitationSharing()
                                         }
-                                        self.invokeInvitationSharing()
                                     },
                                     whenChanged: { session in
                                         self.collabSession = session

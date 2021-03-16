@@ -41,6 +41,7 @@
 		21935C7125FD5D09009A22DA /* UICollectionView+DiscoverCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21935C7025FD5D09009A22DA /* UICollectionView+DiscoverCellDelegate.swift */; };
 		21935CE525FECB02009A22DA /* FavButtonColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21935CE425FECB02009A22DA /* FavButtonColor.swift */; };
 		21935CE825FED383009A22DA /* CustomFavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21935CE725FED383009A22DA /* CustomFavButton.swift */; };
+		21935DC72600CB0C009A22DA /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21935DC62600CB0C009A22DA /* UpdatePasswordViewController.swift */; };
 		21A8364725E02252005933AE /* FirestoreTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21A8364625E02252005933AE /* FirestoreTest.storyboard */; };
 		21A8364D25E022DC005933AE /* FirestoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */; };
 		21A8365225E023E4005933AE /* FirestoreApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8365125E023E4005933AE /* FirestoreApi.swift */; };
@@ -147,6 +148,7 @@
 		21935C7025FD5D09009A22DA /* UICollectionView+DiscoverCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+DiscoverCellDelegate.swift"; sourceTree = "<group>"; };
 		21935CE425FECB02009A22DA /* FavButtonColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavButtonColor.swift; sourceTree = "<group>"; };
 		21935CE725FED383009A22DA /* CustomFavButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFavButton.swift; sourceTree = "<group>"; };
+		21935DC62600CB0C009A22DA /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
 		21A8364625E02252005933AE /* FirestoreTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirestoreTest.storyboard; sourceTree = "<group>"; };
 		21A8364C25E022DC005933AE /* FirestoreTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestViewController.swift; sourceTree = "<group>"; };
 		21A8365125E023E4005933AE /* FirestoreApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreApi.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 				C568036225F43F65003A6AFB /* ContentViewController.swift */,
 				C5C5350325F5E90D00447C63 /* ProfileRecipeCell.swift */,
 				C5C5350425F5E90D00447C63 /* ProfileRecipeCell.xib */,
+				21935DC62600CB0C009A22DA /* UpdatePasswordViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -773,6 +776,7 @@
 				A1A58B7B25F0392000AE7B1A /* CookingViewController.swift in Sources */,
 				2185052625E9015100A9D46C /* CloudStorageApi.swift in Sources */,
 				21B65D6125FB457C00B02405 /* AvatarCell.swift in Sources */,
+				21935DC72600CB0C009A22DA /* UpdatePasswordViewController.swift in Sources */,
 				C568033C25F4382A003A6AFB /* BasicProfileView.swift in Sources */,
 				216144AE25FA7C7E00C317B8 /* Layer.swift in Sources */,
 				21935CE525FECB02009A22DA /* FavButtonColor.swift in Sources */,
