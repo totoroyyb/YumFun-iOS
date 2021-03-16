@@ -74,22 +74,10 @@ extension InputRecipeStepsViewController: UITableViewDataSource, UITableViewDele
         return recipe.steps.count
     }
     
-    // TODO fix step UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StepTableCell") as? StepTableCell ?? UITableViewCell(style: .default, reuseIdentifier: "StepTableCell") as? StepTableCell
         
         if let unwrappedCell = cell {
-//            let step = recipe.steps[indexPath.row]
-//            if let url = step.photoUrl {
-//                DispatchQueue.global().async {
-//                    if let data = try? Data(contentsOf: url) {
-//                        DispatchQueue.main.async {
-//                            //unwrappedCell.stepImage?.image = UIImage(data: data)
-//                        }
-//                    }
-//                }
-//            }
-            
             unwrappedCell.stepLabel?.text = "Step " + String(indexPath.row + 1) + ": " + recipe.steps[indexPath.row].description
             if recipe.steps[indexPath.row].time ?? 0 > 0.0 {
                 

@@ -39,7 +39,6 @@ struct RecipeParser2: Codable {
     }
 }
 
-// MARK: - Author
 struct Author: Codable {
     let type, name: String
 
@@ -50,7 +49,6 @@ struct Author: Codable {
 }
 
 
-// MARK: - Nutrition
 struct Nutrition: Codable {
     let type, calories, carbohydrateContent, fatContent: String
     let fiberContent, proteinContent, sugarContent: String
@@ -61,7 +59,6 @@ struct Nutrition: Codable {
     }
 }
 
-// MARK: - RecipeInstruction
 struct RecipeInstruction: Codable {
     let type, text: String
 
@@ -169,19 +166,16 @@ class RecipeSearchViewController: UIViewController, WKUIDelegate, WKNavigationDe
     
     func parseHTML(_ html: String) {
         if let doc = try? Kanna.HTML(html: html, encoding: String.Encoding.utf8) {
-            // TODO test on more websites
             // Searching for nodes by CSS selector
             for recipeJSON in doc.xpath("//script[@type='application/ld+json']") {
                 if let recipeData = recipeJSON.content?.data(using: .utf8) {
                     recipeSite = true
                     if let parsedRecipe = try? JSONDecoder().decode(RecipeParser1.self, from: recipeData) {
-                        //print("---Parser 1---: \n\n\n\(parsedRecipe)")
                         for r in parsedRecipe.graph {
                             parseRecipeParser(r)
                         }
                     }
                     if let parsedRecipes = try? JSONDecoder().decode(RecipeParser2.self, from: recipeData) {
-                        //print("---Parser 2---: \n\n\n\(parsedRecipes)")
                         parseRecipeParser(parsedRecipes)
                     }
                     if let json = try? JSONSerialization.jsonObject(with: recipeData, options: []) as? [String: Any] {
