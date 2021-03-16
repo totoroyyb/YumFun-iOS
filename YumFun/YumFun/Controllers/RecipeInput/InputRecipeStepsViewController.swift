@@ -90,7 +90,7 @@ extension InputRecipeStepsViewController: UITableViewDataSource, UITableViewDele
 //                }
 //            }
             
-            unwrappedCell.stepLabel?.text = "Step " + String(indexPath.row) + ": " + recipe.steps[indexPath.row].description
+            unwrappedCell.stepLabel?.text = "Step " + String(indexPath.row + 1) + ": " + recipe.steps[indexPath.row].description
             if recipe.steps[indexPath.row].time ?? 0 > 0.0 {
                 
                 if let secs = recipe.steps[indexPath.row].time {

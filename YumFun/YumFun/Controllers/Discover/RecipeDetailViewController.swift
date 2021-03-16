@@ -92,11 +92,11 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
         cookButton.addItem(title: "Cook Now!", image: UIImage(named: "chef")?.withRenderingMode(.alwaysTemplate)) { item in
             self.cookPressed()
         }
-//        if let tabBarController = self.navigationController?.tabBarController, tabBarController.selectedIndex == 2 {
-//            cookButton.addItem(title: "New Recipe", image: UIImage(named: "add")?.withRenderingMode(.alwaysTemplate)) { item in
-//                self.newRecipePressed()
-//            }
-//        }
+        if let tabBarController = self.navigationController?.tabBarController, tabBarController.selectedIndex == 2 {
+            cookButton.addItem(title: "New Recipe", image: UIImage(named: "add")?.withRenderingMode(.alwaysTemplate)) { item in
+                self.newRecipePressed()
+            }
+        }
         
         if self.navigationController?.tabBarController?.selectedIndex == 2 ||
             Core.currentUser?.id != recipe?.author {
