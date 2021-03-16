@@ -5,7 +5,7 @@ There are two ways of running our app.
 *Please use the `main` branch, which will remain unchanged after ddl. Other branchs might still involves changes.*
 
 1. Build from source. Theoretically, all necessary files has been included inside this repo. You shouldn't need any additional step. If pod files are missing, please run `pod install` first. You might need to remove the Team ID from the project settings page. If `push notification` entitlement has some trouble to build this app, you can just remove it.
-2. Download from [TestFlight](https://testflight.apple.com/join/yrtyPOHQ). **Note:** This version on the TestFlight might not identical to the one in the main branch before DDL. As we might keeps improving this app and pulish to the TestFlight after DDL.
+2. Download from [TestFlight](https://testflight.apple.com/join/yrtyPOHQ). **Note:** This version on the TestFlight might not identical to the one in the main branch before DDL. As we might keeps improving this app and publish to the TestFlight after DDL.
 
 
 ## Important Links
