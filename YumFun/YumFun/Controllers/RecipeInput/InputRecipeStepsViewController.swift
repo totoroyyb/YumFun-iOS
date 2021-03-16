@@ -92,16 +92,9 @@ extension InputRecipeStepsViewController: UITableViewDataSource, UITableViewDele
             
             unwrappedCell.stepLabel?.text = "Step " + String(indexPath.row) + ": " + recipe.steps[indexPath.row].description
             if recipe.steps[indexPath.row].time ?? 0 > 0.0 {
-                let hours = String(recipe.steps[indexPath.row].time ?? 0 / 3600)
-                let minutes = String((recipe.steps[indexPath.row].time ?? 0 / 3600) / 60)
-                if recipe.steps[indexPath.row].time ?? 0 / 3600 > 0.0 {
-                    if (((recipe.steps[indexPath.row].time ?? 0 / 3600) / 60) > 0.0) {
-                        unwrappedCell.timeLabel?.text = hours + " hrs " + minutes + " m"
-                    } else {
-                        unwrappedCell.timeLabel?.text = hours + " hrs "
-                    }
-                } else {
-                    unwrappedCell.timeLabel?.text = minutes + " m"
+                
+                if let secs = recipe.steps[indexPath.row].time {
+                    unwrappedCell.timeLabel?.text = Utility.parseTimeIntervalSec(time: secs)
                 }
                 
             }
