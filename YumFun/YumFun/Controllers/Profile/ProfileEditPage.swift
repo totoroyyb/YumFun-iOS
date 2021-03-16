@@ -17,8 +17,6 @@ class ProfileEditPage: UITableViewController {
     @IBOutlet weak var ProfileImage: UIImageView!
     @IBOutlet weak var DisplayName: UILabel!
     @IBOutlet weak var Bio: UILabel!
-    @IBOutlet weak var Email: UILabel!
-    @IBOutlet weak var UserName: UILabel!
     
     fileprivate func Cosmetic() {
         ProfileImage.layer.borderWidth = 1
@@ -42,23 +40,11 @@ class ProfileEditPage: UITableViewController {
         }else{
             Bio.text = "Not Set"
         }
-        if let email = CurrentUser.email{
-            Email.text = email
-        }else {
-            Email.text = "error"
-        }
-        if let username = CurrentUser.userName{
-            UserName.text = username
-        }else{
-            UserName.text = "Not Set"
-        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Cosmetic()
-        
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -91,28 +77,28 @@ class ProfileEditPage: UITableViewController {
                 viewController.Mode = "BioEdit"
                     navigationController?.pushViewController(viewController, animated: true)
                 }
-        case 3:
-            //set email
-            if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
-                viewController.navigationItem.title = "Email"
-                viewController.Mode = "EmailEdit"
-                    navigationController?.pushViewController(viewController, animated: true)
-                }
-        case 4:
-            //set UserName
-            if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
-                viewController.navigationItem.title = "Username"
-                viewController.Mode = "UserNameEdit"
-                    navigationController?.pushViewController(viewController, animated: true)
-                }
+//        case 3:
+//            //set email
+//            if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
+//                viewController.navigationItem.title = "Email"
+//                viewController.Mode = "EmailEdit"
+//                    navigationController?.pushViewController(viewController, animated: true)
+//                }
+//        case 4:
+//            //set UserName
+//            if let viewController = storyboard?.instantiateViewController(identifier: "Editdetails") as? EditDetailController {
+//                viewController.navigationItem.title = "Username"
+//                viewController.Mode = "UserNameEdit"
+//                    navigationController?.pushViewController(viewController, animated: true)
+//                }
 
-        case 5:
+        case 3:
             //set password
             if let viewController = storyboard?.instantiateViewController(identifier: "UpdatePassword") as? UpdatePasswordViewController {
                 viewController.navigationItem.title = "Password"
                 navigationController?.pushViewController(viewController, animated: true)
             }
-        case 6:
+        case 4:
             print("logout")
             Core.logout(from: self.view)
 
