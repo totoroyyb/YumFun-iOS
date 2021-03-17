@@ -28,6 +28,14 @@ There are two ways of running our app.
 <img src="Coders' Profiles/Steven.jpg" height="150" width="150">
 Steven Tan, Github handle: istevenful
 
+- Implemented Firebase login and signup
+- Implemented Voice Recognition
+- Implemented Timer and TimerObj model
+- Created startup animation
+- Using Chrissy's CookMode implementation to connect steps with individual timers
+- UI Designs
+- Drew, markup, designed some assets used in project
+
 <br/><br/>
 <img src="Coders' Profiles/Travis.jpg" height="150" width="200">
 Travis Garcia, Github handle: tg1230
