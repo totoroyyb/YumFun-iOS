@@ -40,7 +40,31 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
         setupViewColor()
         setupView()
     }
-    
+    func UserEntry(){
+        profileImage.isUserInteractionEnabled = true
+        authorName.isUserInteractionEnabled = true
+        let ImageGotoUser = UITapGestureRecognizer(target: self, action: #selector(self.MoveToUserPage(_:)))
+        let AuthorGotoUser = UITapGestureRecognizer(target: self, action: #selector(self.MoveToUserPage(_:)))
+        profileImage.addGestureRecognizer(ImageGotoUser)
+        authorName.addGestureRecognizer(AuthorGotoUser)
+    }
+    @objc func MoveToUserPage(_ sender: UITapGestureRecognizer) {
+        guard let rec = recipe else { return }
+        User.get(named: rec.author) { (error, user, _) in
+            if error == nil{
+                guard let UserView = self.storyboard?.instantiateViewController(withIdentifier: "ProfileView") as? ProfileViewController else {
+                    assertionFailure("Cannot find ViewController")
+                    return
+                }
+                UserView.OU = user
+                UserView.isSelf = false
+                self.navigationController?.pushViewController(UserView, animated: true)
+            }else{
+                print(error.debugDescription)
+            }
+            
+        }
+        }
     private func setupViewAnimation() {
         // Re-enable back pan gesture
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
@@ -68,6 +92,7 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
         
         makeSteps(recipe: rec)
         setupCookFloatingButton()
+        UserEntry()
     }
     
     private func setupCookFloatingButton() {
@@ -92,11 +117,11 @@ class RecipeDetailViewController: UIViewController, UIScrollViewDelegate {
         cookButton.addItem(title: "Cook Now!", image: UIImage(named: "chef")?.withRenderingMode(.alwaysTemplate)) { item in
             self.cookPressed()
         }
-//        if let tabBarController = self.navigationController?.tabBarController, tabBarController.selectedIndex == 2 {
-//            cookButton.addItem(title: "New Recipe", image: UIImage(named: "add")?.withRenderingMode(.alwaysTemplate)) { item in
-//                self.newRecipePressed()
-//            }
-//        }
+        if let tabBarController = self.navigationController?.tabBarController, tabBarController.selectedIndex == 2 {
+            cookButton.addItem(title: "New Recipe", image: UIImage(named: "add")?.withRenderingMode(.alwaysTemplate)) { item in
+                self.newRecipePressed()
+            }
+        }
         
         if self.navigationController?.tabBarController?.selectedIndex == 2 ||
             Core.currentUser?.id != recipe?.author {

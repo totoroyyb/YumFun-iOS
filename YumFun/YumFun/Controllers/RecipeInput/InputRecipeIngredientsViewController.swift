@@ -38,13 +38,11 @@ class InputRecipeIngredientsViewController: UIViewController {
     
     func addIngredient(_ ingredient: Ingredient) {
         recipe.ingredients.append(ingredient)
-        print("Ingredient added")
         self.tableView.reloadData()
     }
     
     func updateIngredient(_ ingredient: Ingredient, _ index: Int) {
         recipe.ingredients[index] = ingredient
-        print("Ingredient updated")
         self.tableView.reloadData()
     }
     
@@ -79,7 +77,6 @@ extension InputRecipeIngredientsViewController: UITableViewDataSource, UITableVi
         }
         let ingredient = recipe.ingredients[indexPath.row]
         unwrappedCell.nameLabel.text = ingredient.name
-//        unwrappedCell.unitLabel.text = ingredient.amount.description + " " + ingredient.unit.toString()
         
         return unwrappedCell
     }

@@ -15,12 +15,18 @@ class RecipeSaveViewController: UIViewController {
     var recipe: Recipe = Recipe()
     override func viewDidLoad() {
         super.viewDidLoad()
+        textInput.layer.borderColor = UIColor(named: "primary")?.cgColor ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8).cgColor;
+        textInput.layer.borderWidth = 1.0;
+        textInput.layer.cornerRadius = 8;
         setupButton(previewButton)
+        if let note = recipe.chefNote {
+            textInput.text = note
+        }
+        
         navigationItem.title = "Progress 5/5"
         view.addGestureRecognizer(UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing)))
         if let link = recipe.url {
             urlLabel.text = "Recipe from: \n" + link.absoluteString
-            // TODO input reference to parsed recipe site
         }
     }
     
@@ -31,7 +37,6 @@ class RecipeSaveViewController: UIViewController {
 
     @IBAction func previewPressed(_ sender: Any) {
         recipe.chefNote = textInput.text
-        // TODO preview recipe RecipeDetailViewController
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let recipeDetailViewController = storyboard.instantiateViewController(identifier: "RecipeDetailViewController") as RecipeDetailViewController? else {
             assertionFailure("couln't get vc")

@@ -39,6 +39,9 @@ class EditStepViewController: UIViewController, CropperViewControllerDelegate {
         setupButton(cancelButton)
         setupButton(addImageButton)
         initialize()
+        recipeDescription.layer.borderColor = UIColor(named: "primary")?.cgColor ?? UIColor(red: 0.09, green: 0.6, blue: 0.51, alpha: 0.8).cgColor;
+        recipeDescription.layer.borderWidth = 1.0;
+        recipeDescription.layer.cornerRadius = 8;
         if isPreviousStep {
             initializePreviousStepData()
         } else {
@@ -216,7 +219,6 @@ extension EditStepViewController: UITableViewDataSource, UITableViewDelegate {
         }
         let ingredient = recipe.ingredients[indexPath.row]
         unwrappedCell.nameLabel.text = ingredient.name
-        //unwrappedCell.unitLabel.text = ingredient.amount.description + " " + ingredient.unit.toString()
         if unwrappedCell.isChecked {
             unwrappedCell.contentView.backgroundColor = highlighted
         }
@@ -243,14 +245,10 @@ extension EditStepViewController: UITableViewDataSource, UITableViewDelegate {
                     recipe.steps[currentStepIndex].ingredients.remove(at: index)
                 }
             } else {
-//                    let hasIngredient =  recipe.steps[currentStepIndex].ingredients.contains{ (ingredient) -> Bool in
-//                        ingredient.name == selectedIngredient.name
-//                    }
                 currentCell.isChecked = true
                 currentCell.contentView.backgroundColor = highlighted
                 recipe.steps[currentStepIndex].ingredients.append(selectedIngredient)
             }
-            //self.ingredientsTableView.reloadData()
         }
     }
     

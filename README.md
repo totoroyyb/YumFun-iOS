@@ -28,9 +28,23 @@ There are two ways of running our app.
 <img src="Coders' Profiles/Steven.jpg" height="150" width="150">
 Steven Tan, Github handle: istevenful
 
+- Implemented Firebase login and signup
+- Implemented Voice Recognition
+- Implemented Timer and TimerObj model
+- Created startup animation
+- Using Chrissy's CookMode implementation to connect steps with individual timers
+- UI Designs
+- Drew, markup, designed some assets used in project
+
 <br/><br/>
 <img src="Coders' Profiles/Travis.jpg" height="150" width="200">
 Travis Garcia, Github handle: tg1230
+
+- Implemented Recipe Input and Editing UI and logic
+- Implemented Recipe parsing
+- Worked on improving navigation between different views
+- UI polishing and bug fixes
+
 <br/><br/>
 <img src="Coders' Profiles/Chrissy.JPG" height="180" width="180">
 Xiyu Zhang, Github handle: ChrissyKX
@@ -39,15 +53,22 @@ Xiyu Zhang, Github handle: ChrissyKX
 - Implemented cooking preperation view and collaborative cooking view.
 - Implemented collaborative cooking client-end logic.
 - Integrated gesture recognition for touch-free cooking.
+
+- Gesture recognition tutorial view.
+
 - Added floating button for a better UX.
 - UI design and refinements.
-
-  
 
 <br/><br/>
 <img src="Coders' Profiles/Jack.JPG" height="210" width="180">
 Ruifeng Zhang, Github handle: failury
-
+- Implemented profile view - slide segment view implementation.
+- Implemented profile edit view.
+ - Implemented user list view(following/followers).
+- Project structure setup.
+- Implemented viewing other user's profile and follow/unfollow
+- Worked with Steven for timer logic.
+- Implemented image picker manager 
 <br/><br/>
 <img src="Coders' Profiles/Yibo.jpg" height="150" width="200">
 Yibo Yan, GitHub Handle: [totoroyyb](https://github.com/totoroyyb)

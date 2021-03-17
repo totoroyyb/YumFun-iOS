@@ -22,7 +22,6 @@ class ProfileViewController: SegementSlideDefaultViewController {
     
     override func segementSlideHeaderView() -> UIView? {
         let headerView = BasicProfileView()
-        
         Cosmetic(View: headerView)
         DisplayUserInfo(View: headerView)
         self.headerOutlet = headerView
@@ -214,9 +213,13 @@ extension ProfileViewController{
 
         let myStorage = CloudStorage(.profileImage)
         myStorage.child(currId + ".jpeg")
-        View.ProfileImage.sd_setImage(with: myStorage.fileRef,
-                                  placeholderImage: PlaceholderImage.imageWith(name: currentUser.displayName),
-                                  completion: nil)
+            View.ProfileImage.sd_setImage(
+                with: myStorage.fileRef,
+                maxImageSize: 3 * 2048 * 2048,
+                placeholderImage: PlaceholderImage.imageWith(name: currentUser.displayName),
+                options: [.refreshCached],
+                completion: nil)
+        
     }
 }
 
